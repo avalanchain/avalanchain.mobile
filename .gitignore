@@ -12,6 +12,9 @@ Resource.designer.cs
 *.user
 *.sln.docstates
 
+Full/
+Grial/
+
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/
