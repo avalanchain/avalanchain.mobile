@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="avalanchain.MainMenuItemTemplate"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:artina="clr-namespace:UXDivers.Artina.Shared;assembly=UXDivers.Artina.Shared"
+    xmlns:converter="clr-namespace:UXDivers.Artina.Shared;assembly=UXDivers.Artina.Shared.Base"
+    xmlns:local="clr-namespace:avalanchain;assembly=avalanchain">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:NegateBooleanConverter x:Key="InvertBoolConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <AbsoluteLayout
+        Padding="24,0,0,0"
+        HorizontalOptions="FillAndExpand"
+        VerticalOptions="CenterAndExpand">
+
+        <!--  ICON  -->
+        <Label
+            AbsoluteLayout.LayoutBounds="0, 0.5, 20, 1"
+            AbsoluteLayout.LayoutFlags="XProportional, YProportional, HeightProportional"
+            HorizontalTextAlignment="Start"
+            Style="{DynamicResource MainMenuIconStyle}"
+            Text="{Binding Icon}"
+            VerticalTextAlignment="Center" />
+
+        <Label
+            AbsoluteLayout.LayoutBounds="0, 0.5, 20, 1"
+            AbsoluteLayout.LayoutFlags="XProportional, YProportional, HeightProportional"
+            HorizontalTextAlignment="Start"
+            Style="{DynamicResource MainMenuIconStyle}"
+            Text="{Binding Icon2}"
+            VerticalTextAlignment="Center" />
+
+        <!--  FULL LABEL  -->
+        <Label
+            Margin="0,0,0,0"
+            AbsoluteLayout.LayoutBounds="24, 0, 1, 1"
+            AbsoluteLayout.LayoutFlags="WidthProportional, HeightProportional"
+            IsVisible="{Binding IsNew, Converter={StaticResource InvertBoolConverter}}"
+            Style="{DynamicResource MainMenuLabelStyle}"
+            Text="{Binding Name}"
+            VerticalTextAlignment="Center" />
+
+        <!--  COMPACT LABEL  -->
+        <Label
+            Margin="0,0,92,0"
+            AbsoluteLayout.LayoutBounds="24, 0, 1, 1"
+            AbsoluteLayout.LayoutFlags="WidthProportional, HeightProportional"
+            IsVisible="{Binding IsNew}"
+            Style="{DynamicResource MainMenuLabelStyle}"
+            Text="{Binding Name}"
+            VerticalTextAlignment="Center" />
+
+        <!--  NEW BADGE  -->
+        <local:RoundedLabel
+            AbsoluteLayout.LayoutBounds="1, 0.5, 1, AutoSize"
+            AbsoluteLayout.LayoutFlags="XProportional, YProportional, WidthProportional"
+            HorizontalOptions="End"
+            IsVisible="{Binding IsNew}"
+            RoundedLabelText="NEW"
+            Style="{DynamicResource IsNewRoundedLabelStyle}" />
+    </AbsoluteLayout>
+
+</ContentView>

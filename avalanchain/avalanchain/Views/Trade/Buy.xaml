@@ -1,0 +1,230 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="avalanchain.Buy"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:artina="clr-namespace:UXDivers.Artina.Shared;assembly=UXDivers.Artina.Shared"
+    Title="Theme"
+    xmlns:local="clr-namespace:avalanchain;assembly=avalanchain">
+    <ContentPage.Content>
+        <ScrollView Padding="{DynamicResource MainWrapperPadding}">
+            <Grid Padding="10" RowSpacing="20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <!--  -NAME FIELD  -->
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label
+                        Grid.Column="0"
+                        Text="USD"
+                        VerticalTextAlignment="Center" />
+                    <Entry
+                        Grid.Column="1"
+                        artina:EntryProperties.PlaceholderColor="{DynamicResource BaseTextColor}"
+                        BackgroundColor="{DynamicResource PlaceholderColorEntry}"
+                        HeightRequest="40"
+                        Keyboard="Numeric"
+                        Placeholder="0" />
+
+                    <!--  LAST NAME ENTRY  -->
+                    <Label
+                        Grid.Column="2"
+                        Text="BTC"
+                        VerticalTextAlignment="Center" />
+                    <Entry
+                        Grid.Column="3"
+                        Margin="6,0,0,0"
+                        artina:EntryProperties.PlaceholderColor="{DynamicResource BaseTextColor}"
+                        BackgroundColor="{DynamicResource PlaceholderColorEntry}"
+                        HeightRequest="40"
+                        Keyboard="Numeric"
+                        Placeholder="0" />
+
+                </Grid>
+
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="5*" />
+                        <ColumnDefinition Width="5*" />
+                        <!--<ColumnDefinition Width="1*" />-->
+                    </Grid.ColumnDefinitions>
+
+                    <!--  CARD NUMBER ENTRY  -->
+                    <Label
+                        Grid.Column="0"
+                        Text="Deposit to"
+                        VerticalTextAlignment="Center" />
+                    <Picker
+                        Title="Wallets"
+                        Grid.Column="1"
+                        artina:PickerProperties.BorderColor="Gray"
+                        artina:PickerProperties.BorderStyle="BottomLine"
+                        artina:PickerProperties.BorderWidth="1"
+                        TextColor="{DynamicResource BaseTextColor}">
+                        <Picker.Items>
+                            <x:String>BTC Wallet</x:String>
+                            <x:String>USD Wallet</x:String>
+                            <x:String>Pound Wallet</x:String>
+                        </Picker.Items>
+
+                    </Picker>
+                    <!--<Label
+                        Grid.Column="2"
+                        FontFamily="{StaticResource IconsFontFamily}"
+                        FontSize="25"
+                        Text="{x:Static local:GrialShapesFont.ArrowDown}"
+                        TextColor="{DynamicResource OverImageTextColor}"
+                        VerticalTextAlignment="Center" />-->
+                    <!--<Entry
+                        Grid.Column="0"
+                        artina:EntryProperties.PlaceholderColor="{DynamicResource BaseTextColor}"
+                        BackgroundColor="{DynamicResource PlaceholderColorEntry}"
+                        HeightRequest="40"
+                        Placeholder="Card Number" />
+
+                    -->
+                    <!--  CVV NUMBER  -->
+                    <!--
+                    <Entry
+                        Grid.Column="1"
+                        Margin="6,0,0,0"
+                        artina:EntryProperties.PlaceholderColor="{DynamicResource BaseTextColor}"
+                        BackgroundColor="{DynamicResource PlaceholderColorEntry}"
+                        HeightRequest="40"
+                        Placeholder="CVV" />-->
+                </Grid>
+
+
+
+                <!--  Deposite to  -->
+
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <!--  NAME ENTRY  -->
+                    <Picker
+                        Title="Wallets"
+                        Grid.Column="1"
+                        artina:PickerProperties.BorderColor="Gray"
+                        artina:PickerProperties.BorderStyle="BottomLine"
+                        artina:PickerProperties.BorderWidth="1"
+                        TextColor="{DynamicResource BaseTextColor}">
+                        <Picker.Items>
+                            <x:String>BTC Wallet</x:String>
+                            <x:String>USD Wallet</x:String>
+                            <x:String>Pound Wallet</x:String>
+                        </Picker.Items>
+                    </Picker>
+
+                    <!--  LAST NAME ENTRY  -->
+
+                </Grid>
+
+
+
+                <!--  EXPIRATION DATE  -->
+                <!--<Entry
+                    Grid.Row="2"
+                    artina:EntryProperties.PlaceholderColor="{DynamicResource BaseTextColor}"
+                    BackgroundColor="{DynamicResource PlaceholderColorEntry}"
+                    HeightRequest="40"
+                    Placeholder="Expriation Date" />-->
+
+                <!--  ADDRESS LINE 1  -->
+                <Entry
+                    Grid.Row="3"
+                    artina:EntryProperties.PlaceholderColor="{DynamicResource BaseTextColor}"
+                    BackgroundColor="{DynamicResource PlaceholderColorEntry}"
+                    HeightRequest="40"
+                    Placeholder="Address Line 1" />
+
+                <!--  ADDRESS LINE 2  -->
+                <Entry
+                    Grid.Row="4"
+                    artina:EntryProperties.PlaceholderColor="{DynamicResource BaseTextColor}"
+                    BackgroundColor="{DynamicResource PlaceholderColorEntry}"
+                    HeightRequest="40"
+                    Placeholder="Address Line 2" />
+
+                <Grid Grid.Row="5" RowSpacing="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="40" />
+                    </Grid.RowDefinitions>
+
+                    <!--  CITY ENTRY  -->
+                    <Entry
+                        Grid.Column="0"
+                        artina:EntryProperties.PlaceholderColor="{DynamicResource BaseTextColor}"
+                        BackgroundColor="{DynamicResource PlaceholderColorEntry}"
+                        HeightRequest="40"
+                        Placeholder="City" />
+
+                    <!--  STATE ENTRY  -->
+                    <Entry
+                        Grid.Column="1"
+                        artina:EntryProperties.PlaceholderColor="{DynamicResource BaseTextColor}"
+                        BackgroundColor="{DynamicResource PlaceholderColorEntry}"
+                        HeightRequest="40"
+                        Placeholder="State" />
+
+                    <!--  CITY ENTRY  -->
+                    <Entry
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        artina:EntryProperties.PlaceholderColor="{DynamicResource BaseTextColor}"
+                        BackgroundColor="{DynamicResource PlaceholderColorEntry}"
+                        HeightRequest="40"
+                        Placeholder="Zip Code" />
+
+                    <!--  STATE ENTRY  -->
+                    <Entry
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        artina:EntryProperties.PlaceholderColor="{DynamicResource BaseTextColor}"
+                        BackgroundColor="{DynamicResource PlaceholderColorEntry}"
+                        HeightRequest="40"
+                        Placeholder="Country" />
+                </Grid>
+
+                <!--  NOTES  -->
+                <Grid Grid.Row="5" Padding="0.5">
+                    <Editor artina:EntryProperties.PlaceholderColor="{DynamicResource BaseTextColor}" BackgroundColor="{DynamicResource PlaceholderColorEntry}" />
+                </Grid>
+
+                <!--  NOTES  -->
+                <artina:Button
+                    Grid.Row="6"
+                    HorizontalOptions="{artina:OnOrientationLayoutOptions PortraitPhone=Fill,
+                                                                          LandscapePhone=Center,
+                                                                          PortraitTablet=Fill,
+                                                                          LandscapeTablet=Center}"
+                    Style="{DynamicResource PrimaryActionButtonStyle}"
+                    Text="Buy"
+                    VerticalOptions="End"
+                    WidthRequest="{artina:OnOrientationDouble LandscapePhone=200,
+                                                              LandscapeTablet=400}" />
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

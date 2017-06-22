@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="avalanchain.WelcomePage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:artina="clr-namespace:UXDivers.Artina.Shared;assembly=UXDivers.Artina.Shared"
+    xmlns:local="clr-namespace:avalanchain;assembly=avalanchain"
+    xmlns:lottie="clr-namespace:Lottie.Forms;assembly=Lottie.Forms"
+    BackgroundColor="{DynamicResource ComplementColor}"
+    BackgroundImage="{DynamicResource WelcomeBackgroundImage}">
+
+    <!--  MAIN CONTAINER  -->
+    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+
+        <!--  -BACKGROUND IMAGE  -->
+        <Image Style="{DynamicResource WelcomeBackgroundImage}" />
+
+        <Grid Padding="20">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+
+            <Grid
+                Grid.Row="0"
+                Padding="0"
+                ColumnSpacing="0"
+                HorizontalOptions="StartAndExpand"
+                Style="{StaticResource BrandContainerStyle}">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+
+                <!--  LOGO  -->
+                <!--<lottie:AnimationView
+					Grid.Column="0"
+					Margin="-20"
+				    x:Name="AnimationView"
+				    Animation="grial_animation.json"
+
+				    AutoPlay="false"
+				    HeightRequest="160"
+					WidthRequest="160"
+					VerticalOptions="FillAndExpand"
+				    HorizontalOptions="FillAndExpand"/>-->
+                <Image
+                    Grid.Column="0"
+                    HeightRequest="64"
+                    Source="{StaticResource ACImage}"
+                    WidthRequest="129" />
+
+                <!--<StackLayout
+					Grid.Column="1"
+					Orientation="Vertical"
+					HorizontalOptions="Start"
+					VerticalOptions="Center"
+					Spacing="0">
+					<Label
+						TextColor="{ DynamicResource OverImageTextColor }"
+						FontSize="24"
+						Text="Avalan"
+						FontAttributes="Bold"
+						VerticalTextAlignment="Start"/>
+					<Label
+						TextColor="{ DynamicResource OverImageTextColor }"
+						FontSize="24"
+						Text="UI.KIT"
+						VerticalTextAlignment="Start"/>
+				</StackLayout>-->
+
+            </Grid>
+
+
+
+
+
+
+            <!--  CLAIM TEXT  -->
+            <StackLayout
+                Grid.Row="1"
+                Padding="{artina:OnOrientationDouble Default=20,
+                                                     PortraitTablet=20,
+                                                     LandscapeTablet=20}"
+                Orientation="Vertical"
+                Spacing="10"
+                TranslationY="-20"
+                VerticalOptions="Center">
+                <Label
+                    AbsoluteLayout.LayoutFlags="All"
+                    FontAttributes="Bold"
+                    LineBreakMode="WordWrap"
+                    Text="Fast Simple Secure."
+                    TextColor="{DynamicResource OverImageTextColor}"
+                    VerticalTextAlignment="Center">
+                    <Label.FontSize>
+                        <OnIdiom
+                            x:TypeArguments="x:Double"
+                            Phone="26"
+                            Tablet="36" />
+                    </Label.FontSize>
+                </Label>
+                <Label
+                    AbsoluteLayout.LayoutFlags="All"
+                    FontSize="36"
+                    LineBreakMode="WordWrap"
+                    Text="Take your payments to the next level &#x0a; with Avalanchain."
+                    TextColor="{DynamicResource OverImageTextColor}"
+                    VerticalTextAlignment="Center">
+                    <Label.FontSize>
+                        <OnIdiom
+                            x:TypeArguments="x:Double"
+                            Phone="17"
+                            Tablet="27" />
+                    </Label.FontSize>
+                </Label>
+
+
+
+                <!--  ICONS  -->
+                <StackLayout Orientation="Horizontal" Spacing="20">
+
+                    <Label
+                        Grid.Row="0"
+                        FontFamily="{StaticResource IconsFontFamily}"
+                        FontSize="25"
+                        Text="{x:Static local:IoniciconsFont.SocialBitcoin}"
+                        TextColor="{DynamicResource IoniciconsFont}"
+                        VerticalTextAlignment="Center" />
+
+                    <Label
+                        Grid.Row="0"
+                        FontFamily="{StaticResource IconsFontFamily}"
+                        FontSize="25"
+                        Text="{x:Static local:IoniciconsFont.SocialUsd}"
+                        TextColor="{DynamicResource IoniciconsFont}"
+                        VerticalTextAlignment="Center" />
+
+                    <Label
+                        Grid.Row="0"
+                        FontFamily="{StaticResource IconsFontFamily}"
+                        FontSize="25"
+                        Text="{x:Static local:IoniciconsFont.SocialEuro}"
+                        TextColor="{DynamicResource OverImageTextColor}"
+                        VerticalTextAlignment="Center" />
+
+                    <!--<Label
+						Grid.Row="0"
+						VerticalTextAlignment="Center"
+						Text="{ x:Static local:GrialShapesFont.LogoAndroid } "
+						FontSize="25"
+						TextColor="{ DynamicResource OverImageTextColor }"
+						FontFamily="{ StaticResource IconsFontFamily }"/>
+
+					<Label
+						Grid.Row="0"
+						VerticalTextAlignment="Center"
+						Text="{ x:Static local:GrialShapesFont.LogoLottie } "
+						FontSize="45"
+						TextColor="{ DynamicResource OverImageTextColor }"
+						FontFamily="{ StaticResource IconsFontFamily }"/>-->
+
+                </StackLayout>
+
+                <!--  ACCENT LINE  -->
+                <BoxView BackgroundColor="{DynamicResource AccentColor}" Style="{DynamicResource BrandNameOrnamentStyle}" />
+
+            </StackLayout>
+
+            <!--  BUTTONS  -->
+            <StackLayout
+                Grid.Row="2"
+                HorizontalOptions="FillAndExpand"
+                Spacing="10"
+                VerticalOptions="End">
+
+                <artina:Button
+                    Clicked="OnWalkthroughButtonTapped"
+                    HorizontalOptions="{artina:OnOrientationLayoutOptions PortraitPhone=Fill,
+                                                                          LandscapePhone=Fill,
+                                                                          PortraitTablet=Fill,
+                                                                          LandscapeTablet=Center}"
+                    Style="{DynamicResource SecondaryActionButtonStyle}"
+                    Text="Walkthrough"
+                    VerticalOptions="EndAndExpand"
+                    WidthRequest="{artina:OnOrientationDouble LandscapeTablet=600}" />
+
+                <artina:Button
+                    Clicked="OnBrowseSamplesButtonTapped"
+                    HorizontalOptions="{artina:OnOrientationLayoutOptions PortraitPhone=Fill,
+                                                                          LandscapePhone=Fill,
+                                                                          PortraitTablet=Fill,
+                                                                          LandscapeTablet=Center}"
+                    Style="{DynamicResource PrimaryActionButtonStyle}"
+                    Text="Done"
+                    VerticalOptions="EndAndExpand"
+                    WidthRequest="{artina:OnOrientationDouble LandscapeTablet=600}" />
+
+            </StackLayout>
+
+        </Grid>
+    </Grid>
+
+</ContentPage>
