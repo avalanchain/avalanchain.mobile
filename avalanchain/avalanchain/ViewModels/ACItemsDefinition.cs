@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using avalanchain.Views.Accounts;
 using Xamarin.Forms;
 
 namespace avalanchain
@@ -95,25 +95,58 @@ namespace avalanchain
                         new SampleT("Buy", typeof(Buy), SampleData.DashboardImagesList[6], GrialShapesFont.OutlineThinCircle, GrialShapesFont.ArrowUp, false, false),
                         new SampleT("Sell", typeof(Buy), SampleData.DashboardImagesList[6], GrialShapesFont.OutlineThinCircle, GrialShapesFont.ArrowDown, false, false),
                         new Sample("Transfer", typeof(Buy), SampleData.DashboardImagesList[6], GrialShapesFont.Loop, false, false),
+                        new Sample("Dashboard", typeof(Dashboard), SampleData.DashboardImagesList[3], GrialShapesFont.Dashboard),
 
                    }
                }
            );
 
             categories.Add(
-                "SOCIAL",
+               "ACCOUNTS",
+               new SampleCategory
+               {
+                   Name = "Accounts",
+                   BackgroundColor = Color.FromHex(_categoriesColors[0]),
+                   BackgroundImage = SampleData.DashboardImagesList[6],
+                   Icon = GrialShapesFont.Person,
+                   Badge = 2,
+                   SamplesList = new List<Sample> {
+                        new Sample("Cards", typeof(Cards), SampleData.DashboardImagesList[6], GrialShapesFont.CreditCard, false, false),
+                        new Sample("BTCWallet", typeof(BTCWallet), SampleData.DashboardImagesList[6], GrialShapesFont.WebAsset, false, false),
+                        new Sample("Add Card", typeof(ProductOrder), SampleData.DashboardImagesList[5], GrialShapesFont.CreditCard, false, true),
+                   }
+               }
+           );
+
+            categories.Add(
+                "MESSAGES",
                 new SampleCategory
                 {
-                    Name = "Social",
+                    Name = "Messages",
+                    BackgroundColor = Color.FromHex(_categoriesColors[7]),
+                    BackgroundImage = SampleData.DashboardImagesList[8],
+                    Badge = 2,
+                    Icon = GrialShapesFont.Email,
+                    SamplesList = new List<Sample> {
+
+                        new Sample("Messages", typeof(MessagesListPage), SampleData.DashboardImagesList[8], GrialShapesFont.Email),
+                        new Sample("Bot", typeof(ChatMessagesListPage), SampleData.DashboardImagesList[8], GrialShapesFont.Email),
+                        new Sample("Chat Messages List", typeof(ChatMessagesListPage), SampleData.DashboardImagesList[8], GrialShapesFont.Forum),
+
+                    }
+                }
+            );
+            categories.Add(
+                "SETTINGS",
+                new SampleCategory
+                {
+                    Name = "Settings",
                     BackgroundColor = Color.FromHex(_categoriesColors[0]),
                     BackgroundImage = SampleData.DashboardImagesList[6],
                     Icon = GrialShapesFont.Person,
                     Badge = 2,
                     SamplesList = new List<Sample> {
-                        new Sample("Document Timeline", typeof(DocumentTimelinePage), SampleData.DashboardImagesList[6], GrialShapesFont.QueryBuilder, false, true),
-                        new Sample("Timeline", typeof(TimelinePage), SampleData.DashboardImagesList[6], GrialShapesFont.QueryBuilder, false, true),
-
-                        new Sample("User Profile", typeof(ProfilePage), SampleData.DashboardImagesList[6], GrialShapesFont.AccountCircle),
+                        new Sample("Profile", typeof(ProfilePage), SampleData.DashboardImagesList[6], GrialShapesFont.AccountCircle),
                         new Sample("Social", typeof(SocialPage), SampleData.DashboardImagesList[6], GrialShapesFont.Group),
                         new Sample("Social Variant", typeof(SocialVariantPage), SampleData.DashboardImagesList[6], GrialShapesFont.Group),
 
@@ -154,144 +187,15 @@ namespace avalanchain
                     Icon = GrialShapesFont.Dashboard,
                     SamplesList = new List<Sample> {
 
-                        new Sample("Icons Dashboard", typeof(DashboardPage), SampleData.DashboardImagesList[3], GrialShapesFont.Dashboard),
-                        new Sample("Flat Dashboard", typeof(DashboardFlatPage), SampleData.DashboardImagesList[3], GrialShapesFont.Dashboard),
-                        new Sample("Images Dashboard", typeof(DashboardWithImagesPage), SampleData.DashboardImagesList[3], GrialShapesFont.Dashboard, false),
+                        //new Sample("Icons Dashboard", typeof(DashboardPage), SampleData.DashboardImagesList[3], GrialShapesFont.Dashboard),
+                        new Sample("Dashboard", typeof(DashboardFlatPage), SampleData.DashboardImagesList[3], GrialShapesFont.Dashboard),
+                        //new Sample("Images Dashboard", typeof(DashboardWithImagesPage), SampleData.DashboardImagesList[3], GrialShapesFont.Dashboard, false),
 
                     }
                 }
             );
 
-
-            //categories.Add(
-            //    "NAVIGATION",
-            //    new SampleCategory
-            //    {
-            //        Name = "Navigation",
-            //        BackgroundColor = Color.FromHex(_categoriesColors[3]),
-            //        BackgroundImage = SampleData.DashboardImagesList[2],
-            //        Badge = 5,
-            //        Icon = GrialShapesFont.Menu,
-            //        SamplesList = new List<Sample> {
-            //            new Sample("Card List", typeof(CardsListPage), SampleData.DashboardImagesList[2], GrialShapesFont.List, false, true),
-            //            new Sample("Empty State", typeof(EmptyStatePage), SampleData.DashboardImagesList[2], GrialShapesFont.Hourglass, false, true),
-            //            new Sample("Welcome Page", typeof (WelcomePage), SampleData.DashboardImagesList[2], GrialShapesFont.Place, true, true),
-
-            //            new Sample("Categories List Flat", typeof(CategoriesListFlatPage), SampleData.DashboardImagesList[2], GrialShapesFont.List),
-            //            new Sample("Image Categories", typeof(CategoriesListWithImagesPage), SampleData.DashboardImagesList[2], GrialShapesFont.List),
-            //            new Sample("Icon Categories", typeof(CategoriesListWithIconsPage), SampleData.DashboardImagesList[2], GrialShapesFont.List),
-            //            new Sample("Custom NavBar", typeof(CustomNavBarPage), SampleData.DashboardImagesList[2], GrialShapesFont.WebAsset),
-            //            new Sample("Root Page", typeof(RootPage), SampleData.DashboardImagesList[2], GrialShapesFont.Menu, false),
-            //        }
-            //    }
-            //);
-
-            //categories.Add(
-            //    "LOGINS",
-            //    new SampleCategory
-            //    {
-            //        Name = "Logins",
-            //        BackgroundColor = Color.FromHex(_categoriesColors[4]),
-            //        BackgroundImage = SampleData.DashboardImagesList[5],
-            //        Badge = 2,
-            //        Icon = GrialShapesFont.Lock,
-            //        SamplesList = new List<Sample> {
-            //            new Sample("Simple Sign Up", typeof(SimpleSignUpPage), SampleData.DashboardImagesList[5], GrialShapesFont.CheckCircle, true, true),
-            //            new Sample("Simple Login", typeof(SimpleLoginPage), SampleData.DashboardImagesList[5], GrialShapesFont.CheckCircle, true, true),
-
-            //            new Sample("Login", typeof(LoginPage), SampleData.DashboardImagesList[5], GrialShapesFont.Lock, true),
-            //            new Sample("Sign Up", typeof(SignUpPage), SampleData.DashboardImagesList[5], GrialShapesFont.CheckCircle, true),
-            //            new Sample("Password Recovery", typeof(PasswordRecoveryPage), SampleData.DashboardImagesList[5], GrialShapesFont.SettingsRestore, true)
-            //        }
-            //    }
-            //);
-
-            //categories.Add(
-            //    "ECOMMERCE",
-            //    new SampleCategory
-            //    {
-            //        Name = "Ecommerce",
-            //        BackgroundColor = Color.FromHex(_categoriesColors[5]),
-            //        BackgroundImage = SampleData.DashboardImagesList[1],
-            //        Badge = 3,
-            //        Icon = GrialShapesFont.ShoppingCart,
-            //        SamplesList = new List<Sample> {
-            //            new Sample("Product FullScreen", typeof(ProductItemFullScreenPage), SampleData.DashboardImagesList[1], GrialShapesFont.CardGiftcard, false, true),
-            //            new Sample("Product Order", typeof(ProductOrder), SampleData.DashboardImagesList[5], GrialShapesFont.CardGiftcard, false, true),
-
-            //            new Sample("Products Grid", typeof(ProductsGridPage), SampleData.DashboardImagesList[1] , GrialShapesFont.Module),
-            //            new Sample("Products Grid Variant", typeof(ProductsGridVariantPage), SampleData.DashboardImagesList[1] , GrialShapesFont.Module),
-            //            new Sample("Product Item View", typeof(ProductItemViewPage), SampleData.DashboardImagesList[1], GrialShapesFont.CardGiftcard),
-            //            new Sample("Products Carousel", typeof(ProductsCarouselPage), SampleData.DashboardImagesList[1], GrialShapesFont.CardGiftcard),
-
-            //        }
-            //    }
-            //);
-
-      //      categories.Add(
-      //          "WALKTROUGH",
-      //          new SampleCategory
-      //          {
-      //              Name = "Walkthroughs",
-      //              BackgroundColor = Color.FromHex(_categoriesColors[6]),
-      //              BackgroundImage = SampleData.DashboardImagesList[7],
-      //              Badge = 2,
-      //              Icon = GrialShapesFont.Carousel,
-      //              SamplesList = new List<Sample> {
-      //                  new Sample("Walkthrough", typeof(WalkthroughPage), SampleData.DashboardImagesList[7], GrialShapesFont.Carousel, true, true),
-						////new Sample("Walkthrough Gradient", typeof(WalkthroughGradientPage), SampleData.DashboardImagesList[7], GrialShapesFont.Carousel, true, true),
-						//new Sample("Walkthrough Flat", typeof(WalkthroughFlatPage), SampleData.DashboardImagesList[7], GrialShapesFont.Carousel, true, true),
-
-      //                  new Sample("Walkthrough Variant", typeof(WalkthroughVariantPage), SampleData.DashboardImagesList[7], GrialShapesFont.Carousel, true)
-      //              }
-      //          }
-      //      );
-
-            categories.Add(
-                "MESSAGES",
-                new SampleCategory
-                {
-                    Name = "Messages",
-                    BackgroundColor = Color.FromHex(_categoriesColors[7]),
-                    BackgroundImage = SampleData.DashboardImagesList[8],
-                    Badge = 2,
-                    Icon = GrialShapesFont.Email,
-                    SamplesList = new List<Sample> {
-
-                        new Sample("Messages", typeof(MessagesListPage), SampleData.DashboardImagesList[8], GrialShapesFont.Email),
-                        new Sample("Bot", typeof(MessagesListPage), SampleData.DashboardImagesList[8], GrialShapesFont.Email),
-                        new Sample("Chat Messages List", typeof(ChatMessagesListPage), SampleData.DashboardImagesList[8], GrialShapesFont.Forum),
-
-                    }
-                }
-            );
-
-     //       categories.Add(
-     //           "THEME",
-     //           new SampleCategory
-     //           {
-     //               Name = "Grial Theme",
-     //               BackgroundColor = Color.FromHex(_categoriesColors[8]),
-     //               BackgroundImage = SampleData.DashboardImagesList[0],
-     //               Badge = 9,
-     //               Icon = GrialShapesFont.ColorPalette,
-     //               SamplesList = new List<Sample> {
-     //                   new Sample("Animations", typeof(AnimationsPage), SampleData.DashboardImagesList[0], GrialShapesFont.LogoLottie, false, true),
-     //                   new Sample("Tabbed Page", typeof(TabsPage), SampleData.DashboardImagesList[0], GrialShapesFont.Tab, false, true),
-     //                   new Sample("Demo Settings", typeof(GrialDemoSettings), SampleData.DashboardImagesList[0], GrialShapesFont.Settings, false, true),
-     //                   new Sample("Custom Activity Indicator", typeof(CustomActivityIndicatorPage), SampleData.DashboardImagesList[0], GrialShapesFont.Loop, false, true),
-     //                   new Sample("Responsive Helpers", typeof(ResponsiveHelpersPage), SampleData.DashboardImagesList[0], GrialShapesFont.TabletAndroid, false, true),
-     //                   new Sample("Grial Font Icons", typeof(IconsPage), SampleData.DashboardImagesList[0], GrialShapesFont.LogoGrial, false, true),
-
-     //                   new Sample("Native Controls", typeof(ThemePage), SampleData.DashboardImagesList[0], GrialShapesFont.ColorPalette),
-     //                   new Sample("Custom Renderers", typeof(CustomRenderersPage), SampleData.DashboardImagesList[0], GrialShapesFont.ColorPalette),
-     //                   new Sample("Grial Common Views", typeof(CommonViewsPage), SampleData.DashboardImagesList[0], GrialShapesFont.LogoGrial),
-     //                   new Sample("Settings Page", typeof(SettingsPage), SampleData.DashboardImagesList[0], GrialShapesFont.Settings),
-					//	//new Sample("WebView", typeof(WebViewPage), SampleData.DashboardImagesList[0], GrialShapesFont.Public),
-
-					//}
-     //           }
-     //       );
+            
 
             return categories;
         }

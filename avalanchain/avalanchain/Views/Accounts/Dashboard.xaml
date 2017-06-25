@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="avalanchain.Dashboard"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:XForms="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms">
+
+    <ContentPage.Content>
+        <!--<XForms:SfChart.PrimaryAxis>
+            <XForms:CategoryAxis LabelRotationAngle="-45">
+                <XForms:CategoryAxis.Title>
+                    <XForms:ChartAxisTitle Text="Meetup Date" />
+                </XForms:CategoryAxis.Title>
+            </XForms:CategoryAxis>
+        </XForms:SfChart.PrimaryAxis>
+        <XForms:SfChart.SecondaryAxis>
+            <XForms:NumericalAxis>
+                <XForms:NumericalAxis.Title>
+                    <XForms:ChartAxisTitle Text="Count" />
+                </XForms:NumericalAxis.Title>
+            </XForms:NumericalAxis>
+        </XForms:SfChart.SecondaryAxis>-->
+        <!--<chart:SfChart.Series>
+            <chart:StackingColumnSeries
+                DataMarkerPosition="Center"
+                EnableDataPointSelection="false"
+                ItemsSource="{Binding CheckInData}"
+                Label="Check-in"
+                XBindingPath="Date"
+                YBindingPath="CheckIns"
+                Color="#FF8D00">
+                <chart:StackingColumnSeries.DataMarker>
+                    <chart:ChartDataMarker>
+                        <chart:ChartDataMarker.LabelStyle>
+                            <chart:DataMarkerLabelStyle LabelPosition="Center" />
+                        </chart:ChartDataMarker.LabelStyle>
+                    </chart:ChartDataMarker>
+                </chart:StackingColumnSeries.DataMarker>
+            </chart:StackingColumnSeries>
+            <chart:StackingColumnSeries
+                EnableDataPointSelection="false"
+                Label="Guests"
+                XBindingPath="Date"
+                YBindingPath="Guests"
+                Color="#D32F2F" />
+        </chart:SfChart.Series>-->
+        <!--  ItemsSource="{Binding CheckInData}"  -->
+    </ContentPage.Content>
+</ContentPage>

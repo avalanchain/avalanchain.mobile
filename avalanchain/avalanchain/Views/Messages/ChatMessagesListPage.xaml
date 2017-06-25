@@ -1,85 +1,84 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage 
-	xmlns="http://xamarin.com/schemas/2014/forms" 
-	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-	xmlns:artina="clr-namespace:UXDivers.Artina.Shared;assembly=UXDivers.Artina.Shared"
-	xmlns:local="clr-namespace:avalanchain;assembly=avalanchain"
-	x:Class="avalanchain.ChatMessagesListPage"
-	Title="Chat Messages List"
-	BackgroundColor="{ DynamicResource BasePageColor }">
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="avalanchain.ChatMessagesListPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:artina="clr-namespace:UXDivers.Artina.Shared;assembly=UXDivers.Artina.Shared"
+    xmlns:local="clr-namespace:avalanchain;assembly=avalanchain"
+    Title="Chat Bot"
+    BackgroundColor="{DynamicResource BasePageColor}">
 
-	<Grid>
-		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="*"/>
-		</Grid.ColumnDefinitions>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
 
-		<ListView
-			Grid.Column="0"
-			ItemsSource="{Binding SamplesCategories}"
-			SeparatorVisibility="None"
-			SeparatorColor="Transparent"
-			HasUnevenRows="false">
-			<ListView.RowHeight>
-				<OnIdiom x:TypeArguments="x:Int32"
-		             Phone="80"
-		             Tablet="120"/>
-			</ListView.RowHeight>
-		
-			<ListView.ItemTemplate>
-				<DataTemplate>
-					<ViewCell>
-						<local:RecentChatItemTemplate/>
-					</ViewCell>
-				</DataTemplate>
-			</ListView.ItemTemplate>
+        <ListView
+            Grid.Column="0"
+            HasUnevenRows="false"
+            ItemsSource="{Binding SamplesCategories}"
+            SeparatorColor="Transparent"
+            SeparatorVisibility="None">
+            <ListView.RowHeight>
+                <OnIdiom
+                    x:TypeArguments="x:Int32"
+                    Phone="80"
+                    Tablet="120" />
+            </ListView.RowHeight>
 
-		</ListView>
-			
-		<Grid 
-			Grid.Column="0" 
-			RowSpacing="0">
-			<Grid.RowDefinitions>
-				<RowDefinition Height="*"/>
-				<RowDefinition Height="52"/>
-			</Grid.RowDefinitions>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <local:RecentChatItemTemplate />
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
 
-			<ScrollView Grid.Row="0">
-				<StackLayout x:Name="ChatMessagesListView" Padding="20"/>
-			</ScrollView>
+        </ListView>
 
-			<!--- BUTTONS CONTAINER  -->
-			<Grid 
-				Grid.Row="1" 
-				BackgroundColor="#cfd8dc" 
-				ColumnSpacing="10"
-				Padding="10"
-				MinimumHeightRequest="40">
+        <Grid Grid.Column="0" RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="52" />
+            </Grid.RowDefinitions>
 
-				<Grid.ColumnDefinitions>
-					<ColumnDefinition Width="40" />
-					<ColumnDefinition Width="50*" />
-					<ColumnDefinition Width="40" />
-				</Grid.ColumnDefinitions>
+            <ScrollView Grid.Row="0">
+                <StackLayout x:Name="ChatMessagesListView" Padding="20" />
+            </ScrollView>
 
-				<!--- PICTURE BUTTON  -->
-				<Label
-					Grid.Column="0"
-					TextColor="Black"
-					Style="{ DynamicResource ChatIconButtonPictureStyle }" />
+            <!--  - BUTTONS CONTAINER  -->
+            <Grid
+                Grid.Row="1"
+                Padding="10"
+                BackgroundColor="#cfd8dc"
+                ColumnSpacing="10"
+                MinimumHeightRequest="40">
 
-				<!--- ENTRY  -->
-				<Entry
-					Grid.Column="1"	
-					Style="{ DynamicResource ChatMessageEntryStyle }"
-					Placeholder="Type your message..." />
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="50*" />
+                    <ColumnDefinition Width="40" />
+                </Grid.ColumnDefinitions>
 
-				<!--- SEND BUTTON  -->
-				<Label
-					Grid.Column="2"
-					TextColor="{ DynamicResource AccentColor }"
-					Style="{ DynamicResource ChatIconButtonSendStyle }" />
-				
-			</Grid>
-		</Grid>
-	</Grid>
+                <!--  - PICTURE BUTTON  -->
+                <Label
+                    Grid.Column="0"
+                    Style="{DynamicResource ChatIconButtonPictureStyle}"
+                    TextColor="Black" />
+
+                <!--  - ENTRY  -->
+                <Entry
+                    Grid.Column="1"
+                    Placeholder="Type your message..."
+                    Style="{DynamicResource ChatMessageEntryStyle}" />
+
+                <!--  - SEND BUTTON  -->
+                <Label
+                    Grid.Column="2"
+                    Style="{DynamicResource ChatIconButtonSendStyle}"
+                    TextColor="{DynamicResource AccentColor}" />
+
+            </Grid>
+        </Grid>
+    </Grid>
 </ContentPage>

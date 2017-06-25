@@ -34,6 +34,7 @@ namespace avalanchain.iOS
 			{ "ErrorColor", Color.Red },
 			{ "WarningColor", Color.FromHex("#ffc107") },
 			{ "NotificationColor", Color.FromHex("#1274d1") },
+			{ "CirclenColor", Color.FromHex("#0075EB") },
 			{ "SaveButtonColor", Color.FromHex("#22c064") },
 			{ "DeleteButtonColor", Color.FromHex("#D50000") },
 			{ "LabelButtonColor", Color.FromHex("#ffffff") },

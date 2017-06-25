@@ -16,6 +16,7 @@ using UXDivers.Artina.Shared;
 using UXDivers.Artina.Shared.Droid;
 
 using FFImageLoading.Forms.Droid;
+using Syncfusion.SfChart.XForms.Droid;
 
 
 namespace avalanchain.Droid
@@ -49,7 +50,9 @@ namespace avalanchain.Droid
 			CachedImageRenderer.Init();
 
 			global::Xamarin.Forms.Forms.Init(this, bundle);
-			UXDivers.Artina.Shared.GrialKit.Init(this, "avalanchain.Droid.GrialLicense");
+            new Syncfusion.SfChart.XForms.Droid.SfChartRenderer();
+
+            UXDivers.Artina.Shared.GrialKit.Init(this, "avalanchain.Droid.GrialLicense");
 
 			FormsHelper.ForceLoadingAssemblyContainingType(typeof(UXDivers.Effects.Effects));
 

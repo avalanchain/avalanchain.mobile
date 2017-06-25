@@ -1,12 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
-    x:Class="avalanchain.ProductOrder"
+    x:Class="avalanchain.AddCard"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:artina="clr-namespace:UXDivers.Artina.Shared;assembly=UXDivers.Artina.Shared"
-    xmlns:local="clr-namespace:avalanchain;assembly=avalanchain"
-    Title="Add Card"
-    BackgroundColor="{DynamicResource BasePageColor}">
+    xmlns:shared="clr-namespace:UXDivers.Artina.Shared;assembly=UXDivers.Artina.Shared">
     <ContentPage.Content>
         <ScrollView Padding="{DynamicResource MainWrapperPadding}">
             <Grid Padding="20" RowSpacing="20">
@@ -30,7 +27,7 @@
                     <!--  NAME ENTRY  -->
                     <Entry
                         Grid.Column="0"
-                        artina:EntryProperties.PlaceholderColor="{DynamicResource BaseTextColor}"
+                        shared:EntryProperties.PlaceholderColor="{DynamicResource BaseTextColor}"
                         BackgroundColor="{DynamicResource PlaceholderColorEntry}"
                         HeightRequest="40"
                         Placeholder="Name" />
@@ -39,7 +36,7 @@
                     <Entry
                         Grid.Column="1"
                         Margin="6,0,0,0"
-                        artina:EntryProperties.PlaceholderColor="{DynamicResource BaseTextColor}"
+                        shared:EntryProperties.PlaceholderColor="{DynamicResource BaseTextColor}"
                         BackgroundColor="{DynamicResource PlaceholderColorEntry}"
                         HeightRequest="40"
                         Placeholder="Last Name" />
@@ -54,7 +51,7 @@
                     <!--  CARD NUMBER ENTRY  -->
                     <Entry
                         Grid.Column="0"
-                        artina:EntryProperties.PlaceholderColor="{DynamicResource BaseTextColor}"
+                        shared:EntryProperties.PlaceholderColor="{DynamicResource BaseTextColor}"
                         BackgroundColor="{DynamicResource PlaceholderColorEntry}"
                         HeightRequest="40"
                         Placeholder="Card Number" />
@@ -63,7 +60,7 @@
                     <Entry
                         Grid.Column="1"
                         Margin="6,0,0,0"
-                        artina:EntryProperties.PlaceholderColor="{DynamicResource BaseTextColor}"
+                        shared:EntryProperties.PlaceholderColor="{DynamicResource BaseTextColor}"
                         BackgroundColor="{DynamicResource PlaceholderColorEntry}"
                         HeightRequest="40"
                         Placeholder="CVV" />
@@ -72,7 +69,7 @@
                 <!--  EXPIRATION DATE  -->
                 <Entry
                     Grid.Row="2"
-                    artina:EntryProperties.PlaceholderColor="{DynamicResource BaseTextColor}"
+                    shared:EntryProperties.PlaceholderColor="{DynamicResource BaseTextColor}"
                     BackgroundColor="{DynamicResource PlaceholderColorEntry}"
                     HeightRequest="40"
                     Placeholder="Expriation Date" />
@@ -107,7 +104,7 @@
                     <!--  CITY ENTRY  -->
                     <Entry
                         Grid.Column="0"
-                        artina:EntryProperties.PlaceholderColor="{DynamicResource BaseTextColor}"
+                        shared:EntryProperties.PlaceholderColor="{DynamicResource BaseTextColor}"
                         BackgroundColor="{DynamicResource PlaceholderColorEntry}"
                         HeightRequest="40"
                         Placeholder="City" />
@@ -115,7 +112,7 @@
                     <!--  STATE ENTRY  -->
                     <Entry
                         Grid.Column="1"
-                        artina:EntryProperties.PlaceholderColor="{DynamicResource BaseTextColor}"
+                        shared:EntryProperties.PlaceholderColor="{DynamicResource BaseTextColor}"
                         BackgroundColor="{DynamicResource PlaceholderColorEntry}"
                         HeightRequest="40"
                         Placeholder="State" />
@@ -124,7 +121,7 @@
                     <Entry
                         Grid.Row="1"
                         Grid.Column="0"
-                        artina:EntryProperties.PlaceholderColor="{DynamicResource BaseTextColor}"
+                        shared:EntryProperties.PlaceholderColor="{DynamicResource BaseTextColor}"
                         BackgroundColor="{DynamicResource PlaceholderColorEntry}"
                         HeightRequest="40"
                         Placeholder="Zip Code" />
@@ -133,7 +130,7 @@
                     <Entry
                         Grid.Row="1"
                         Grid.Column="1"
-                        artina:EntryProperties.PlaceholderColor="{DynamicResource BaseTextColor}"
+                        shared:EntryProperties.PlaceholderColor="{DynamicResource BaseTextColor}"
                         BackgroundColor="{DynamicResource PlaceholderColorEntry}"
                         HeightRequest="40"
                         Placeholder="Country" />
@@ -141,20 +138,20 @@
 
                 <!--  NOTES  -->
                 <Grid Grid.Row="3" Padding="0.5">
-                    <Editor artina:EntryProperties.PlaceholderColor="{DynamicResource BaseTextColor}" BackgroundColor="{DynamicResource PlaceholderColorEntry}" />
+                    <Editor shared:EntryProperties.PlaceholderColor="{DynamicResource BaseTextColor}" BackgroundColor="{DynamicResource PlaceholderColorEntry}" />
                 </Grid>
 
                 <!--  NOTES  -->
-                <artina:Button
+                <shared:Button
                     Grid.Row="4"
-                    HorizontalOptions="{artina:OnOrientationLayoutOptions PortraitPhone=Fill,
+                    HorizontalOptions="{shared:OnOrientationLayoutOptions PortraitPhone=Fill,
                                                                           LandscapePhone=Center,
                                                                           PortraitTablet=Fill,
                                                                           LandscapeTablet=Center}"
                     Style="{DynamicResource PrimaryActionButtonStyle}"
                     Text="ADD"
                     VerticalOptions="End"
-                    WidthRequest="{artina:OnOrientationDouble LandscapePhone=200,
+                    WidthRequest="{shared:OnOrientationDouble LandscapePhone=200,
                                                               LandscapeTablet=400}" />
             </Grid>
         </ScrollView>

@@ -240,7 +240,7 @@ namespace avalanchain
 			);
 
 			categories.Add(
-				"THEME",
+				"CARDS",
 				new SampleCategory
 				{
 					Name = "Grial Theme",

@@ -302,7 +302,7 @@ namespace avalanchain
 				"Regina Joplin",
 				"Jaco Morrison",
 				"Margaret Whites",
-				"Skyler Harrisson",
+				"Bot",
 				"Al Pastorius",
 			};
 		}
@@ -341,7 +341,7 @@ namespace avalanchain
 				"friend_thumbnail_34.jpg",
 				"friend_thumbnail_55.jpg",
 				"friend_thumbnail_71.jpg",
-				"friend_thumbnail_75.jpg",
+				"icon.png",//"friend_thumbnail_75.jpg",
 				"friend_thumbnail_93.jpg",
 			};
 		}
@@ -570,66 +570,83 @@ namespace avalanchain
 		private static List<ChatMessage> InitChatMessagesList()
 		{
 			return new List<ChatMessage> {
-				new ChatMessage (
+                new ChatMessage (
+                    Friends [1],
+                    "June 7",
+                    "How much i spen on Uber in May?"
+                ),
+                new ChatMessage (
 					Friends [5],
-					"July 7",
-					"Hey buddy :), what's up? I'm currently working on this amazing stuff called Grial. Have you heard about it? You shoud give it a try....it really rocks!!!!!.",
+					"June 7",
+                    "Let's see. You spent £153.20. Merchant: Uber Date: between 01/05/2017 and 30/05/2017",
 					false,
 					true
 				),
-				new ChatMessage (
-					Friends [5],
-					"July 7",
-					"You should give it a try!",
-					false,
-					true
-				),
-				new ChatMessage (
-					Friends [1],
-					"July 7",
-					"Wooow! Didn't know this exist!! Really cool stuff!"
-				),
+                 new ChatMessage (
+                    Friends [1],
+                    "June 7",
+                    "How about April?"
+                ),
+                new ChatMessage (
+                    Friends [5],
+                    "June 7",
+                    "Let's see. You spent £123.50. Merchant: Uber Date: between 01/04/2017 and 30/04/2017",
+                    false,
+                    true
+                ),
+				//new ChatMessage (
+				//	Friends [5],
+    //                "June 7",
+				//	"You should give it a try!",
+				//	false,
+				//	true
+				//),
+				//new ChatMessage (
+				//	Friends [1],
+    //                "June 7",
+				//	"Wooow! Didn't know this exist!! Really cool stuff!"
+				//),
 
-				new ChatMessage (
-					Friends [1],
-					"July 7",
-					"I was wondering if something like this existed. This will save hundred of hours. I rather be skateboarding with my friends instead of compiling every little visual change." +
-					"Thanks for sharing!"
-				),
+				//new ChatMessage (
+				//	Friends [1],
+    //                "June 7",
+				//	"I was wondering if something like this existed. This will save hundred of hours. I rather be skateboarding with my friends instead of compiling every little visual change." +
+				//	"Thanks for sharing!"
+				//),
 
-				new ChatMessage (
-					Friends [5],
-					"July 7",
-					"No problem! I hope you can find it useful. It really makes the difference to me.",
-					false,
-					true
-				),
+				//new ChatMessage (
+				//	Friends [5],
+    //                "June 7",
+				//	"No problem! I hope you can find it useful. It really makes the difference to me.",
+				//	false,
+				//	true
+				//),
 
-				new ChatMessage (
-					Friends [1],
-					"July 7",
-					"Ok thanks and thanks again!! This is really awesome"
-				),
+				//new ChatMessage (
+				//	Friends [1],
+				//	"July 7",
+				//	"Ok thanks and thanks again!! This is really awesome"
+				//),
 
-				new ChatMessage (
-					Friends [5],
-					"July 7",
-					"Indeed.",
-					false,
-					true
-				),
+				//new ChatMessage (
+				//	Friends [5],
+				//	"July 7",
+				//	"Indeed.",
+				//	false,
+				//	true
+				//),
 
-				new ChatMessage (
-					Friends [1],
-					"July 7",
-					"C u later tonight at Gillian Japi party, right?"
-				),
+				//new ChatMessage (
+				//	Friends [1],
+				//	"July 7",
+				//	"C u later tonight at Gillian Japi party, right?"
+				//),
 
-				new ChatMessage (
-					Friends [5],
-					"July 7",
-					"For sure! See you later :)"
-				),
+				//new ChatMessage (
+				//	Friends [5],
+				//	"July 7",
+				//	"For sure! See you later :)"
+				//),
 			};
 		}
 

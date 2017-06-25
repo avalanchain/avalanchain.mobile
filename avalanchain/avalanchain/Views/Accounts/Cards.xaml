@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="avalanchain.Cards"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:artina="clr-namespace:UXDivers.Artina.Shared;assembly=UXDivers.Artina.Shared"
+    xmlns:local="clr-namespace:avalanchain;assembly=avalanchain"
+    Title="Choose card type">
+    <ContentPage.Content>
+        <ScrollView Padding="{DynamicResource MainWrapperPadding}">
+            <!--  CircleIcon  -->
+            <StackLayout Padding="40" Spacing="10">
+                <Frame BackgroundColor="{DynamicResource PlaceholderColorEntry}">
+                    <Grid Padding="10" RowSpacing="20">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="60" />
+                            <RowDefinition Height="30" />
+                        </Grid.RowDefinitions>
+                        <Label
+                            Grid.Row="0"
+                            FontSize="20"
+                            HorizontalTextAlignment="Center"
+                            Text="Add new card" />
+
+                        <Grid Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0">
+                                <Label
+                                    x:Name="CreditLabel"
+                                    ClassId="Credit"
+                                    FontSize="60"
+                                    HorizontalTextAlignment="Center"
+                                    IsVisible="{Binding ShowBackgroundColor}"
+                                    Opacity="1"
+                                    Style="{StaticResource FontIconBase}"
+                                    Text="{x:Static local:GrialShapesFont.Circle}"
+                                    TextColor="{DynamicResource CirclenColor}"
+                                    VerticalTextAlignment="Center">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnTapGestureRecognizerTapped" />
+                                    </Label.GestureRecognizers>
+
+                                </Label>
+                                <!--<Label x:Name="ExampleLabel" Text="{Binding clickLabel}"></Label>-->
+
+                                <Label
+                                    FontSize="25"
+                                    HorizontalTextAlignment="Center"
+                                    Style="{StaticResource FontIcon}"
+                                    Text="{x:Static local:GrialShapesFont.CreditCard}"
+                                    TextColor="{DynamicResource InverseTextColor}"
+                                    VerticalTextAlignment="Center" />
+                            </Grid>
+                            <Grid Grid.Column="1">
+                                <Label
+                                    x:Name="VirtualLabel"
+                                    ClassId="Virtual"
+                                    FontSize="60"
+                                    HorizontalTextAlignment="Center"
+                                    IsVisible="{Binding ShowBackgroundColor}"
+                                    Opacity="1"
+                                    Style="{StaticResource FontIconBase}"
+                                    Text="{x:Static local:GrialShapesFont.Circle}"
+                                    TextColor="{DynamicResource CirclenColor}"
+                                    VerticalTextAlignment="Center">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnTapGestureRecognizerTapped" />
+                                    </Label.GestureRecognizers>
+                                </Label>
+                                <Label
+                                    FontSize="25"
+                                    HorizontalTextAlignment="Center"
+                                    Style="{StaticResource FontIcon}"
+                                    Text="{x:Static local:GrialShapesFont.Public}"
+                                    TextColor="{DynamicResource InverseTextColor}"
+                                    VerticalTextAlignment="Center" />
+                            </Grid>
+                        </Grid>
+                        <Grid Grid.Row="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0">
+                                <Label
+                                    FontSize="15"
+                                    HorizontalTextAlignment="Center"
+                                    Text="Physical"
+                                    VerticalTextAlignment="Center" />
+
+
+                            </Grid>
+                            <Grid Grid.Column="1">
+                                <Label
+                                    FontSize="15"
+                                    HorizontalTextAlignment="Center"
+                                    Text="Virtual"
+                                    VerticalTextAlignment="Center" />
+                            </Grid>
+
+                        </Grid>
+                    </Grid>
+                </Frame>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

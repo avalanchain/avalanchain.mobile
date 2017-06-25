@@ -4,8 +4,8 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:artina="clr-namespace:UXDivers.Artina.Shared;assembly=UXDivers.Artina.Shared"
-    Title="Theme"
-    xmlns:local="clr-namespace:avalanchain;assembly=avalanchain">
+    xmlns:local="clr-namespace:avalanchain;assembly=avalanchain"
+    Title="Buy at $2687.80">
     <ContentPage.Content>
         <ScrollView Padding="{DynamicResource MainWrapperPadding}">
             <Grid Padding="10" RowSpacing="20">
@@ -31,6 +31,7 @@
                         Text="USD"
                         VerticalTextAlignment="Center" />
                     <Entry
+                        x:Name="usd"
                         Grid.Column="1"
                         artina:EntryProperties.PlaceholderColor="{DynamicResource BaseTextColor}"
                         BackgroundColor="{DynamicResource PlaceholderColorEntry}"
@@ -43,14 +44,28 @@
                         Grid.Column="2"
                         Text="BTC"
                         VerticalTextAlignment="Center" />
+
                     <Entry
+                        Grid.Column="3"
+                        artina:EntryProperties.PlaceholderColor="{DynamicResource BaseTextColor}"
+                        BackgroundColor="{DynamicResource PlaceholderColorEntry}"
+                        HeightRequest="40"
+                        Keyboard="Numeric"
+                        Placeholder="0" />
+                    <!--<Label
+                        Grid.Column="3"
+                        Margin="6,0,0,0"
+                        BindingContext="{x:Reference usd}"
+                        Text="{Binding Text, StringFormat='{0:F0}'}"
+                        VerticalTextAlignment="Center" />-->
+                    <!--<Entry
                         Grid.Column="3"
                         Margin="6,0,0,0"
                         artina:EntryProperties.PlaceholderColor="{DynamicResource BaseTextColor}"
                         BackgroundColor="{DynamicResource PlaceholderColorEntry}"
                         HeightRequest="40"
                         Keyboard="Numeric"
-                        Placeholder="0" />
+                        Placeholder="0" />-->
 
                 </Grid>
 
@@ -115,7 +130,10 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-
+                    <Label
+                        Grid.Column="0"
+                        Text="Debit from"
+                        VerticalTextAlignment="Center" />
                     <!--  NAME ENTRY  -->
                     <Picker
                         Title="Wallets"
