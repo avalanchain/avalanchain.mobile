@@ -21,7 +21,7 @@
             </XForms:NumericalAxis>
         </XForms:SfChart.SecondaryAxis>-->
         <!--<chart:SfChart.Series>
-            <chart:StackingColumnSeries
+            <chart:StackingColumnSeriess
                 DataMarkerPosition="Center"
                 EnableDataPointSelection="false"
                 ItemsSource="{Binding CheckInData}"

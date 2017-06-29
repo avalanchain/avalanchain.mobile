@@ -40,9 +40,11 @@
     <Color x:Key="SplashColor">#FFFFFF</Color>
 
     <Color x:Key="BasePageColor">#FFFFFF</Color>
-    <Color x:Key="BaseTabbedPageColor">#fafafa</Color>
+    <Color x:Key="BaseTabbedPageColor">#FFFFFF</Color>
+    <!--  #fafafa  -->
 
-    <Color x:Key="MainWrapperBackgroundColor">#EFEFEF</Color>
+
+    <Color x:Key="MainWrapperBackgroundColor">#FFFFFF</Color>
 
     <Color x:Key="CategoriesListIconColor">#55000000</Color>
     <Color x:Key="DashboardIconColor">#FFFFFF</Color>

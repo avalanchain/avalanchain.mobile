@@ -15,8 +15,9 @@ namespace avalanchain
 
 			BindingContext = new IconsFontDetails
 			{
-				IconsFontFamily = nameof(GrialShapesFont),
-				IconsCount = LoadIcons().Count,
+                IconsFontFamily = nameof(GrialShapesFont),
+                //IconsFontFamily = nameof(FontAwesome),
+                IconsCount = LoadIcons().Count,
 				IconsList = LoadIcons()
 			};
 		}
@@ -24,11 +25,11 @@ namespace avalanchain
 		private static List<IconsFont> LoadIcons()
 		{
 			var result = new List<IconsFont>();
-			var type = typeof(GrialShapesFont);
-			//var type = typeof(FontawesomeFont);
-			//var type = typeof(IoniciconsFont);
+            var type = typeof(GrialShapesFont);
+            //var type = typeof(FontAwesome);
+            //var type = typeof(IoniciconsFont);
 
-			foreach (var field in type.GetRuntimeFields())
+            foreach (var field in type.GetRuntimeFields())
 			{
 				if (field.IsLiteral && !field.IsInitOnly)
 				{

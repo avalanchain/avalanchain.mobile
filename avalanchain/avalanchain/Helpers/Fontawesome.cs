@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace avalanchain.Helpers
+namespace avalanchain
 {
     /// <summary>
     /// https://github.com/neilkennedy/FontAwesome.Xamarin/blob/master/FontAwesome.Xamarin/FontAwesome.cs
     /// </summary>
-    class Fontawesome
+    public class FontAwesome
     {
         public static string FAGlass = "\uf000";
         public static string FAMusic = "\uf001";
@@ -380,5 +380,10 @@ namespace avalanchain.Helpers
         public static string FAVimeoSquare = "\uf194";
         public static string FATry = "\uf195";
         public static string FAPlusSquareO = "\uf196";
+        public static string FACircleThin = "\uf1db";
+        public static string FACreditCard2 = "\uf283";
+        public static string FACFaPieChart = "\uf200";
+        public static string FACFaChart = "\uf1fe";
+        public static string FACFaChartUp = "\uf201";
     }
 }

@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="avalanchain.AccountDetail"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:artina="clr-namespace:UXDivers.Artina.Shared;assembly=UXDivers.Artina.Shared"
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+    xmlns:local="clr-namespace:avalanchain;assembly=avalanchain">
+    <ContentPage.Content>
+        <Grid RowSpacing="0" VerticalOptions="Fill">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60*" />
+                <RowDefinition Height="40*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <!--  PRODUCT IMAGE  -->
+            <!--<ffimageloading:CachedImage
+			Grid.Row="0"
+			FadeAnimationEnabled="true"
+			Source="{Binding Image}"
+			Aspect="AspectFill" >
+                <ffimageloading:CachedImage.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnImageTapped" />
+                </ffimageloading:CachedImage.GestureRecognizers>
+            </ffimageloading:CachedImage>-->
+
+            <!--  FAVORITE ICON  -->
+            <Label
+                Grid.Row="0"
+                Margin="0,15,20,0"
+                FontSize="{artina:OnOrientationDouble Default=28,
+                                                      PortraitPhone=28,
+                                                      LandscapePhone=28,
+                                                      PortraitTablet=38,
+                                                      LandscapeTablet=32}"
+                HorizontalTextAlignment="End"
+                Style="{StaticResource FontIcon}"
+                Text="{x:Static local:GrialShapesFont.Favorite}"
+                TextColor="{DynamicResource AccentColor}"
+                VerticalTextAlignment="Start" />
+
+            <!--  PRODUCT INFO  -->
+            <Grid
+                Grid.Row="1"
+                Padding="20,15,20,0"
+                RowSpacing="5"
+                VerticalOptions="StartAndExpand">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <!--  PRICE  -->
+                <Label
+                    Grid.Row="0"
+                    Grid.RowSpan="2"
+                    FontSize="{artina:OnOrientationDouble PortraitPhone=30,
+                                                          LandscapePhone=30,
+                                                          PortraitTablet=40,
+                                                          LandscapeTablet=40}"
+                    HorizontalTextAlignment="End"
+                    Text="{Binding Price}"
+                    TextColor="{DynamicResource BaseTextColor}"
+                    VerticalTextAlignment="Center" />
+
+                <!--  PRODUCT NAME  -->
+                <Label
+                    Grid.Row="0"
+                    FontAttributes="Bold"
+                    FontSize="{artina:OnOrientationDouble PortraitPhone=18,
+                                                          LandscapePhone=18,
+                                                          PortraitTablet=28,
+                                                          LandscapeTablet=28}"
+                    HorizontalTextAlignment="Start"
+                    Text="{Binding Name}"
+                    TextColor="{DynamicResource BaseTextColor}" />
+
+                <!--  MANUFACTURER  -->
+                <Label
+                    Grid.Row="1"
+                    FontSize="{artina:OnOrientationDouble PortraitPhone=10,
+                                                          LandscapePhone=10,
+                                                          PortraitTablet=16,
+                                                          LandscapeTablet=16}"
+                    HorizontalOptions="Fill"
+                    Text="{Binding Manufacturer, StringFormat='BY {0:F0}'}}"
+                    TextColor="{DynamicResource AccentColor}" />
+
+                <!--  DESCRIPTION  -->
+                <ScrollView Grid.Row="2" Padding="0,10,0,0">
+                    <StackLayout Spacing="15">
+                        <Label
+                            FontSize="{artina:OnOrientationDouble PortraitPhone=15,
+                                                                  LandscapePhone=15,
+                                                                  PortraitTablet=18,
+                                                                  LandscapeTablet=18}"
+                            HorizontalOptions="Fill"
+                            Text="{Binding Description}"
+                            TextColor="{DynamicResource BaseTextColor}" />
+                        <BoxView BackgroundColor="{DynamicResource AccentColor}" Style="{StaticResource BrandNameOrnamentStyle}" />
+                    </StackLayout>
+                </ScrollView>
+
+
+            </Grid>
+
+
+
+            <!--  -BUY BUTTON  -->
+            <artina:Button
+                Grid.Row="2"
+                Margin="20,10,20,20"
+                HorizontalOptions="{artina:OnOrientationLayoutOptions PortraitPhone=Fill,
+                                                                      LandscapePhone=Center,
+                                                                      PortraitTablet=Fill,
+                                                                      LandscapeTablet=Center}"
+                Style="{DynamicResource PrimaryActionButtonStyle}"
+                Text="Add to cart"
+                WidthRequest="{artina:OnOrientationDouble LandscapePhone=200,
+                                                          LandscapeTablet=400}" />
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

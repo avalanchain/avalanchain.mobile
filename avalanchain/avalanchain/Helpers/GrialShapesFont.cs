@@ -122,5 +122,6 @@ namespace avalanchain
 		public const string LogoVisualStudio = "\ue91b";
 		public const string LogoXamarinStudio = "\ue91c";
 		public const string LogoUxdivers = "\ue91d";
+
 	}
 }

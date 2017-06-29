@@ -20,7 +20,8 @@ namespace avalanchain
 		private static List<ChatMessage> _chatMessagesList;
 		private static List<ChatMessage> _recentChatMessagesList;
 		private static List<Product> _products;
-		private static List<MovieSection> _movies;
+        private static List<Account> _accounts;
+        private static List<MovieSection> _movies;
 
 
 		private static List<Notification> _notifications;
@@ -236,7 +237,20 @@ namespace avalanchain
 			}
 		}
 
-		public static List<MovieSection> Movies 
+        public static List<Account> Accounts
+        {
+            get
+            {
+                if (_accounts == null)
+                {
+                    _accounts = InitAccounts();
+                }
+
+                return _accounts;
+            }
+        }
+
+        public static List<MovieSection> Movies 
 		{
 			get
 			{
@@ -573,7 +587,7 @@ namespace avalanchain
                 new ChatMessage (
                     Friends [1],
                     "June 7",
-                    "How much i spen on Uber in May?"
+                    "How much I spent on Uber in May?"
                 ),
                 new ChatMessage (
 					Friends [5],
@@ -798,7 +812,64 @@ namespace avalanchain
 			};
 		}
 
-		private static List<MovieSection> InitMoviesSections() 
+        private static List<Account> InitAccounts()
+        {
+            return new List<Account> {
+                new Account {
+                    Name            = "BTC",
+                    Description     = "Classic 90's Skateboarding style shirt. Feel like Pat Duffy or even flow like Edie from Pearl Jam. With that casual grunge style this is the shirt you need.",
+                    Image           = SampleData.ProductsImagesList[0],
+                    Price           = "฿39.90",
+                    ThumbnailHeight = "100",
+                    RatingMax       = 5,
+                    RatingValue     = 4.5,
+                },
+
+                new Account {
+                    Name            = "Pound",
+                    Description     = "Top gun in every gentelman closet. This leather jacket will make you feel like Tom Cruise without that crazy look. Be a good boy make mom proud.",
+                    Image           = SampleData.ProductsImagesList[1],
+                    Price           = "£89.90",
+                    ThumbnailHeight = "100",
+                    RatingMax       = 5,
+                    RatingValue     = 4.5,
+                },
+
+                new Account {
+                    Name            = "USD",
+                    Description     = "Get that instant normal look that everybody wants. Blend with the humans, it will make you feel less strange. You know you are not normal",
+                    Image           = SampleData.ProductsImagesList[2],
+                    Price           = "$4900.90",
+                    ThumbnailHeight = "100",
+                    RatingMax       = 5,
+                    RatingValue     = 4.5,
+                },
+
+                new Account {
+                    Name            = "EUR",
+                    Description     = "VISA",
+                    Image           = SampleData.ProductsImagesList[3],
+                    Price           = "€2089.90",
+                    ThumbnailHeight = "100",
+                    RatingMax       = 5,
+                    RatingValue     = 4.5,
+                },
+
+                new Account {
+                    Name            = "EUR",
+                    Description     = "MASTERCARD",
+                    Image           = SampleData.ProductsImagesList[4],
+                    Price           = "€3454.90",
+                    ThumbnailHeight = "100",
+                    RatingMax       = 5,
+                    RatingValue     = 4.5,
+                },
+
+           
+            };
+        }
+
+        private static List<MovieSection> InitMoviesSections() 
 		{
 			var actorOfTheMonth = new MovieSection();
 			actorOfTheMonth.Title = "Actor of the Month";

@@ -23,7 +23,7 @@ namespace avalanchain.iOS
 			{ "AboutHeaderBackgroundColor", Color.FromHex("#FFFFFF") },
 			{ "SplashColor", Color.FromHex("#FFFFFF") },
 			{ "BasePageColor", Color.FromHex("#FFFFFF") },
-			{ "BaseTabbedPageColor", Color.FromHex("#fafafa") },
+			{ "BaseTabbedPageColor", Color.FromHex("#FFFFFF") },
 			{ "MainWrapperBackgroundColor", Color.FromHex("#EFEFEF") },
 			{ "CategoriesListIconColor", Color.FromHex("#55000000") },
 			{ "DashboardIconColor", Color.FromHex("#FFFFFF") },

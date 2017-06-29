@@ -32,12 +32,12 @@
                                 <Label
                                     x:Name="CreditLabel"
                                     ClassId="Credit"
-                                    FontSize="60"
+                                    FontFamily="FontAwesome"
+                                    FontSize="65"
                                     HorizontalTextAlignment="Center"
                                     IsVisible="{Binding ShowBackgroundColor}"
                                     Opacity="1"
-                                    Style="{StaticResource FontIconBase}"
-                                    Text="{x:Static local:GrialShapesFont.Circle}"
+                                    Text="{x:Static local:FontAwesome.FACircle}"
                                     TextColor="{DynamicResource CirclenColor}"
                                     VerticalTextAlignment="Center">
                                     <Label.GestureRecognizers>
@@ -48,10 +48,10 @@
                                 <!--<Label x:Name="ExampleLabel" Text="{Binding clickLabel}"></Label>-->
 
                                 <Label
+                                    FontFamily="FontAwesome"
                                     FontSize="25"
                                     HorizontalTextAlignment="Center"
-                                    Style="{StaticResource FontIcon}"
-                                    Text="{x:Static local:GrialShapesFont.CreditCard}"
+                                    Text="{x:Static local:FontAwesome.FACreditCard}"
                                     TextColor="{DynamicResource InverseTextColor}"
                                     VerticalTextAlignment="Center" />
                             </Grid>
@@ -59,7 +59,7 @@
                                 <Label
                                     x:Name="VirtualLabel"
                                     ClassId="Virtual"
-                                    FontSize="60"
+                                    FontSize="65"
                                     HorizontalTextAlignment="Center"
                                     IsVisible="{Binding ShowBackgroundColor}"
                                     Opacity="1"
@@ -72,10 +72,10 @@
                                     </Label.GestureRecognizers>
                                 </Label>
                                 <Label
+                                    FontFamily="FontAwesome"
                                     FontSize="25"
                                     HorizontalTextAlignment="Center"
-                                    Style="{StaticResource FontIcon}"
-                                    Text="{x:Static local:GrialShapesFont.Public}"
+                                    Text="{x:Static local:FontAwesome.FACloud}"
                                     TextColor="{DynamicResource InverseTextColor}"
                                     VerticalTextAlignment="Center" />
                             </Grid>

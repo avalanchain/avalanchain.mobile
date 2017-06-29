@@ -1,0 +1,288 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="avalanchain.Accounts"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:artina="clr-namespace:UXDivers.Artina.Shared;assembly=UXDivers.Artina.Shared"
+    xmlns:local="clr-namespace:avalanchain;assembly=avalanchain">
+    <ContentPage.Content>
+        <Grid Padding="0" RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="{artina:OnOrientationDouble PortraitPhone=100, LandscapePhone=100, PortraitTablet=120, LandscapeTablet=120}" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid
+                x:Name="EcommerceProductGridBanner"
+                Grid.Row="0"
+                Padding="0"
+                RowSpacing="0"
+                Style="{StaticResource AccountProductGridBannerStyle}"
+                VerticalOptions="Center">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="4*" />
+                    <RowDefinition Height="2*" />
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0">
+                        <Label
+                            x:Name="SendLabel"
+                            ClassId="Send"
+                            FontFamily="FontAwesome"
+                            FontSize="65"
+                            HorizontalTextAlignment="Center"
+                            IsVisible="{Binding ShowBackgroundColor}"
+                            Opacity="1"
+                            Text="{x:Static local:FontAwesome.FACircle}"
+                            TextColor="{DynamicResource CirclenColor}"
+                            VerticalTextAlignment="Center">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnTapGestureRecognizerTapped" />
+                            </Label.GestureRecognizers>
+
+                        </Label>
+                        <!--<Label x:Name="ExampleLabel" Text="{Binding clickLabel}"></Label>-->
+
+                        <Label
+                            FontFamily="FontAwesome"
+                            FontSize="25"
+                            HorizontalTextAlignment="Center"
+                            Text="{x:Static local:FontAwesome.FACreditCard}"
+                            TextColor="{DynamicResource InverseTextColor}"
+                            VerticalTextAlignment="Center" />
+                    </Grid>
+                    <Grid Grid.Column="1" HorizontalOptions="Center">
+                        <Label
+                            x:Name="ExchangeLabel"
+                            ClassId="Exchange"
+                            FontFamily="FontAwesome"
+                            FontSize="65"
+                            HorizontalTextAlignment="Center"
+                            IsVisible="{Binding ShowBackgroundColor}"
+                            Opacity="1"
+                            Text="{x:Static local:FontAwesome.FACircle}"
+                            TextColor="{DynamicResource CirclenColor}"
+                            VerticalTextAlignment="Center">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnTapGestureRecognizerTapped" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                        <Label
+                            FontFamily="FontAwesome"
+                            FontSize="25"
+                            HorizontalTextAlignment="Center"
+                            Text="{x:Static local:FontAwesome.FAExchange}"
+                            TextColor="{DynamicResource InverseTextColor}"
+                            VerticalTextAlignment="Center" />
+                    </Grid>
+
+                    <Grid Grid.Column="2" HorizontalOptions="Center">
+                        <Label
+                            x:Name="PayLabel"
+                            ClassId="Pay"
+                            FontFamily="FontAwesome"
+                            FontSize="65"
+                            HorizontalTextAlignment="Center"
+                            IsVisible="{Binding ShowBackgroundColor}"
+                            Opacity="1"
+                            Text="{x:Static local:FontAwesome.FACircle}"
+                            TextColor="{DynamicResource CirclenColor}"
+                            VerticalTextAlignment="Center">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnTapGestureRecognizerTapped" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                        <Label
+                            FontFamily="FontAwesome"
+                            FontSize="25"
+                            HorizontalTextAlignment="Center"
+                            Text="{x:Static local:FontAwesome.FAShoppingCart}"
+                            TextColor="{DynamicResource InverseTextColor}"
+                            VerticalTextAlignment="Center" />
+                    </Grid>
+                </Grid>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0" HorizontalOptions="Center">
+                        <Label
+                            FontSize="15"
+                            HorizontalTextAlignment="Center"
+                            Text="Send"
+                            VerticalTextAlignment="Center" />
+
+
+                    </Grid>
+                    <Grid Grid.Column="1" HorizontalOptions="Center">
+                        <Label
+                            FontSize="15"
+                            HorizontalTextAlignment="Center"
+                            Text="Exchange"
+                            VerticalTextAlignment="Center" />
+                    </Grid>
+                    <Grid Grid.Column="2" HorizontalOptions="Center">
+                        <Label
+                            FontSize="15"
+                            HorizontalTextAlignment="Center"
+                            Text="Pay"
+                            VerticalTextAlignment="Center" />
+                    </Grid>
+
+
+                </Grid>
+                <!--<local:RoundedLabel
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    AbsoluteLayout.LayoutBounds="0.5, 0.5, 100, 50"
+                    AbsoluteLayout.LayoutFlags="XProportional, YProportional, WidthProportional"
+                    HorizontalOptions="Center"
+                    RoundedLabelText="Exchange"
+                    Style="{DynamicResource IsMenuLabelStyle}" />
+                <local:RoundedLabel
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    AbsoluteLayout.LayoutBounds="0.5, 0.5, 100, 50"
+                    AbsoluteLayout.LayoutFlags="XProportional, YProportional, WidthProportional"
+                    HorizontalOptions="Center"
+                    RoundedLabelText="Send"
+                    Style="{DynamicResource IsMenuLabelStyle}" />
+                <local:RoundedLabel
+                    Grid.Row="0"
+                    Grid.Column="2"
+                    AbsoluteLayout.LayoutBounds="0.5, 0.5, 100, 50"
+                    AbsoluteLayout.LayoutFlags="XProportional, YProportional, WidthProportional"
+                    HorizontalOptions="Center"
+                    RoundedLabelText="Pay"
+                    Style="{DynamicResource IsMenuLabelStyle}" />-->
+
+                <!--  second  -->
+                <!--<local:RoundedLabel
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    HorizontalOptions="Start"
+                    RoundedLabelFontSize="26"
+                    Style="{DynamicResource IsMenuLabelStyle}">
+                    <Label
+                        FontFamily="FontAwesome"
+                        FontSize="10"
+                        HorizontalTextAlignment="Center"
+                        Text="{x:Static local:FontAwesome.FAExchange}"
+                        TextColor="{DynamicResource EcommercePromoTextColor}"
+                        TranslationY="2"
+                        VerticalTextAlignment="End" />
+                    <Label
+                        FontSize="10"
+                        HorizontalTextAlignment="Center"
+                        Text="Exchange"
+                        TextColor="{DynamicResource EcommercePromoTextColor}"
+                        TranslationY="2"
+                        VerticalTextAlignment="End" />
+                </local:RoundedLabel>
+
+                <local:RoundedLabel
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    HorizontalOptions="Start"
+                    RoundedLabelFontSize="26"
+                    Style="{DynamicResource IsMenuLabelStyle}">
+                    <Label
+                        FontFamily="FontAwesome"
+                        FontSize="10"
+                        HorizontalTextAlignment="Center"
+                        Text="{x:Static local:FontAwesome.FAExchange}"
+                        TextColor="{DynamicResource EcommercePromoTextColor}"
+                        TranslationY="2"
+                        VerticalTextAlignment="End" />
+                    <Label
+                        FontSize="10"
+                        HorizontalTextAlignment="Center"
+                        Text="Send"
+                        TextColor="{DynamicResource EcommercePromoTextColor}"
+                        TranslationY="2"
+                        VerticalTextAlignment="End" />
+                </local:RoundedLabel>
+                <local:RoundedLabel
+                    Grid.Row="0"
+                    Grid.Column="2"
+                    HorizontalOptions="Start"
+                    RoundedLabelFontSize="26"
+                    Style="{DynamicResource IsMenuLabelStyle}">
+                    <Label
+                        FontFamily="FontAwesome"
+                        FontSize="10"
+                        HorizontalTextAlignment="Center"
+                        Text="{x:Static local:FontAwesome.FAExchange}"
+                        TextColor="{DynamicResource EcommercePromoTextColor}"
+                        TranslationY="2"
+                        VerticalTextAlignment="End" />
+                    <Label
+                        FontSize="10"
+                        HorizontalTextAlignment="Center"
+                        Text="Pay"
+                        TextColor="{DynamicResource EcommercePromoTextColor}"
+                        TranslationY="2"
+                        VerticalTextAlignment="End" />
+                </local:RoundedLabel>-->
+
+            </Grid>
+            <ScrollView Grid.Row="1">
+                <ListView
+                    HasUnevenRows="false"
+                    ItemTapped="OnItemTapped"
+                    ItemsSource="{Binding SamplesCategories}"
+                    SeparatorColor="Transparent"
+                    SeparatorVisibility="None">
+                    <ListView.RowHeight>
+                        <OnIdiom
+                            x:TypeArguments="x:Int32"
+                            Phone="80"
+                            Tablet="120" />
+                    </ListView.RowHeight>
+
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <local:CategoriesListWithIconsItemTemplate />
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+
+                </ListView>
+
+                <!--<Grid Padding="10" ColumnSpacing="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+
+                    <StackLayout x:Name="LeftColumn" Grid.Column="0">
+                        <local:RoundedLabel
+                            HorizontalOptions="Start"
+                            RoundedLabelBackgroundColor="Blue"
+                            RoundedLabelText="Buy" />
+                    </StackLayout>
+
+
+                    <StackLayout x:Name="RightColumn" Grid.Column="1">
+                        <local:RoundedLabel
+                            HorizontalOptions="Start"
+                            RoundedLabelBackgroundColor="Red"
+                            RoundedLabelText="Sell" />
+                    </StackLayout>
+
+                </Grid>-->
+            </ScrollView>
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

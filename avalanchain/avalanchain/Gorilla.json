@@ -1,20 +1,54 @@
 {
-    "navigationPage": {
-        "all": [true],
-        "exclude": [
-            "WalkthroughFlatStepItemTemplate.xaml",
-	        "WalkthroughGradientItemTemplate.xaml",
-	        "WalkthroughStepItemTemplate.xaml",
-	        "WalkthroughVariantStepItemTemplate.xaml",
-	        "WalkthroughFlatPage.xaml",
-	        "WalkthroughGradientPage.xaml",
-	        "WalkthroughPage.xaml",
-	        "WalkthroughVariantPage.xaml",
-            "LoginPage.xaml",
-            "PasswordRecoveryPage.xaml",
-            "SignUpPage.xaml",
-            "SimpleLoginPage.xaml",
-            "SimpleSignUpPage.xaml"
-		]
+  "navigationPage": {
+    "all": [ true ],
+    "exclude": [
+      "WalkthroughFlatStepItemTemplate.xaml",
+      "WalkthroughGradientItemTemplate.xaml",
+      "WalkthroughStepItemTemplate.xaml",
+      "WalkthroughVariantStepItemTemplate.xaml",
+      "WalkthroughFlatPage.xaml",
+      "WalkthroughGradientPage.xaml",
+      "WalkthroughPage.xaml",
+      "WalkthroughVariantPage.xaml",
+      "LoginPage.xaml",
+      "PasswordRecoveryPage.xaml",
+      "SignUpPage.xaml",
+      "SimpleLoginPage.xaml",
+      "SimpleSignUpPage.xaml"
+    ]
+  },
+  "knownAssemblies": [
+    {
+      "name": "UXDivers.Artina.Shared",
+      "types": null
+    },
+    {
+      "name": "avalanchain",
+      "types": null
+    },
+    {
+      "name": "UXDivers.Effects",
+      "types": null
+    },
+    {
+      "name": "UXDivers.Artina.Shared.Base",
+      "types": null
+    },
+    {
+      "name": "FFImageLoading.Forms",
+      "types": null
+    },
+    {
+      "name": "FFImageLoading.Transformations",
+      "types": null
+    },
+    {
+      "name": "Syncfusion.SfChart.XForms",
+      "types": null
+    },
+    {
+      "name": "Lottie.Forms",
+      "types": null
     }
+  ]
 }

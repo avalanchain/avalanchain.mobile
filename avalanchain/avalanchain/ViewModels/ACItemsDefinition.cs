@@ -92,10 +92,10 @@ namespace avalanchain
                    Icon = GrialShapesFont.Person,
                    Badge = 2,
                    SamplesList = new List<Sample> {
-                        new SampleT("Buy", typeof(Buy), SampleData.DashboardImagesList[6], GrialShapesFont.OutlineThinCircle, GrialShapesFont.ArrowUp, false, false),
-                        new SampleT("Sell", typeof(Buy), SampleData.DashboardImagesList[6], GrialShapesFont.OutlineThinCircle, GrialShapesFont.ArrowDown, false, false),
-                        new Sample("Transfer", typeof(Buy), SampleData.DashboardImagesList[6], GrialShapesFont.Loop, false, false),
-                        new Sample("Dashboard", typeof(Dashboard), SampleData.DashboardImagesList[3], GrialShapesFont.Dashboard),
+                        new Sample("Buy", typeof(Buy), SampleData.DashboardImagesList[6], FontAwesome.FAArrowCircleOUp, false, false),
+                        new Sample("Sell", typeof(Buy), SampleData.DashboardImagesList[6], FontAwesome.FAArrowCircleODown, false, false),
+                        new Sample("Transfer", typeof(Buy), SampleData.DashboardImagesList[6], FontAwesome.FAExchange, false, false),
+                        new Sample("Dashboard", typeof(Dashboard), SampleData.DashboardImagesList[3], FontAwesome.FACFaChart),
 
                    }
                }
@@ -111,9 +111,10 @@ namespace avalanchain
                    Icon = GrialShapesFont.Person,
                    Badge = 2,
                    SamplesList = new List<Sample> {
-                        new Sample("Cards", typeof(Cards), SampleData.DashboardImagesList[6], GrialShapesFont.CreditCard, false, false),
-                        new Sample("BTCWallet", typeof(BTCWallet), SampleData.DashboardImagesList[6], GrialShapesFont.WebAsset, false, false),
-                        new Sample("Add Card", typeof(ProductOrder), SampleData.DashboardImagesList[5], GrialShapesFont.CreditCard, false, true),
+                        new Sample("Cards", typeof(Cards), SampleData.DashboardImagesList[6], FontAwesome.FACreditCard2, false, false),
+                        new Sample("Accounts", typeof(Accounts), SampleData.DashboardImagesList[6], FontAwesome.FAListAlt, false, false),
+                        new Sample("BTCWallet", typeof(BTCWallet), SampleData.DashboardImagesList[6], FontAwesome.FABtc, false, false),
+                        new Sample("Add Card", typeof(ProductOrder), SampleData.DashboardImagesList[5], FontAwesome.FACreditCard, false, true),
                    }
                }
            );
@@ -129,9 +130,9 @@ namespace avalanchain
                     Icon = GrialShapesFont.Email,
                     SamplesList = new List<Sample> {
 
-                        new Sample("Messages", typeof(MessagesListPage), SampleData.DashboardImagesList[8], GrialShapesFont.Email),
-                        new Sample("Bot", typeof(ChatMessagesListPage), SampleData.DashboardImagesList[8], GrialShapesFont.Email),
-                        new Sample("Chat Messages List", typeof(ChatMessagesListPage), SampleData.DashboardImagesList[8], GrialShapesFont.Forum),
+                        new Sample("Messages", typeof(MessagesListPage), SampleData.DashboardImagesList[8], FontAwesome.FAEnvelope),
+                        new Sample("Bot", typeof(ChatMessagesListPage), SampleData.DashboardImagesList[8], FontAwesome.FARocket),
+                        new Sample("Chat Messages List", typeof(ChatMessagesListPage), SampleData.DashboardImagesList[8], FontAwesome.FACommentsO),
 
                     }
                 }
@@ -146,35 +147,13 @@ namespace avalanchain
                     Icon = GrialShapesFont.Person,
                     Badge = 2,
                     SamplesList = new List<Sample> {
-                        new Sample("Profile", typeof(ProfilePage), SampleData.DashboardImagesList[6], GrialShapesFont.AccountCircle),
-                        new Sample("Social", typeof(SocialPage), SampleData.DashboardImagesList[6], GrialShapesFont.Group),
-                        new Sample("Social Variant", typeof(SocialVariantPage), SampleData.DashboardImagesList[6], GrialShapesFont.Group),
+                        new Sample("Settings", typeof(SettingsPage), SampleData.DashboardImagesList[6], FontAwesome.FACog),
+                        new Sample("Profile", typeof(ProfilePage), SampleData.DashboardImagesList[6], FontAwesome.FAUser),
+                        new Sample("Social Variant", typeof(SocialVariantPage), SampleData.DashboardImagesList[6], FontAwesome.FAUsers),
 
                     }
                 }
             );
-
-            //categories.Add(
-            //    "ARTICLES",
-            //    new SampleCategory
-            //    {
-            //        Name = "Articles",
-            //        BackgroundColor = Color.FromHex(_categoriesColors[1]),
-            //        BackgroundImage = SampleData.DashboardImagesList[4],
-            //        Icon = GrialShapesFont.InsertFile,
-            //        Badge = 2,
-            //        SamplesList = new List<Sample> {
-            //            new Sample("Articles Classic View", typeof(ArticlesClassicViewPage), SampleData.DashboardImagesList[4], GrialShapesFont.InsertFile, false, true),
-            //            new Sample("Front Page News", typeof(FrontPageNewsPage), SampleData.DashboardImagesList[4], GrialShapesFont.InsertFile, false, true),
-
-            //            new Sample("Article View", typeof(ArticleViewPage), SampleData.DashboardImagesList[4], GrialShapesFont.InsertFile),
-            //            new Sample("Articles List", typeof(ArticlesListPage), SampleData.DashboardImagesList[4], GrialShapesFont.InsertFile),
-            //            new Sample("Articles List Variant", typeof(ArticlesListVariantPage), SampleData.DashboardImagesList[4], GrialShapesFont.InsertFile),
-            //            new Sample("Articles Feed", typeof(ArticlesFeedPage), SampleData.DashboardImagesList[4], GrialShapesFont.InsertFile),
-
-            //        }
-            //    }
-            //);
 
             categories.Add(
                 "DASHBOARD",
@@ -188,7 +167,7 @@ namespace avalanchain
                     SamplesList = new List<Sample> {
 
                         //new Sample("Icons Dashboard", typeof(DashboardPage), SampleData.DashboardImagesList[3], GrialShapesFont.Dashboard),
-                        new Sample("Dashboard", typeof(DashboardFlatPage), SampleData.DashboardImagesList[3], GrialShapesFont.Dashboard),
+                        new Sample("Dashboard", typeof(DashboardFlatPage), SampleData.DashboardImagesList[3], FontAwesome.FATh),
                         //new Sample("Images Dashboard", typeof(DashboardWithImagesPage), SampleData.DashboardImagesList[3], GrialShapesFont.Dashboard, false),
 
                     }

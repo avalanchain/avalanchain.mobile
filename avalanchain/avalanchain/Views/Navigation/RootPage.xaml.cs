@@ -51,8 +51,8 @@ namespace avalanchain
 
 		private void InitializeMasterDetail(){
 			Master = new MainMenuPage (new NavigationService(Navigation, LaunchSampleInDetail));
-			Detail = NavigationPageHelper.Create(new DashboardPage());
-		}
+			Detail = NavigationPageHelper.Create(new Accounts());//DashboardFlatPage()
+        }
 
 		private void LaunchSampleInDetail(Page page, bool animated){
 			// CustomNavBarPage must be handled differently because XF seems not to be considering the

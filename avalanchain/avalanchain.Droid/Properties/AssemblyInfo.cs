@@ -1,6 +1,7 @@
 using System.Reflection;
 using Xamarin.Forms;
 using avalanchain;
+using avalanchain.Droid;
 
 [assembly: AssemblyTitle (AssemblyGlobal.ProductLine + " - " + "Grial Xamarin.Forms UIKit (Android)")]
 [assembly: AssemblyConfiguration (AssemblyGlobal.Configuration)]

@@ -5,7 +5,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:artina="clr-namespace:UXDivers.Artina.Shared;assembly=UXDivers.Artina.Shared"
     xmlns:local="clr-namespace:avalanchain;assembly=avalanchain"
-    xmlns:lottie="clr-namespace:Lottie.Forms;assembly=Lottie.Forms"
     BackgroundColor="{DynamicResource ComplementColor}"
     BackgroundImage="{DynamicResource WelcomeBackgroundImage}">
 
@@ -124,46 +123,52 @@
 
                 <!--  ICONS  -->
                 <StackLayout Orientation="Horizontal" Spacing="20">
-
+                    <Label
+                        FontFamily="FontAwesome"
+                        FontSize="25"
+                        Text="{x:Static local:FontAwesome.FABtc}"
+                        TextColor="{DynamicResource OverImageTextColor}" />
                     <Label
                         Grid.Row="0"
-                        FontFamily="{StaticResource IconsFontFamily}"
+                        FontFamily="{StaticResource FontAwesome}"
                         FontSize="25"
-                        Text="{x:Static local:IoniciconsFont.SocialBitcoin}"
-                        TextColor="{DynamicResource IoniciconsFont}"
+                        Text="{x:Static local:FontAwesome.FAGbp}"
+                        TextColor="{DynamicResource OverImageTextColor}"
                         VerticalTextAlignment="Center" />
 
                     <Label
                         Grid.Row="0"
-                        FontFamily="{StaticResource IconsFontFamily}"
+                        FontFamily="{StaticResource FontAwesome}"
                         FontSize="25"
-                        Text="{x:Static local:IoniciconsFont.SocialUsd}"
-                        TextColor="{DynamicResource IoniciconsFont}"
-                        VerticalTextAlignment="Center" />
-
-                    <Label
-                        Grid.Row="0"
-                        FontFamily="{StaticResource IconsFontFamily}"
-                        FontSize="25"
-                        Text="{x:Static local:IoniciconsFont.SocialEuro}"
+                        Text="{x:Static local:FontAwesome.FAEur}"
                         TextColor="{DynamicResource OverImageTextColor}"
                         VerticalTextAlignment="Center" />
 
                     <!--<Label
-						Grid.Row="0"
-						VerticalTextAlignment="Center"
-						Text="{ x:Static local:GrialShapesFont.LogoAndroid } "
-						FontSize="25"
-						TextColor="{ DynamicResource OverImageTextColor }"
-						FontFamily="{ StaticResource IconsFontFamily }"/>
+                        Grid.Row="0"
+                        FontFamily="{StaticResource FontAwesomeFamily}"
+                        FontSize="25"
+                        Text="{x:Static local:FontAwesome.FAEur}"
+                        TextColor="{DynamicResource OverImageTextColor}"
+                        VerticalTextAlignment="Center" />-->
 
-					<Label
-						Grid.Row="0"
-						VerticalTextAlignment="Center"
-						Text="{ x:Static local:GrialShapesFont.LogoLottie } "
-						FontSize="45"
-						TextColor="{ DynamicResource OverImageTextColor }"
-						FontFamily="{ StaticResource IconsFontFamily }"/>-->
+
+                    <!--
+                    <Label
+                        Grid.Row="0"
+                        FontFamily="{StaticResource IonicFontFamily}"
+                        FontSize="25"
+                        Text="{x:Static local:IoniciconsFont.BatteryLow}"
+                        TextColor="{DynamicResource OverImageTextColor}"
+                        VerticalTextAlignment="Center" />-->
+
+                    <!--<Label
+                        Grid.Row="0"
+                        FontFamily="{StaticResource IconsFontFamily}"
+                        FontSize="45"
+                        Text="{x:Static local:GrialShapesFont.LogoLottie}"
+                        TextColor="{DynamicResource OverImageTextColor}"
+                        VerticalTextAlignment="Center" />-->
 
                 </StackLayout>
 
