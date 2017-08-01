@@ -33,7 +33,7 @@
 			TranslationY="-11"
 			Text="{ x:Static local:GrialShapesFont.BoldArrowDown }"
 			TextColor="{ DynamicResource AccentColor }" 
-			Style="{ StaticResource FontIconBase }" 
+			FontFamily="grialshapes" 
 			FontSize="26"/>
 
 		<!-- BALLOON BACKGROUND -->

@@ -41,7 +41,7 @@
 				PortraitTablet=38,
 				LandscapeTablet=32 }" 
 			TextColor="{DynamicResource AccentColor}" 
-			Style="{ StaticResource FontIcon }"
+			FontFamily="grialshapes"
 			HorizontalTextAlignment="End" 
 			VerticalTextAlignment="Start"
 			Margin="0,15,20,0"/>

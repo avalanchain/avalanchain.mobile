@@ -70,7 +70,7 @@
 								TextColor="{ DynamicResource OverImageTextColor }"
 								FontSize="42"
 								Text="{ x:Static local:GrialShapesFont.LogoGrial }" 
-								Style="{StaticResource FontIcon}"
+								FontFamily="grialshapes"
 								HorizontalTextAlignment="Center"
 								VerticalTextAlignment="Center"/>
 						</Grid>
@@ -143,7 +143,7 @@
 							Grid.Row="0"
 							FontSize="14"
 							Text="{ x:Static local:GrialShapesFont.Email }" 
-							Style="{StaticResource FontIcon}"
+							FontFamily="grialshapes"
 							HorizontalTextAlignment="Center"
 							TextColor="White"
 							VerticalOptions="Center"
@@ -178,7 +178,7 @@
 							Grid.Row="1"
 							FontSize="14"
 							Text="{ x:Static local:GrialShapesFont.Lock }" 
-							Style="{StaticResource FontIcon}"
+							FontFamily="grialshapes"
 							HorizontalTextAlignment="Center"
 							TextColor="White"
 							VerticalOptions="Center"

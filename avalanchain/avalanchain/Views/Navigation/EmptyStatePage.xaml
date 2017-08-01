@@ -51,7 +51,7 @@
                 FontSize="100"
                 HorizontalOptions="Center"
                 HorizontalTextAlignment="Center"
-                Style="{StaticResource FontIcon}"
+                FontFamily="grialshapes"
                 Text="{x:Static local:GrialShapesFont.Settings}"
                 TextColor="{DynamicResource ComplementColor}"
                 VerticalOptions="Center" />

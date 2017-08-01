@@ -24,7 +24,7 @@
 
 				<Label 
 					Text="{ Binding Icon }"
-					Style="{ StaticResource FontIcon }"
+					FontFamily="grialshapes"
 					TextColor="{ Binding BackgroundColor }" 
 					HorizontalOptions="Start"
 					VerticalTextAlignment="Center" 

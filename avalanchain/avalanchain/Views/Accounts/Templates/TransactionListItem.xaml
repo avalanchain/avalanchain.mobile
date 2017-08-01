@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                 x:Class="avalanchain.TransactionListItem">
+    <ContentView.Content>
+        <StackLayout
+                HeightRequest="60"
+                Padding="0"
+                HorizontalOptions="Fill"
+                Spacing="0">
+
+            <StackLayout
+                    Padding="10,0,10,0"
+                    HorizontalOptions="FillAndExpand"
+                    Orientation="Horizontal"
+                    Spacing="10"
+                    Style="{DynamicResource BaseBackgroundColor}"
+                    VerticalOptions="FillAndExpand">
+                <Label
+                        FontFamily="FontAwesome"
+                        FontSize="30"
+                        HorizontalOptions="Center"
+                        HorizontalTextAlignment="Center"
+                        Text="{Binding TypeIcon}"
+                        TextColor="{DynamicResource BrandColor}"
+                        VerticalTextAlignment="Center">
+
+                </Label>
+                <Label
+                        FontSize="10"
+                        HorizontalOptions="Start"
+                        Text="{Binding Description}"
+                        VerticalOptions="Center" />
+                <StackLayout
+                        Padding="0,0,0,0"
+                        HorizontalOptions="EndAndExpand"
+                        Orientation="Vertical"
+                        Spacing="5"
+                        Style="{DynamicResource BaseBackgroundColor}"
+                        VerticalOptions="Center">
+                    <StackLayout              
+                        HorizontalOptions="Center"
+                        Orientation="Horizontal"
+                        Spacing="5"
+                        VerticalOptions="Center">
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="12"
+                            HorizontalOptions="Start"
+                            Text="{Binding AmountFullDetails, StringFormat='{0:N}'}"
+                            VerticalOptions="Center" />
+                        <Label
+                            FontSize="12"
+                            HorizontalTextAlignment="Center"
+                            FontFamily="FontAwesome"
+                            Text="{Binding CurrencyIcon}"
+                            TextColor="Gray"
+                            VerticalTextAlignment="Center" />
+                    </StackLayout>
+
+
+
+                    <Label
+                            TextColor="Gray"
+                            FontSize="8"
+                            HorizontalOptions="Center"
+                            Text="{Binding DateTime, StringFormat='{}{0:dd.MM.yyyy hh:mm }'}}"
+                            VerticalOptions="Center" />
+                </StackLayout>
+            </StackLayout>
+            <!--  Bottom Line  -->
+            <!--<BoxView
+            BackgroundColor="{DynamicResource BrandColor}"
+            HeightRequest="1"
+            Opacity=".3"
+            VerticalOptions="End" />-->
+        </StackLayout>
+
+    </ContentView.Content>
+</ContentView>

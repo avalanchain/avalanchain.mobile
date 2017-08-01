@@ -44,7 +44,7 @@
                     <!--<Label
                         FontSize="42"
                         HorizontalTextAlignment="Center"
-                        Style="{StaticResource FontIcon}"
+                        FontFamily="grialshapes"
                         Text="{x:Static local:GrialShapesFont.LogoGrial}"
                         TextColor="{DynamicResource OverImageTextColor}"
                         VerticalTextAlignment="Center" />-->

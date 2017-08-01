@@ -33,7 +33,7 @@
 			TranslationY="-11"
 			Text="{ x:Static local:GrialShapesFont.BoldArrowDown }"
 			TextColor="{ DynamicResource ChatRightBalloonBackgroundColor }" 
-			Style="{StaticResource FontIcon}" 
+			FontFamily="grialshapes" 
 			FontSize="26"/>
 
 

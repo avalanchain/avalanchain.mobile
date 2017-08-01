@@ -33,8 +33,14 @@ namespace avalanchain
 				nameof(Header),
 				typeof(string),
 				typeof(WalkthroughStepItemTemplate),
-				string.Empty
-			);
+				string.Empty,
+                defaultBindingMode: BindingMode.OneWay,
+                propertyChanged: (bindable, oldValue, newValue) =>
+                {
+                    var ctrl = (WalkthroughStepItemTemplate)bindable;
+                    ctrl.HeaderLabel.Text = (string)newValue;
+                }
+            );
 
 		public string Header
 		{
@@ -100,14 +106,34 @@ namespace avalanchain
 				}
 			);
 
-		public string IconColor
-		{
-			get { return (string)GetValue(IconColorProperty); }
-			set { SetValue(IconColorProperty, value); }
-		}
+		//public string Icon
+		//{
+		//	get { return (string)GetValue(IconColorProperty2); }
+		//	set { SetValue(IconColorProperty2, value); }
+		//}
+
+	 //   public static BindableProperty IconColorProperty2 =
+	 //       BindableProperty.Create(
+	 //           nameof(IconColor),
+	 //           typeof(string),
+	 //           typeof(WalkthroughStepItemTemplate),
+	 //           string.Empty,
+	 //           defaultBindingMode: BindingMode.OneWay,
+	 //           propertyChanged: (bindable, oldValue, newValue) =>
+	 //           {
+	 //               var ctrl = (WalkthroughStepItemTemplate)bindable;
+	 //               ctrl.IconLabel2.TextColor = Color.FromHex((string)newValue);
+	 //           }
+	 //       );
+
+	    public string IconColor
+	    {
+	        get { return (string)GetValue(IconColorProperty); }
+	        set { SetValue(IconColorProperty, value); }
+	    }
 
 
-		public static BindableProperty IconTextProperty =
+        public static BindableProperty IconTextProperty =
 			BindableProperty.Create(
 				nameof(IconText),
 				typeof(string),
@@ -130,8 +156,9 @@ namespace avalanchain
 		public WalkthroughStepItemTemplate()
 		{
 			InitializeComponent();
+		    //Icon = GrialShapesFont.IphoneStrokeDevice;
 
-			ResetAnimation();
+            ResetAnimation();
 		}
 
 		protected override void OnDisappearing()

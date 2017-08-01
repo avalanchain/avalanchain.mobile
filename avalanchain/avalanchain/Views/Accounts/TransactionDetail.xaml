@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="avalanchain.TransactionDetail"
+             Title="Transaction Detail">
+    <ContentPage.Content>
+        <StackLayout
+            Padding="0,20,0,0"
+            Spacing="20"
+            Orientation="Vertical"
+            VerticalOptions="FillAndExpand"
+            HorizontalOptions="FillAndExpand"
+            Style="{DynamicResource BaseBackgroundColor}">
+            <Label 
+                HorizontalOptions="Center"
+                Text="{Binding DateTime, StringFormat='{}{0:dd.MM.yyyy hh:mm }'}}"/>
+
+            <StackLayout              
+                        HorizontalOptions="Center"
+                        Orientation="Horizontal"
+                        Spacing="5"
+                        VerticalOptions="Center">
+                <Label
+                            HorizontalOptions="Center"
+                            FontSize="30"
+                            FontAttributes="Bold"
+                            Text="{Binding AmountFullDetails}"
+                            TextColor="{DynamicResource BrandColor}"
+                            VerticalOptions="Center" />
+                <Label
+                            FontSize="15"
+                            HorizontalTextAlignment="Center"
+                            FontFamily="FontAwesome"
+                            Text="{Binding CurrencyIcon}"
+                            TextColor="Gray"
+                            VerticalTextAlignment="Center" />
+            </StackLayout>
+            <StackLayout
+                Padding="20,0,20,0"
+                    HorizontalOptions="FillAndExpand"
+                    Orientation="Horizontal"
+                    Spacing="10"
+                    Style="{DynamicResource BaseBackgroundColor}">
+                <Label
+                            FontSize="25"
+                            HorizontalTextAlignment="Start"
+                            FontFamily="FontAwesome"
+                            Text="{Binding TypeIcon}"
+                            TextColor="{DynamicResource BrandColor}"
+                            VerticalTextAlignment="Center" />
+                <Label
+                    VerticalOptions="CenterAndExpand"
+                    Text="{Binding Name}"></Label>
+            </StackLayout>
+            <StackLayout
+                Padding="20,0,20,0"
+                    HorizontalOptions="FillAndExpand"
+                    Orientation="Horizontal"
+                    Spacing="10"
+                    Style="{DynamicResource BaseBackgroundColor}">
+                <Label
+                            FontSize="25"
+                            HorizontalTextAlignment="Start"
+                            FontFamily="FontAwesome"
+                            Text="{Binding FAInfo}"
+                            TextColor="{DynamicResource BrandColor}"
+                            VerticalTextAlignment="Center" />
+                <Label
+                    VerticalOptions="CenterAndExpand"
+                    Text="Transaction Fee"></Label>
+                <Label
+                    HorizontalOptions="EndAndExpand"
+                    VerticalOptions="CenterAndExpand"
+                    TextColor="{DynamicResource BrandColor}"
+                    Text="{Binding Fee}"></Label>
+                <Label
+                            FontSize="10"
+                            HorizontalTextAlignment="End"
+                            FontFamily="FontAwesome"
+                            Text="{Binding CurrencyIcon}"
+                            TextColor="Gray"
+                            VerticalTextAlignment="Center" />
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -44,7 +44,7 @@
 				PortraitTablet=65,
 				LandscapeTablet=65 }"
 			TextColor="#33000000"
-			Style="{ StaticResource FontIcon }"
+			FontFamily="grialshapes"
 			Text="{ x:Static local:GrialShapesFont.Circle }"
 			VerticalTextAlignment="Center"
 			HorizontalTextAlignment="Center"/>
@@ -60,7 +60,7 @@
 				PortraitTablet=32,
 				LandscapeTablet=32 }"
 			TextColor="White"
-			Style="{ StaticResource FontIcon }"
+			FontFamily="grialshapes"
 			VerticalTextAlignment="Center"
 			HorizontalTextAlignment="Center"/>
 

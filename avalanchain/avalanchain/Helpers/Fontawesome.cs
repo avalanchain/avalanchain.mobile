@@ -382,8 +382,10 @@ namespace avalanchain
         public static string FAPlusSquareO = "\uf196";
         public static string FACircleThin = "\uf1db";
         public static string FACreditCard2 = "\uf283";
-        public static string FACFaPieChart = "\uf200";
-        public static string FACFaChart = "\uf1fe";
-        public static string FACFaChartUp = "\uf201";
+        public static string FAFaPieChart = "\uf200";
+        public static string FAFaChart = "\uf1fe";
+        public static string FAFaChartUp = "\uf201";
+        public static string FAFaVisa = "\uf1f0";
+        public static string FAFaMasterCard = "\uf1f1";
     }
 }

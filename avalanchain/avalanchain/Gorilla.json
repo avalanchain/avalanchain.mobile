@@ -49,6 +49,14 @@
     {
       "name": "Lottie.Forms",
       "types": null
+    },
+    {
+      "name": "OxyPlot.Xamarin.Forms",
+      "types": null
+    },
+    {
+      "name": "XFGloss",
+      "types": null
     }
   ]
 }

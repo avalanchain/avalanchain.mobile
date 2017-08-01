@@ -2,6 +2,6 @@
 <resources>
 	<color name="AccentColor">#FFC7413E</color>
 	<color name="ComplementColor">#FF525ABB</color>
-	<color name="BaseTextColor">#FF666666</color>
+	<color name="BaseTextColor">#FF2F2F33</color>
   <color name="SplashColor">#FFFFFFFF</color>
 </resources>

@@ -89,7 +89,7 @@
 				Text="{ x:Static local:GrialShapesFont.BoldArrowLeft }"
 				TranslationX="11"
 				TextColor="{ DynamicResource ComplementColor }"
-				Style="{ StaticResource FontIconBase }" 
+				FontFamily="grialshapes" 
 				FontSize="26" />
 		</Grid>
 	
@@ -127,7 +127,7 @@
 			Grid.ColumnSpan="2"
 			FontSize="20"
 			Text="{ Binding Icon }" 
-			Style="{ StaticResource FontIcon }"
+			FontFamily="grialshapes"
 			HorizontalTextAlignment="Center"
 			TextColor="White"
 			VerticalOptions="Center"

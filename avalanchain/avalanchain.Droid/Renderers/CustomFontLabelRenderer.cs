@@ -13,12 +13,18 @@ namespace avalanchain.Droid
 	public class CustomFontLabelRenderer : ArtinaCustomFontLabelRenderer
 	{
         //TODO: Delete grialfonts 
-		private static readonly string[] CustomFontFamily = new [] { "Lato","grialshapes", "FontAwesome", "Ionicons" };//"grialshapes", "FontAwesome", "Ionicons" 
+		private static readonly string[] CustomFontFamily = new [] { "Lato", "Ostrich", "grialshapes", "FontAwesome", "Ionicons" };//"grialshapes", "FontAwesome", "Ionicons" 
 		private static readonly Tuple<FontAttributes, string>[][] CustomFontFamilyData = new [] {
             new [] {
                 new Tuple<FontAttributes, string>(FontAttributes.None, "LatoLatin-Regular.ttf"),
-                new Tuple<FontAttributes, string>(FontAttributes.Bold, "LatoLatin-Semibold.ttf"),
-                new Tuple<FontAttributes, string>(FontAttributes.Italic, "LatoLatin-Regular.ttf")
+                new Tuple<FontAttributes, string>(FontAttributes.Bold, "Lato-Black.ttf"),
+                new Tuple<FontAttributes, string>(FontAttributes.Italic, "LatoLatin-Semibold.ttf")
+            },
+
+             new [] {
+                new Tuple<FontAttributes, string>(FontAttributes.None, "OstrichSans-Medium.ttf"),
+                new Tuple<FontAttributes, string>(FontAttributes.Bold, "OstrichSans-Black.ttf"),
+                new Tuple<FontAttributes, string>(FontAttributes.Italic, "OstrichSans-Medium.ttf")
             },
 
             new [] {

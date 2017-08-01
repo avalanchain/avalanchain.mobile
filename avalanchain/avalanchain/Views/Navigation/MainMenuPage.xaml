@@ -1,86 +1,117 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage 
-	xmlns="http://xamarin.com/schemas/2014/forms" 
-	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-	x:Class="avalanchain.MainMenuPage"
-	Title="Main Menu" 
-	Style="{ DynamicResource MainMenuStyle }"
-	xmlns:artina="clr-namespace:UXDivers.Artina.Shared;assembly=UXDivers.Artina.Shared"
-	xmlns:local="clr-namespace:avalanchain;assembly=avalanchain"
-	Icon="{ StaticResource HamburguerIcon }">
+        xmlns="http://xamarin.com/schemas/2014/forms" 
+        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+        x:Class="avalanchain.MainMenuPage"
+        Title="Main Menu" 
+        Style="{ DynamicResource MainMenuStyle2 }"
+        xmlns:artina="clr-namespace:UXDivers.Artina.Shared;assembly=UXDivers.Artina.Shared"
+        xmlns:local="clr-namespace:avalanchain;assembly=avalanchain"
+        xmlns:xfg="clr-namespace:XFGloss;assembly=XFGloss"
+        Icon="{ StaticResource HamburguerIcon }">
+    <!--Style="{ DynamicResource MainMenuStyle2 }"-->
 
-	<Grid
-		RowSpacing="0"
-		VerticalOptions="FillAndExpand" 
-		Padding="0,20,0,0"
-		Margin="0,0,0,10">
+    <!--<xfg:ContentPageGloss.BackgroundGradient>
+        <xfg:Gradient Rotation="150">
+            <xfg:GradientStep StepColor="#d26664" StepPercentage="0" />
+            <xfg:GradientStep StepColor="#cc5451" StepPercentage=".5" />
+            <xfg:GradientStep StepColor="#c7413e" StepPercentage="1" />
+        </xfg:Gradient>
+    </xfg:ContentPageGloss.BackgroundGradient>-->
+    <Grid
+            RowSpacing="0"
+            VerticalOptions="FillAndExpand" 
+            Padding="0,20,0,0"
+            Margin="0,0,0,10">
 
-		<Grid.RowDefinitions>
-			<RowDefinition Height="100" />
-			<RowDefinition Height="*" />
-		</Grid.RowDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
 
-		
-		<Grid
-			Grid.Row="0"
-			HorizontalOptions="Start" 
-			VerticalOptions="Start"
-			RowSpacing="0">
 
-			
-			<!-- LOGO -->
-			<local:BrandBlock 
-				Grid.Row="0"/>
+        <Grid
+                Grid.Row="0"
+                Padding="20,10,0,0"
+                HorizontalOptions="Start" 
+                VerticalOptions="Start"
+                RowSpacing="0">
+            <StackLayout 
+                    Spacing="10"
+                    Orientation="Horizontal">
 
-			<!--<artina:Button
-				Grid.Row="0"
-				Text="BUY"
-				VerticalOptions="Center"
-				HorizontalOptions="End"
-				WidthRequest="80"
-				TranslationX="100"
-				Style="{ StaticResource SecondaryActionButtonStyle }"
-				Clicked="OnBtnCustomClicked"
-			/>-->
+                <!--<artina:CircleImage 
+                    Style="{ StaticResource ButtonCircleSmall }"
+                    Source="{ StaticResource ThemeAvatarSample0Image }"
+                    HorizontalOptions="Center"/>-->
+                <!--<Label
+                        TextColor="{StaticResource MainMenuTextColor}"
+                        VerticalOptions="Center"
+                        Text="John Galt"
+                        FontAttributes="Bold"
+                        ></Label>-->
 
-			
-			<!-- SCREENS COUNTER -->
-			<local:Badge 
-				BadgeText="{ Binding AllSamples.Count }" 
-				BadgeTextColor="#FFF" 
-				BadgeBackgroundColor="#F00"
-				HorizontalOptions="End"
-				VerticalOptions="Start"
-			/>
-			
-		</Grid>
+                <artina:CircleImage 
+                    Style="{ StaticResource ButtonCircleSmall }"
+                    Source="{ Binding Avatar }"
+                    HorizontalOptions="Center" 
+                        />
+                <Label
+                        TextColor="{DynamicResource MainMenuTextColor}"
+                        VerticalOptions="Center"
+                        Text="{ Binding Name , StringFormat='{0}'}"
+                        FontAttributes="Bold"
+                        ></Label>
+            </StackLayout>
 
-		<ListView 
-		    Grid.Row="1"
-			x:Name="sampleListView" 
-			ItemSelected="OnItemSelected"
-			ItemsSource="{ Binding SamplesGroupedByCategory }"
-			IsGroupingEnabled="true"
-			GroupDisplayBinding="{ Binding Name }"
-			SeparatorVisibility="None"
-			VerticalOptions="FillAndExpand"
-			Style="{ DynamicResource MainMenuListViewStyle }"
-			CachingStrategy="RecycleElement">
-				<ListView.GroupHeaderTemplate> 
-					<DataTemplate> 
-						<ViewCell> 
-							<local:MainMenuGroupHeaderTemplate />
-						</ViewCell> 
-					</DataTemplate> 
-				</ListView.GroupHeaderTemplate> 
 
-				<ListView.ItemTemplate>
-					<DataTemplate>
-						<ViewCell>
-							<local:MainMenuItemTemplate />
-						</ViewCell>
-					</DataTemplate>
-				</ListView.ItemTemplate>
-		</ListView>
-	</Grid>
+            <!-- LOGO -->
+            <!--<local:BrandBlock 
+                     Grid.Row="0"/>-->
+            <!-- SCREENS COUNTER -->
+            <!--<local:Badge 
+                    BadgeText="{ Binding AllSamples.Count }" 
+                    BadgeTextColor="#FFF" 
+                    BadgeBackgroundColor="#F00"
+                    HorizontalOptions="End"
+                    VerticalOptions="Start"
+                    />-->
+
+        </Grid>
+        <BoxView
+                Grid.Row="1"
+                BackgroundColor="{DynamicResource MainMenuTextColor}"
+                HeightRequest="1"
+                Opacity=".3"
+                VerticalOptions="End" />
+        <ListView 
+                Grid.Row="2"
+                x:Name="sampleListView" 
+                ItemSelected="OnItemSelected"
+                ItemsSource="{ Binding SamplesGroupedByCategory }"
+                IsGroupingEnabled="true"
+                GroupDisplayBinding="{ Binding Name }"
+                SeparatorColor="Transparent"
+                HasUnevenRows="True"
+                VerticalOptions="FillAndExpand"
+                Style="{ DynamicResource MainMenuListViewStyle2 }"
+                CachingStrategy="RecycleElement">
+            <ListView.GroupHeaderTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <local:MainMenuGroupHeaderTemplate />
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.GroupHeaderTemplate>
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <local:MainMenuItemTemplate />
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
 </ContentPage>

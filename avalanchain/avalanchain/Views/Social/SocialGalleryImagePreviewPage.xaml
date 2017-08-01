@@ -35,7 +35,7 @@
 					TextColor="White"
 					HeightRequest="30"
 					WidthRequest="30"
-					Style="{StaticResource FontIcon}">
+					FontFamily="grialshapes">
 					
 					<Label.GestureRecognizers>
 						<TapGestureRecognizer Tapped="OnCloseButtonClicked" />

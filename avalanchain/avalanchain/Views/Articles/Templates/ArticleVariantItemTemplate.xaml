@@ -113,7 +113,7 @@
 					Text="{ x:Static local:GrialShapesFont.Group } " 
 					FontSize="14" 
 					TextColor="{ DynamicResource AccentColor }" 
-					Style="{ StaticResource FontIcon }" />
+					FontFamily="grialshapes" />
 
 				<!---Followers -->
 				<Label 
@@ -133,7 +133,7 @@
 					Text="{ x:Static local:GrialShapesFont.Favorite } " 
 					FontSize="14" 
 					TextColor="{ DynamicResource AccentColor }" 
-					Style="{ StaticResource FontIcon }" />
+					FontFamily="grialshapes" />
 
 				<!---Likes -->
 				<Label

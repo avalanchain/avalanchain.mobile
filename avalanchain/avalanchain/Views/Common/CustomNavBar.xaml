@@ -23,7 +23,7 @@
 				Text="{ x:Static local:GrialShapesFont.Menu }"
 				FontSize="22"
 				TextColor="{ DynamicResource CustomNavBarTextColor }" 
-				Style="{ StaticResource FontIcon }">
+				FontFamily="grialshapes">
 				<Label.GestureRecognizers>
 					<TapGestureRecognizer Tapped="OnHamburgerIconTapped" />
 				</Label.GestureRecognizers>
@@ -45,7 +45,7 @@
 				Text="{ x:Static local:GrialShapesFont.Settings } " 
 				FontSize="22"
 				TextColor="{ DynamicResource CustomNavBarTextColor }" 
-				Style="{ StaticResource FontIcon }">
+				FontFamily="grialshapes">
 				<Label.GestureRecognizers>
 					<TapGestureRecognizer Tapped="OnCogIconTapped" />
 				</Label.GestureRecognizers>

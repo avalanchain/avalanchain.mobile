@@ -5,11 +5,11 @@
     x:Class="avalanchain.WalkthroughStepItemTemplate"
     xmlns:artina="clr-namespace:UXDivers.Artina.Shared;assembly=UXDivers.Artina.Shared"
     xmlns:local="clr-namespace:avalanchain;assembly=avalanchain"
-    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    
     x:Name="StepContentPage"
     Style="{DynamicResource WalkthroughStepStyle}"
     BackgroundColor="{ DynamicResource BasePageColor }">
-
+<!--xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"-->
 
     <Grid
         Padding="20,30,20,20">
@@ -29,9 +29,66 @@
             </Grid.RowDefinitions>
 
             <!--PHONE-->
-            <Label 
+            <!--Text="{ x:Static local:GrialShapesFont.IphoneStrokeDevice }"-->
+            <!--<Label 
+                Text="{ Binding Icon }"
+                FontFamily="grialshapes"
+                TextColor="Black"
+                HorizontalTextAlignment="Center"
+                VerticalTextAlignment="Center"
+                VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"
+                FontSize="290">
+                
+            </Label>-->
+            <!--<Label 
+                Grid.Row="0"
                 Text="{ x:Static local:GrialShapesFont.IphoneStrokeDevice }"
-                Style="{ StaticResource FontIcon }"
+                FontFamily="grialshapes"
+                TextColor="{ DynamicResource ComplementColor }"
+                HorizontalTextAlignment="Center"
+                VerticalTextAlignment="Center"
+                FontSize="250"
+                >
+            
+            { x:Static local:GrialShapesFont.IphoneStrokeDevice }
+                HorizontalTextAlignment="Center"
+                VerticalTextAlignment="Center"
+            </Label>-->
+            <Grid
+                VerticalOptions="Center"
+                HorizontalOptions="Center">
+
+                <!--<Label
+                
+                    FontSize="240"
+                    Text="{ x:Static local:GrialShapesFont.IphoneStrokeDevice }"
+                    TextColor="{ DynamicResource ComplementColor }"
+                    VerticalTextAlignment="Center"
+                    HorizontalTextAlignment="Center"
+                    HeightRequest="240"
+                    WidthRequest="240"
+                    FontFamily="grialshapes">
+                </Label>-->
+                <!--<StackLayout
+                    HorizontalOptions="Center">
+                    
+                </StackLayout>-->
+                
+                <Label
+                    x:Name="IconLabel"
+                    Style="{ DynamicResource WalkthroughStepIconStyle }"
+                    FontSize="60"
+                    VerticalTextAlignment="Center"
+                    HorizontalTextAlignment="Center"
+                    Text="{ x:Static local:GrialShapesFont.IphoneStrokeDevice }"
+                    TextColor="#5F7DD4"/>
+
+            </Grid>
+            
+            <!--<Label 
+                x:Name="IconLabel2"
+                Text="{ Binding Icon }"
+                FontFamily="grialshapes"
                 TextColor="{ DynamicResource ComplementColor }"
                 HorizontalTextAlignment="Center"
                 VerticalTextAlignment="Center"
@@ -41,18 +98,10 @@
                         Android="260" 
                         iOS="340" />
                 </Label.FontSize>
-            </Label>
+            </Label>-->
 
             <!--ICON-->
-            <Label
-                x:Name="IconLabel"
-                Style="{ DynamicResource WalkthroughStepIconStyle }"
-                FontSize="60"
-                VerticalTextAlignment="Center"
-                HorizontalTextAlignment="Center"
-                Text="{ x:Static local:GrialShapesFont.LogoGrial }"
-                TextColor="#5F7DD4"/>
-
+            
             <!--TEXT-->
             <StackLayout
                 Grid.Row="1"
@@ -60,6 +109,7 @@
                 Spacing="10">
 
                 <Label
+                    x:Name="HeaderLabel"
                     HorizontalTextAlignment="Center"
 					HorizontalOptions="CenterAndExpand"
                     Text="Learn"
@@ -101,7 +151,7 @@
             TextColor="{ DynamicResource BaseTextColor }"
             HeightRequest="30"
             WidthRequest="30"
-            Style="{ StaticResource FontIcon }">
+            FontFamily="grialshapes">
             <Label.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding CloseCommand}" />
             </Label.GestureRecognizers>

@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:artina="clr-namespace:UXDivers.Artina.Shared;assembly=UXDivers.Artina.Shared"
+             xmlns:local="clr-namespace:avalanchain;assembly=avalanchain"
+             Title="Cards"
+             x:Class="avalanchain.Cards">
+    <ContentPage.Content>
+        <Grid Padding="0" RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="{artina:OnOrientationDouble PortraitPhone=120, LandscapePhone=120, PortraitTablet=140, LandscapeTablet=140}" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid
+                    x:Name="EcommerceProductGridBanner"
+                    Grid.Row="0"
+                    Padding="0"
+                    RowSpacing="0"
+                    Style="{StaticResource AccountProductGridBannerStyle}"
+                    VerticalOptions="Center">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="4*" />
+                    <RowDefinition Height="2*" />
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0" Margin="0,5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid ClassId="Send" Grid.Column="0">
+                        <artina:CircleImage 
+                                Style="{ StaticResource ButtonCircle }"
+                                HorizontalOptions="Center" 
+                                TranslationY="10"
+                                />
+                        <!--Text="{x:Static local:FontAwesome.FACreditCard}"-->
+
+                        <Label
+                            TranslationY="10"
+                                FontFamily="FontAwesome"
+                                FontSize="25"
+                                HorizontalTextAlignment="Center"
+                                Text="{x:Static local:FontAwesome.FACreditCard}"
+                                TextColor="{DynamicResource Circle2Color}"
+                                VerticalTextAlignment="Center" />
+
+
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnTapGestureRecognizerTapped" />
+                        </Grid.GestureRecognizers>
+                    </Grid>
+                    <Grid
+                            ClassId="Exchange"
+                            Grid.Column="1"
+                            HorizontalOptions="Center">
+                        <artina:CircleImage 
+                                Style="{ StaticResource ButtonCircle }"
+                                HorizontalOptions="Center" 
+                                TranslationY="10"
+                                />
+                        <Label
+                            TranslationY="10"
+                                FontFamily="FontAwesome"
+                                FontSize="25"
+                                HorizontalTextAlignment="Center"
+                                Text="{x:Static local:FontAwesome.FAExchange}"
+                                TextColor="{DynamicResource CircleColor}"
+                                VerticalTextAlignment="Center" />
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnTapGestureRecognizerTapped" />
+                        </Grid.GestureRecognizers>
+                    </Grid>
+
+                    <Grid
+                            ClassId="TopUp"
+                            Grid.Column="2"
+                            HorizontalOptions="Center">
+                        <artina:CircleImage 
+                                Style="{ StaticResource ButtonCircle }"
+                                HorizontalOptions="Center" 
+                                TranslationY="10"
+                                />
+                        <Label
+                            TranslationY="10"
+                                FontFamily="FontAwesome"
+                                FontSize="25"
+                                HorizontalTextAlignment="Center"
+                                Text="{x:Static local:FontAwesome.FAPlus}"
+                                TextColor="{DynamicResource Circle3Color}"
+                                VerticalTextAlignment="Center" />
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnTapGestureRecognizerTapped" />
+                        </Grid.GestureRecognizers>
+                    </Grid>
+                </Grid>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0" HorizontalOptions="Center">
+                        <Label
+                                FontSize="15"
+                                HorizontalTextAlignment="Center"
+                                Text="Send"
+                                VerticalTextAlignment="Center" />
+
+
+                    </Grid>
+                    <Grid Grid.Column="1" HorizontalOptions="Center">
+                        <Label
+                                FontSize="15"
+                                HorizontalTextAlignment="Center"
+                                Text="Exchange"
+                                VerticalTextAlignment="Center" />
+                    </Grid>
+                    <Grid Grid.Column="2" HorizontalOptions="Center">
+                        <Label
+                                FontSize="15"
+                                HorizontalTextAlignment="Center"
+                                Text="Top Up"
+                                VerticalTextAlignment="Center" />
+                    </Grid>
+
+
+                </Grid>
+
+            </Grid>
+            <StackLayout Grid.Row="1">
+                <ListView
+                        HasUnevenRows="false"
+                        ItemTapped="OnCardTapped"
+                        ItemsSource="{Binding Cards}"
+                        SeparatorColor="Transparent"
+                        SeparatorVisibility="None">
+                    <ListView.RowHeight>
+                        <OnIdiom
+                                x:TypeArguments="x:Int32"
+                                Phone="70"
+                                Tablet="100" />
+                    </ListView.RowHeight>
+
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <local:AccountListItemTemplate />
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+
+                </ListView>
+            </StackLayout>
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

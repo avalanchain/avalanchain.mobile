@@ -1,0 +1,372 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:avalanchain;assembly=avalanchain"
+             xmlns:artina="clr-namespace:UXDivers.Artina.Shared;assembly=UXDivers.Artina.Shared"
+             Title="Exchange"
+             x:Class="avalanchain.Transfer">
+    <ContentPage.Content>
+        <ScrollView
+            BackgroundColor="{DynamicResource BasePageColor}"
+            Padding="{DynamicResource MainWrapperPadding}">
+            <Grid Padding="10" RowSpacing="20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="60" />
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="60" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <!--  FROM  -->
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    
+                    <!--  NAME ENTRY  -->
+                    <StackLayout
+                        Grid.Column="0"
+                        Padding="0,0,0,0"
+                        HorizontalOptions="FillAndExpand"
+                        Orientation="Horizontal"
+                        Spacing="10"
+                        Style="{DynamicResource BaseBackgroundColor}"
+                        VerticalOptions="FillAndExpand">
+                        <Label
+                            WidthRequest="47"
+                            Text="From :"
+                            FontAttributes="Bold"
+                            VerticalTextAlignment="Center" />
+                        <StackLayout
+                            Padding="0,0,0,0"
+                            HorizontalOptions="Center"
+                            Orientation="Horizontal"
+                            Spacing="5"
+                            Style="{DynamicResource BaseBackgroundColor}"
+                            VerticalOptions="Center">
+                            <Label
+                                FontSize="20"
+                                FontAttributes="Italic"
+                                Text="{Binding  From.AccountNumberSubName, StringFormat='*{0:N}'}"
+                                VerticalTextAlignment="Center" />
+                            <Label
+                                FontSize="15"
+                                TextColor="Gray"
+                                Text="{Binding  From.Name}"
+                                VerticalOptions="Center" />
+                        </StackLayout>
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="20"
+                            HorizontalOptions="EndAndExpand"
+                            Text="{Binding  From.Amount, StringFormat='{0:0.00}'}"
+                            VerticalOptions="Center" />
+                        <Label
+                            Margin="0,0,15,0"
+                            HorizontalOptions="End"
+                            VerticalOptions="Center"
+                            Style="{DynamicResource AccountCurrencyStyle}"
+                            Text="{Binding  From.CurrencyIcon}"
+                            TextColor="{DynamicResource BrandColor}"
+                            WidthRequest="20" />
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnLabelFromTapped" />
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                    <Label
+                        Style="{DynamicResource ChooseIconStyle}"
+                        Text="{Binding  ChoosIcon}"
+                        VerticalOptions="Center">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnLabelFromTapped" />
+                        </Label.GestureRecognizers>
+                    </Label>
+
+                </Grid>
+                <!--  TO  -->
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <!--<ColumnDefinition Width="1*" />-->
+                    </Grid.ColumnDefinitions>
+                    <!--{Binding IsOwnResiever}-->
+                    <StackLayout
+                        IsVisible="{Binding IsOwnResiever}"
+                        Grid.Column="0"
+                        Padding="0,0,0,0"
+                        HorizontalOptions="FillAndExpand"
+                        Orientation="Horizontal"
+                        Spacing="10"
+                        Style="{DynamicResource BaseBackgroundColor}"
+                        VerticalOptions="FillAndExpand">
+                        <Label
+                            WidthRequest="47"
+                            Text="To :"
+                            FontAttributes="Bold"
+                            VerticalTextAlignment="Center" />
+                        <StackLayout
+                            Padding="0,0,0,0"
+                            HorizontalOptions="Center"
+                            Orientation="Horizontal"
+                            Spacing="5"
+                            Style="{DynamicResource BaseBackgroundColor}"
+                            VerticalOptions="Center">
+                            <Label
+                                FontSize="20"
+                                FontAttributes="Italic"
+                                Text="{Binding  To.AccountNumberSubName, StringFormat='*{0:N}'}"
+                                VerticalTextAlignment="Center" />
+                            <Label
+                                FontSize="15"
+                                TextColor="Gray"
+                                Text="{Binding  To.Name}"
+                                VerticalOptions="Center" />
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnStackLayoutTapped" />
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="20"
+                            HorizontalOptions="EndAndExpand"
+                            Text="{Binding  To.Amount, StringFormat='{0:0.00}'}"
+                            VerticalOptions="Center" />
+                        <Label
+                            Margin="0,0,15,0"
+                            HorizontalOptions="End"
+                            VerticalOptions="Center"
+                            Style="{DynamicResource AccountCurrencyStyle}"
+                            Text="{Binding  To.CurrencyIcon}"
+                            TextColor="{DynamicResource BrandColor}"
+                            WidthRequest="20" />
+
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnStackLayoutTapped" />
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                    <StackLayout
+                        Orientation="Horizontal"
+                        IsVisible="{Binding IsAnotherResiever}">
+                        <Label
+                            WidthRequest="47"
+                            Text="To :"
+                            FontAttributes="Bold"
+                            VerticalTextAlignment="Center" />
+                        <Entry
+                            Margin="0,0,15,0"
+                            artina:EntryProperties.PlaceholderColor="{DynamicResource BaseTextColor}"
+                            BackgroundColor="{DynamicResource PlaceholderColorEntry}"
+                            HorizontalOptions="FillAndExpand"
+                            HeightRequest="40"
+                            Text="{Binding Send.ReceiverAccountNumber}"
+                            Placeholder="Enter Number" />
+                    </StackLayout>
+                    <Label
+                        ClassId="OwnAccount"
+                        Style="{DynamicResource ChooseIconStyle}"
+                        Text="{Binding  ChoosIcon}"
+                        VerticalOptions="Center">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnLabelTapped" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <!--artina:PickerProperties.BorderStyle="BottomLine"-->
+                </Grid>
+
+
+
+                <!--  Deposite to  -->
+                <!--  Deposite to  -->
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="5*" />
+                    </Grid.ColumnDefinitions>
+                    <!--{ StaticResource ButtonCircle }-->
+                    <artina:CircleImage 
+                        Grid.Column="0"
+                        Style="{ Binding Icon }"
+                        HorizontalOptions="Center"
+                        BorderThickness="1"
+                        WidthRequest="100"
+                        HeightRequest="100"/>
+                    <!--{x:Static local:FontAwesome.FAPlus}-->
+                    <Label
+                        Grid.Column="0"
+                        FontFamily="FontAwesome"
+                        FontSize="25"
+                        TextColor="{DynamicResource BrandColor}"
+                        HorizontalTextAlignment="Center"
+                        Text="{ Binding From.CurrencyIcon }"
+                        VerticalTextAlignment="Center" />
+                    <!--<Label
+                        Grid.Column="0"
+                        Text="USD"
+                        VerticalTextAlignment="Center" />-->
+                    <Entry
+                        Grid.Column="1"
+                        x:Name="Usd"
+                        FontAttributes="Bold"
+                        artina:EntryProperties.PlaceholderColor="{DynamicResource BaseTextColor}"
+                        BackgroundColor="{DynamicResource PlaceholderColorEntry}"
+                        HeightRequest="40"
+                        Keyboard="Numeric"
+                        FontSize="26"
+                        Text="{Binding Send.FromAmount}"
+                        TextChanged="TextChanged"
+                        Placeholder="0" />
+
+                    <!--  LAST NAME ENTRY  -->
+                    <!--<Label
+                        Text="BTC"
+                        VerticalTextAlignment="Center" />-->
+
+                    <!--<Entry
+                        Grid.Column="3"
+                        Margin="6,0,0,0"
+                        artina:EntryProperties.PlaceholderColor="{DynamicResource BaseTextColor}"
+                        BackgroundColor="{DynamicResource PlaceholderColorEntry}"
+                        HeightRequest="40"
+                        Keyboard="Numeric"
+                        Placeholder="0" />-->
+
+                </Grid>
+
+                <!--  ADDRESS LINE 1  -->
+                <Grid
+                    Grid.Row="3"
+                    VerticalOptions="Center">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="5*" />
+                    </Grid.ColumnDefinitions>
+                   
+                   
+                    <!--<Label
+                            TranslationY="10"
+                            FontFamily="FontAwesome"
+                            FontSize="25"
+                            HorizontalTextAlignment="Center"
+                            Text="{Binding TestData.Icon2}"
+                            TextColor="{DynamicResource InverseTextColor}"
+                            VerticalTextAlignment="Center" />-->
+                    <Label
+                        Grid.Column="0"
+                        FontFamily="FontAwesome"
+                        FontSize="30"
+                        HorizontalTextAlignment="Center"
+                        Text="{x:Static local:FontAwesome.FAAngleDoubleDown}"
+                        TextColor="Gray"
+                        VerticalTextAlignment="Center" />
+                    <StackLayout
+                        Orientation="Horizontal"
+                        VerticalOptions="Center"
+                        Grid.Column="1">
+                        <Label
+                            FontFamily="FontAwesome"
+                            FontSize="18"
+                            TextColor="Gray"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"
+                            Text="{Binding  From.CurrencyIcon}" />
+                        <Label
+                            FontSize="18"
+                            Text="{Binding Rate, StringFormat='1 = {0}'}"></Label><!--$1 = 0.93 £-->
+                        <Label
+                            FontFamily="FontAwesome"
+                            FontSize="18"
+                            TextColor="Gray"
+                            HorizontalOptions="Center"
+                            Text="{ Binding ToCurrencyIcon }"
+                            VerticalTextAlignment="Center" />
+                    </StackLayout>
+                    
+                    
+                </Grid>
+
+                <!--  ADDRESS LINE 2  -->
+                <Grid Grid.Row="4">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="5*" />
+                    </Grid.ColumnDefinitions>
+
+                    <artina:CircleImage 
+                        Grid.Column="0"
+                        Style="{ Binding Icon }"
+                        HorizontalOptions="Center"
+                        BorderThickness="1"
+                        WidthRequest="100"
+                        HeightRequest="100"/>
+                    <!--{x:Static local:FontAwesome.FAPlus}-->
+                    <Label
+                        Grid.Column="0"
+                        FontFamily="FontAwesome"
+                        FontSize="25"
+                        TextColor="{DynamicResource BrandColor}"
+                        HorizontalTextAlignment="Center"
+                        Text="{ Binding ToCurrencyIcon }"
+                        VerticalTextAlignment="Center" />
+                    
+                        <!--BindingContext="{x:Reference Usd}"
+                        Text="{Binding Text, StringFormat='{0:F0}'}"-->
+                    <Label
+                        Grid.Column="1"
+                        Margin="6,0,0,0"
+                        FontAttributes="Bold"
+                        FontSize="26"
+                        Text="{ Binding Send.ReceiveAmount}"
+                        VerticalTextAlignment="Center" />
+                    <BoxView
+                        Margin="5,0,5,0"
+                        Grid.Column="1"
+                        BackgroundColor="Black"
+                        HeightRequest="0.4"
+                        HorizontalOptions="Fill"
+                        VerticalOptions="End" />
+                    <!--<Entry
+                        Grid.Column="3"
+                        artina:EntryProperties.PlaceholderColor="{DynamicResource BaseTextColor}"
+                        BackgroundColor="{DynamicResource PlaceholderColorEntry}"
+                        HeightRequest="40"
+                        Keyboard="Numeric"
+                        Placeholder="0" />-->
+                    <!--<Entry
+                        Grid.Column="3"
+                        Margin="6,0,0,0"
+                        artina:EntryProperties.PlaceholderColor="{DynamicResource BaseTextColor}"
+                        BackgroundColor="{DynamicResource PlaceholderColorEntry}"
+                        HeightRequest="40"
+                        Keyboard="Numeric"
+                        Placeholder="0" />-->
+
+                </Grid>
+
+
+
+                <!--  NOTES  -->
+                <Grid Grid.Row="5" Padding="0.5">
+                    <!--<Editor artina:EntryProperties.PlaceholderColor="{DynamicResource BaseTextColor}" BackgroundColor="{DynamicResource PlaceholderColorEntry}" />-->
+                </Grid>
+
+                <!--  NOTES  -->
+                <artina:Button
+                    Grid.Row="6"
+                    HorizontalOptions="{artina:OnOrientationLayoutOptions PortraitPhone=Fill,
+                                                                          LandscapePhone=Center,
+                                                                          PortraitTablet=Fill,
+                                                                          LandscapeTablet=Center}"
+                    Style="{DynamicResource PrimaryActionButtonStyle}"
+                    Text="Send"
+                    Clicked="Send"
+                    VerticalOptions="End"
+                    WidthRequest="{artina:OnOrientationDouble LandscapePhone=200,
+                                                              LandscapeTablet=400}" />
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

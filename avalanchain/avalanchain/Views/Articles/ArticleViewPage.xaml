@@ -261,7 +261,7 @@
 								Text="{ x:Static local:GrialShapesFont.Label }"
 								TextColor="{ DynamicResource AccentColor }"
 								FontSize="24" 
-								Style="{ StaticResource FontIcon }"
+								FontFamily="grialshapes"
 								VerticalOptions="Center"
 								VerticalTextAlignment="Center"/>
 							<Label

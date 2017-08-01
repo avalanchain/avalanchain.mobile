@@ -10,8 +10,9 @@ namespace avalanchain
 		private static Dictionary<string, SampleCategory> _samplesCategories;
 		private static List<Sample> _allSamples;
 		private static List<SampleGroup> _samplesGroupedByCategory;
+        //private static List<SampleGroup> _categoriesColors;
 
-		public static string[] _categoriesColors = {
+        public static string[] _categoriesColors = {
 			"#921243",
 			"#B31250",
 			"#CD195E",
@@ -23,7 +24,15 @@ namespace avalanchain
 			"#7B96E5"
 		};
 
-		public static List<SampleCategory> SamplesCategoryList
+        public static string[] CategoriesColors
+        {
+            get
+            {
+                return _categoriesColors;
+            }
+        }
+
+        public static List<SampleCategory> SamplesCategoryList
 		{
 			get
 			{
@@ -302,21 +311,5 @@ namespace avalanchain
 		}
 	}
 
-	public class SampleGroup : List<Sample>
-	{
-		private readonly string _name;
-
-		public SampleGroup(string name)
-		{
-			_name = name;
-		}
-
-		public string Name 
-		{
-			get
-			{
-				return _name;
-			}
-		}
-	}
+	
 }

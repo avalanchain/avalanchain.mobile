@@ -8,47 +8,32 @@ namespace avalanchain
 {
     public class Account
     {
-        public string Name
-        {
-            get;
-            set;
-        }
+        public Guid Id { get; set; }
+        public AccountType Type { get; set; }
+        public string Name { get; set; }
+        public string AccountNumber { get; set; }
+        public string AccountNumberSubName => AccountNumber.Substring(Math.Max(0, AccountNumber.Length - 4)).ToUpper();
 
-        public string Description
-        {
-            get;
-            set;
-        }
+        public CurrencyType Currency { get; set; }
 
-        public string Price
-        {
-            get;
-            set;
-        }
+        public decimal Amount { get; set; }
 
-        public string Image
-        {
-            get;
-            set;
-        }
-
-        public string Manufacturer
-        {
-            get { return "UXDIVERS"; }
-            set { }
-        }
-
-        public string ThumbnailHeight
-        {
-            get;
-            set;
-        }
-
-        public double RatingValue { get; set; }
-        public double RatingMax { get; set; }
+        public string CurrencyIcon { get; set; }
+        public string TypeIcon { get; set; }
 
         public Account()
         {
+            Type = AccountType.Account;
         }
+    }
+
+    public enum AccountType
+    {
+        Card, VirtulaCard, Account
+    }
+
+    public enum CurrencyType
+    {
+        BTC, USD, GBP, EUR
     }
 }

@@ -63,7 +63,7 @@
 							VerticalOptions="EndAndExpand"/>
 						
 						<Label 
-							Style="{StaticResource FontIcon}"
+							FontFamily="grialshapes"
 							Text="{ x:Static local:GrialShapesFont.AttachFile }"  
 							HorizontalOptions="EndAndExpand"
 							VerticalOptions="Center"
@@ -100,7 +100,7 @@
 							VerticalOptions="EndAndExpand"
 							FontSize ="16"
 							WidthRequest="24"
-							Style="{StaticResource FontIcon}"
+							FontFamily="grialshapes"
 							Text="{	
 									Binding IsStared, 
 									Converter={ StaticResource isStaredIconConverter 

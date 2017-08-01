@@ -46,7 +46,7 @@
 							TextColor="{ DynamicResource OverImageTextColor }"
 							FontSize="42"
 							Text="{ x:Static local:GrialShapesFont.LogoGrial }"
-							Style="{StaticResource FontIcon}"
+							FontFamily="grialshapes"
 							HorizontalTextAlignment="Center"
 							VerticalTextAlignment="Center"/>-->
                 </Grid>

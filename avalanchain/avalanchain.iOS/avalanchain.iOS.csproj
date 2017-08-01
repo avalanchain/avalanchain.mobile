@@ -121,6 +121,18 @@
       <HintPath>..\packages\Xamarin.FFImageLoading.Transformations.2.2.10-pre-408\lib\Xamarin.iOS10\FFImageLoading.Transformations.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="OxyPlot, Version=1.0.0.0, Culture=neutral, PublicKeyToken=638079a8f0bd61e9, processorArchitecture=MSIL">
+      <HintPath>..\packages\OxyPlot.Core.1.0.0\lib\portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1+Xamarin.iOS10\OxyPlot.dll</HintPath>
+    </Reference>
+    <Reference Include="OxyPlot.Xamarin.Forms, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\OxyPlot.Xamarin.Forms.1.0.0\lib\Xamarin.iOS10\OxyPlot.Xamarin.Forms.dll</HintPath>
+    </Reference>
+    <Reference Include="OxyPlot.Xamarin.Forms.Platform.iOS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\OxyPlot.Xamarin.Forms.1.0.0\lib\Xamarin.iOS10\OxyPlot.Xamarin.Forms.Platform.iOS.dll</HintPath>
+    </Reference>
+    <Reference Include="OxyPlot.Xamarin.iOS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\OxyPlot.Xamarin.iOS.1.0.0\lib\Xamarin.iOS10\OxyPlot.Xamarin.iOS.dll</HintPath>
+    </Reference>
     <Reference Include="SocketIoClientDotNet, Version=0.9.13.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\SocketIoClientDotNet.0.9.13\lib\xamarinios10\SocketIoClientDotNet.dll</HintPath>
       <Private>True</Private>
@@ -140,21 +152,14 @@
     <Reference Include="System" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
-    <Reference Include="UXDivers.Gorilla.Common, Version=0.9.1.2, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\UXDivers.GorillaPlayer.Common.0.9.1.2\lib\Xamarin.iOS10\UXDivers.Gorilla.Common.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="TestFairy.iOS, Version=1.0.6374.23288, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\TestFairy.Xamarin.2.1.5\lib\Xamarin.iOS\TestFairy.iOS.dll</HintPath>
     </Reference>
-    <Reference Include="UXDivers.Gorilla.Common.iOS, Version=0.9.1.2, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\UXDivers.GorillaPlayer.Common.0.9.1.2\lib\Xamarin.iOS10\UXDivers.Gorilla.Common.iOS.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="UXDivers.Gorilla.SDK, Version=1.0.0.15, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\UXDivers.GorillaPlayer.SDK.1.0.0.15\lib\Xamarin.iOS10\UXDivers.Gorilla.SDK.dll</HintPath>
     </Reference>
-    <Reference Include="UXDivers.Gorilla.SDK, Version=0.9.1.2, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\UXDivers.GorillaPlayer.SDK.0.9.1.2\lib\Xamarin.iOS10\UXDivers.Gorilla.SDK.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="UXDivers.Gorilla.SDK.iOS, Version=0.9.1.2, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\UXDivers.GorillaPlayer.SDK.0.9.1.2\lib\Xamarin.iOS10\UXDivers.Gorilla.SDK.iOS.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="UXDivers.Gorilla.SDK.iOS, Version=1.0.0.15, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\UXDivers.GorillaPlayer.SDK.1.0.0.15\lib\Xamarin.iOS10\UXDivers.Gorilla.SDK.iOS.dll</HintPath>
     </Reference>
     <Reference Include="WebSocket4Net, Version=0.14.1.0, Culture=neutral, PublicKeyToken=eb4e154b696bf72a, processorArchitecture=MSIL">
       <HintPath>..\packages\WebSocket4Net.0.14.1\lib\Xamarin.iOS10\WebSocket4Net.dll</HintPath>

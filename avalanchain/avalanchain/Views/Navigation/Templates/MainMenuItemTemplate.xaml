@@ -14,16 +14,17 @@
     </ContentPage.Resources>
 
     <AbsoluteLayout
+        HeightRequest="50"
         Padding="24,0,0,0"
         HorizontalOptions="FillAndExpand"
         VerticalOptions="CenterAndExpand">
 
         <!--  ICON  -->
         <Label
-            AbsoluteLayout.LayoutBounds="0, 0.5, 20, 1"
+            AbsoluteLayout.LayoutBounds="0, 0.5, 27, 1"
             AbsoluteLayout.LayoutFlags="XProportional, YProportional, HeightProportional"
-            HorizontalTextAlignment="Start"
-            Style="{DynamicResource MainMenuIconStyle}"
+            HorizontalTextAlignment="Center"
+            Style="{DynamicResource MainMenuIconStyle2}"
             Text="{Binding Icon}"
             VerticalTextAlignment="Center" />
 
@@ -31,7 +32,7 @@
             AbsoluteLayout.LayoutBounds="0, 0.5, 20, 1"
             AbsoluteLayout.LayoutFlags="XProportional, YProportional, HeightProportional"
             HorizontalTextAlignment="Start"
-            Style="{DynamicResource MainMenuIconStyle}"
+            Style="{DynamicResource MainMenuIconStyle2}"
             Text="{Binding Icon2}"
             VerticalTextAlignment="Center" />
 
@@ -56,13 +57,13 @@
             VerticalTextAlignment="Center" />
 
         <!--  NEW BADGE  -->
-        <local:RoundedLabel
+        <!--<local:RoundedLabel
             AbsoluteLayout.LayoutBounds="1, 0.5, 1, AutoSize"
             AbsoluteLayout.LayoutFlags="XProportional, YProportional, WidthProportional"
             HorizontalOptions="End"
             IsVisible="{Binding IsNew}"
             RoundedLabelText="NEW"
-            Style="{DynamicResource IsNewRoundedLabelStyle}" />
+            Style="{DynamicResource IsNewRoundedLabelStyle}" />-->
     </AbsoluteLayout>
 
 </ContentView>

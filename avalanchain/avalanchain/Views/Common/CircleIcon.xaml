@@ -1,30 +1,28 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ContentView 
-	xmlns="http://xamarin.com/schemas/2014/forms" 
-	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-	xmlns:artina="clr-namespace:UXDivers.Artina.Shared;assembly=UXDivers.Artina.Shared" 
-	xmlns:local="clr-namespace:avalanchain;assembly=avalanchain"
-	x:Class="avalanchain.CircleIcon">
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="avalanchain.CircleIcon"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:artina="clr-namespace:UXDivers.Artina.Shared;assembly=UXDivers.Artina.Shared"
+    xmlns:local="clr-namespace:avalanchain;assembly=avalanchain">
 
-	<Grid>
-		<Label 
-			Text="{ x:Static local:GrialShapesFont.Circle }"
-			IsVisible="{ Binding ShowBackgroundColor }" 
-			Style="{ StaticResource FontIconBase }" 
-			HorizontalTextAlignment="Center"
-			VerticalTextAlignment="Center"
-			Opacity="1"
-			FontSize="60" 
-			TextColor="{ DynamicResource OkColor }"
-		/>
+    <Grid>
+        <Label
+            FontFamily="grialshapes"
+            FontSize="60"
+            HorizontalTextAlignment="Center"
+            IsVisible="{Binding ShowBackgroundColor}"
+            Opacity="1"
+            Text="{x:Static local:GrialShapesFont.Circle}"
+            TextColor="{DynamicResource OkColor}"
+            VerticalTextAlignment="Center" />
 
-		<Label 
-			Text="{ x:Static local:GrialShapesFont.ShoppingCart }"
-			FontSize="25" 
-			Style="{ StaticResource FontIcon }"
-			HorizontalTextAlignment="Center"
-			VerticalTextAlignment="Center"
-			TextColor="{ DynamicResource InverseTextColor }"
-		/>
-	</Grid>
+        <Label
+            FontFamily="grialshapes"
+            FontSize="25"
+            HorizontalTextAlignment="Center"
+            Text="{x:Static local:GrialShapesFont.ShoppingCart}"
+            TextColor="{DynamicResource InverseTextColor}"
+            VerticalTextAlignment="Center" />
+    </Grid>
 </ContentView>

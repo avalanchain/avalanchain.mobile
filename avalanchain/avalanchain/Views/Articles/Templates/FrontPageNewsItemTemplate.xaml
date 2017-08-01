@@ -76,7 +76,7 @@
 				Orientation="Horizontal">
 				<Label
 					Text="{ x:Static local:GrialShapesFont.Event }" 
-					Style="{ StaticResource FontIcon }"
+					FontFamily="grialshapes"
 					FontSize="{ artina:OnOrientationDouble 
 						PortraitPhone=12,
 						LandscapePhone=12,

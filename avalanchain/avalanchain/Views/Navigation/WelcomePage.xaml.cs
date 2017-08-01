@@ -12,8 +12,8 @@ namespace avalanchain
 		public WelcomePage ()
 		{
 			InitializeComponent ();
-			NavigationPage.SetHasNavigationBar(this, false);
-		}
+            NavigationPage.SetHasNavigationBar(this, false);
+        }
 
 		protected override void OnAppearing()
 		{

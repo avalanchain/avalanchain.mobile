@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="avalanchain.AccountListItemTemplate"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:artina="clr-namespace:UXDivers.Artina.Shared;assembly=UXDivers.Artina.Shared"
+    xmlns:local="clr-namespace:avalanchain;assembly=avalanchain">
+
+    <StackLayout
+        Padding="0"
+        HorizontalOptions="Fill"
+        Spacing="0">
+
+        <StackLayout
+            Padding="10,0,0,0"
+            HorizontalOptions="FillAndExpand"
+            Orientation="Horizontal"
+            Spacing="10"
+            Style="{DynamicResource BaseBackgroundColor}"
+            VerticalOptions="FillAndExpand">
+
+            <!--<BoxView BackgroundColor="White" WidthRequest="1" />-->
+            <!--  {DynamicResource BrandColor}  -->
+            <Label
+                FontFamily="FontAwesome"
+                HorizontalOptions="Center"
+                HorizontalTextAlignment="Center"
+				VerticalOptions="Center"
+                WidthRequest="40"
+                Text="{Binding TypeIcon}"
+                TextColor="{DynamicResource BrandColor}"
+                VerticalTextAlignment="Center">
+                <Label.FontSize>
+                    <OnIdiom
+                        x:TypeArguments="x:Double"
+                        Phone="30"
+                        Tablet="40" />
+                </Label.FontSize>
+            </Label>
+          
+            <StackLayout
+                Padding="0,0,0,0"
+                HorizontalOptions="Center"
+                Orientation="Vertical"
+                Spacing="5"
+                Style="{DynamicResource BaseBackgroundColor}"
+                VerticalOptions="Center">
+                <Label
+                    FontSize="10"
+                    HorizontalOptions="Start"
+                    Text="{Binding AccountNumberSubName, StringFormat='*{0:N}'}"
+                    VerticalOptions="Center" />
+                <Label
+                    FontSize="18"
+                    HorizontalOptions="Start"
+                    Text="{Binding Name}"
+                    VerticalOptions="Center" />
+            </StackLayout>
+
+
+            <!--<local:Badge
+                BadgeBackgroundColor="{DynamicResource CategoriesListIconColor}"
+                BadgeText="{Binding RatingValue}"
+                BadgeTextColor="#FFF"
+                HorizontalOptions="End"
+                TranslationX="8"
+                TranslationY="2"
+                VerticalOptions="Center" />-->
+            <Label
+                FontAttributes="Bold"
+                FontSize="20"
+                HorizontalOptions="EndAndExpand"
+                Text="{Binding Amount, StringFormat='{0:0.00}'}"
+                VerticalOptions="Center" />
+            <Label
+                Margin="0,0,10,0"
+                HorizontalOptions="End"
+				VerticalOptions="Center"
+                Style="{DynamicResource AccountCurrencyStyle}"
+                Text="{Binding CurrencyIcon}"
+                TextColor="{DynamicResource BrandColor}"
+                WidthRequest="20" />
+        </StackLayout>
+
+        <!--  Bottom Line  -->
+        <BoxView
+            BackgroundColor="{DynamicResource BrandColor}"
+            HeightRequest="1"
+            Opacity=".3"
+            VerticalOptions="End" />
+
+    </StackLayout>
+
+</ContentView>

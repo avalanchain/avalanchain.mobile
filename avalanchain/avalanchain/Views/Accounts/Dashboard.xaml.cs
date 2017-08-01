@@ -11,11 +11,12 @@ using Xamarin.Forms.Xaml;
 namespace avalanchain
 {
     //[XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Dashboard : ContentPage
+    public partial class Dashboard : CarouselPage
     {
         public Dashboard()
         {
             InitializeComponent();
+            BindingContext = new DashBoardDetailViewModel();
         }
     }
 }

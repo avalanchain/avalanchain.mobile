@@ -27,7 +27,7 @@
 				<Label 
 					Text="{Binding Icon}"
 					FontSize="40" 
-					Style="{StaticResource FontIcon}"
+					FontFamily="grialshapes"
 					Opacity=".2" 
 					HorizontalOptions="Center"
 					VerticalOptions="Center"

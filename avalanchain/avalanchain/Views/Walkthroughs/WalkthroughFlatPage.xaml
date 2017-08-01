@@ -9,7 +9,7 @@
 		BackgroundColor="#e51e61"
 		StepBackgroundImage=""
 		Header="Welcome" 
-		Text="To a new world of posibilities, &#10; welcome to Grial UI Kit." 
+		Text="To a new world of posibilities, &#10; welcome to Avalanchain." 
 		IconText="{ x:Static local:GrialShapesFont.Public }"
 		IconColor="#FFF"
 		ButtonText="Next" 

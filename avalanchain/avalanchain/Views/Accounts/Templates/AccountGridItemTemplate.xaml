@@ -39,7 +39,7 @@
                                                       PortraitTablet=17,
                                                       LandscapeTablet=17}"
                 HorizontalOptions="Fill"
-                Text="{Binding Price}"
+                Text="{Binding Amount}"
                 TextColor="{DynamicResource BaseTextColor}" />
         </StackLayout>
 

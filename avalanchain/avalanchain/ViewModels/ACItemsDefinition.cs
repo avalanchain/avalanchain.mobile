@@ -64,7 +64,7 @@ namespace avalanchain
             }
         }
 
-       
+
         public static List<SampleGroup> SamplesGroupedByCategory
         {
             get
@@ -83,25 +83,6 @@ namespace avalanchain
             var categories = new Dictionary<string, SampleCategory>();
 
             categories.Add(
-               "TRADE",
-               new SampleCategory
-               {
-                   Name = "Trade",
-                   BackgroundColor = Color.FromHex(_categoriesColors[0]),
-                   BackgroundImage = SampleData.DashboardImagesList[6],
-                   Icon = GrialShapesFont.Person,
-                   Badge = 2,
-                   SamplesList = new List<Sample> {
-                        new Sample("Buy", typeof(Buy), SampleData.DashboardImagesList[6], FontAwesome.FAArrowCircleOUp, false, false),
-                        new Sample("Sell", typeof(Buy), SampleData.DashboardImagesList[6], FontAwesome.FAArrowCircleODown, false, false),
-                        new Sample("Transfer", typeof(Buy), SampleData.DashboardImagesList[6], FontAwesome.FAExchange, false, false),
-                        new Sample("Dashboard", typeof(Dashboard), SampleData.DashboardImagesList[3], FontAwesome.FACFaChart),
-
-                   }
-               }
-           );
-
-            categories.Add(
                "ACCOUNTS",
                new SampleCategory
                {
@@ -111,14 +92,33 @@ namespace avalanchain
                    Icon = GrialShapesFont.Person,
                    Badge = 2,
                    SamplesList = new List<Sample> {
-                        new Sample("Cards", typeof(Cards), SampleData.DashboardImagesList[6], FontAwesome.FACreditCard2, false, false),
-                        new Sample("Accounts", typeof(Accounts), SampleData.DashboardImagesList[6], FontAwesome.FAListAlt, false, false),
-                        new Sample("BTCWallet", typeof(BTCWallet), SampleData.DashboardImagesList[6], FontAwesome.FABtc, false, false),
-                        new Sample("Add Card", typeof(ProductOrder), SampleData.DashboardImagesList[5], FontAwesome.FACreditCard, false, true),
+                       new Sample("Accounts", typeof(Accounts), SampleData.DashboardImagesList[6], FontAwesome.FAListAlt, false, false),
+                       new Sample("Wallets", typeof(Wallets), SampleData.DashboardImagesList[6], FontAwesome.FABtc, false, false),
+                       new Sample("Cards", typeof(Cards), SampleData.DashboardImagesList[6], FontAwesome.FACreditCard2, false, false),
+                        //new Sample("BTCWallet", typeof(BTCWallet), SampleData.DashboardImagesList[6], FontAwesome.FABtc, false, false),
+                        //new Sample("Add Card", typeof(AddCard), SampleData.DashboardImagesList[5], FontAwesome.FACreditCard, false, false),
                    }
                }
            );
-
+            categories.Add(
+              "TRADE",
+              new SampleCategory
+              {
+                  Name = "Trade",
+                  BackgroundColor = Color.FromHex(_categoriesColors[0]),
+                  BackgroundImage = SampleData.DashboardImagesList[6],
+                  Icon = GrialShapesFont.Person,
+                  Badge = 2,
+                  SamplesList = new List<Sample> {
+                        //new Sample("Buy", typeof(Buy), SampleData.DashboardImagesList[6], FontAwesome.FAArrowCircleOUp, false, false),
+                        //new Sample("Sell", typeof(Buy), SampleData.DashboardImagesList[6], FontAwesome.FAArrowCircleODown, false, false),
+                        new Sample("Transfer", typeof(Transfer), SampleData.DashboardImagesList[6], FontAwesome.FAExchange, false, false),
+#if DEBUG
+                        new Sample("Dashboard", typeof(Dashboard), SampleData.DashboardImagesList[3], FontAwesome.FAFaChart),
+#endif
+                  }
+              }
+          );
             categories.Add(
                 "MESSAGES",
                 new SampleCategory
@@ -132,7 +132,7 @@ namespace avalanchain
 
                         new Sample("Messages", typeof(MessagesListPage), SampleData.DashboardImagesList[8], FontAwesome.FAEnvelope),
                         new Sample("Bot", typeof(ChatMessagesListPage), SampleData.DashboardImagesList[8], FontAwesome.FARocket),
-                        new Sample("Chat Messages List", typeof(ChatMessagesListPage), SampleData.DashboardImagesList[8], FontAwesome.FACommentsO),
+                        //new Sample("Chat Messages List", typeof(ChatMessagesListPage), SampleData.DashboardImagesList[8], FontAwesome.FACommentsO),
 
                     }
                 }
@@ -148,12 +148,14 @@ namespace avalanchain
                     Badge = 2,
                     SamplesList = new List<Sample> {
                         new Sample("Settings", typeof(SettingsPage), SampleData.DashboardImagesList[6], FontAwesome.FACog),
-                        new Sample("Profile", typeof(ProfilePage), SampleData.DashboardImagesList[6], FontAwesome.FAUser),
-                        new Sample("Social Variant", typeof(SocialVariantPage), SampleData.DashboardImagesList[6], FontAwesome.FAUsers),
+                        //new Sample("Profile", typeof(ProfilePage), SampleData.DashboardImagesList[6], FontAwesome.FAUser),
+                        new Sample("Profile", typeof(SocialVariantPage), SampleData.DashboardImagesList[6], FontAwesome.FAUser),
 
                     }
                 }
             );
+
+#if DEBUG
 
             categories.Add(
                 "DASHBOARD",
@@ -173,8 +175,8 @@ namespace avalanchain
                     }
                 }
             );
+#endif
 
-            
 
             return categories;
         }
@@ -209,10 +211,30 @@ namespace avalanchain
             }
         }
 
-       private static void RootPageCustomNavigation(INavigation navigation)
+        private static void RootPageCustomNavigation(INavigation navigation)
         {
             SampleCoordinator.RaisePresentMainMenuOnAppearance();
             navigation.PopToRootAsync();
+        }
+
+
+    }
+
+    public class SampleGroup : List<Sample>
+    {
+        private readonly string _name;
+
+        public SampleGroup(string name)
+        {
+            _name = name;
+        }
+
+        public string Name
+        {
+            get
+            {
+                return _name;
+            }
         }
     }
 }

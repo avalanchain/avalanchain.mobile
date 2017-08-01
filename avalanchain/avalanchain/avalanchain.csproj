@@ -36,8 +36,39 @@
     <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Helpers\AccountsService.cs" />
+    <Compile Include="Helpers\BaseViewModel.cs" />
     <Compile Include="Helpers\FontAwesome.cs" />
+    <Compile Include="Helpers\NotifyTaskCompletion.cs" />
+    <Compile Include="Helpers\RestService.cs" />
     <Compile Include="Models\Account.cs" />
+    <Compile Include="Models\BaseContentPage.cs" />
+    <Compile Include="Models\Card.cs" />
+    <Compile Include="Models\Common.cs" />
+    <Compile Include="Models\CreditCard_PCL.cs" />
+    <Compile Include="Models\CryptocurrencyWallet.cs" />
+    <Compile Include="ViewModels\CardsViewModel.cs" />
+    <Compile Include="ViewModels\ConfirmationViewModel.cs" />
+    <Compile Include="ViewModels\DashBoardDetailViewModel.cs" />
+    <Compile Include="ViewModels\TransferViewModel.cs" />
+    <Compile Include="ViewModels\WalletsViewModel.cs" />
+    <Compile Include="Views\Accounts\AccountsList.xaml.cs">
+      <DependentUpon>AccountsList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Accounts\Confirmation.xaml.cs">
+      <DependentUpon>Confirmation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Accounts\Templates\TransactionsGroupHeaderTemplate.xaml.cs">
+      <DependentUpon>TransactionsGroupHeaderTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Accounts\Wallets.xaml.cs">
+      <DependentUpon>Wallets.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Cards\Cards.xaml.cs">
+      <DependentUpon>Cards.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Cards\CreditCardEntryPage.cs" />
+    <Compile Include="Models\Transaction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
@@ -51,22 +82,26 @@
     <Compile Include="Themes\GrialLightTheme.xaml.cs">
       <DependentUpon>GrialLightTheme.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\AccountDetailViewModel.cs" />
+    <Compile Include="ViewModels\AccountsViewModel.cs" />
     <Compile Include="ViewModels\ACItemsDefinition.cs" />
     <Compile Include="ViewModels\ACViewModel.cs" />
+    <Compile Include="ViewModels\TransactionDetailViewModel.cs" />
+    <Compile Include="ViewModels\TranasactionsViewModel.cs" />
     <Compile Include="Views\Accounts\AccountDetail.xaml.cs">
       <DependentUpon>AccountDetail.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Accounts\Accounts.xaml.cs">
       <DependentUpon>Accounts.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Accounts\AddCard.xaml.cs">
-      <DependentUpon>AddCard.xaml</DependentUpon>
+    <Compile Include="Views\Cards\OrderCard.xaml.cs">
+      <DependentUpon>OrderCard.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Accounts\BTCWallet.xaml.cs">
       <DependentUpon>BTCWallet.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Accounts\Cards.xaml.cs">
-      <DependentUpon>Cards.xaml</DependentUpon>
+    <Compile Include="Views\Cards\AddCard.xaml.cs">
+      <DependentUpon>AddCard.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Accounts\Dashboard.xaml.cs">
       <DependentUpon>Dashboard.xaml</DependentUpon>
@@ -74,9 +109,19 @@
     <Compile Include="Views\Accounts\Templates\AccountGridItemTemplate.xaml.cs">
       <DependentUpon>AccountGridItemTemplate.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Accounts\Templates\AccountListItemTemplate.xaml.cs">
+      <DependentUpon>AccountListItemTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Accounts\Templates\TransactionListItem.xaml.cs">
+      <DependentUpon>TransactionListItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Accounts\TransactionDetail.xaml.cs">
+      <DependentUpon>TransactionDetail.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Ecommerce\ProductsGridPage.xaml.cs">
       <DependentUpon>ProductsGridPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Navigation\BottomTabPage.cs" />
     <Compile Include="Views\Social\ProfilePage.xaml.cs">
       <DependentUpon>ProfilePage.xaml</DependentUpon>
     </Compile>
@@ -248,6 +293,9 @@
     <Compile Include="Views\Trade\Buy.xaml.cs">
       <DependentUpon>Buy.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Accounts\Transfer.xaml.cs">
+      <DependentUpon>Transfer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Walkthroughs\WalkthroughPage.xaml.cs">
       <DependentUpon>WalkthroughPage.xaml</DependentUpon>
     </Compile>
@@ -338,11 +386,10 @@
       <DependentUpon>IconsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Dashboards\Templates\DashboardItemTemplateBase.cs" />
-    <Compile Include="Helpers\FontawesomeFont.cs" />
     <Compile Include="Helpers\IoniciconsFont.cs" />
     <Compile Include="ViewModels\ArticleViewModel.cs" />
     <Compile Include="ViewModels\ChatViewModel.cs" />
-    <Compile Include="ViewModels\DashboardViewModel.cs" />
+    <Compile Include="ViewModels\DashBoardViewModel.cs" />
     <Compile Include="ViewModels\DocumentTimelineViewModel.cs" />
     <Compile Include="ViewModels\FrontpageNewsViewModel.cs" />
     <Compile Include="ViewModels\PostsViewModel.cs" />
@@ -690,20 +737,27 @@
       <HintPath>..\packages\Xamarin.FFImageLoading.Transformations.2.2.10-pre-408\lib\portable-net45+win8+wpa81+wp8\FFImageLoading.Transformations.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="OxyPlot, Version=1.0.0.0, Culture=neutral, PublicKeyToken=638079a8f0bd61e9, processorArchitecture=MSIL">
+      <HintPath>..\packages\OxyPlot.Core.1.0.0\lib\portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1+Xamarin.iOS10\OxyPlot.dll</HintPath>
+    </Reference>
+    <Reference Include="OxyPlot.Xamarin.Forms, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\OxyPlot.Xamarin.Forms.1.0.0\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10\OxyPlot.Xamarin.Forms.dll</HintPath>
+    </Reference>
     <Reference Include="Syncfusion.SfChart.XForms, Version=15.2451.0.43, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Syncfusion.Xamarin.SfChart.15.2.0.43\lib\portable-win+net45+wp80+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Syncfusion.SfChart.XForms.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Net.Http, Version=1.5.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\portable-net40+sl4+win8+wp71+wpa81\System.Net.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Extensions, Version=1.5.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\portable-net40+sl4+win8+wp71+wpa81\System.Net.Http.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Primitives, Version=1.5.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\portable-net40+sl4+win8+wp71+wpa81\System.Net.Http.Primitives.dll</HintPath>
+    </Reference>
     <Reference Include="UXDivers.Effects">
       <HintPath>..\packages\UXDivers.Effects.0.6.0\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\UXDivers.Effects.dll</HintPath>
-    </Reference>
-    <Reference Include="UXDivers.Gorilla.Common, Version=0.9.1.2, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\UXDivers.GorillaPlayer.Common.0.9.1.2\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\UXDivers.Gorilla.Common.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="UXDivers.Gorilla.SDK, Version=0.9.1.2, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\UXDivers.GorillaPlayer.SDK.0.9.1.2\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\UXDivers.Gorilla.SDK.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\portable-net45+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
@@ -718,6 +772,9 @@
     <Reference Include="UXDivers.Artina.Shared">
       <HintPath>..\packages\UXDivers.Artina.Shared.2.0.52\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\UXDivers.Artina.Shared.dll</HintPath>
     </Reference>
+    <Reference Include="UXDivers.Gorilla.SDK, Version=1.0.0.15, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\UXDivers.GorillaPlayer.SDK.1.0.0.15\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\UXDivers.Gorilla.SDK.dll</HintPath>
+    </Reference>
     <Reference Include="Xamarin.Forms.Core, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Xamarin.Forms.2.3.4.247\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.Core.dll</HintPath>
       <Private>True</Private>
@@ -730,6 +787,9 @@
       <HintPath>..\packages\Xamarin.Forms.2.3.4.247\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.Xaml.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="XFGloss, Version=1.0.6.59, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ansuria.XFGloss.1.0.6.59\lib\portable-net45+wp8+win8+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10\XFGloss.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -738,7 +798,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\Accounts\Cards.xaml">
+    <EmbeddedResource Include="Views\Cards\AddCard.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -756,7 +816,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\Accounts\AddCard.xaml">
+    <EmbeddedResource Include="Views\Cards\OrderCard.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -785,6 +845,60 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Accounts\Templates\AccountListItemTemplate.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Accounts\Templates\TransactionListItem.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Accounts\TransactionDetail.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Accounts\Templates\TransactionsGroupHeaderTemplate.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Cards\Cards.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Accounts\Wallets.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Accounts\Transfer.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Accounts\AccountsList.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Accounts\Confirmation.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="..\packages\UXDivers.Artina.Shared.2.0.52\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\UXDivers.Artina.Shared.targets" Condition="Exists('..\packages\UXDivers.Artina.Shared.2.0.52\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\UXDivers.Artina.Shared.targets')" />
   <Import Project="..\packages\Xamarin.Forms.2.3.4.247\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.3.4.247\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
@@ -792,5 +906,10 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Xamarin.Forms.2.3.4.247\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.Forms.2.3.4.247\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets'))" />
+  </Target>
+  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
+  <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">
+    <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." HelpKeyword="BCLBUILD2001" />
+    <Error Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://go.microsoft.com/fwlink/?LinkID=317568." HelpKeyword="BCLBUILD2002" />
   </Target>
 </Project>

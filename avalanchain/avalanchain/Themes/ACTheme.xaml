@@ -20,9 +20,8 @@
         #FF169CEE
     -->
 
-    <!--  Grial Theme Exported Colors  -->
     <Color x:Key="AccentColor">#C7413E</Color>
-    <Color x:Key="BaseTextColor">#666666</Color>
+    <Color x:Key="BaseTextColor">#2f2f33</Color>
 
 
     <!--  GENERAL COLORS  -->
@@ -32,10 +31,10 @@
     <Color x:Key="BaseLightTextColor">#7b7b7b</Color>
     <Color x:Key="OverImageTextColor">#FFFFFF</Color>
     <Color x:Key="EcommercePromoTextColor">#FFFFFF</Color>
-    <Color x:Key="SocialHeaderTextColor">#666666</Color>
+    <Color x:Key="SocialHeaderTextColor">#2f2f33</Color>
     <Color x:Key="ArticleHeaderBackgroundColor">#F1F3F5</Color>
     <Color x:Key="CustomNavBarTextColor">#FFFFFF</Color>
-    <Color x:Key="ListViewItemTextColor">#666666</Color>
+    <Color x:Key="ListViewItemTextColor">#2f2f33</Color>
     <Color x:Key="AboutHeaderBackgroundColor">#FFFFFF</Color>
     <Color x:Key="SplashColor">#FFFFFF</Color>
 
@@ -59,8 +58,10 @@
     <Color x:Key="ErrorColor">Red</Color>
     <Color x:Key="WarningColor">#ffc107</Color>
     <Color x:Key="NotificationColor">#1274d1</Color>
-    <Color x:Key="CirclenColor">#0075EB</Color>
-
+    <Color x:Key="Circle2Color">#413ec7</Color>
+    <Color x:Key="Circle3Color">#3ec741</Color>
+    <Color x:Key="CircleColor">#a3322f</Color>
+    <Color x:Key="CircleColorWhite">#ffffff</Color>
     <!--  BUTTONS & ENTRY COLORS  -->
     <Color x:Key="SaveButtonColor">#22c064</Color>
     <Color x:Key="DeleteButtonColor">#D50000</Color>
@@ -69,14 +70,28 @@
     <Color x:Key="PlaceholderColor">#22ffffff</Color>
     <Color x:Key="PlaceholderColorEntry">#FFFFFF</Color>
 
-    <Color x:Key="RoundedLabelBackgroundColor">#525ABB</Color>
+    <Color x:Key="RoundedLabelBackgroundColor">#413ec7</Color>
 
     <!--  MAIN MENU COLORS  -->
-    <Color x:Key="MainMenuHeaderBackgroundColor">#384F63</Color>
+    <!--<Color x:Key="MainMenuHeaderBackgroundColor">#384F63</Color>
     <Color x:Key="MainMenuBackgroundColor">#F1F3F5</Color>
     <Color x:Key="MainMenuSeparatorColor">Transparent</Color>
-    <Color x:Key="MainMenuTextColor">#666666</Color>
-    <Color x:Key="MainMenuIconColor">#666666</Color>
+    <Color x:Key="MainMenuTextColor">#2f2f33</Color>
+    <Color x:Key="MainMenuIconColor">#2f2f33</Color>-->
+    <!--  MAIN MENU COLORS  -->
+    <Color x:Key="MainMenuHeaderBackgroundColor">#ffffff</Color>
+    <Color x:Key="MainMenuBackgroundColor">#c7413e</Color>
+    <Color x:Key="MainMenuSeparatorColor">Transparent</Color>
+    <Color x:Key="MainMenuTextColor">#ffffff</Color>
+    <Color x:Key="MainMenuHeaderTextColor">#eec6c5</Color>
+    <Color x:Key="MainMenuIconColor">#ffffff</Color>
+
+    <!--  MAIN MENU COLORS  -->
+    <Color x:Key="TransactionBackgroundColor">#F1F3F5</Color>
+    <!--<Color x:Key="TransactionHeaderBackgroundColor">#413ec7</Color>
+            <Color x:Key="TransactionTextColor">#ffffff</Color>-->
+    <Color x:Key="TransactionHeaderBackgroundColor">#ffffff</Color>
+    <Color x:Key="TransactionTextColor">#2f2f33</Color>
 
     <!--  SEPARATORS COLORS  -->
     <Color x:Key="ListViewSeparatorColor">#D3D3D3</Color>
@@ -87,5 +102,8 @@
     <Color x:Key="ChatBalloonFooterTextColor">#FFFFFF</Color>
     <Color x:Key="ChatRightTextColor">#FFFFFF</Color>
     <Color x:Key="ChatLeftTextColor">#FFFFFF</Color>
+
+    <!--  CARDS AND ACCOUNTS  -->
+    <Color x:Key="CardColorEntry">#c7413e</Color>
 
 </ResourceDictionary>

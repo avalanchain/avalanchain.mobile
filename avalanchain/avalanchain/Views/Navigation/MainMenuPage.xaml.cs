@@ -38,8 +38,7 @@ namespace avalanchain
 
 		public void OnBtnCustomClicked()
 		{
-			//var uri = "mailto:hello@grialkit.com?subject=I%20want%20a%20custom%20theme%20for%20my%20Grial%20app&body=Please%20leave%20us%20your%20comments.";
-			var uri = "http://grialkit.com/getquote";
+			var uri = "http://avalanchain.com/";
 			Device.OpenUri(new Uri(uri));
 		}
 	}

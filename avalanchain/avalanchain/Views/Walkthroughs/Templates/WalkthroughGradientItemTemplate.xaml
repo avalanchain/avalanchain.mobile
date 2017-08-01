@@ -100,7 +100,7 @@
 				TextColor="{ DynamicResource OverImageTextColor }"
 				HeightRequest="30"
 				WidthRequest="30"
-				Style="{StaticResource FontIcon}">
+				FontFamily="grialshapes">
 				<Label.GestureRecognizers>
 					<TapGestureRecognizer Command="{Binding CloseCommand}" />
 				</Label.GestureRecognizers>

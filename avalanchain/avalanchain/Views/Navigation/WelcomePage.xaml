@@ -5,7 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:artina="clr-namespace:UXDivers.Artina.Shared;assembly=UXDivers.Artina.Shared"
     xmlns:local="clr-namespace:avalanchain;assembly=avalanchain"
-    BackgroundColor="{DynamicResource ComplementColor}"
+   
     BackgroundImage="{DynamicResource WelcomeBackgroundImage}">
 
     <!--  MAIN CONTAINER  -->
@@ -23,62 +23,17 @@
             </Grid.RowDefinitions>
 
 
-            <Grid
-                Grid.Row="0"
-                Padding="0"
-                ColumnSpacing="0"
+            <StackLayout
+                Padding="10,0,0,0"
+                
                 HorizontalOptions="StartAndExpand"
                 Style="{StaticResource BrandContainerStyle}">
-
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
-
-
-                <!--  LOGO  -->
-                <!--<lottie:AnimationView
-					Grid.Column="0"
-					Margin="-20"
-				    x:Name="AnimationView"
-				    Animation="grial_animation.json"
-
-				    AutoPlay="false"
-				    HeightRequest="160"
-					WidthRequest="160"
-					VerticalOptions="FillAndExpand"
-				    HorizontalOptions="FillAndExpand"/>-->
                 <Image
                     Grid.Column="0"
                     HeightRequest="64"
                     Source="{StaticResource ACImage}"
                     WidthRequest="129" />
-
-                <!--<StackLayout
-					Grid.Column="1"
-					Orientation="Vertical"
-					HorizontalOptions="Start"
-					VerticalOptions="Center"
-					Spacing="0">
-					<Label
-						TextColor="{ DynamicResource OverImageTextColor }"
-						FontSize="24"
-						Text="Avalan"
-						FontAttributes="Bold"
-						VerticalTextAlignment="Start"/>
-					<Label
-						TextColor="{ DynamicResource OverImageTextColor }"
-						FontSize="24"
-						Text="UI.KIT"
-						VerticalTextAlignment="Start"/>
-				</StackLayout>-->
-
-            </Grid>
-
-
-
-
-
+            </StackLayout>
 
             <!--  CLAIM TEXT  -->
             <StackLayout

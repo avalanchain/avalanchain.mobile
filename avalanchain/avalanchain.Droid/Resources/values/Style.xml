@@ -18,7 +18,6 @@
 
 		<!-- colorPrimary is used for the default action bar background -->
 		<item name="colorPrimary">@color/AccentColor</item>
-
 		<!-- colorPrimaryDark is used for the status bar 
 		<item name="colorPrimaryDark">@color/AccentColor</item>-->
 

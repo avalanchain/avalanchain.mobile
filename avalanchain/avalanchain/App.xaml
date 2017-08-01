@@ -12,6 +12,8 @@
     <Application.Resources>
 
         <ResourceDictionary MergedWith="local:ACTheme">
+        <!--<ResourceDictionary >-->
+            
             <!--<ResourceDictionary MergedWith="local:GrialDarkTheme">-->
             <!--<ResourceDictionary MergedWith="local:GrialEnterpriseTheme">-->
 
@@ -28,12 +30,13 @@
             <x:Double x:Key="BaseButtonBorderRadius">22</x:Double>
 
 
-            <x:Double x:Key="MainMenuLabelFontsize">18</x:Double>
+            <x:Double x:Key="MainMenuLabelFontsize">16</x:Double>
             <x:Double x:Key="MainMenuIconFontsize">20</x:Double>
-            <x:Double x:Key="MainMenuHeaderFontsize">18</x:Double>
+            <x:Double x:Key="MainMenuHeaderFontsize">13</x:Double>
             <x:Double x:Key="MainMenuLabelTranslationX">10</x:Double>
             <x:Double x:Key="MainMenuChevronRightFontsize">24</x:Double>
             <x:Double x:Key="MainMenuIconWidthRequest">22</x:Double>
+            <x:Double x:Key="TitleFontsize">22</x:Double>
 
             <x:String x:Key="WebViewPageURL">http://www.avalanchain.com</x:String>
             <x:String x:Key="WebViewPageTitle">Avalanchain</x:String>
@@ -44,9 +47,12 @@
             <x:String x:Key="FontAwesome">FontAwesome</x:String>
             <x:String x:Key="IonicFontFamily">Ionicons</x:String>
             <x:String x:Key="Lato">Lato</x:String>
+            <x:String x:Key="Ostrich">Ostrich</x:String>
+
             <!--  STATIC IMAGES  -->
             <FileImageSource x:Key="HamburguerIcon">hamburguer_icon.png</FileImageSource>
-            <FileImageSource x:Key="WelcomeBackgroundImagePhone">welcome_bg.jpg</FileImageSource>
+            <FileImageSource x:Key="WelcomeBackgroundImagePhone">custom_nav_bg.jpg</FileImageSource>
+            <FileImageSource x:Key="WelcomeBackgroundImagePhone1">walkthrough_bg_1.jpg</FileImageSource>
             <FileImageSource x:Key="WelcomeBackgroundImageTablet">welcome_bg_tablet.jpg</FileImageSource>
 
 
@@ -139,6 +145,9 @@
                 <Setter Property="TextColor" Value="{DynamicResource BaseTextColor}" />
                 <Setter Property="FontFamily" Value="{DynamicResource Lato}" />
 
+            </Style>
+            <Style x:Key="BaseBackgroundColor" TargetType="StackLayout">
+                <Setter Property="BackgroundColor" Value="{DynamicResource BasePageColor}" />
             </Style>
 
             <Style TargetType="ListView">
@@ -261,10 +270,8 @@
             </Style>
 
             <!--  SPECIFIC STYLES  -->
-            <Style
-                x:Key="IconCloseLabelStyle"
-                BasedOn="{StaticResource FontIcon}"
-                TargetType="Label">
+            <Style x:Key="IconCloseLabelStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="grialshapes" />
                 <Setter Property="FontSize" Value="20" />
                 <Setter Property="HorizontalOptions" Value="FillAndExpand" />
                 <Setter Property="VerticalOptions" Value="FillAndExpand" />
@@ -292,10 +299,8 @@
                 <Setter Property="TextColor" Value="White" />
             </Style>
 
-            <Style
-                x:Key="RoundShape"
-                BasedOn="{StaticResource FontIconBase}"
-                TargetType="Label">
+            <Style x:Key="RoundShape" TargetType="Label">
+                <Setter Property="FontFamily" Value="grialshapes" />
                 <Setter Property="Text" Value="{x:Static local:GrialShapesFont.Circle}" />
             </Style>
 
@@ -336,10 +341,54 @@
                 <Setter Property="LineBreakMode" Value="TailTruncation" />
             </Style>
 
-            <Style
-                x:Key="MainMenuRightChevronStyle"
-                BasedOn="{StaticResource FontIconBase}"
-                TargetType="Label">
+            <Style x:Key="MainMenuRightChevronStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="grialshapes" />
+                <Setter Property="Text" Value="{x:Static local:GrialShapesFont.ArrowRight}" />
+                <Setter Property="TextColor" Value="{DynamicResource MainMenuIconColor}" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="FontSize" Value="{DynamicResource MainMenuChevronRightFontsize}" />
+                <Setter Property="HorizontalOptions" Value="End" />
+            </Style>
+
+            <!--  MAIN MENU STYLES2  -->
+            <Style x:Key="MainMenuStyle2" TargetType="ContentPage">
+                <Setter Property="BackgroundColor" Value="{DynamicResource MainMenuBackgroundColor}" />
+            </Style>
+
+            <Style x:Key="MainMenuListViewStyle2" TargetType="ListView">
+                <Setter Property="BackgroundColor" Value="{DynamicResource MainMenuBackgroundColor}" />
+                <Setter Property="SeparatorVisibility" Value="None" />
+                <Setter Property="SeparatorColor" Value="{DynamicResource MainMenuSeparatorColor}" />
+                <Setter Property="RowHeight" Value="55" />
+            </Style>
+
+            <Style x:Key="MainMenuIconStyle2" TargetType="Label">
+                <Setter Property="TextColor" Value="{DynamicResource MainMenuIconColor}" />
+                <Setter Property="FontFamily" Value="FontAwesome" />
+                <Setter Property="FontSize" Value="{DynamicResource MainMenuIconFontsize}" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+            </Style>
+
+            <Style x:Key="MainMenuHeaderStyle2" TargetType="Label">
+                <Setter Property="BackgroundColor" Value="{DynamicResource MainMenuBackgroundColor}" />
+                <Setter Property="TextColor" Value="{DynamicResource MainMenuHeaderTextColor}" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="FontSize" Value="{DynamicResource MainMenuHeaderFontsize}" />
+                <Setter Property="FontAttributes" Value="Bold" />
+            </Style>
+
+            <Style x:Key="MainMenuLabelStyle2" TargetType="Label">
+                <Setter Property="TextColor" Value="{DynamicResource MainMenuTextColor}" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="TranslationX" Value="{DynamicResource MainMenuLabelTranslationX}" />
+                <Setter Property="FontSize" Value="{DynamicResource MainMenuLabelFontsize}" />
+                <Setter Property="HorizontalOptions" Value="StartAndExpand" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+                <Setter Property="LineBreakMode" Value="TailTruncation" />
+            </Style>
+
+            <Style x:Key="MainMenuRightChevronStyle2" TargetType="Label">
+                <Setter Property="FontFamily" Value="grialshapes" />
                 <Setter Property="Text" Value="{x:Static local:GrialShapesFont.ArrowRight}" />
                 <Setter Property="TextColor" Value="{DynamicResource MainMenuIconColor}" />
                 <Setter Property="VerticalTextAlignment" Value="Center" />
@@ -348,10 +397,8 @@
             </Style>
 
             <!--  NOTIFICATION STYLES  -->
-            <Style
-                x:Key="NotificationItemTemplateShape"
-                BasedOn="{StaticResource FontIconBase}"
-                TargetType="Label">
+            <Style x:Key="NotificationItemTemplateShape" TargetType="Label">
+                <Setter Property="FontFamily" Value="grialshapes" />
                 <Setter Property="Text" Value="{x:Static local:GrialShapesFont.Circle}" />
                 <Setter Property="FontSize">
                     <Setter.Value>
@@ -375,6 +422,7 @@
                             Tablet="{StaticResource WelcomeBackgroundImageTablet}" />
                     </Setter.Value>
                 </Setter>
+                <Setter Property="Opacity" Value="0.7" />
             </Style>
 
 
@@ -512,10 +560,8 @@
                 <Setter Property="Padding" Value="10" />
             </Style>
 
-            <Style
-                x:Key="ChatIconButtonBaseStyle"
-                BasedOn="{StaticResource FontIcon}"
-                TargetType="Label">
+            <Style x:Key="ChatIconButtonBaseStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="grialshapes" />
                 <Setter Property="HorizontalTextAlignment" Value="Center" />
                 <Setter Property="VerticalTextAlignment" Value="Center" />
                 <Setter Property="FontSize" Value="20" />
@@ -560,10 +606,8 @@
                 <Setter Property="Opacity" Value="1" />
             </Style>
 
-            <Style
-                x:Key="WalkthroughStepIconStyle"
-                BasedOn="{StaticResource FontIcon}"
-                TargetType="Label">
+            <Style x:Key="WalkthroughStepIconStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="grialshapes" />
                 <Setter Property="HorizontalTextAlignment" Value="Center" />
                 <Setter Property="VerticalOptions" Value="CenterAndExpand" />
                 <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
@@ -571,10 +615,8 @@
                 <Setter Property="TextColor" Value="{DynamicResource OverImageTextColor}" />
             </Style>
 
-            <Style
-                x:Key="WalktrhoughItemTemplateShape"
-                BasedOn="{StaticResource FontIconBase}"
-                TargetType="Label">
+            <Style x:Key="WalktrhoughItemTemplateShape" TargetType="Label">
+                <Setter Property="FontFamily" Value="grialshapes" />
                 <Setter Property="Text" Value="{x:Static local:GrialShapesFont.Circle}" />
                 <Setter Property="HorizontalTextAlignment" Value="Center" />
                 <Setter Property="VerticalTextAlignment" Value="Center" />
@@ -726,19 +768,33 @@
                 <Setter Property="HeightRequest" Value="110" />
             </Style>
 
+            <Style
+                x:Key="ButtonCircle"
+                TargetType="artina:CircleImage">
+                <Setter Property="WidthRequest" Value="60" />
+                <Setter Property="HeightRequest" Value="60" />
+                <Setter Property="BorderThickness" Value="1" />
+                <Setter Property="BorderColor" Value="{DynamicResource CircleColor}"/>
+            </Style>
 
             <Style
-                x:Key="GrialBaseIconShapeDemo"
-                BasedOn="{StaticResource FontIconBase}"
-                TargetType="Label">
+                x:Key="ButtonCircleSmall"
+                TargetType="artina:CircleImage">
+                <Setter Property="WidthRequest" Value="40" />
+                <Setter Property="HeightRequest" Value="40" />
+                <Setter Property="BorderThickness" Value="1" />
+                <Setter Property="BorderColor" Value="{DynamicResource CircleColorWhite}"/>
+            </Style>
+
+
+            <Style x:Key="GrialBaseIconShapeDemo" TargetType="Label">
+                <Setter Property="FontFamily" Value="grialshapes" />
                 <Setter Property="TextColor" Value="{DynamicResource AccentColor}" />
                 <Setter Property="FontSize" Value="24" />
             </Style>
 
-            <Style
-                x:Key="FontIconItemDemo"
-                BasedOn="{StaticResource FontIcon}"
-                TargetType="Label">
+            <Style x:Key="FontIconItemDemo" TargetType="Label">
+                <Setter Property="FontFamily" Value="grialshapes" />
                 <Setter Property="TextColor" Value="{DynamicResource AccentColor}" />
                 <Setter Property="FontSize" Value="24" />
             </Style>
@@ -750,9 +806,57 @@
                 <Setter Property="BackgroundColor" Value="{DynamicResource BrandColor}" />
             </Style>
 
+            <!--  Accounts  -->
             <Style x:Key="AccountProductGridBannerStyle" TargetType="StackLayout">
+                <Setter Property="Margin" Value="0,0,0,5" />
                 <Setter Property="HeightRequest" Value="140" />
                 <Setter Property="BackgroundColor" Value="{DynamicResource BasePageColor}" />
+            </Style>
+
+            <Style x:Key="AccountCurrencyStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="FontAwesome" />
+                <Setter Property="TextColor" Value="{DynamicResource CategoriesListIconColor}" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="FontSize" Value="{DynamicResource MainMenuIconFontsize}" />
+                <Setter Property="HorizontalOptions" Value="End" />
+            </Style>
+
+            <Style x:Key="ChooseIconStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="FontAwesome" />
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="FontSize" Value="24" />
+                <Setter Property="HorizontalOptions" Value="End" />
+            </Style>
+
+            <Style x:Key="WalletsGridStyle" TargetType="Grid">
+                <!--<Setter Property="Margin" Value="0,0,0,5" />-->
+                <Setter Property="HeightRequest" Value="240" />
+                <!--<Setter Property="Text" Value="140" />-->
+                <Setter Property="BackgroundColor" Value="{DynamicResource BrandColor}" />
+            </Style>
+
+            <Style x:Key="WalletsLabel" TargetType="Label">
+                <!--<Setter Property="Margin" Value="0,0,0,5" />-->
+                <Setter Property="FontAttributes" Value="Italic" />
+                <Setter Property="FontSize" Value="20" />
+                <Setter Property="TextColor" Value="{DynamicResource  InverseTextColor}" />
+            </Style>
+
+            <Style x:Key="WalletsDividerVertWhiteMarg" TargetType="BoxView">
+                <Setter Property="Margin" Value="0,15,0,15" />
+                <Setter Property="WidthRequest" Value="1" />
+                <Setter Property="Opacity" Value=".3" />
+                <Setter Property="HorizontalOptions" Value="End" />
+                <Setter Property="BackgroundColor" Value="{DynamicResource  InverseTextColor}" />
+            </Style>
+
+            <Style x:Key="WalletsDividerVertWhite" TargetType="BoxView">
+                <!--<Setter Property="Margin" Value="0,10,0,10" />-->
+                <Setter Property="WidthRequest" Value="1" />
+                <Setter Property="Opacity" Value="0" />
+                <Setter Property="HorizontalOptions" Value="End" />
+                <Setter Property="BackgroundColor" Value="{DynamicResource  InverseTextColor}" />
             </Style>
 
             <!--  CUSTOM NAVBAR  -->
@@ -780,10 +884,8 @@
 
 
             <!--  Dashboard Item Template  -->
-            <Style
-                x:Key="DashboardItemTemplateShape"
-                BasedOn="{StaticResource FontIconBase}"
-                TargetType="Label">
+            <Style x:Key="DashboardItemTemplateShape" TargetType="Label">
+                <Setter Property="FontFamily" Value="grialshapes" />
                 <Setter Property="Text" Value="{x:Static local:GrialShapesFont.Circle}" />
                 <Setter Property="FontSize">
                     <Setter.Value>
@@ -796,10 +898,8 @@
                 <Setter Property="Opacity" Value="1" />
             </Style>
 
-            <Style
-                x:Key="DashboardItemTemplateIcon"
-                BasedOn="{StaticResource FontIcon}"
-                TargetType="Label">
+            <Style x:Key="DashboardItemTemplateIcon" TargetType="Label">
+                <Setter Property="FontFamily" Value="grialshapes" />
                 <Setter Property="FontSize">
                     <Setter.Value>
                         <OnIdiom
@@ -811,10 +911,8 @@
                 <Setter Property="Opacity" Value="1" />
             </Style>
 
-            <Style
-                x:Key="DashboardVariantItemTemplateIcon"
-                BasedOn="{StaticResource FontIcon}"
-                TargetType="Label">
+            <Style x:Key="DashboardVariantItemTemplateIcon" TargetType="Label">
+                <Setter Property="FontFamily" Value="grialshapes" />
                 <Setter Property="FontSize">
                     <Setter.Value>
                         <OnIdiom
@@ -980,7 +1078,28 @@
                 <Setter Property="Aspect" Value="Fill" />
                 <Setter Property="Opacity" Value=".7" />
             </Style>
+            <!--  Accounts  -->
+           
 
+            <Style x:Key="TransactionsHeaderStyle" TargetType="Label">
+                <Setter Property="BackgroundColor" Value="{DynamicResource TransactionHeaderBackgroundColor}" />
+                <Setter Property="TextColor" Value="{DynamicResource TransactionTextColor}" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="Start" />
+                <Setter Property="FontSize" Value="{DynamicResource MainMenuHeaderFontsize}" />
+                <Setter Property="FontAttributes" Value="Bold" />
+            </Style>
+            
+            <Style x:Key="DateRoundedLabelStyle" TargetType="local:RoundedLabel">
+                <!--<Setter Property="Margin" Value="0,0,20,0" />-->
+                <Setter Property="RoundedLabelFontSize" Value="{DynamicResource MainMenuHeaderFontsize}" />
+                <Setter Property="RoundedLabelFontAttributes" Value="Bold" />
+                <!--<Setter Property="RoundedLabelPadding" Value="6,4" />-->
+                <Setter Property="RoundedLabelTextColor" Value="{DynamicResource TransactionTextColor}" />
+                <Setter Property="RoundedLabelCornerRadius" Value="2" />
+                <Setter Property="HorizontalOptions" Value="End" />
+                <Setter Property="RoundedLabelBackgroundColor" Value="{DynamicResource TransactionHeaderBackgroundColor}" />
+            </Style>
 
         </ResourceDictionary>
     </Application.Resources>

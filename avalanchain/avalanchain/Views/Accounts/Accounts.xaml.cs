@@ -13,17 +13,18 @@ namespace avalanchain
     public partial class Accounts : ContentPage
     {
         private TapGestureRecognizer tapGestureRecognizer = new TapGestureRecognizer();
+        private AccountsViewModel ViewModel => BindingContext as AccountsViewModel;
         public Accounts()
         {
             InitializeComponent();
             //GetAccountsLists(SampleData.Accounts);
-            BindingContext = new SamplesViewModel(Navigation);
+            BindingContext = new AccountsViewModel();//new SamplesViewModel(Navigation);
         }
         void OnTapGestureRecognizerTapped(object sender, EventArgs args)
         {
             //    tapCount++;
-            var labelSender = (Label)sender;
-            NavigateToAddCardPage(labelSender.ClassId);
+            var gridSender = (Grid)sender;
+            NavigateToEventPage(gridSender.ClassId);
             //// watch the monkey go from color to black&white!
             //if (tapCount % 2 == 0) {
             //    imageSender.Source = "tapped.jpg";
@@ -32,13 +33,15 @@ namespace avalanchain
             //}
         }
 
-        public async void NavigateToAddCardPage(string type)
+        public async void NavigateToEventPage(string type)
         {
-            //await Navigation.PushAsync(new AddCard(type));
+            await Navigation.PushAsync(new Transfer());
         }
-        protected override void OnAppearing()
+        protected override async void OnAppearing()
         {
             base.OnAppearing();
+            await ViewModel.ExecuteFetchAccountsCommand();
+
             //tapGestureRecognizer.Tapped += OnBannerTapped;
             EcommerceProductGridBanner.GestureRecognizers.Add(tapGestureRecognizer);
         }
@@ -50,37 +53,6 @@ namespace avalanchain
             EcommerceProductGridBanner.GestureRecognizers.Remove(tapGestureRecognizer);
         }
 
-        //private void GetAccountsLists(List<Account> accounts)
-        //{
-        //    var lastHeight = "100";
-        //    var y = 0;
-        //    var column = LeftColumn;
-        //    var productTapGestureRecognizer = new TapGestureRecognizer();
-        //    productTapGestureRecognizer.Tapped += OnProductTapped;
-
-        //    for (var i = 0; i < accounts.Count; i++)
-        //    {
-        //        var item = new AccountGridItemTemplate();
-
-        //        if (i % 2 == 0)
-        //        {
-        //            column = LeftColumn;
-        //            y++;
-        //        }
-        //        else
-        //        {
-
-        //            column = RightColumn;
-        //        }
-
-        //        accounts[i].ThumbnailHeight = lastHeight;
-        //        item.BindingContext = accounts[i];
-        //        item.GestureRecognizers.Add(productTapGestureRecognizer);
-        //        column.Children.Add(item);
-        //    }
-        //}
-
-
         private async void OnItemTapped(Object sender, ItemTappedEventArgs e)
         {
             var selectedItem = ((ListView)sender).SelectedItem;
@@ -88,16 +60,14 @@ namespace avalanchain
 
             await SamplesListFromCategoryPage.NavigateToCategory(sampleCategory, Navigation);
         }
-        private async void OnProductTapped(Object sender, EventArgs e)
+        private async void OnAccountTapped(Object sender, ItemTappedEventArgs e)
         {
-            var selectedItem = (Account)((AccountGridItemTemplate)sender).BindingContext;
+            var account = (Account)((ListView)sender).SelectedItem;
 
-            var productView = new AccountDetail()
-            {
-                BindingContext = selectedItem
-            };
+            var accountView = new AccountDetail(account);
 
-            await Navigation.PushAsync(productView);
+            await Navigation.PushAsync(accountView);
         }
+
     }
 }
