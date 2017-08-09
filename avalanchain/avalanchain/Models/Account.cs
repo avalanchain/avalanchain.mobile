@@ -29,7 +29,7 @@ namespace avalanchain
 
     public enum AccountType
     {
-        Card, VirtulaCard, Account
+        Card, VirtulaCard, Account, Wallet
     }
 
     public enum CurrencyType

@@ -22,6 +22,7 @@
 
                 <Grid.RowDefinitions>
                     <RowDefinition Height="2*" />
+                    <RowDefinition Height="1*" />
                     <RowDefinition Height="5*" />
                     <RowDefinition Height="4*" />
                     <RowDefinition Height="2*" />
@@ -39,7 +40,6 @@
                         HorizontalTextAlignment="Center"
                         Text="BTC Price"
                         VerticalTextAlignment="Center" />
-                   
                 </StackLayout>
                 <BoxView
                     TranslationY="15"
@@ -50,9 +50,21 @@
                     Opacity=".9"
                     HorizontalOptions="Center"
                     VerticalOptions="End" />
-                <Grid 
-                    Padding="0,30,0,0"
+                <StackLayout
+                    Orientation="Vertical"
+                    Margin="0,16,0,0"
+                    HorizontalOptions="Center"
                     Grid.Row="1">
+                    <Label
+                        TextColor="{DynamicResource MainMenuHeaderTextColor}"
+                        FontSize="10"
+                        HorizontalOptions="Center"
+                        Text="{Binding DateTime, StringFormat='Updated: {0:dd.MM.yyyy hh:mm }'}"
+                        VerticalOptions="Center" />
+                </StackLayout>
+                <Grid 
+                    Padding="0,20,0,0"
+                    Grid.Row="2">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
@@ -60,18 +72,18 @@
                     </Grid.ColumnDefinitions>
                     <Grid Grid.Column="0" HorizontalOptions="Center">
                         <Label
+                            VerticalOptions="Center"
                             HorizontalTextAlignment="Center"
                             Text="{Binding BtcToUsd, StringFormat='{0} $'}"
                             Style="{StaticResource WalletsLabel}"
                             VerticalTextAlignment="Center" />
-
-
                     </Grid>
                     <BoxView
                         Grid.Column="0"
                         Style="{StaticResource WalletsDividerVertWhiteMarg}" />
                     <Grid Grid.Column="1" HorizontalOptions="Center">
                         <Label
+                            VerticalOptions="Center"
                             Style="{StaticResource WalletsLabel}"
                             HorizontalTextAlignment="Center"
                             Text="{Binding BtcToEur, StringFormat='{0} €'}"
@@ -87,6 +99,7 @@
                         Style="{StaticResource WalletsDividerVertWhiteMarg}" />
                     <Grid Grid.Column="2" HorizontalOptions="Center">
                         <Label
+                            VerticalOptions="Center"
                             Style="{StaticResource WalletsLabel}"
                             HorizontalTextAlignment="Center"
                             Text="{Binding BtcToGbp, StringFormat='{0} £'}"
@@ -102,7 +115,7 @@
                     HeightRequest="1"
                     Opacity=".3"
                     VerticalOptions="End" />-->
-                <Grid Grid.Row="2" >
+                <Grid Grid.Row="3" >
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
@@ -127,11 +140,11 @@
                             FontFamily="FontAwesome"
                             FontSize="25"
                             HorizontalTextAlignment="Center"
-                            Text="{x:Static local:FontAwesome.FACreditCard}"
+                            Text="{x:Static local:FontAwesome.FAQrcode}"
                             TextColor="{DynamicResource InverseTextColor}"
                             VerticalTextAlignment="Center" />
                         <Grid.GestureRecognizers>
-                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnTapGestureRecognizerTapped" />
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnScanTapped" />
                         </Grid.GestureRecognizers>
                     </Grid>
                     <BoxView
@@ -200,7 +213,7 @@
                         </Grid.GestureRecognizers>
                     </Grid>
                 </Grid>
-                <Grid Grid.Row="3">
+                <Grid Grid.Row="4">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
@@ -211,10 +224,8 @@
                             FontSize="15"
                             TextColor="{DynamicResource InverseTextColor}"
                             HorizontalTextAlignment="Center"
-                            Text="Send"
+                            Text="Scan"
                             VerticalTextAlignment="Center" />
-
-                        
                     </Grid>
                     <BoxView
                         

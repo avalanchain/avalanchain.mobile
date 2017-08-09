@@ -64,7 +64,7 @@
                             TextColor="Gray"
                             FontSize="8"
                             HorizontalOptions="Center"
-                            Text="{Binding DateTime, StringFormat='{}{0:dd.MM.yyyy hh:mm }'}}"
+                            Text="{Binding DateTime, StringFormat='{}{0:dd.MM.yyyy hh:mm }'}"
                             VerticalOptions="Center" />
                 </StackLayout>
             </StackLayout>

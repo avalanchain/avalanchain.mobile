@@ -30,5 +30,13 @@ namespace avalanchain
         public decimal FromAmount { get; set; }
         public decimal ReceiveAmount { get; set; }
         public CurrencyType CurrencyReceive { get; set; }
+
+        public Send()
+        {
+            FromAccountNumber = SampleData.Accounts[1].AccountNumber;
+            FromAmount = 0;
+            ReceiveAmount = 0;
+            CurrencyReceive = CurrencyType.BTC;
+        }
     }
 }

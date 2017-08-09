@@ -28,16 +28,20 @@ namespace avalanchain
             await Navigation.PushAsync(transactionView);
         }
 
-        public async void TransferTapped(Object sender, EventArgs eventArgs)
+        public async void TransferTapped(object sender, EventArgs eventArgs)
         {
-            var transferView = new Transfer();
-
             if (ViewModel.Account != null)
             {
-                transferView = new Transfer(ViewModel.Account);
+                var transferView = new Transfer(ViewModel.Account, true);
+                await Navigation.PushAsync(transferView);
+            }
+            else
+            {
+                var transferView = new Transfer();
+                await Navigation.PushAsync(transferView);
             }
             
-            await Navigation.PushAsync(transferView);
+            
         }
 
     }

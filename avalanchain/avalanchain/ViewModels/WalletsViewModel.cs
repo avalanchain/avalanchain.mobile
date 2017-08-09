@@ -5,8 +5,6 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using avalanchain;
-using avalanchain.Models;
 using Xamarin.Forms;
 
 namespace avalanchain
@@ -16,21 +14,28 @@ namespace avalanchain
         readonly CurrencyPricing _cryptocurrencyPrices = new CurrencyPricing();
         private ObservableCollection<CryptocurrencyWallet> _wallets = new ObservableCollection<CryptocurrencyWallet>();
         private Command _fetchWalletsCommand;
+        private DateTime _dateTime;
         //public event PropertyChangedEventHandler PropertyChanged;
         public WalletsViewModel()
         {
+            var initPricing = SampleData.StaticCryptocurrencyPrices;
+            BtcToEur = initPricing.EUR;
+            BtcToGbp = initPricing.GBP;
+            BtcToUsd = initPricing.USD;
+            DateTime = DateTime.UtcNow.AddDays(-1); 
             LoadData();
-            BtcToEur = "2183.22";
-            BtcToGbp = "1953.09";
-            BtcToUsd = "2515.21";
-
-            //Device.StartTimer(TimeSpan.FromSeconds(60), () =>
-            //{
-            //    LoadData();
-            //    return true;
-            //});
+            Device.StartTimer(TimeSpan.FromSeconds(30), () =>
+            {
+                LoadData();
+                return true;
+            });
         }
-        
+
+        public DateTime DateTime
+        {
+            get => _dateTime;
+            set { _dateTime = value; OnPropertyChanged("DateTime"); }
+        }
         public ObservableCollection<CryptocurrencyWallet> Wallets
         {
             get => _wallets;
@@ -111,6 +116,7 @@ namespace avalanchain
             BtcToEur = cp.EUR;
             BtcToGbp = cp.GBP;
             BtcToUsd = cp.USD;
+            DateTime = DateTime.UtcNow;
         }
     }
 }

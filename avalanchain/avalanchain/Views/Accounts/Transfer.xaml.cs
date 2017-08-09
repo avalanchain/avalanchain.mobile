@@ -12,10 +12,10 @@ namespace avalanchain
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Transfer : ContentPage
     {
-        public Transfer(Account fromAccount)
+        public Transfer(Account account, bool isFrom)
         {
             InitializeComponent();
-            BindingContext = new TransferViewModel(fromAccount);
+            BindingContext = new TransferViewModel(account, isFrom);
         }
         public Transfer()
         {
@@ -23,6 +23,11 @@ namespace avalanchain
             BindingContext = new TransferViewModel();
         }
         private TransferViewModel ViewModel => BindingContext as TransferViewModel;
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+            await AnimateIn();
+        }
 
         private void Send(object sender, EventArgs eventArgs)
         {
@@ -56,7 +61,7 @@ namespace avalanchain
 
         void OnStackLayoutTapped(object sender, EventArgs args)
         {
-            ViewModel.ChangeReseiver();
+            ViewModel.ChangeReseiverAccount(null);
         }
         void OnLabelTapped(object sender, EventArgs args)
         {
@@ -133,6 +138,17 @@ namespace avalanchain
         public void ShowMessages(bool isShow, string message)
         {
             
+        }
+
+
+        public async Task AnimateIn()
+        {
+            await Task.WhenAll(new[] {
+                AnimationService.AnimateItem (CircleImage1, 500),
+                AnimationService.AnimateItem (CircleImage2, 500),
+                AnimationService.AnimateItem (FromCurrencyIcon, 700),
+                AnimationService.AnimateItem (ToCurrencyIcon, 700)
+            });
         }
     }
 }

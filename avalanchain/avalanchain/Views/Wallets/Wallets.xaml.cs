@@ -5,7 +5,6 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using avalanchain.Models;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -23,18 +22,29 @@ namespace avalanchain
         }
 
 
-        void OnTapGestureRecognizerTapped(object sender, EventArgs args)
+        private async void OnScanTapped (object sender, EventArgs args)
+        {
+            //var acc = new Account()
+            //{
+            //    AccountNumber = ViewModel.Wallets[0].AccountNumber
+            //};
+            //await Navigation.PushAsync(new Transfer(acc, false));
+
+            await Navigation.PushAsync(new QRScanner());
+        }
+
+        private void OnTapGestureRecognizerTapped(object sender, EventArgs args)
         {
             var gridSender = (Grid)sender;
             NavigateToEventPage(gridSender.ClassId);
         }
         private async void OnWalletTapped(Object sender, ItemTappedEventArgs e)
         {
-            var account = (CryptocurrencyWallet)((ListView)sender).SelectedItem;
+            var wallet = (CryptocurrencyWallet)((ListView)sender).SelectedItem;
 
-            var accountView = new AccountDetail(account);
+            var walletDetail = new WalletDetail(wallet);
 
-            await Navigation.PushAsync(accountView);
+            await Navigation.PushAsync(walletDetail);
         }
         protected override async void OnAppearing()
         {

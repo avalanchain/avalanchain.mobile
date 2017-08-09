@@ -25,11 +25,6 @@ namespace avalanchain
             //    tapCount++;
             var gridSender = (Grid)sender;
             NavigateToEventPage(gridSender.ClassId);
-            //// watch the monkey go from color to black&white!
-            //if (tapCount % 2 == 0) {
-            //    imageSender.Source = "tapped.jpg";
-            //} else {
-            //    imageSender.Source = "tapped_bw.jpg";
             //}
         }
 
@@ -63,10 +58,20 @@ namespace avalanchain
         private async void OnAccountTapped(Object sender, ItemTappedEventArgs e)
         {
             var account = (Account)((ListView)sender).SelectedItem;
+            if (account.Currency == CurrencyType.BTC)
+            {
+                var wallet = (CryptocurrencyWallet)account;
+                var accountView = new WalletDetail(wallet);
 
-            var accountView = new AccountDetail(account);
+                await Navigation.PushAsync(accountView);
+            }
+            else
+            {
+                var accountView = new AccountDetail(account);
 
-            await Navigation.PushAsync(accountView);
+                await Navigation.PushAsync(accountView);
+            }
+
         }
 
     }
