@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "avalanchain.Droid", "avalan
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "avalanchain.iOS", "avalanchain.iOS\avalanchain.iOS.csproj", "{45DA7B47-C579-4BC1-B1E5-97EEA0C669CD}"
 EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "avalanchain.Common", "avalanchain.Common\avalanchain.Common.fsproj", "{CF54643F-948D-4726-8946-1C4F53C1E880}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -78,6 +80,24 @@ Global
 		{45DA7B47-C579-4BC1-B1E5-97EEA0C669CD}.Release|iPhone.Build.0 = Release|iPhone
 		{45DA7B47-C579-4BC1-B1E5-97EEA0C669CD}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
 		{45DA7B47-C579-4BC1-B1E5-97EEA0C669CD}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{CF54643F-948D-4726-8946-1C4F53C1E880}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF54643F-948D-4726-8946-1C4F53C1E880}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF54643F-948D-4726-8946-1C4F53C1E880}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{CF54643F-948D-4726-8946-1C4F53C1E880}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{CF54643F-948D-4726-8946-1C4F53C1E880}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{CF54643F-948D-4726-8946-1C4F53C1E880}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{CF54643F-948D-4726-8946-1C4F53C1E880}.PlayerDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF54643F-948D-4726-8946-1C4F53C1E880}.PlayerDebug|Any CPU.Build.0 = Debug|Any CPU
+		{CF54643F-948D-4726-8946-1C4F53C1E880}.PlayerDebug|iPhone.ActiveCfg = Debug|Any CPU
+		{CF54643F-948D-4726-8946-1C4F53C1E880}.PlayerDebug|iPhone.Build.0 = Debug|Any CPU
+		{CF54643F-948D-4726-8946-1C4F53C1E880}.PlayerDebug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{CF54643F-948D-4726-8946-1C4F53C1E880}.PlayerDebug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{CF54643F-948D-4726-8946-1C4F53C1E880}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF54643F-948D-4726-8946-1C4F53C1E880}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF54643F-948D-4726-8946-1C4F53C1E880}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{CF54643F-948D-4726-8946-1C4F53C1E880}.Release|iPhone.Build.0 = Release|Any CPU
+		{CF54643F-948D-4726-8946-1C4F53C1E880}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{CF54643F-948D-4726-8946-1C4F53C1E880}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

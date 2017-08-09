@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace avalanchain
 {
-    class Common
-    {
-    }
+    //internal class Common
+    //{
+    //}
+    
     public class CurrencyPricing
     {
         public string BTC { get; set; }

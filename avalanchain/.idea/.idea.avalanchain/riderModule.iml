@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="RIDER_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <content url="file://$MODULE_DIR$/../..">
+      <sourceFolder url="file://$MODULE_DIR$/../../avalanchain" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../avalanchain.Common/avalanchain.Common.fsproj" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../avalanchain.Droid" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../avalanchain.iOS" isTestSource="false" />
+      <excludeFolder url="file://$MODULE_DIR$/../../avalanchain.Droid/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../avalanchain.Droid/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../avalanchain.iOS/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../avalanchain.iOS/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../avalanchain/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../avalanchain/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../packages" />
+    </content>
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>

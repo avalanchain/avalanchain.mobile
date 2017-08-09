@@ -20,17 +20,14 @@ namespace avalanchain
         public decimal Fee { get; set; }
         public decimal AmountReceive { get; set; }
         //public decimal AccountBalanceAfterTransaction { get; set; }
-        public string AmountFullDetails => Type != TransactionType.Receive ? "-" + Amount.ToString() : Amount.ToString();
+        public string AmountFullDetails => Type != TransactionType.Receive ? "-" + Amount : Amount.ToString();
         public string CurrencyIcon { get; set; }
         public string CurrencyReceiveIcon { get; set; }
         public string TypeIcon { get; set; }
         public TransactionType Type { get; set; }
         public DateTime DateTime { get; set; }
-
-        public Transaction()
-        {
-        }
     }
+    
     public enum TransactionType
     {
         Sent, Receive, Pay

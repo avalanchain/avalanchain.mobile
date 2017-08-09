@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+    
 namespace avalanchain
 {
     public class Account
@@ -24,12 +24,15 @@ namespace avalanchain
         public Account()
         {
             Type = AccountType.Account;
+            var a = Common.a;
+            var bbb = new Common.Rec("AAAAA");
+            var c = new Common.Class1(12);
         }
     }
 
     public enum AccountType
     {
-        Card, VirtulaCard, Account, Wallet
+        Card, VirtualCard, Account, Wallet
     }
 
     public enum CurrencyType
