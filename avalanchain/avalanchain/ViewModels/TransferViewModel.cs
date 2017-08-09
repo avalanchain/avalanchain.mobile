@@ -10,58 +10,47 @@ namespace avalanchain.ViewModels
 {
     class TransferViewModel : BaseViewModel
     {
-        private Account _from;
-        private Account _to;
+        Account _from = new Account();
+        Account _to = new Account();
         private Command sendCommentCommand;
         private bool _isOwnResiever;
+        private bool _isAnotherResiever;
         private string _toCurrencyIcon;
         private decimal _rate;
         private decimal _receiveAmount;
-        private Send _send = new Send();
+        private Send _send;
         private CurrencyPricing _prices;
 
         public TransferViewModel()
         {
-            Send = new Send();
-            InitViewModel(string.Empty, false);
+            InitViewModel();
         }
 
-        public TransferViewModel(Account account, bool isFrom)
+        public TransferViewModel(Account fromAccount)
         {
-            if (isFrom)
-            {
-                InitViewModel(account.AccountNumber, isFrom);
-            }
-            else
-            {
-                Send = new Send()
-                {
-                    ReceiverAccountNumber = account.AccountNumber
-                };
-                InitViewModel(string.Empty, isFrom);
-            }
-
-
-            //From = fromAccount;
+            InitViewModel();
+            From = fromAccount;
         }
 
-        public void InitViewModel(string accNnumber, bool isFrom)
+        public void InitViewModel()
         {
-            var accountNumber = String.IsNullOrEmpty(accNnumber) ? SampleData.Accounts[1].AccountNumber : accNnumber;
-
             ChoosIcon = FontAwesome.FAAngleRight;
             IsOwnResiever = false;
-            From = AccountsService.GetAccount(accountNumber);
-            To = AccountsService.GetAccount(accountNumber);
+            IsAnotherResiever = true;
+            From = SampleData.Accounts[1];
+            To = SampleData.Accounts[1];
             ToCurrencyIcon = FontAwesome.FAMoney;
             Rate = 1;
-            if (isFrom)
-            {
-                Send = new Send();
-            }
-            OnPropertyChanged("Send");
-            Prices = SampleData.StaticCryptocurrencyPrices;
+            Send = new Send();
 
+            Prices = new CurrencyPricing
+            {
+                EUR = "2183.22",
+                GBP = "2183.22",
+                USD = "2515.21",
+                BTC = "1"
+
+        };
 
             LoadData();
         }
@@ -123,6 +112,39 @@ namespace avalanchain.ViewModels
                 OnPropertyChanged("Rate");
             }
         }
+        public void ChangeRate()
+        {
+            CurrencyType from = From.Currency;
+            CurrencyType receive = To.Currency;
+            if (from == receive)
+            {
+                Rate = 1;
+                return;
+            }
+            var fromPrice = decimal.Parse(AccountsService.GetCurrencyPrice(from, Prices));
+            var receivePrice = decimal.Parse(AccountsService.GetCurrencyPrice(receive, Prices));
+
+
+            if (fromPrice != 0 && receivePrice != 0)
+            {
+                if (from == CurrencyType.BTC || receive == CurrencyType.BTC)
+                {
+                    var rate = receivePrice / fromPrice;
+                    Rate = decimal.Parse(rate.ToString("0.##########")) ;
+                }
+                else
+                {
+                    var rate = fromPrice / receivePrice;
+                    Rate = decimal.Parse(rate.ToString("0.##"));
+                }
+            }
+
+
+            //IsOwnResiever = !IsOwnResiever;
+            //IsAnotherResiever = !IsAnotherResiever;
+
+            //ToCurrencyIcon = IsOwnResiever ? FontAwesome.FAMoney : To.CurrencyIcon;
+        }
 
         public bool IsOwnResiever
         {
@@ -131,84 +153,38 @@ namespace avalanchain.ViewModels
             {
                 _isOwnResiever = value;
                 OnPropertyChanged("IsOwnResiever");
+            }
+        }
+
+        public bool IsAnotherResiever
+        {
+            get => _isAnotherResiever;
+            set
+            {
+                _isAnotherResiever = value;
                 OnPropertyChanged("IsAnotherResiever");
             }
-        }
-
-        public bool IsAnotherResiever => !IsOwnResiever;
-
-
-        public void ChangeRate()
-        {
-
-            try
-            {
-                CurrencyType from = From.Currency;
-                CurrencyType receive = IsOwnResiever ? To.Currency : From.Currency;
-
-                if (from == receive || !IsOwnResiever)
-                {
-                    Rate = 1;
-                    return;
-                }
-                var fPrice = AccountsService.GetCurrencyPrice(from, Prices);
-                var fromPrice = decimal.Parse(fPrice);
-                var receivePrice = decimal.Parse(AccountsService.GetCurrencyPrice(receive, Prices));
-
-
-                if (fromPrice != 0 && receivePrice != 0)
-                {
-                    var rate = receivePrice / fromPrice;
-                    if (from == CurrencyType.BTC || receive == CurrencyType.BTC)
-                    {
-                        Rate = decimal.Parse(rate.ToString("0.##########"));
-                    }
-                    else
-                    {
-                        Rate = decimal.Parse(rate.ToString("0.##"));
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                var er = ex;
-            }
-            
-        }
-
-        private decimal ParseData(string value)
-        {
-            decimal result = 0;
-            if (value != null && decimal.TryParse(value, out result))
-            {
-                result = decimal.Parse(value);
-            }
-            return result;
         }
 
         public void ChangeReseiver()
         {
             ToCurrencyIcon = IsOwnResiever ? FontAwesome.FAMoney : To.CurrencyIcon;
             IsOwnResiever = !IsOwnResiever;
+            IsAnotherResiever = !IsAnotherResiever;
         }
 
         public void ChangeReseiverAccount(Account account)
         {
-            if (account == null)
+            if (IsAnotherResiever)
             {
                 ChangeReseiver();
                 Rate = 1;
             }
-            else
-            {
+            
+            if (account != null)
                 To = account;
-                if (!IsOwnResiever)
-                {
-                    ChangeReseiver();
-                }
-            }
 
-            if (IsOwnResiever)
+            if(!IsAnotherResiever)
             {
                 ToCurrencyIcon = To.CurrencyIcon;
             }
@@ -222,7 +198,7 @@ namespace avalanchain.ViewModels
                 From = account;
                 UpdateAll();
             }
-
+                
         }
 
         public void ChangeReceiveAmount(decimal number)

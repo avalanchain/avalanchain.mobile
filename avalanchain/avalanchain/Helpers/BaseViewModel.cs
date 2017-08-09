@@ -21,7 +21,7 @@ namespace avalanchain
         public const string IconPropertyName = "Icon";
         public const string IsBusyPropertyName = "IsBusy";
 
-        public event PropertyChangingEventHandler PropertyChanging;
+        public event Xamarin.Forms.PropertyChangingEventHandler PropertyChanging;
         public event PropertyChangedEventHandler PropertyChanged;
 
         public BaseViewModel()
@@ -76,7 +76,7 @@ namespace avalanchain
             if (PropertyChanging == null)
                 return;
 
-            PropertyChanging(this, new PropertyChangingEventArgs(propertyName));
+            PropertyChanging(this, new Xamarin.Forms.PropertyChangingEventArgs(propertyName));
         }
 
         public void OnPropertyChanged(string propertyName)

@@ -91,6 +91,8 @@ namespace avalanchain
                 transaction.To = from;
                 transaction.TypeIcon = FontAwesome.FAAngleDoubleLeft;
                 transaction.Type = TransactionType.Receive;
+                transaction.Type = TransactionType.Receive;
+                transaction.Type = TransactionType.Receive;
                 transaction.Description = TransactionType.Receive + " via Avalanchain payment system";
 
             }

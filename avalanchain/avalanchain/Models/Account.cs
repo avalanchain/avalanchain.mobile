@@ -24,15 +24,15 @@ namespace avalanchain
         public Account()
         {
             Type = AccountType.Account;
-            var a = Common.a;
-            var bbb = new Common.Rec("AAAAA");
-            var c = new Common.Class1(12);
+            //var a = Common.a;
+            //var bbb = new Common.Rec("AAAAA");
+            //var c = new Common.Class1(12);
         }
     }
 
     public enum AccountType
     {
-        Card, VirtualCard, Account, Wallet
+        Card, VirtualCard, Account
     }
 
     public enum CurrencyType

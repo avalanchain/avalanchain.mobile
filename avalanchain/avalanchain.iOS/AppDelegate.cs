@@ -19,8 +19,7 @@ namespace avalanchain.iOS
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
 		{
 			global::Xamarin.Forms.Forms.Init ();
-		    global::ZXing.Net.Mobile.Forms.iOS.Platform.Init();
-            CachedImageRenderer.Init(); // Initializing FFImageLoading
+			CachedImageRenderer.Init(); // Initializing FFImageLoading
 			AnimationViewRenderer.Init(); // Initializing Lottie
 
 			UXDivers.Artina.Shared.GrialKit.Init(new ThemeColors(), "avalanchain.iOS.GrialLicense");

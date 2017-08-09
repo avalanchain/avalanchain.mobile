@@ -1,0 +1,45 @@
+source https://www.myget.org/F/akkadotnet/api/v2
+source https://www.nuget.org/api/v2/
+source http://nuget.syncfusion.com/nuget_xamarin/nuget/getsyncfusionpackages/xamarin/
+
+source http://nuget.uxdivers.com/grial username: "yuriy@stinex.co.uk" password: "7924655Qw"
+
+nuget Microsoft.NETCore.Portable.Compatibility
+
+nuget Ansuria.XFGloss
+
+nuget BottomNavigationBar 1.4.0.2 restriction: >= monoandroid6.0
+nuget Com.Airbnb.Android.Lottie 1.0.0.7 restriction: >= monoandroid7.0
+nuget Com.Airbnb.iOS.Lottie 1.0.0.7 restriction: >= xamarinios
+nuget Com.Airbnb.Xamarin.Forms.Lottie 1.0.0.7
+nuget EngineIoClientDotNet
+nuget Newtonsoft.Json 9.0.1
+nuget OxyPlot.Core 1.0.0
+nuget OxyPlot.Xamarin.Android 1.0.0 restriction: >= monoandroid6.0
+nuget OxyPlot.Xamarin.Forms 1.0.0
+nuget OxyPlot.Xamarin.iOS 1.0.0 restriction: >= xamarinios
+nuget SocketIoClientDotNet 0.9.13
+nuget Syncfusion.Xamarin.SfChart 15.2.0.43
+nuget Syncfusion.Xamarin.SfChart.Android 15.2.0.43 restriction: >= monoandroid6.0
+nuget Syncfusion.Xamarin.SfChart.IOS 15.2.0.43 restriction: >= xamarinios
+nuget TestFairy.Xamarin 2.1.5
+nuget UXDivers.Artina.Shared.Base 2.0.52
+nuget UXDivers.Artina.Shared 2.0.52
+nuget UXDivers.Effects 0.6.0
+nuget UXDivers.GorillaPlayer.SDK 1.0.0.15
+nuget WebP.Touch 1.0.3 restriction: >= xamarinios
+nuget WebSocket4Net prerelease
+nuget Xamarin.Android.Support.Animated.Vector.Drawable 23.3.0 restriction: >= monoandroid6.0
+nuget Xamarin.Android.Support.Design 23.3.0 restriction: >= monoandroid6.0
+nuget Xamarin.Android.Support.v4 23.3.0 restriction: >= monoandroid6.0
+nuget Xamarin.Android.Support.v7.AppCompat 23.3.0 restriction: >= monoandroid6.0
+nuget Xamarin.Android.Support.v7.CardView 23.3.0 restriction: >= monoandroid6.0
+nuget Xamarin.Android.Support.v7.MediaRouter 23.3.0 restriction: >= monoandroid6.0
+nuget Xamarin.Android.Support.v7.RecyclerView 23.3.0 restriction: >= monoandroid6.0
+nuget Xamarin.Android.Support.Vector.Drawable 23.3.0 restriction: >= monoandroid6.0
+nuget Xamarin.CardIO.Android 5.5.1 restriction: >= monoandroid6.0
+nuget Xamarin.FFImageLoading 2.2.10-pre-408
+nuget Xamarin.FFImageLoading.Forms 2.2.10-pre-408
+nuget Xamarin.FFImageLoading.Transformations 2.2.10-pre-408
+nuget Xamarin.Forms prerelease
+nuget Xamarin.TestCloud.Agent 0.19.2 restriction: >= xamarinios

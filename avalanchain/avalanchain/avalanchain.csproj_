@@ -1,0 +1,47 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard1.4</TargetFramework>
+    <PackageTargetFallback>$(PackageTargetFallback);portable-win+net45+wp8+win81+wpa8;portable-win81+wpa8;portable-net45+monoandroid+xamarinios+win8+win81+wp8+wpa81;portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10;portable-net45+monoandroid+monotouch+xamarinios+win8+wp8+wpa81;portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10</PackageTargetFallback>
+  </PropertyGroup>
+  <Import Project="..\.paket\Paket.Restore.targets" />
+  <ItemGroup>
+    <None Remove="Themes\ACTheme.xaml" />
+    <None Remove="Themes\GrialDarkTheme.xaml" />
+    <None Remove="Themes\GrialEnterpriseTheme.xaml" />
+    <None Remove="Themes\GrialLightTheme.xaml" />
+    <None Remove="Themes\Page1.xaml" />
+    <None Remove="Views\Theme\AnimationsPage.xaml" />
+    <None Remove="Views\Theme\CommonViewsPage.xaml" />
+    <None Remove="Views\Theme\IconsPage.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Themes\ACTheme.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Themes\GrialDarkTheme.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Themes\GrialEnterpriseTheme.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Themes\GrialLightTheme.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Themes\Page1.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Theme\AnimationsPage.xaml" />
+    <EmbeddedResource Include="Views\Theme\CommonViewsPage.xaml" >
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Theme\IconsPage.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Helpers\AccountsService.cs">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Compile>
+    <Compile Update="Views\Theme\CommonViewsPage.xaml.cs">
+      <DependentUpon>Views\Theme\CommonViewsPage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+</Project>

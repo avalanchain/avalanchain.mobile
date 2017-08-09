@@ -2,9 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using avalanchain;
+using avalanchain.Models;
 using Newtonsoft.Json;
-using Plugin.Share;
 
 namespace avalanchain
 {
@@ -32,27 +31,10 @@ namespace avalanchain
         private static List<Transaction> _trnasactions;
         private static List<MovieSection> _movies;
         private static Task<CurrencyPricing> _cryptocurencyPrices;
-        private static CurrencyPricing _staticCryptocurencyPrices;
-        private static bool _isSupportClipboard;
+
+
         private static List<Notification> _notifications;
 
-        public static void InitData()
-        {
-            //var cryptocurrencyPrices = CryptocurrencyPrices;
-        }
-
-        public static bool IsSupportClipboard
-        {
-            get
-            {
-                if (_isSupportClipboard)
-                {
-                    _isSupportClipboard = CrossShare.Current.SupportsClipboard;
-                }
-
-                return _isSupportClipboard;
-            }
-        }
         public static List<Notification> Notifications
         {
             get
@@ -303,40 +285,12 @@ namespace avalanchain
         {
             get
             {
-
-                _cryptocurencyPrices = InitCryptocurrencyPrices();
-                if (_cryptocurencyPrices != null)
-                {
-                    SetStaticCur();
-                }
-                return _cryptocurencyPrices;
-            }
-        }
-
-        private static async void SetStaticCur()
-        {
-            _staticCryptocurencyPrices = await _cryptocurencyPrices;
-        }
-        public static CurrencyPricing StaticCryptocurrencyPrices
-        {
-            get
-            {
-                if (_staticCryptocurencyPrices == null)
-                {
-                    _staticCryptocurencyPrices = new CurrencyPricing()
-                    {
-                        EUR = "2553.22",
-                        GBP = "2325.59",
-                        USD = "3015.81",
-                        BTC = "1"
-                    };
-                }
-                //else
+                //if (_cryptocurencyPrices == null)
                 //{
-                //    _staticCryptocurencyPrices = _cryptocurencyPrices.Result;
+                    _cryptocurencyPrices = InitCryptocurrencyPrices();
                 //}
 
-                return _staticCryptocurencyPrices;
+                return _cryptocurencyPrices;
             }
         }
         public static List<Transaction> Transactions
@@ -1052,7 +1006,7 @@ namespace avalanchain
         private static User InitCurrentUser()
         {
             var avatar = "user_profile_0.jpg";//SampleData.Friends[6].Avatar;
-            var user = new User("John Galt", avatar) { NativeCurrency = Currency.USD };
+            var user = new User("John Galt", avatar) {NativeCurrency = Currency.USD};
             return user;
         }
 

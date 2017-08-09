@@ -3,9 +3,9 @@ namespace avalanchain
 {
 	public static class AssemblyGlobal
 	{
-		public const string Company = "UXDivers";
+		public const string Company = "Avalanchain";
 
-		public const string ProductLine = "Grial UIKit";
+		public const string ProductLine = "Avalanchain";
 
 		public const string Year = "2017";
 

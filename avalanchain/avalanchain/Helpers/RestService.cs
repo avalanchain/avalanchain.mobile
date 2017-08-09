@@ -20,15 +20,16 @@ namespace avalanchain
         //...
         public static async Task<string> DownloadData(string url)
         {
-            using (var client = new HttpClient())
-            {
-                using (var r = await client.GetAsync(new Uri(url)).ConfigureAwait(false))
-                {
-                    string res = await r.Content.ReadAsStringAsync();
-                    string result = r.Content.ReadAsStringAsync().Result;//.ReadAsStringAsync();
-                    return result;
-                }
-            }
+            return await Task.FromResult("TODO: Uncomment code!!!");
+            //using (var client = new HttpClient())
+            //{
+            //    using (var r = await client.GetAsync(new Uri(url)).ConfigureAwait(false))
+            //    {
+            //        string res = await r.Content.ReadAsStringAsync();
+            //        string result = r.Content.ReadAsStringAsync().Result;//.ReadAsStringAsync();
+            //        return result;
+            //    }
+            //}
         }
     }
 }

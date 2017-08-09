@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-    <ContentPage
+<ContentPage
         x:Class="avalanchain.AccountDetail"
         xmlns="http://xamarin.com/schemas/2014/forms"
         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
@@ -8,234 +8,240 @@
         xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
         Title="Statement"
         xmlns:local="clr-namespace:avalanchain;assembly=avalanchain">
-        <ContentPage.Content>
+    <ContentPage.Content>
         <StackLayout
-                Orientation="Vertical"
-                VerticalOptions="FillAndExpand"
-                Style="{DynamicResource BaseBackgroundColor}">
-            <ListView
-                    VerticalOptions="FillAndExpand"
-                    HasUnevenRows="True"
-                    ItemTapped="OnTransactionTapped"
-                    ItemsSource="{Binding GroupedTransactions}"
-                    IsGroupingEnabled="true"
-                    GroupDisplayBinding="{ Binding DateTime }"
-                    SeparatorColor="Transparent"
-                    SeparatorVisibility="None">
-                    <ListView.Header>
-                        <Grid RowSpacing="0" 
-                              VerticalOptions="Fill">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                                <!--<RowDefinition Height="*" />-->
-                            </Grid.RowDefinitions>
+            Style="{DynamicResource BaseBackgroundColor}">
+            <Grid RowSpacing="0" 
+                 VerticalOptions="Fill">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
 
-                            <Label
-                                Grid.Row="0"
-                                Margin="0,20,20,0"
-                                FontSize="15"
-                                HorizontalTextAlignment="End"
-                                FontFamily="FontAwesome"
-                                Text="{Binding Account.TypeIcon}"
-                                TextColor="{DynamicResource BrandColor}"
-                                VerticalTextAlignment="Start" />
+                <Label
+                    Grid.Row="0"
+                    Margin="0,20,20,0"
+                    FontSize="15"
+                    HorizontalTextAlignment="End"
+                    FontFamily="FontAwesome"
+                    Text="{Binding Account.TypeIcon}"
+                    TextColor="{DynamicResource BrandColor}"
+                    VerticalTextAlignment="Start" />
 
-                            <StackLayout
-                                Grid.Row="0"
-                                Margin="0,20,0,0"
-                                HorizontalOptions="FillAndExpand"
-                                Orientation="Vertical"
-                                Spacing="2"
-                                VerticalOptions="Start">
+                <StackLayout
+                    Grid.Row="0"
+                    Margin="0,20,0,0"
+                    HorizontalOptions="FillAndExpand"
+                    Orientation="Vertical"
+                    Spacing="2"
+                    VerticalOptions="Start">
 
-                                <StackLayout              
-                                    HorizontalOptions="Center"
-                                    Orientation="Horizontal"
-                                    Spacing="5"
-                                    VerticalOptions="Center">
-                                    <Label
-                                        FontSize="15"
-                                        HorizontalOptions="Start"
-                                        Text="{Binding Account.AccountNumberSubName, StringFormat='*{0:N}'}"
-                                        VerticalOptions="Center" />
-                                    <Label
-                                        FontSize="15"
-                                        HorizontalOptions="Start"
-                                        Text="{Binding Account.Name}"
-                                        VerticalOptions="Center" />
-                                </StackLayout>
-                                <Label
-                                    HorizontalOptions="Center"
-                                    FontSize="20"
-                                    FontAttributes="Bold"
-                                    Text="Available"
-                                    VerticalOptions="Center" />
+                    <StackLayout              
+                        HorizontalOptions="Center"
+                        Orientation="Horizontal"
+                        Spacing="5"
+                        VerticalOptions="Center">
+                        <Label
+                            FontSize="15"
+                            HorizontalOptions="Start"
+                            Text="{Binding Account.AccountNumberSubName, StringFormat='*{0:N}'}"
+                            VerticalOptions="Center" />
+                        <Label
+                            FontSize="15"
+                            HorizontalOptions="Start"
+                            Text="{Binding Account.Name}"
+                            VerticalOptions="Center" />
+                    </StackLayout>
+                    <Label
+                        HorizontalOptions="Center"
+                        FontSize="20"
+                        FontAttributes="Bold"
+                        Text="Available"
+                        VerticalOptions="Center" />
 
-                                <StackLayout              
-                                    HorizontalOptions="Center"
-                                    Orientation="Horizontal"
-                                    Spacing="5"
-                                    VerticalOptions="Center">
-                                    <Label
-                                        HorizontalOptions="Center"
-                                        FontSize="25"
-                                        FontAttributes="Bold"
-                                        Text="{Binding Account.Amount, StringFormat='{0:0.00}'}"
-                                        TextColor="{DynamicResource BrandColor}"
-                                        VerticalOptions="Center" />
-                                    <Label
-                                        FontSize="15"
-                                        HorizontalTextAlignment="Center"
-                                        FontFamily="FontAwesome"
-                                        Text="{Binding Account.CurrencyIcon}"
-                                        TextColor="Gray"
-                                        VerticalTextAlignment="Center" />
-                                </StackLayout>
+                    <StackLayout              
+                        HorizontalOptions="Center"
+                        Orientation="Horizontal"
+                        Spacing="5"
+                        VerticalOptions="Center">
+                        <Label
+                            HorizontalOptions="Center"
+                            FontSize="25"
+                            FontAttributes="Bold"
+                            Text="{Binding Account.Amount, StringFormat='{0:0.00}'}"
+                            TextColor="{DynamicResource BrandColor}"
+                            VerticalOptions="Center" />
+                        <Label
+                            FontSize="15"
+                            HorizontalTextAlignment="Center"
+                            FontFamily="FontAwesome"
+                            Text="{Binding Account.CurrencyIcon}"
+                            TextColor="Gray"
+                            VerticalTextAlignment="Center" />
+                    </StackLayout>
 
-                                <StackLayout              
-                                    Margin="20,0,20,0"
-                                    HorizontalOptions="FillAndExpand"
-                                    Orientation="Horizontal"
-                                    VerticalOptions="Center">
-                                    <Label
-                                        HorizontalOptions="Center"
-                                        FontSize="15"
-                                        FontAttributes="Italic"
-                                        Text="Pesonal funds"
-                                        VerticalOptions="Center" />
-                                    <Label
-                                        HorizontalOptions="EndAndExpand"
-                                        FontSize="15"
-                                        FontAttributes="Bold"
-                                        Text="{Binding Account.Amount, StringFormat='{0:0.00}'}"
-                                        TextColor="{DynamicResource BrandColor}"
-                                        VerticalOptions="EndAndExpand" />
-                                    <Label
-                                        FontSize="10"
-                                        HorizontalOptions="End"
-                                        FontFamily="FontAwesome"
-                                        Text="{Binding Account.CurrencyIcon}"
-                                        TextColor="Gray"
-                                        VerticalTextAlignment="Center" />
-                                </StackLayout>
+                    <StackLayout              
+                    Margin="20,0,20,0"
+                        HorizontalOptions="FillAndExpand"
+                        Orientation="Horizontal"
+                        VerticalOptions="Center">
+                        <Label
+                            HorizontalOptions="Center"
+                            FontSize="15"
+                            FontAttributes="Italic"
+                            Text="Pesonal funds"
+                            VerticalOptions="Center" />
+                        <Label
+                            HorizontalOptions="EndAndExpand"
+                            FontSize="15"
+                            FontAttributes="Bold"
+                            Text="{Binding Account.Amount, StringFormat='{0:0.00}'}"
+                            TextColor="{DynamicResource BrandColor}"
+                            VerticalOptions="EndAndExpand" />
+                        <Label
+                            FontSize="10"
+                            HorizontalOptions="End"
+                            FontFamily="FontAwesome"
+                            Text="{Binding Account.CurrencyIcon}"
+                            TextColor="Gray"
+                            VerticalTextAlignment="Center" />
+                    </StackLayout>
 
-                                <StackLayout              
-                                    Margin="20,0,20,0"
-                                    HorizontalOptions="FillAndExpand"
-                                    Orientation="Horizontal"
-                                    VerticalOptions="Center">
-                                    <Label
-                                        HorizontalOptions="Center"
-                                        FontSize="15"
-                                        FontAttributes="Italic"
-                                        Text="Credit Limits"
-                                        VerticalOptions="Center" />
-                                    <Label
-                                        HorizontalOptions="EndAndExpand"
-                                        FontSize="15"
-                                        FontAttributes="Bold"
-                                        Text="0"
-                                        TextColor="{DynamicResource BrandColor}"
-                                        VerticalOptions="EndAndExpand" />
-                                    <Label
-                                        FontSize="10"
-                                        HorizontalOptions="End"
-                                        FontFamily="FontAwesome"
-                                        Text="{Binding Account.CurrencyIcon}"
-                                        TextColor="Gray"
-                                        VerticalTextAlignment="Center" />
-                                </StackLayout>
+                    <StackLayout              
+                    Margin="20,0,20,0"
+                        HorizontalOptions="FillAndExpand"
+                        Orientation="Horizontal"
+                        VerticalOptions="Center">
+                        <Label
+                            HorizontalOptions="Center"
+                            FontSize="15"
+                            FontAttributes="Italic"
+                            Text="Credit Limits"
+                            VerticalOptions="Center" />
+                        <Label
+                            HorizontalOptions="EndAndExpand"
+                            FontSize="15"
+                            FontAttributes="Bold"
+                            Text="0"
+                            TextColor="{DynamicResource BrandColor}"
+                            VerticalOptions="EndAndExpand" />
+                        <Label
+                            FontSize="10"
+                            HorizontalOptions="End"
+                            FontFamily="FontAwesome"
+                            Text="{Binding Account.CurrencyIcon}"
+                            TextColor="Gray"
+                            VerticalTextAlignment="Center" />
+                    </StackLayout>
 
-                                <StackLayout              
-                                    Margin="0,0,0,0"
-                                    HorizontalOptions="Center"
-                                    Orientation="Horizontal"
-                                    VerticalOptions="Center">
-                                    <artina:Button
-                                        HorizontalOptions="Center"
-                                        Style="{DynamicResource PrimaryActionButtonStyle}"
-                                        Text="Transfer"
-                                        Scale="0.7"
-                                        FontSize="19"
-                                        Clicked="TransferTapped"
-                                        VerticalOptions="End"
-                                        WidthRequest="{artina:OnOrientationDouble LandscapePhone=200,
-                                        LandscapeTablet=400}" />
-                                    <!--<Label
-                                         HorizontalOptions="Center"
-                                         FontSize="15"
-                                         FontAttributes="Italic"
-                                         Text="> Transfer"
-                                         TextColor="{DynamicResource BrandColor}"
-                                         VerticalOptions="Center" >
-                                         <Label.GestureRecognizers>
-                                         <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="TransferTapped" />
-                                         </Label.GestureRecognizers>
-                                         </Label>-->
-                                </StackLayout>
+                    <StackLayout              
+                        Margin="20,10,0,0"
+                        HorizontalOptions="StartAndExpand"
+                        Orientation="Horizontal"
+                        VerticalOptions="Center">
+                        <Label
+                            HorizontalOptions="Center"
+                            FontSize="15"
+                            FontAttributes="Italic"
+                            Text="> Transfer"
+                            TextColor="{DynamicResource BrandColor}"
+                            VerticalOptions="Center" >
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="TransferTapped" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </StackLayout>
 
-                            </StackLayout>
+                </StackLayout>
 
 
-                            <!--  PRODUCT INFO  -->
-                            <Grid
-                                Grid.Row="1"
-                                Padding="20,15,20,0"
-                                RowSpacing="5"
-                                VerticalOptions="StartAndExpand">
+                <!--  PRODUCT INFO  -->
+                <Grid
+                    Grid.Row="1"
+                    Padding="20,15,20,0"
+                    RowSpacing="5"
+                    VerticalOptions="StartAndExpand">
 
-                                <Grid.RowDefinitions>
-                                    <!--<RowDefinition Height="Auto" />-->
-                                    <RowDefinition Height="Auto" />
-                                </Grid.RowDefinitions>
+                    <Grid.RowDefinitions>
+                        <!--<RowDefinition Height="Auto" />-->
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
 
 
-                                <!--  PRODUCT NAME  -->
-                                <Label
-                                    Grid.Row="0"
-                                    FontAttributes="Bold"
-                                    FontSize="18"
-                                    HorizontalTextAlignment="Start"
-                                    Text="Transactions"
-                                    TextColor="{DynamicResource BaseTextColor}" />
-                                <BoxView 
-                                    Margin="0,30,0,0"
-                                    BackgroundColor="{DynamicResource AccentColor}"
-                                    Style="{StaticResource BrandNameOrnamentStyle}" />
-                                <!--  Transactions  -->
+                    <!--  PRODUCT NAME  -->
+                    <Label
+                        Grid.Row="0"
+                        FontAttributes="Bold"
+                        FontSize="18"
+                        HorizontalTextAlignment="Start"
+                        Text="Transactions"
+                        TextColor="{DynamicResource BaseTextColor}" />
+                    <BoxView 
+                    Margin="0,30,0,0"
+                    BackgroundColor="{DynamicResource AccentColor}"
+                    Style="{StaticResource BrandNameOrnamentStyle}" />
+                    <!--  Transactions  -->
 
 
 
-                            </Grid>
-
-                        </Grid>
-                    </ListView.Header>
-                    <ListView.RowHeight>
-                        <OnIdiom
-                            x:TypeArguments="x:Int32"
-                            Phone="60"
-                            Tablet="90" />
-                    </ListView.RowHeight>
-                    <ListView.GroupHeaderTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <local:TransactionsGroupHeaderTemplate />
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.GroupHeaderTemplate>
-
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <local:TransactionListItem />
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-
-                </ListView>
+                </Grid>
 
 
-            </StackLayout>
-        </ContentPage.Content>
-    </ContentPage>
+
+                <!--  -BUY BUTTON  -->
+                <!--<ScrollView  >
+               
+            </ScrollView>-->
+                <StackLayout
+                    Grid.Row="2">
+                    <ListView
+                    
+                        HasUnevenRows="True"
+                        ItemTapped="OnTransactionTapped"
+                        ItemsSource="{Binding GroupedTransactions}"
+                        IsGroupingEnabled="true"
+			            GroupDisplayBinding="{ Binding DateTime }"
+                        SeparatorColor="Transparent"
+                        SeparatorVisibility="None">
+                        <ListView.RowHeight>
+                            <OnIdiom
+                                x:TypeArguments="x:Int32"
+                                Phone="60"
+                                Tablet="90" />
+                        </ListView.RowHeight>
+                        <ListView.GroupHeaderTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <local:TransactionsGroupHeaderTemplate />
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.GroupHeaderTemplate>
+
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <local:TransactionListItem />
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+
+                    </ListView>
+                </StackLayout>
+
+                <!--<artina:Button
+                     Grid.Row="2"
+                     Margin="20,10,20,20"
+                     HorizontalOptions="{artina:OnOrientationLayoutOptions PortraitPhone=Fill,
+                     LandscapePhone=Center,
+                     PortraitTablet=Fill,
+                     LandscapeTablet=Center}"
+                     Style="{DynamicResource PrimaryActionButtonStyle}"
+                     Text="Add to cart"
+                     WidthRequest="{artina:OnOrientationDouble LandscapePhone=200,
+                     LandscapeTablet=400}" />-->
+
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

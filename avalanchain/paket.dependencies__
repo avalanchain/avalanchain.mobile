@@ -1,0 +1,45 @@
+source https://www.myget.org/F/akkadotnet/api/v2
+source https://www.nuget.org/api/v2/
+source http://nuget.syncfusion.com/nuget_xamarin/nuget/getsyncfusionpackages/xamarin/
+
+source http://nuget.uxdivers.com/grial username: "yuriy@stinex.co.uk" password: "7924655Qw"
+
+nuget Microsoft.NETCore.Portable.Compatibility
+
+nuget Ansuria.XFGloss
+
+nuget BottomNavigationBar 
+nuget Com.Airbnb.Android.Lottie 
+nuget Com.Airbnb.iOS.Lottie 
+nuget Com.Airbnb.Xamarin.Forms.Lottie 
+nuget EngineIoClientDotNet
+nuget Newtonsoft.Json 
+nuget OxyPlot.Core 
+nuget OxyPlot.Xamarin.Android 
+nuget OxyPlot.Xamarin.Forms 
+nuget OxyPlot.Xamarin.iOS 
+nuget SocketIoClientDotNet 
+nuget Syncfusion.Xamarin.SfChart 
+nuget Syncfusion.Xamarin.SfChart.Android 
+nuget Syncfusion.Xamarin.SfChart.IOS 
+nuget TestFairy.Xamarin 
+nuget UXDivers.Artina.Shared.Base 
+nuget UXDivers.Artina.Shared 
+nuget UXDivers.Effects 
+nuget UXDivers.GorillaPlayer.SDK 
+nuget WebP.Touch 
+nuget WebSocket4Net prerelease
+nuget Xamarin.Android.Support.Animated.Vector.Drawable 
+nuget Xamarin.Android.Support.Design 
+nuget Xamarin.Android.Support.v4 
+nuget Xamarin.Android.Support.v7.AppCompat 
+nuget Xamarin.Android.Support.v7.CardView 
+nuget Xamarin.Android.Support.v7.MediaRouter 
+nuget Xamarin.Android.Support.v7.RecyclerView 
+nuget Xamarin.Android.Support.Vector.Drawable 
+nuget Xamarin.CardIO.Android 
+nuget Xamarin.FFImageLoading prerelease
+nuget Xamarin.FFImageLoading.Forms prerelease
+nuget Xamarin.FFImageLoading.Transformations prerelease
+nuget Xamarin.Forms prerelease
+nuget Xamarin.TestCloud.Agent prerelease

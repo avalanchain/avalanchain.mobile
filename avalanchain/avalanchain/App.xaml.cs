@@ -6,14 +6,14 @@ using Xamarin.Forms.Xaml;
 
 namespace avalanchain
 {
-    //[XamlCompilation (XamlCompilationOptions.Skip)]
-    public partial class App : Application
-    {
-        public static MasterDetailPage MasterDetailPage;
+	//[XamlCompilation (XamlCompilationOptions.Skip)]
+	public partial class App : Application
+	{
+		public static MasterDetailPage MasterDetailPage;
 
-        public App()
-        {
-            InitializeComponent();
+		public App()
+		{
+			InitializeComponent();
 
             //MainPage = GetPage();//GetMainPage();
             MainPage = GetMainPage();
@@ -82,16 +82,9 @@ namespace avalanchain
         //}
 
         public static Page GetMainPage()
-        {
-            //return new TestXaml();
-            try
-            {
-                SampleData.InitData();
-            }
-            catch (Exception e) { 
-            }
-
-            return new RootPage(true);
-        }
-    }
+		{
+			//return new MainPage();
+			return new RootPage(true);
+		}
+	}
 }
