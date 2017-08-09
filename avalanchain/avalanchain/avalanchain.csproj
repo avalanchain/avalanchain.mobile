@@ -4,12 +4,43 @@
     <TargetFramework>netstandard1.4</TargetFramework>
     <PackageTargetFallback>$(PackageTargetFallback);portable-win+net45+wp8+win81+wpa8;portable-win81+wpa8;portable-net45+monoandroid+xamarinios+win8+win81+wp8+wpa81;portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10;portable-net45+monoandroid+monotouch+xamarinios+win8+wp8+wpa81;portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10</PackageTargetFallback>
   </PropertyGroup>
-  <Import Project="..\.paket\Paket.Restore.targets" />
   <ItemGroup>
+    <Content Include="README_FIRST.txt">
+      <Paket>True</Paket>
+    </Content>
+    <Resource Include="Toolkit.Content\ApplicationBar.Add.png">
+      <Paket>True</Paket>
+    </Resource>
+    <Resource Include="Toolkit.Content\ApplicationBar.Cancel.png">
+      <Paket>True</Paket>
+    </Resource>
+    <Resource Include="Toolkit.Content\ApplicationBar.Check.png">
+      <Paket>True</Paket>
+    </Resource>
+    <Resource Include="Toolkit.Content\ApplicationBar.Delete.png">
+      <Paket>True</Paket>
+    </Resource>
+    <Resource Include="Toolkit.Content\ApplicationBar.Select.png">
+      <Paket>True</Paket>
+    </Resource>
     <None Remove="Views\Accounts\AccountDetail.xaml" />
     <None Remove="Views\Accounts\Accounts.xaml" />
+    <None Remove="Views\Accounts\AccountsList.xaml" />
+    <None Remove="Views\Accounts\BTCWallet.xaml" />
+    <None Remove="Views\Accounts\Confirmation.xaml" />
+    <None Remove="Views\Accounts\Dashboard.xaml" />
+    <None Remove="Views\Accounts\Templates\AccountGridItemTemplate.xaml" />
+    <None Remove="Views\Accounts\Templates\AccountListItemTemplate.xaml" />
+    <None Remove="Views\Accounts\Templates\TransactionListItem.xaml" />
+    <None Remove="Views\Accounts\Templates\TransactionsGroupHeaderTemplate.xaml" />
+    <None Remove="Views\Accounts\TransactionDetail.xaml" />
+    <None Remove="Views\Accounts\Transfer.xaml" />
+    <None Remove="Views\Accounts\Wallets.xaml" />
+    <None Remove="Views\Cards\AddCard.xaml" />
+    <None Remove="Views\Cards\Cards.xaml" />
+    <None Remove="Views\Cards\OrderCard.xaml" />
+    <None Remove="Views\Trade\Buy.xaml" />
   </ItemGroup>
-
   <ItemGroup>
     <Compile Include="Helpers\AccountsService.cs" />
     <Compile Include="Helpers\BaseViewModel.cs" />
@@ -39,6 +70,7 @@
     <Compile Include="Views\Accounts\Wallets.xaml.cs">
       <DependentUpon>Wallets.xaml</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Views\Cards\Cards.xaml" />
     <Compile Include="Views\Cards\Cards.xaml.cs">
       <DependentUpon>Cards.xaml</DependentUpon>
     </Compile>
@@ -75,6 +107,16 @@
     <Compile Include="Views\Accounts\BTCWallet.xaml.cs">
       <DependentUpon>BTCWallet.xaml</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Views\Accounts\BTCWallet.xaml" />
+    <EmbeddedResource Include="Views\Accounts\Confirmation.xaml" />
+    <EmbeddedResource Include="Views\Accounts\Dashboard.xaml" />
+    <EmbeddedResource Include="Views\Accounts\Templates\AccountGridItemTemplate.xaml" />
+    <EmbeddedResource Include="Views\Accounts\Templates\AccountListItemTemplate.xaml" />
+    <EmbeddedResource Include="Views\Accounts\Templates\TransactionListItem.xaml" />
+    <EmbeddedResource Include="Views\Accounts\Templates\TransactionsGroupHeaderTemplate.xaml" />
+    <EmbeddedResource Include="Views\Accounts\TransactionDetail.xaml" />
+    <EmbeddedResource Include="Views\Accounts\Transfer.xaml" />
+    <EmbeddedResource Include="Views\Accounts\Wallets.xaml" />
     <Compile Include="Views\Cards\AddCard.xaml.cs">
       <DependentUpon>AddCard.xaml</DependentUpon>
     </Compile>
@@ -421,9 +463,13 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Accounts\AccountDetail.xaml">
-      <Generator></Generator>
+      <Generator>
+      </Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Accounts\Accounts.xaml" />
+    <EmbeddedResource Include="Views\Accounts\AccountsList.xaml" />
+    <EmbeddedResource Include="Views\Cards\AddCard.xaml" />
+    <EmbeddedResource Include="Views\Cards\OrderCard.xaml" />
     <EmbeddedResource Include="Views\Social\ProfilePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -592,6 +638,7 @@
     <EmbeddedResource Include="Views\Navigation\CategoriesListFlatPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\Trade\Buy.xaml" />
     <EmbeddedResource Include="Views\Walkthroughs\WalkthroughPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -698,6 +745,5 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
-
-
+  <Import Project="..\.paket\Paket.Restore.targets" />
 </Project>

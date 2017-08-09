@@ -48,3 +48,5 @@ nuget Xamarin.FFImageLoading.Transformations
 
 nuget Xamarin.Forms prerelease
 nuget Xamarin.TestCloud.Agent prerelease
+
+nuget TestFairy.Xamarin 
