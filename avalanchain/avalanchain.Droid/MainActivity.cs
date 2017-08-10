@@ -57,6 +57,7 @@ namespace avalanchain.Droid
             CachedImageRenderer.Init();
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
+            global::ZXing.Net.Mobile.Forms.Android.Platform.Init();
             OxyPlot.Xamarin.Forms.Platform.Android.PlotViewRenderer.Init();
 
             UXDivers.Artina.Shared.GrialKit.Init(this, "avalanchain.Droid.GrialLicense");

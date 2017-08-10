@@ -23,6 +23,9 @@
     <Resource Include="Toolkit.Content\ApplicationBar.Select.png">
       <Paket>True</Paket>
     </Resource>
+    <None Remove="Helpers\AnimationService.cs" />
+    <None Remove="Helpers\CommonService.cs" />
+    <None Remove="ViewModels\WalletViewModel.cs" />
     <None Remove="Views\Accounts\AccountDetail.xaml" />
     <None Remove="Views\Accounts\Accounts.xaml" />
     <None Remove="Views\Accounts\AccountsList.xaml" />
@@ -33,6 +36,9 @@
     <None Remove="Views\Accounts\Templates\AccountListItemTemplate.xaml" />
     <None Remove="Views\Accounts\Templates\TransactionListItem.xaml" />
     <None Remove="Views\Accounts\Templates\TransactionsGroupHeaderTemplate.xaml" />
+    <None Remove="Views\Accounts\Test.cs" />
+    <None Remove="Views\Accounts\TestXaml.xaml" />
+    <None Remove="Views\Accounts\TestXaml.xaml.cs" />
     <None Remove="Views\Accounts\TransactionDetail.xaml" />
     <None Remove="Views\Accounts\Transfer.xaml" />
     <None Remove="Views\Accounts\Wallets.xaml" />
@@ -40,10 +46,15 @@
     <None Remove="Views\Cards\Cards.xaml" />
     <None Remove="Views\Cards\OrderCard.xaml" />
     <None Remove="Views\Trade\Buy.xaml" />
+    <None Remove="Views\Wallets\QRScanner.cs" />
+    <None Remove="Views\Wallets\WalletDetail.xaml" />
+    <None Remove="Views\Wallets\Wallets.xaml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Helpers\AccountsService.cs" />
+    <Compile Include="Helpers\AnimationService.cs" />
     <Compile Include="Helpers\BaseViewModel.cs" />
+    <Compile Include="Helpers\CommonService.cs" />
     <Compile Include="Helpers\FontAwesome.cs" />
     <Compile Include="Helpers\NotifyTaskCompletion.cs" />
     <Compile Include="Helpers\RestService.cs" />
@@ -58,6 +69,7 @@
     <Compile Include="ViewModels\DashBoardDetailViewModel.cs" />
     <Compile Include="ViewModels\TransferViewModel.cs" />
     <Compile Include="ViewModels\WalletsViewModel.cs" />
+    <Compile Include="ViewModels\WalletViewModel.cs" />
     <Compile Include="Views\Accounts\AccountsList.xaml.cs">
       <DependentUpon>AccountsList.xaml</DependentUpon>
     </Compile>
@@ -67,7 +79,14 @@
     <Compile Include="Views\Accounts\Templates\TransactionsGroupHeaderTemplate.xaml.cs">
       <DependentUpon>TransactionsGroupHeaderTemplate.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Accounts\Wallets.xaml.cs">
+    <Compile Include="Views\Accounts\Test.cs" />
+    <Compile Include="Views\Wallets\QRScanner.cs" />
+    <EmbeddedResource Include="Views\Accounts\TestXaml.xaml" />
+    <Compile Include="Views\Accounts\TestXaml.xaml.cs" />
+	<Compile Include="Views\Wallets\WalletDetail.xaml.cs">
+      <DependentUpon>WalletDetail.xaml</DependentUpon>
+    </Compile>
+	<Compile Include="Views\Wallets\Wallets.xaml.cs">
       <DependentUpon>Wallets.xaml</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Views\Cards\Cards.xaml" />
@@ -104,10 +123,6 @@
     <Compile Include="Views\Cards\OrderCard.xaml.cs">
       <DependentUpon>OrderCard.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Accounts\BTCWallet.xaml.cs">
-      <DependentUpon>BTCWallet.xaml</DependentUpon>
-    </Compile>
-    <EmbeddedResource Include="Views\Accounts\BTCWallet.xaml" />
     <EmbeddedResource Include="Views\Accounts\Confirmation.xaml" />
     <EmbeddedResource Include="Views\Accounts\Dashboard.xaml" />
     <EmbeddedResource Include="Views\Accounts\Templates\AccountGridItemTemplate.xaml" />
@@ -115,8 +130,9 @@
     <EmbeddedResource Include="Views\Accounts\Templates\TransactionListItem.xaml" />
     <EmbeddedResource Include="Views\Accounts\Templates\TransactionsGroupHeaderTemplate.xaml" />
     <EmbeddedResource Include="Views\Accounts\TransactionDetail.xaml" />
+	<EmbeddedResource Include="Views\Wallets\Wallets.xaml" />
+	<EmbeddedResource Include="Views\Wallets\WalletDetail.xaml" />
     <EmbeddedResource Include="Views\Accounts\Transfer.xaml" />
-    <EmbeddedResource Include="Views\Accounts\Wallets.xaml" />
     <Compile Include="Views\Cards\AddCard.xaml.cs">
       <DependentUpon>AddCard.xaml</DependentUpon>
     </Compile>

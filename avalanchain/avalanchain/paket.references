@@ -16,3 +16,6 @@ Xamarin.FFImageLoading.Forms
 Xamarin.FFImageLoading.Transformations
 Xamarin.Forms
 Microsoft.NETCore.Portable.Compatibility
+ZXing.Net.Mobile
+ZXing.Net.Mobile.Forms
+Plugin.Share

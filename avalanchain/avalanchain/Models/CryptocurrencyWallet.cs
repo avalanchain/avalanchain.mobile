@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace avalanchain.Models
+namespace avalanchain
 {
     public class CryptocurrencyWallet : Account
     {

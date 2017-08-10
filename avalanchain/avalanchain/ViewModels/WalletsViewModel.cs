@@ -6,7 +6,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using avalanchain;
-using avalanchain.Models;
 using Xamarin.Forms;
 
 namespace avalanchain

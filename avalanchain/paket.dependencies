@@ -39,6 +39,7 @@ nuget Xamarin.Android.Support.v7.CardView
 nuget Xamarin.Android.Support.v7.MediaRouter 
 nuget Xamarin.Android.Support.v7.RecyclerView 
 nuget Xamarin.Android.Support.Vector.Drawable 
+nuget Xamarin.Android.Support.CustomTabs 23.3.0
 
 nuget Xamarin.CardIO.Android 
 
@@ -50,3 +51,7 @@ nuget Xamarin.Forms prerelease
 nuget Xamarin.TestCloud.Agent prerelease
 
 nuget TestFairy.Xamarin 
+nuget ZXing.Net.Mobile
+nuget ZXing.Net.Mobile.Forms
+
+nuget Plugin.Share 5.0.0

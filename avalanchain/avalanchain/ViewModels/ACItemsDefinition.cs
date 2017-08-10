@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using avalanchain.Views.Accounts;
 using Xamarin.Forms;
 
 namespace avalanchain

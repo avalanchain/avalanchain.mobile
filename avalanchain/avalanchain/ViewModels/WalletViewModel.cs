@@ -8,7 +8,7 @@ using ZXing.Net.Mobile.Forms;
 
 namespace avalanchain
 {
-    class WalletViewModel :BaseViewModel
+    class WalletViewModel : BaseViewModel
     {
         private ZXingBarcodeImageView _barcode;
         public WalletViewModel(CryptocurrencyWallet wallet)

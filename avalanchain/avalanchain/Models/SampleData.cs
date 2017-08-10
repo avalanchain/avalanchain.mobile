@@ -2,8 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using avalanchain.Models;
 using Newtonsoft.Json;
+using Plugin.Share;
 
 namespace avalanchain
 {
@@ -31,10 +31,27 @@ namespace avalanchain
         private static List<Transaction> _trnasactions;
         private static List<MovieSection> _movies;
         private static Task<CurrencyPricing> _cryptocurencyPrices;
-
-
+        private static CurrencyPricing _staticCryptocurencyPrices;
+        private static bool _isSupportClipboard;
         private static List<Notification> _notifications;
 
+        public static void InitData()
+        {
+            //var cryptocurrencyPrices = CryptocurrencyPrices;
+        }
+
+        public static bool IsSupportClipboard
+        {
+            get
+            {
+                if (_isSupportClipboard)
+                {
+                    _isSupportClipboard = CrossShare.Current.SupportsClipboard;
+                }
+
+                return _isSupportClipboard;
+            }
+        }
         public static List<Notification> Notifications
         {
             get
@@ -285,12 +302,40 @@ namespace avalanchain
         {
             get
             {
-                //if (_cryptocurencyPrices == null)
+
+                _cryptocurencyPrices = InitCryptocurrencyPrices();
+                if (_cryptocurencyPrices != null)
+                {
+                    SetStaticCur();
+                }
+                return _cryptocurencyPrices;
+            }
+        }
+
+        private static async void SetStaticCur()
+        {
+            _staticCryptocurencyPrices = await _cryptocurencyPrices;
+        }
+        public static CurrencyPricing StaticCryptocurrencyPrices
+        {
+            get
+            {
+                if (_staticCryptocurencyPrices == null)
+                {
+                    _staticCryptocurencyPrices = new CurrencyPricing()
+                    {
+                        EUR = "2553.22",
+                        GBP = "2325.59",
+                        USD = "3015.81",
+                        BTC = "1"
+                    };
+                }
+                //else
                 //{
-                    _cryptocurencyPrices = InitCryptocurrencyPrices();
+                //    _staticCryptocurencyPrices = _cryptocurencyPrices.Result;
                 //}
 
-                return _cryptocurencyPrices;
+                return _staticCryptocurencyPrices;
             }
         }
         public static List<Transaction> Transactions
@@ -412,7 +457,7 @@ namespace avalanchain
                 "friend_thumbnail_55.jpg",
                 "friend_thumbnail_71.jpg",
                 "icon.png",//"friend_thumbnail_75.jpg",
-				"friend_thumbnail_93.jpg",
+                "friend_thumbnail_93.jpg",
             };
         }
 
@@ -652,7 +697,7 @@ namespace avalanchain
                     false,
                     true
                 ),
-                 new ChatMessage (
+                new ChatMessage (
                     Friends [1],
                     "June 7",
                     "How about April?"
@@ -664,60 +709,60 @@ namespace avalanchain
                     false,
                     true
                 ),
-				//new ChatMessage (
-				//	Friends [5],
-    //                "June 7",
-				//	"You should give it a try!",
-				//	false,
-				//	true
-				//),
-				//new ChatMessage (
-				//	Friends [1],
-    //                "June 7",
-				//	"Wooow! Didn't know this exist!! Really cool stuff!"
-				//),
+                //new ChatMessage (
+                //	Friends [5],
+                //                "June 7",
+                //	"You should give it a try!",
+                //	false,
+                //	true
+                //),
+                //new ChatMessage (
+                //	Friends [1],
+                //                "June 7",
+                //	"Wooow! Didn't know this exist!! Really cool stuff!"
+                //),
 
-				//new ChatMessage (
-				//	Friends [1],
-    //                "June 7",
-				//	"I was wondering if something like this existed. This will save hundred of hours. I rather be skateboarding with my friends instead of compiling every little visual change." +
-				//	"Thanks for sharing!"
-				//),
+                //new ChatMessage (
+                //	Friends [1],
+                //                "June 7",
+                //	"I was wondering if something like this existed. This will save hundred of hours. I rather be skateboarding with my friends instead of compiling every little visual change." +
+                //	"Thanks for sharing!"
+                //),
 
-				//new ChatMessage (
-				//	Friends [5],
-    //                "June 7",
-				//	"No problem! I hope you can find it useful. It really makes the difference to me.",
-				//	false,
-				//	true
-				//),
+                //new ChatMessage (
+                //	Friends [5],
+                //                "June 7",
+                //	"No problem! I hope you can find it useful. It really makes the difference to me.",
+                //	false,
+                //	true
+                //),
 
-				//new ChatMessage (
-				//	Friends [1],
-				//	"July 7",
-				//	"Ok thanks and thanks again!! This is really awesome"
-				//),
+                //new ChatMessage (
+                //	Friends [1],
+                //	"July 7",
+                //	"Ok thanks and thanks again!! This is really awesome"
+                //),
 
-				//new ChatMessage (
-				//	Friends [5],
-				//	"July 7",
-				//	"Indeed.",
-				//	false,
-				//	true
-				//),
+                //new ChatMessage (
+                //	Friends [5],
+                //	"July 7",
+                //	"Indeed.",
+                //	false,
+                //	true
+                //),
 
-				//new ChatMessage (
-				//	Friends [1],
-				//	"July 7",
-				//	"C u later tonight at Gillian Japi party, right?"
-				//),
+                //new ChatMessage (
+                //	Friends [1],
+                //	"July 7",
+                //	"C u later tonight at Gillian Japi party, right?"
+                //),
 
-				//new ChatMessage (
-				//	Friends [5],
-				//	"July 7",
-				//	"For sure! See you later :)"
-				//),
-			};
+                //new ChatMessage (
+                //	Friends [5],
+                //	"July 7",
+                //	"For sure! See you later :)"
+                //),
+            };
         }
 
         private static List<ChatMessage> InitRecentChatMessagesList()
@@ -894,16 +939,16 @@ namespace avalanchain
         private static List<CryptocurrencyWallet> InitWallets()
         {
             return new List<CryptocurrencyWallet> {
-                        new CryptocurrencyWallet() {
-                            Id               = Guid.NewGuid(),
-                            AccountNumber    = Guid.NewGuid().ToString(),
-                            Name             = "BTC Wallet",
-                            Currency         =  CurrencyType.BTC,
-                            CurrencyIcon     = FontAwesome.FABtc,
-                            TypeIcon         = FontAwesome.FABtc,
-                            Amount           = 39.90m,
-                        },
-                    };
+                new CryptocurrencyWallet() {
+                    Id               = Guid.NewGuid(),
+                    AccountNumber    = Guid.NewGuid().ToString(),
+                    Name             = "BTC Wallet",
+                    Currency         =  CurrencyType.BTC,
+                    CurrencyIcon     = FontAwesome.FABtc,
+                    TypeIcon         = FontAwesome.FABtc,
+                    Amount           = 39.90m,
+                },
+            };
         }
         private static List<Card> InitCards()
         {
@@ -1006,7 +1051,7 @@ namespace avalanchain
         private static User InitCurrentUser()
         {
             var avatar = "user_profile_0.jpg";//SampleData.Friends[6].Avatar;
-            var user = new User("John Galt", avatar) {NativeCurrency = Currency.USD};
+            var user = new User("John Galt", avatar) { NativeCurrency = Currency.USD };
             return user;
         }
 
@@ -1379,7 +1424,7 @@ namespace avalanchain
                     Director = "George Miller",
                     Plot = "A woman rebels against a tyrannical ruler in postapocalyptic Australia in search for her home-land with the help of a group of female prisoners, a psychotic worshipper, and a drifter named Max.",
                     Cast = "Tom Hardy, Charlize Theron, Nicholas Hoult"
-                    },
+                },
 
                 new Movie{
                     Title = "The Martian",
@@ -1391,7 +1436,7 @@ namespace avalanchain
                     Director = "Ridley Scott",
                     Plot = "An astronaut becomes stranded on Mars after his team assume him dead, and must rely on his ingenuity to find a way to signal to Earth that he is alive.",
                     Cast = "Matt Damon, Jessica Chastain, Kristen Wiig"
-                    },
+                },
 
                 new Movie{
                     Title = "Limitless",
@@ -1403,7 +1448,7 @@ namespace avalanchain
                     Director = "Neil Burger",
                     Plot = "With the help of a mysterious pill that enables the user to access 100 percent of his brain abilities, a struggling writer becomes a financial wizard, but it also puts him in a new world with lots of dangers.",
                     Cast = "Bradley Cooper, Anna Friel, Abbie Cornish"
-                    },
+                },
 
                 new Movie{
                     Title = "TRON: Legacy",
@@ -1415,7 +1460,7 @@ namespace avalanchain
                     Director = "Joseph Kosinski",
                     Plot = "The son of a virtual world designer goes looking for his father and ends up inside the digital world that his father designed. He meets his father's corrupted creation and a unique ally who was born inside the digital world.",
                     Cast = "Jeff Bridges, Garrett Hedlund, Olivia Wilde"
-                    },
+                },
 
                 new Movie{
                     Title = "Gravity",
@@ -1588,5 +1633,6 @@ namespace avalanchain
     {
 
     }
+
 
 }

@@ -25,7 +25,7 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    
+
                     <!--  NAME ENTRY  -->
                     <StackLayout
                         Grid.Column="0"
@@ -187,6 +187,7 @@
                     </Grid.ColumnDefinitions>
                     <!--{ StaticResource ButtonCircle }-->
                     <artina:CircleImage 
+                        x:Name="CircleImage1"
                         Grid.Column="0"
                         Style="{ Binding Icon }"
                         HorizontalOptions="Center"
@@ -195,6 +196,7 @@
                         HeightRequest="100"/>
                     <!--{x:Static local:FontAwesome.FAPlus}-->
                     <Label
+                        x:Name="FromCurrencyIcon"
                         Grid.Column="0"
                         FontFamily="FontAwesome"
                         FontSize="25"
@@ -219,20 +221,6 @@
                         TextChanged="TextChanged"
                         Placeholder="0" />
 
-                    <!--  LAST NAME ENTRY  -->
-                    <!--<Label
-                        Text="BTC"
-                        VerticalTextAlignment="Center" />-->
-
-                    <!--<Entry
-                        Grid.Column="3"
-                        Margin="6,0,0,0"
-                        artina:EntryProperties.PlaceholderColor="{DynamicResource BaseTextColor}"
-                        BackgroundColor="{DynamicResource PlaceholderColorEntry}"
-                        HeightRequest="40"
-                        Keyboard="Numeric"
-                        Placeholder="0" />-->
-
                 </Grid>
 
                 <!--  ADDRESS LINE 1  -->
@@ -244,16 +232,7 @@
                         <ColumnDefinition Width="2*" />
                         <ColumnDefinition Width="5*" />
                     </Grid.ColumnDefinitions>
-                   
-                   
-                    <!--<Label
-                            TranslationY="10"
-                            FontFamily="FontAwesome"
-                            FontSize="25"
-                            HorizontalTextAlignment="Center"
-                            Text="{Binding TestData.Icon2}"
-                            TextColor="{DynamicResource InverseTextColor}"
-                            VerticalTextAlignment="Center" />-->
+
                     <Label
                         Grid.Column="0"
                         FontFamily="FontAwesome"
@@ -275,7 +254,8 @@
                             Text="{Binding  From.CurrencyIcon}" />
                         <Label
                             FontSize="18"
-                            Text="{Binding Rate, StringFormat='1 = {0}'}"></Label><!--$1 = 0.93 £-->
+                            Text="{Binding Rate, StringFormat='1 = {0}'}"></Label>
+                        <!--$1 = 0.93 £-->
                         <Label
                             FontFamily="FontAwesome"
                             FontSize="18"
@@ -284,8 +264,8 @@
                             Text="{ Binding ToCurrencyIcon }"
                             VerticalTextAlignment="Center" />
                     </StackLayout>
-                    
-                    
+
+
                 </Grid>
 
                 <!--  ADDRESS LINE 2  -->
@@ -296,6 +276,7 @@
                     </Grid.ColumnDefinitions>
 
                     <artina:CircleImage 
+                        x:Name="CircleImage2"
                         Grid.Column="0"
                         Style="{ Binding Icon }"
                         HorizontalOptions="Center"
@@ -304,6 +285,7 @@
                         HeightRequest="100"/>
                     <!--{x:Static local:FontAwesome.FAPlus}-->
                     <Label
+                        x:Name="ToCurrencyIcon"
                         Grid.Column="0"
                         FontFamily="FontAwesome"
                         FontSize="25"
@@ -311,8 +293,8 @@
                         HorizontalTextAlignment="Center"
                         Text="{ Binding ToCurrencyIcon }"
                         VerticalTextAlignment="Center" />
-                    
-                        <!--BindingContext="{x:Reference Usd}"
+
+                    <!--BindingContext="{x:Reference Usd}"
                         Text="{Binding Text, StringFormat='{0:F0}'}"-->
                     <Label
                         Grid.Column="1"

@@ -23,8 +23,12 @@ Xamarin.Android.Support.v7.CardView
 Xamarin.Android.Support.v7.MediaRouter
 Xamarin.Android.Support.v7.RecyclerView
 Xamarin.Android.Support.Vector.Drawable
+Xamarin.Android.Support.CustomTabs
 Xamarin.CardIO.Android
 Xamarin.FFImageLoading
 Xamarin.FFImageLoading.Forms
 Xamarin.FFImageLoading.Transformations
 Xamarin.Forms
+ZXing.Net.Mobile
+ZXing.Net.Mobile.Forms
+Plugin.Share

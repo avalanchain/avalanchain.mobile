@@ -11,7 +11,7 @@ NUGET
       Xamarin.Android.Support.v7.RecyclerView (>= 23.3)
       Xamarin.Android.Support.Vector.Drawable (>= 23.3)
     Com.Airbnb.Android.Lottie (1.0.0.7)
-    Com.Airbnb.iOS.Lottie (2.0.3)
+    Com.Airbnb.iOS.Lottie (2.0.3.1)
     Com.Airbnb.Xamarin.Forms.Lottie (1.0.0.7)
       Com.Airbnb.Android.Lottie (>= 1.0.0.7) - restriction: >= monoandroid
       Com.Airbnb.iOS.Lottie (>= 1.0.0.7) - restriction: >= xamarinios
@@ -21,6 +21,7 @@ NUGET
       System.Threading.Tasks.Unofficial (>= 3.1) - restriction: && (>= net35) (< net40) (< portable-wp81+wpa81)
       WebSocket4Net (>= 0.12) - restriction: >= wp8
       WebSocket4Net (>= 0.14.1) - restriction: || (&& (>= net35) (< net40) (< portable-wp81+wpa81)) (&& (>= net40) (< portable-wp81+wpa81)) (>= net45) (>= monoandroid) (>= monotouch) (>= xamarinios)
+    FastAndroidCamera (2.0) - restriction: >= monoandroid4.0.3
     Microsoft.Bcl (1.1.10) - restriction: || (&& (< monoandroid) (< xamarinios) (>= portable-net40+win8+wpa81)) (>= wp8)
       Microsoft.Bcl.Build (>= 1.0.14)
     Microsoft.Bcl.Build (1.0.21) - import_targets: false, restriction: || (&& (< monoandroid) (< xamarinios) (>= portable-net40+win8+wpa81)) (>= wp8)
@@ -125,6 +126,10 @@ NUGET
       Xamarin.Forms (>= 2.3.3.180)
     OxyPlot.Xamarin.iOS (1.0)
       OxyPlot.Core (>= 1.0)
+    Plugin.CurrentActivity (1.0.1) - restriction: >= monoandroid
+    Plugin.Share (5.0)
+      Plugin.CurrentActivity (>= 1.0.1) - restriction: >= monoandroid
+      Xamarin.Android.Support.CustomTabs (>= 23.3) - restriction: >= monoandroid
     Portable.BouncyCastle-Signed (1.7.0.2) - restriction: >= sl5
     runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl (4.3.1) - restriction: || (&& (< net20) (>= netstandard1.3) (< monotouch) (< xamarintvos) (< xamarinwatchos) (< xamarinios) (< xamarinmac)) (&& (< netstandard1.3) (>= netstandard1.6)) (&& (>= netstandard1.6) (< monotouch) (< xamarintvos) (< xamarinwatchos) (< xamarinios) (< xamarinmac))
     runtime.fedora.23-x64.runtime.native.System.Security.Cryptography.OpenSsl (4.3.1) - restriction: || (&& (< net20) (>= netstandard1.3) (< monotouch) (< xamarintvos) (< xamarinwatchos) (< xamarinios) (< xamarinmac)) (&& (< netstandard1.3) (>= netstandard1.6)) (&& (>= netstandard1.6) (< monotouch) (< xamarintvos) (< xamarinwatchos) (< xamarinios) (< xamarinmac))
@@ -754,9 +759,12 @@ NUGET
       System.Threading (>= 4.3) - restriction: >= netstandard1.3
       System.Threading.Timer (>= 4.3) - restriction: >= netstandard1.3
     WPtoolkit (4.2013.8.16) - restriction: >= wp8
+    WriteableBitmapEx (1.5.1) - restriction: >= wp8
     Xamarin.Android.Support.Animated.Vector.Drawable (23.3)
       Xamarin.Android.Support.v4 (23.3)
       Xamarin.Android.Support.Vector.Drawable (23.3)
+    Xamarin.Android.Support.CustomTabs (23.3)
+      Xamarin.Android.Support.v4 (23.3)
     Xamarin.Android.Support.Design (23.3)
       Xamarin.Android.Support.v4 (23.3)
       Xamarin.Android.Support.v7.AppCompat (23.3)
@@ -796,6 +804,13 @@ NUGET
       Xamarin.Android.Support.v7.MediaRouter (>= 23.3) - restriction: >= monoandroid7.0
       Xamarin.Android.Support.v7.MediaRouter (23.3) - restriction: && (>= monoandroid) (< monoandroid7.0)
     Xamarin.TestCloud.Agent (0.20.7)
+    ZXing.Net.Mobile (2.2.9)
+      FastAndroidCamera (>= 2.0) - restriction: >= monoandroid4.0.3
+      WriteableBitmapEx (>= 1.5) - restriction: >= wp8
+      Xamarin.Android.Support.v4 (>= 23.3) - restriction: >= monoandroid4.0.3
+    ZXing.Net.Mobile.Forms (2.2.9)
+      Xamarin.Forms (>= 2.3.3.193)
+      ZXing.Net.Mobile (>= 2.2.9)
   remote: http://nuget.syncfusion.com/nuget_xamarin/nuget/getsyncfusionpackages/xamarin
     Syncfusion.Xamarin.SfChart (15.3.0.26)
       Xamarin.Forms (>= 2.3.3.180)
