@@ -55,3 +55,4 @@ nuget ZXing.Net.Mobile
 nuget ZXing.Net.Mobile.Forms
 
 nuget Plugin.Share 5.0.0
+nuget RestClient.NET
