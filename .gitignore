@@ -185,3 +185,4 @@ FakesAssemblies/
 *.userprefs
 
 .DS_Store
+avalanchain/.vs/avalanchain/v15/sqlite3/storage.ide

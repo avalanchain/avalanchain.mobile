@@ -187,3 +187,5 @@ FakesAssemblies/
 .DS_Store
 
 .paket/paket.exe
+
+.vs
