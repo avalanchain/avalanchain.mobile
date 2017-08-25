@@ -6,22 +6,16 @@
   </PropertyGroup>
   <ItemGroup>
     <Content Include="README_FIRST.txt">
-      <Paket>True</Paket>
     </Content>
     <Resource Include="Toolkit.Content\ApplicationBar.Add.png">
-      <Paket>True</Paket>
     </Resource>
     <Resource Include="Toolkit.Content\ApplicationBar.Cancel.png">
-      <Paket>True</Paket>
     </Resource>
     <Resource Include="Toolkit.Content\ApplicationBar.Check.png">
-      <Paket>True</Paket>
     </Resource>
     <Resource Include="Toolkit.Content\ApplicationBar.Delete.png">
-      <Paket>True</Paket>
     </Resource>
     <Resource Include="Toolkit.Content\ApplicationBar.Select.png">
-      <Paket>True</Paket>
     </Resource>
     <None Remove="Helpers\AnimationService.cs" />
     <None Remove="Helpers\CommonService.cs" />
@@ -761,5 +755,24 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
-  <Import Project="..\.paket\Paket.Restore.targets" />
+  <ItemGroup>
+    <PackageReference Include="Ansuria.XFGloss" Version="1.0.6.59" />
+    <PackageReference Include="Com.Airbnb.Xamarin.Forms.Lottie" Version="1.0.0.3" />
+    <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
+    <PackageReference Include="OxyPlot.Core" Version="1.0.0" />
+    <PackageReference Include="OxyPlot.Xamarin.Forms" Version="1.0.0" />
+    <PackageReference Include="Plugin.Share" Version="5.0.0" />
+    <PackageReference Include="RestClient.NET" Version="0.5.0" />
+    <PackageReference Include="Syncfusion.Xamarin.SfChart" Version="15.2.0.43" />
+    <PackageReference Include="UXDivers.Artina.Shared" Version="2.0.52" />
+    <PackageReference Include="UXDivers.Artina.Shared.Base" Version="2.0.52" />
+    <PackageReference Include="UXDivers.Effects" Version="0.6.0" />
+    <PackageReference Include="UXDivers.GorillaPlayer.SDK" Version="1.0.0.15" />
+    <PackageReference Include="Xamarin.FFImageLoading" Version="2.2.10-pre-446" />
+    <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.2.10-pre-446" />
+    <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.2.10-pre-446" />
+    <PackageReference Include="Xamarin.Forms" Version="2.3.4.267" />
+    <PackageReference Include="ZXing.Net.Mobile" Version="2.2.9" />
+    <PackageReference Include="ZXing.Net.Mobile.Forms" Version="2.2.9" />
+  </ItemGroup>
 </Project>
