@@ -324,9 +324,9 @@ namespace avalanchain
                 {
                     _staticCryptocurencyPrices = new CurrencyPricing()
                     {
-                        EUR = "2553.22",
-                        GBP = "2325.59",
-                        USD = "3015.81",
+                        EUR = "3527.22",
+                        GBP = "3256.59",
+                        USD = "4155.81",
                         BTC = "1"
                     };
                 }
@@ -925,11 +925,19 @@ namespace avalanchain
                     _cards = InitCards();
                     _accounts.AddRange(_cards);
                 }
+                else
+                {
+                    _accounts.AddRange(_cards);
+                }
 
                 if (_wallets == null)
                 {
                     _wallets = InitWallets();
 
+                    _accounts.AddRange(_wallets);
+                }
+                else
+                {
                     _accounts.AddRange(_wallets);
                 }
 
@@ -947,6 +955,15 @@ namespace avalanchain
                     CurrencyIcon     = FontAwesome.FABtc,
                     TypeIcon         = FontAwesome.FABtc,
                     Amount           = 39.90m,
+                },
+                new CryptocurrencyWallet() {
+                    Id               = Guid.NewGuid(),
+                    AccountNumber    = Guid.NewGuid().ToString(),
+                    Name             = "BTC Wallet 2",
+                    Currency         =  CurrencyType.BTC,
+                    CurrencyIcon     = FontAwesome.FABtc,
+                    TypeIcon         = FontAwesome.FABtc,
+                    Amount           = 20.05m,
                 },
             };
         }
@@ -1002,7 +1019,7 @@ namespace avalanchain
 
         private static List<Transaction> InitTrnasactions()
         {
-            var accnts = _accounts;
+            var accnts = Accounts;
             var transactions = new List<Transaction>();
             var countTransactionsOfAcc = 15;
             foreach (Account acc in accnts)

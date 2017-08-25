@@ -265,14 +265,7 @@ namespace avalanchain.ViewModels
 
             if (fromPrice != 0 && receivePrice != 0)
             {
-                if (receive == CurrencyType.BTC)
-                {
-                    value = decimal.Parse(value.ToString("0.##########"));
-                }
-                else
-                {
-                    value = decimal.Parse(value.ToString("0.##"));
-                }
+                value = decimal.Parse(receive == CurrencyType.BTC ? value.ToString("0.##########") : value.ToString("0.##"));
             }
             return value;
         }
