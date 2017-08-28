@@ -6,7 +6,7 @@
         Title="Main Menu" 
         Style="{ DynamicResource MainMenuStyle2 }"
         xmlns:artina="clr-namespace:UXDivers.Artina.Shared;assembly=UXDivers.Artina.Shared"
-        xmlns:local="clr-namespace:avalanchain;assembly=avalanchain"
+        xmlns:local="clr-namespace:avalanchain;assembly=avalanchain.Xamarin"
         xmlns:xfg="clr-namespace:XFGloss;assembly=XFGloss"
         Icon="{ StaticResource HamburguerIcon }">
     <!--Style="{ DynamicResource MainMenuStyle2 }"-->

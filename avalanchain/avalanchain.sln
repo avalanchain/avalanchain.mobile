@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.10
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "avalanchain", "avalanchain\avalanchain.csproj", "{0EF232B9-3912-4C87-AFCE-1EED29BF26E0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "avalanchain.Xamarin", "avalanchain\avalanchain.Xamarin.csproj", "{0EF232B9-3912-4C87-AFCE-1EED29BF26E0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "avalanchain.Droid", "avalanchain.Droid\avalanchain.Droid.csproj", "{B6C3195C-0075-436E-826B-FEF49284DD32}"
 EndProject

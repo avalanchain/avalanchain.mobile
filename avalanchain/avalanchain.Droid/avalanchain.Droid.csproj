@@ -584,9 +584,9 @@
     <AndroidAsset Include="Assets\grial_animation.json" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\avalanchain\avalanchain.csproj">
-      <Project>{7041522B-6406-4AA7-8C6D-8AD1661DD392}</Project>
-      <Name>avalanchain</Name>
+    <ProjectReference Include="..\avalanchain\avalanchain.Xamarin.csproj">
+      <Project>{0EF232B9-3912-4C87-AFCE-1EED29BF26E0}</Project>
+      <Name>avalanchain.Xamarin</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
