@@ -255,35 +255,82 @@ module MatchingEngine =
         type SymbolStack = {
             Symbol: Symbol
             OrderStack: OrderStack
-            FullOrders: ResizeArray<Order>
+            Commands: ResizeArray<OrderCommand>
             Events: ResizeArray<OrderEvent>
+            FullOrders: ResizeArray<Order>
         }
+        with static member Create symbol priceStep = {  Symbol = symbol
+                                                        OrderStack = OrderStack.Create priceStep
+                                                        Commands = ResizeArray<_>() 
+                                                        Events = ResizeArray<_>() 
+                                                        FullOrders = ResizeArray<_>() }
 
         type MatchingService(priceStep) =
             let orderCommands = ResizeArray<OrderCommand>()
-            let mutable orderStack = OrderStack.Create priceStep
+            let mutable symbolStackMap = Map.empty<Symbol, SymbolStack>
+            let findSymbolStack symbol = match symbolStackMap.TryFind symbol with
+                                            | Some ss -> ss
+                                            | None -> SymbolStack.Create symbol priceStep
+
+            //orderStack = OrderStack.Create priceStep
             let fullOrders = ResizeArray<Order>()
             let events = ResizeArray<OrderEvent>()
             let processCommand command = 
                 match command with
                 | OrderCommand.Create order -> 
                     orderCommands.Add command
-                    let newStack, evts, orders = order |> Order.Create |> orderStack.AddOrder 
-                    orderStack <- newStack
-                    fullOrders.AddRange orders
+                    let symbolStack = findSymbolStack order.Symbol
+                    let newOrderStack, evts, orders = order |> Order.Create |> symbolStack.OrderStack.AddOrder 
+                    let newSymbolStack = { symbolStack with OrderStack = newOrderStack }
+                    newSymbolStack.Commands.Add command
+                    newSymbolStack.Events.AddRange evts
+                    newSymbolStack.FullOrders.AddRange orders
                     events.AddRange evts
+                    fullOrders.AddRange orders
+                    symbolStackMap <- symbolStackMap.Add (newSymbolStack.Symbol, newSymbolStack)
                 | OrderCommand.Cancel oid -> failwith "Not supported yet"
+            
             // TODO: Remove fakes:
             do for o in [orderData; orderData2; aorderData; aorderData2; aorderData3] do 
-                o |> OrderCommand.Create |> processCommand 
+                for sym in ["AVC"; "USD"; "EUR"; "GBP"; "ICODAO"; "V1"; "V2" ] do 
+                    { o with Symbol = Symbol sym } |> OrderCommand.Create |> processCommand 
             ///
+
+            let getPage (lst: ResizeArray<_>) (startIndex: uint64) (pageSize: uint32) = lst.Skip(startIndex |> int).Take(pageSize |> int).ToArray()
+            let getLastPage (lst: ResizeArray<_>) (pageSize: uint32) = 
+                let pageSizeI = pageSize |> int
+                if pageSizeI > lst.Count then lst.ToArray()
+                else lst.Skip(lst.Count - pageSizeI - 1).Take(pageSizeI).ToArray()
             
             member __.SubmitOrder orderCommand = processCommand orderCommand
 
-            member __.OrderCommands (startIndex: uint64) (pageSize: uint32) = orderCommands.Skip(startIndex |> int).Take(pageSize |> int)
-            member __.OrderEvents (startIndex: uint64) (pageSize: uint32) = events.Skip(startIndex |> int).Take(pageSize |> int)
-            member __.FullOrders (startIndex: uint64) (pageSize: uint32) = fullOrders.Skip(startIndex |> int).Take(pageSize |> int)
-            member __.OrderStack with get() = orderStack
+            member __.Symbols with get() = symbolStackMap |> Map.toSeq |> Seq.map fst
+            member __.SymbolStrings = __.Symbols |> Seq.map(fun (Symbol s) -> s) |> Seq.toArray
+            member __.OrderStack symbol = (findSymbolStack symbol).OrderStack
+
+            member __.OrderCommands startIndex pageSize = getPage orderCommands startIndex pageSize
+            member __.OrderEvents startIndex pageSize = getPage events startIndex pageSize
+            member __.FullOrders startIndex pageSize = getPage fullOrders startIndex pageSize
+
+            member __.LastOrderCommands pageSize = getLastPage orderCommands pageSize
+            member __.LastOrderEvents pageSize = getLastPage events pageSize
+            member __.LastFullOrders pageSize = getLastPage fullOrders pageSize
+
+            member __.OrderCommandsCount with get() = orderCommands.LongCount() |> uint64
+            member __.OrderEventsCount with get() = events.LongCount() |> uint64
+            member __.FullOrdersCount with get() = fullOrders.LongCount() |> uint64
+
+            member __.SymbolOrderCommands symbol startIndex pageSize = getPage (symbol |> findSymbolStack).Commands startIndex pageSize
+            member __.SymbolOrderEvents symbol startIndex pageSize = getPage (symbol |> findSymbolStack).Events startIndex pageSize
+            member __.SymbolFullOrders symbol startIndex pageSize = getPage (symbol |> findSymbolStack).FullOrders startIndex pageSize
+
+            member __.SymbolLastOrderCommands symbol pageSize = getLastPage (symbol |> findSymbolStack).Commands pageSize
+            member __.SymbolLastOrderEvents symbol pageSize = getLastPage (symbol |> findSymbolStack).Events pageSize
+            member __.SymbolLastFullOrders symbol pageSize = getLastPage (symbol |> findSymbolStack).FullOrders pageSize
+
+            member __.SymbolOrderCommandsCount symbol = (symbol |> findSymbolStack).Commands.LongCount() |> uint64 
+            member __.SymbolOrderEventsCount symbol = (symbol |> findSymbolStack).Events.LongCount() |> uint64 
+            member __.SymbolFullOrdersCount symbol = (symbol |> findSymbolStack).FullOrders.LongCount() |> uint64
 
             static member Instance = new MatchingService 1M<price>
 

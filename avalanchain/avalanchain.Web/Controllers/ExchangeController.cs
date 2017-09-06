@@ -14,30 +14,91 @@ namespace avalanchain.Web
     [Route("api/[controller]")]
     public class ExchangeController : Controller
     {
+        const uint maxPageSize = 50;
+
+        private Symbol ToSymbol(string symbol) => string.IsNullOrWhiteSpace(symbol) ? throw new ArgumentException("Invalid Symbol string") : Symbol.NewSymbol(symbol);
+
         private Facade.MatchingService ExchangeService = Facade.MatchingService.Instance; //ExchangeService.Instance;
 
         [HttpGet("[action]")]
-        public IEnumerable<OrderCommand> OrderCommands(UInt64 startIndex, uint pageSize)
+        public IEnumerable<OrderCommand> OrderCommands(UInt64 startIndex, uint pageSize) => ExchangeService.OrderCommands(startIndex, pageSize > 0 && pageSize <= maxPageSize ? pageSize : maxPageSize);
+
+        [HttpGet("[action]")]
+        public IEnumerable<OrderEvent> OrderEvents(UInt64 startIndex, uint pageSize) => ExchangeService.OrderEvents(startIndex, pageSize > 0 && pageSize <= maxPageSize ? pageSize : maxPageSize);
+
+        [HttpGet("[action]")]
+        public IEnumerable<Order> FullOrders(UInt64 startIndex, uint pageSize) => ExchangeService.FullOrders(startIndex, pageSize > 0 && pageSize <= maxPageSize ? pageSize : maxPageSize);
+
+        // ---
+
+        [HttpGet("[action]")]
+        public UInt64 OrderCommandsCount() => ExchangeService.OrderCommandsCount;
+
+        [HttpGet("[action]")]
+        public UInt64 OrderEventsCount() => ExchangeService.OrderEventsCount;
+
+        [HttpGet("[action]")]
+        public UInt64 FullOrdersCount() => ExchangeService.FullOrdersCount;
+
+        // ---
+
+        [HttpGet("[action]")]
+        public IEnumerable<OrderCommand> LastOrderCommands(UInt64 startIndex, uint pageSize) => ExchangeService.LastOrderCommands(pageSize > 0 && pageSize <= maxPageSize ? pageSize : maxPageSize);
+
+        [HttpGet("[action]")]
+        public IEnumerable<OrderEvent> LastOrderEvents(UInt64 startIndex, uint pageSize) => ExchangeService.LastOrderEvents(pageSize > 0 && pageSize <= maxPageSize ? pageSize : maxPageSize);
+
+        [HttpGet("[action]")]
+        public IEnumerable<Order> LastFullOrders(UInt64 startIndex, uint pageSize) => ExchangeService.LastFullOrders(pageSize > 0 && pageSize <= maxPageSize ? pageSize : maxPageSize);
+
+        // ---
+
+        [HttpGet("[action]")]
+        public IEnumerable<OrderCommand> SymbolOrderCommands(string symbol, UInt64 startIndex, uint pageSize) => ExchangeService.SymbolOrderCommands(ToSymbol(symbol), startIndex, pageSize > 0 && pageSize <= maxPageSize ? pageSize : maxPageSize);
+
+        [HttpGet("[action]")]
+        public IEnumerable<OrderEvent> SymbolOrderEvents(string symbol, UInt64 startIndex, uint pageSize) => ExchangeService.SymbolOrderEvents(ToSymbol(symbol), startIndex, pageSize > 0 && pageSize <= maxPageSize ? pageSize : maxPageSize);
+
+        [HttpGet("[action]")]
+        public IEnumerable<Order> SymbolFullOrders(string symbol, UInt64 startIndex, uint pageSize) => ExchangeService.SymbolFullOrders(ToSymbol(symbol), startIndex, pageSize > 0 && pageSize <= maxPageSize ? pageSize : maxPageSize);
+
+        // ---
+
+        [HttpGet("[action]")]
+        public UInt64 SymbolOrderCommandsCount(string symbol) => ExchangeService.SymbolOrderCommandsCount(ToSymbol(symbol));
+
+        [HttpGet("[action]")]
+        public UInt64 SymbolOrderEventsCount(string symbol) => ExchangeService.SymbolOrderEventsCount(ToSymbol(symbol));
+
+        [HttpGet("[action]")]
+        public UInt64 SymbolFullOrdersCount(string symbol) => ExchangeService.SymbolFullOrdersCount(ToSymbol(symbol));
+
+        // ---
+
+        [HttpGet("[action]")]
+        public IEnumerable<OrderCommand> SymbolLastOrderCommands(string symbol, UInt64 startIndex, uint pageSize) => 
+            ExchangeService.SymbolLastOrderCommands(ToSymbol(symbol), pageSize > 0 && pageSize <= maxPageSize ? pageSize : maxPageSize);
+
+        [HttpGet("[action]")]
+        public IEnumerable<OrderEvent> SymbolLastOrderEvents(string symbol, UInt64 startIndex, uint pageSize) => 
+            ExchangeService.SymbolLastOrderEvents(ToSymbol(symbol), pageSize > 0 && pageSize <= maxPageSize ? pageSize : maxPageSize);
+
+        [HttpGet("[action]")]
+        public IEnumerable<Order> SymbolLastFullOrders(string symbol, UInt64 startIndex, uint pageSize) => 
+            ExchangeService.SymbolLastFullOrders(ToSymbol(symbol), pageSize > 0 && pageSize <= maxPageSize ? pageSize : maxPageSize);
+
+        // ---
+
+        [HttpGet("[action]")]
+        public OrderStack OrderStack(string symbol)
         {
-            return ExchangeService.OrderCommands(startIndex, pageSize > 0 ? pageSize : 50);
+            return ExchangeService.OrderStack(ToSymbol(symbol));
         }
 
         [HttpGet("[action]")]
-        public IEnumerable<OrderEvent> OrderEvents(UInt64 startIndex, uint pageSize)
+        public string[] Symbols()
         {
-            return ExchangeService.OrderEvents(startIndex, pageSize > 0 ? pageSize : 50);
-        }
-
-        [HttpGet("[action]")]
-        public IEnumerable<Order> FullOrders(UInt64 startIndex, uint pageSize)
-        {
-            return ExchangeService.FullOrders(startIndex, pageSize > 0 ? pageSize : 50);
-        }
-
-        [HttpGet("[action]")]
-        public OrderStack OrderStack()
-        {
-            return ExchangeService.OrderStack;
+            return ExchangeService.SymbolStrings;
         }
 
         [HttpPost("[action]")]
