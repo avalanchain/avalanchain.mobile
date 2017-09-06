@@ -14,12 +14,30 @@ namespace avalanchain.Web
     [Route("api/[controller]")]
     public class ExchangeController : Controller
     {
-        private ExchangeService ExchangeService = ExchangeService.Instance;
+        private Facade.MatchingService ExchangeService = Facade.MatchingService.Instance; //ExchangeService.Instance;
 
         [HttpGet("[action]")]
-        public IEnumerable<OrderCommand> OrderCommands(int pageSize)
+        public IEnumerable<OrderCommand> OrderCommands(UInt64 startIndex, uint pageSize)
         {
-            return ExchangeService.OrderCommands(pageSize > 0 ? pageSize : 20);
+            return ExchangeService.OrderCommands(startIndex, pageSize > 0 ? pageSize : 50);
+        }
+
+        [HttpGet("[action]")]
+        public IEnumerable<OrderEvent> OrderEvents(UInt64 startIndex, uint pageSize)
+        {
+            return ExchangeService.OrderEvents(startIndex, pageSize > 0 ? pageSize : 50);
+        }
+
+        [HttpGet("[action]")]
+        public IEnumerable<Order> FullOrders(UInt64 startIndex, uint pageSize)
+        {
+            return ExchangeService.FullOrders(startIndex, pageSize > 0 ? pageSize : 50);
+        }
+
+        [HttpGet("[action]")]
+        public OrderStack OrderStack()
+        {
+            return ExchangeService.OrderStack;
         }
 
         [HttpPost("[action]")]
@@ -52,36 +70,36 @@ namespace avalanchain.Web
         //    return CreatedAtRoute("GetTodo", new { id = item.Id }, item);
         //}
 
-        // GET: api/values
-        [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
+        //// GET: api/values
+        //[HttpGet]
+        //public IEnumerable<string> Get()
+        //{
+        //    return new string[] { "value1", "value2" };
+        //}
 
-        // GET api/values/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
+        //// GET api/values/5
+        //[HttpGet("{id}")]
+        //public string Get(int id)
+        //{
+        //    return "value";
+        //}
 
-        // POST api/values
-        [HttpPost]
-        public void Post([FromBody]string value)
-        {
-        }
+        //// POST api/values
+        //[HttpPost]
+        //public void Post([FromBody]string value)
+        //{
+        //}
 
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
-        {
-        }
+        //// PUT api/values/5
+        //[HttpPut("{id}")]
+        //public void Put(int id, [FromBody]string value)
+        //{
+        //}
 
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
+        //// DELETE api/values/5
+        //[HttpDelete("{id}")]
+        //public void Delete(int id)
+        //{
+        //}
     }
 }

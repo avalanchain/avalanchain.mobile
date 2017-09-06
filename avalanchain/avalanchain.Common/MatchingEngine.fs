@@ -197,6 +197,7 @@ module MatchingEngine =
 
     let compactUnionJsonConverter =  new FSharpLu.Json.CompactUnionJsonConverter()
 
+
     let orderData = {
         OrderType = Limit 5M<price>
         Symbol = Symbol "AVC"
@@ -248,4 +249,41 @@ module MatchingEngine =
     }
 
 
+    module Facade = 
+        open System.Linq
+
+        type SymbolStack = {
+            Symbol: Symbol
+            OrderStack: OrderStack
+            FullOrders: ResizeArray<Order>
+            Events: ResizeArray<OrderEvent>
+        }
+
+        type MatchingService(priceStep) =
+            let orderCommands = ResizeArray<OrderCommand>()
+            let mutable orderStack = OrderStack.Create priceStep
+            let fullOrders = ResizeArray<Order>()
+            let events = ResizeArray<OrderEvent>()
+            let processCommand command = 
+                match command with
+                | OrderCommand.Create order -> 
+                    orderCommands.Add command
+                    let newStack, evts, orders = order |> Order.Create |> orderStack.AddOrder 
+                    orderStack <- newStack
+                    fullOrders.AddRange orders
+                    events.AddRange evts
+                | OrderCommand.Cancel oid -> failwith "Not supported yet"
+            // TODO: Remove fakes:
+            do for o in [orderData; orderData2; aorderData; aorderData2; aorderData3] do 
+                o |> OrderCommand.Create |> processCommand 
+            ///
+            
+            member __.SubmitOrder orderCommand = processCommand orderCommand
+
+            member __.OrderCommands (startIndex: uint64) (pageSize: uint32) = orderCommands.Skip(startIndex |> int).Take(pageSize |> int)
+            member __.OrderEvents (startIndex: uint64) (pageSize: uint32) = events.Skip(startIndex |> int).Take(pageSize |> int)
+            member __.FullOrders (startIndex: uint64) (pageSize: uint32) = fullOrders.Skip(startIndex |> int).Take(pageSize |> int)
+            member __.OrderStack with get() = orderStack
+
+            static member Instance = new MatchingService 1M<price>
 

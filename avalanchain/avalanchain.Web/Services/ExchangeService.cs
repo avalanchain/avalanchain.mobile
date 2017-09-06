@@ -9,32 +9,39 @@ using avalanchain.Common;
 
 namespace avalanchain.Web.Services
 {
-
+    /// <summary>
+    /// NOT USED. See Facade.MatchingService in F# project
+    /// </summary>
     public class ExchangeService
     {
-        //private object ExchangeState;
-        private LinkedList<OrderCommand> orderCommands;
+        private OrderStack orderStack;
+        private List<OrderCommand> orderCommands;
 
         public ExchangeService()
         {
-            orderCommands = new LinkedList<OrderCommand>();
-            orderCommands.AddFirst(OrderCommand.NewCreate(orderData));
+            orderStack = OrderStack.Create(1);
+            var mockCommand = OrderCommand.NewCreate(orderData);
+            orderCommands = new List<OrderCommand>
+            {
+                mockCommand
+            };
+            ProcessOrderCommand(mockCommand);
         }
 
         private void ProcessOrderCommand(OrderCommand orderCommand)
         {
-
+            //var processResult = orderStack.AddOrder(OrderCommand.NewCreate(orderCommand));
         }
 
-        public IEnumerable<OrderCommand> OrderCommands(int pageSize)
+        public IEnumerable<OrderCommand> OrderCommands(UInt64 startIndex, uint pageSize)
         {
             //orderCommands.AddFirst
-            return orderCommands.Take(pageSize);
+            return orderCommands.Skip((int) startIndex).Take((int) pageSize);
         }
 
         public void SubmitOrder(OrderCommand orderCommand)
         {
-            orderCommands.AddFirst(orderCommand);
+            orderCommands.Add(orderCommand);
             ProcessOrderCommand(orderCommand); // Add error handling
         }
 
