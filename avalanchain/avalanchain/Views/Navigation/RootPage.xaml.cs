@@ -51,7 +51,7 @@ namespace avalanchain
 
 		private void InitializeMasterDetail(){
 			Master = new MainMenuPage (new NavigationService(Navigation, LaunchSampleInDetail));
-			Detail = NavigationPageHelper.Create(new Wallets());//DashboardFlatPage()
+			Detail = NavigationPageHelper.Create(new Accounts());//DashboardFlatPage()
         }
 
 		private void LaunchSampleInDetail(Page page, bool animated){

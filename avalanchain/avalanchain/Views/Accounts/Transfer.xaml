@@ -36,7 +36,7 @@
                         Style="{DynamicResource BaseBackgroundColor}"
                         VerticalOptions="FillAndExpand">
                         <Label
-                            WidthRequest="47"
+                            WidthRequest="50"
                             Text="From :"
                             FontAttributes="Bold"
                             VerticalTextAlignment="Center" />

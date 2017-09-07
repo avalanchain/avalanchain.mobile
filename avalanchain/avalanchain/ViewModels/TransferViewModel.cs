@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -152,8 +153,8 @@ namespace avalanchain.ViewModels
                     return;
                 }
                 var fPrice = AccountsService.GetCurrencyPrice(from, Prices);
-                var fromPrice = decimal.Parse(fPrice);
-                var receivePrice = decimal.Parse(AccountsService.GetCurrencyPrice(receive, Prices));
+                var fromPrice = decimal.Parse(fPrice, CultureInfo.InvariantCulture);
+                var receivePrice = decimal.Parse(AccountsService.GetCurrencyPrice(receive, Prices), CultureInfo.InvariantCulture);
 
 
                 if (fromPrice != 0 && receivePrice != 0)
@@ -259,8 +260,8 @@ namespace avalanchain.ViewModels
         {
             CurrencyType from = From.Currency;
             CurrencyType receive = To.Currency;
-            var fromPrice = decimal.Parse(AccountsService.GetCurrencyPrice(from, Prices));
-            var receivePrice = decimal.Parse(AccountsService.GetCurrencyPrice(receive, Prices));
+            var fromPrice = decimal.Parse(AccountsService.GetCurrencyPrice(from, Prices), CultureInfo.InvariantCulture);
+            var receivePrice = decimal.Parse(AccountsService.GetCurrencyPrice(receive, Prices), CultureInfo.InvariantCulture);
 
 
             if (fromPrice != 0 && receivePrice != 0)

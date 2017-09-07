@@ -19,10 +19,6 @@ namespace avalanchain
         public WalletsViewModel()
         {
             LoadData();
-            BtcToEur = "2183.22";
-            BtcToGbp = "1953.09";
-            BtcToUsd = "2515.21";
-
             //Device.StartTimer(TimeSpan.FromSeconds(60), () =>
             //{
             //    LoadData();
@@ -106,6 +102,10 @@ namespace avalanchain
 
         private async void LoadData()
         {
+            BtcToEur = SampleData.StaticCryptocurrencyPrices.EUR;
+            BtcToGbp = SampleData.StaticCryptocurrencyPrices.GBP;
+            BtcToUsd = SampleData.StaticCryptocurrencyPrices.USD;
+
             var cp = await SampleData.CryptocurrencyPrices;
             BtcToEur = cp.EUR;
             BtcToGbp = cp.GBP;

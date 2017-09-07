@@ -14,13 +14,21 @@ namespace avalanchain
     {
         public Transfer(Account account, bool isFrom)
         {
-            InitializeComponent();
-            BindingContext = new TransferViewModel(account, isFrom);
+            InitPage(account, isFrom, true);
+            //InitializeComponent();
+            //BindingContext = new TransferViewModel(account, isFrom);
         }
         public Transfer()
         {
+            InitPage(null, false, false);
+            //InitializeComponent();
+            //BindingContext = new TransferViewModel();
+        }
+
+        public void InitPage(Account account, bool isFrom, bool isFirst)
+        {
             InitializeComponent();
-            BindingContext = new TransferViewModel();
+            BindingContext = isFirst ? new TransferViewModel(account, isFrom) : new TransferViewModel();
         }
         private TransferViewModel ViewModel => BindingContext as TransferViewModel;
         protected override async void OnAppearing()
@@ -135,9 +143,9 @@ namespace avalanchain
             }
         }
 
-        public void ShowMessages(bool isShow, string message)
+        public async Task ShowMessages(bool isShow, string message)
         {
-
+            await DisplayAlert("Success!", "Transaction execute successfully :)", "OK");
         }
 
 
