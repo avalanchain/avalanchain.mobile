@@ -763,9 +763,8 @@
     <PackageReference Include="OxyPlot.Xamarin.Forms" Version="1.0.0" />
     <PackageReference Include="Plugin.Share" Version="5.0.0" />
     <PackageReference Include="RestClient.NET" Version="0.5.0" />
-    <PackageReference Include="Syncfusion.Xamarin.SfChart" Version="15.2.0.43" />
-    <PackageReference Include="UXDivers.Artina.Shared" Version="2.0.52" />
-    <PackageReference Include="UXDivers.Artina.Shared.Base" Version="2.0.52" />
+    <PackageReference Include="UXDivers.Artina.Shared" Version="2.0.60" />
+    <PackageReference Include="UXDivers.Artina.Shared.Base" Version="2.0.60" />
     <PackageReference Include="UXDivers.Effects" Version="0.6.0" />
     <PackageReference Include="UXDivers.GorillaPlayer.SDK" Version="1.0.0.15" />
     <PackageReference Include="Xamarin.FFImageLoading" Version="2.2.10-pre-446" />

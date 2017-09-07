@@ -131,18 +131,6 @@
       <HintPath>..\packages\SocketIoClientDotNet.0.9.13\lib\monoandroid10\SocketIoClientDotNet.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Syncfusion.SfChart.Android, Version=15.2451.0.43, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
-      <HintPath>..\packages\Syncfusion.Xamarin.SfChart.Android.15.2.0.43\lib\MonoAndroid10\Syncfusion.SfChart.Android.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Syncfusion.SfChart.XForms, Version=15.2451.0.43, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Syncfusion.Xamarin.SfChart.15.2.0.43\lib\MonoAndroid10\Syncfusion.SfChart.XForms.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Syncfusion.SfChart.XForms.Android, Version=15.2451.0.43, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Syncfusion.Xamarin.SfChart.15.2.0.43\lib\MonoAndroid10\Syncfusion.SfChart.XForms.Android.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
@@ -150,6 +138,18 @@
     <Reference Include="mscorlib" />
     <Reference Include="TestFairy.Android, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\TestFairy.Xamarin.2.1.5\lib\MonoAndroid\TestFairy.Android.dll</HintPath>
+    </Reference>
+    <Reference Include="UXDivers.Artina.Shared, Version=2.0.60.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\UXDivers.Artina.Shared.2.0.60\lib\MonoAndroid10\UXDivers.Artina.Shared.dll</HintPath>
+    </Reference>
+    <Reference Include="UXDivers.Artina.Shared.Base, Version=2.0.60.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\UXDivers.Artina.Shared.Base.2.0.60\lib\MonoAndroid10\UXDivers.Artina.Shared.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="UXDivers.Artina.Shared.Base.Droid, Version=2.0.60.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\UXDivers.Artina.Shared.Base.2.0.60\lib\MonoAndroid10\UXDivers.Artina.Shared.Base.Droid.dll</HintPath>
+    </Reference>
+    <Reference Include="UXDivers.Artina.Shared.Droid, Version=2.0.60.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\UXDivers.Artina.Shared.2.0.60\lib\MonoAndroid10\UXDivers.Artina.Shared.Droid.dll</HintPath>
     </Reference>
     <Reference Include="UXDivers.Gorilla.SDK, Version=1.0.0.15, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\UXDivers.GorillaPlayer.SDK.1.0.0.15\lib\MonoAndroid10\UXDivers.Gorilla.SDK.dll</HintPath>
@@ -207,18 +207,6 @@
       <HintPath>..\packages\Com.Airbnb.Xamarin.Forms.Lottie.1.0.0.7\lib\MonoAndroid41\Lottie.Forms.Droid.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="UXDivers.Artina.Shared.Base">
-      <HintPath>..\packages\UXDivers.Artina.Shared.Base.2.0.52\lib\MonoAndroid10\UXDivers.Artina.Shared.Base.dll</HintPath>
-    </Reference>
-    <Reference Include="UXDivers.Artina.Shared.Base.Droid">
-      <HintPath>..\packages\UXDivers.Artina.Shared.Base.2.0.52\lib\MonoAndroid10\UXDivers.Artina.Shared.Base.Droid.dll</HintPath>
-    </Reference>
-    <Reference Include="UXDivers.Artina.Shared">
-      <HintPath>..\packages\UXDivers.Artina.Shared.2.0.52\lib\MonoAndroid10\UXDivers.Artina.Shared.dll</HintPath>
-    </Reference>
-    <Reference Include="UXDivers.Artina.Shared.Droid">
-      <HintPath>..\packages\UXDivers.Artina.Shared.2.0.52\lib\MonoAndroid10\UXDivers.Artina.Shared.Droid.dll</HintPath>
-    </Reference>
     <Reference Include="Xamarin.Forms.Core, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Xamarin.Forms.2.3.4.247\lib\MonoAndroid10\Xamarin.Forms.Core.dll</HintPath>
       <Private>True</Private>
@@ -676,12 +664,13 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-xxhdpi\exchange.png" />
   </ItemGroup>
-  <Import Project="..\packages\UXDivers.Artina.Shared.2.0.52\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\UXDivers.Artina.Shared.targets" Condition="Exists('..\packages\UXDivers.Artina.Shared.2.0.52\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\UXDivers.Artina.Shared.targets')" />
   <Import Project="..\packages\Xamarin.Forms.2.3.4.247\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.3.4.247\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Xamarin.Forms.2.3.4.247\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.Forms.2.3.4.247\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets'))" />
+    <Error Condition="!Exists('..\packages\UXDivers.Artina.Shared.2.0.60\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\UXDivers.Artina.Shared.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\UXDivers.Artina.Shared.2.0.60\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\UXDivers.Artina.Shared.targets'))" />
   </Target>
+  <Import Project="..\packages\UXDivers.Artina.Shared.2.0.60\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\UXDivers.Artina.Shared.targets" Condition="Exists('..\packages\UXDivers.Artina.Shared.2.0.60\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\UXDivers.Artina.Shared.targets')" />
 </Project>

@@ -19,7 +19,6 @@ using UXDivers.Artina.Shared;
 using UXDivers.Artina.Shared.Droid;
 
 using FFImageLoading.Forms.Droid;
-using Syncfusion.SfChart.XForms.Droid;
 using Com.Testfairy;
 using Card.IO;
 
