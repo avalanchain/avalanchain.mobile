@@ -4,8 +4,23 @@
     <TargetFramework>netstandard1.6</TargetFramework>
   </PropertyGroup>
 
+
   <ItemGroup>
+    <Compile Include="FSharpLu.Json.Helpers.fs" />
+    <Compile Include="FSharpLu.Json.WithFunctor.fs" />
+    <Compile Include="FSharpLu.Json.Default.fs" />
+    <Compile Include="FSharpLu.Json.Compact.fs" />
+    <Compile Include="FSharpLu.Json.BackwardCompatible.fs" />
+    <None Include="FSharpLu.Json.Script.fsx" />
+
     <Compile Include="Library.fs" />
+    <Compile Include="MatchingEngine.fs" />
+    <Compile Include="PaymentNetwork.fs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="jose-jwt" Version="2.4.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
   </ItemGroup>
 
   <ItemGroup>

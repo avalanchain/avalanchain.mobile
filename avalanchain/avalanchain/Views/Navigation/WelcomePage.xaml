@@ -4,7 +4,7 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:artina="clr-namespace:UXDivers.Artina.Shared;assembly=UXDivers.Artina.Shared"
-    xmlns:local="clr-namespace:avalanchain;assembly=avalanchain"
+    xmlns:local="clr-namespace:avalanchain;assembly=avalanchain.Xamarin"
    
     BackgroundImage="{DynamicResource WelcomeBackgroundImage}">
 
