@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using avalanchain.Web.Services;
 using static avalanchain.Common.MatchingEngine;
 using Microsoft.FSharp.Core;
+using Microsoft.FSharp.Collections;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -19,7 +20,7 @@ namespace avalanchain.Web
 
         private Symbol ToSymbol(string symbol) => string.IsNullOrWhiteSpace(symbol) ? throw new ArgumentException("Invalid Symbol string") : Symbol.NewSymbol(symbol);
 
-        private Facade.MatchingService ExchangeService = Facade.MatchingService.Instance; //ExchangeService.Instance;
+        private static Facade.MatchingService ExchangeService = Facade.MatchingService.Instance; //ExchangeService.Instance;
 
         [HttpPost("[action]")]
         //[ProducesResponseType(typeof(TodoItem), 201)]
@@ -58,6 +59,18 @@ namespace avalanchain.Web
         public FSharpOption<Order> GetOrder(Guid orderID)
         {
             return ExchangeService.OrderById(orderID);
+        }
+
+        [HttpGet("[action]")]
+        public string GetOrder2(string orderID)
+        {
+            return ExchangeService.OrderById2(orderID);
+        }
+
+        [HttpGet("[action]")]
+        public FSharpMap<Guid, Order> GetOrders()
+        {
+            return ExchangeService.Orders();
         }
 
         // ---
