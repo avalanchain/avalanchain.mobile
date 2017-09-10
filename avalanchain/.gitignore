@@ -189,3 +189,5 @@ FakesAssemblies/
 .paket/paket.exe
 
 .vs
+
+.idea

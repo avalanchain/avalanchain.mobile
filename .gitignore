@@ -186,3 +186,5 @@ FakesAssemblies/
 
 .DS_Store
 avalanchain/.vs/avalanchain/v15/sqlite3/storage.ide
+avalanchain/.idea/.idea.avalanchain/.idea/workspace.xml
+avalanchain/.idea/.idea.avalanchain/riderModule.iml
