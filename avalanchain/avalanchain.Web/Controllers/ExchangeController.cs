@@ -43,13 +43,13 @@ namespace avalanchain.Web
         // ---
 
         [HttpGet("[action]")]
-        public IEnumerable<OrderCommand> LastOrderCommands(UInt64 startIndex, uint pageSize) => ExchangeService.LastOrderCommands(pageSize > 0 && pageSize <= maxPageSize ? pageSize : maxPageSize);
+        public IEnumerable<OrderCommand> LastOrderCommands(uint pageSize) => ExchangeService.LastOrderCommands(pageSize > 0 && pageSize <= maxPageSize ? pageSize : maxPageSize);
 
         [HttpGet("[action]")]
-        public IEnumerable<OrderEvent> LastOrderEvents(UInt64 startIndex, uint pageSize) => ExchangeService.LastOrderEvents(pageSize > 0 && pageSize <= maxPageSize ? pageSize : maxPageSize);
+        public IEnumerable<OrderEvent> LastOrderEvents(uint pageSize) => ExchangeService.LastOrderEvents(pageSize > 0 && pageSize <= maxPageSize ? pageSize : maxPageSize);
 
         [HttpGet("[action]")]
-        public IEnumerable<Order> LastFullOrders(UInt64 startIndex, uint pageSize) => ExchangeService.LastFullOrders(pageSize > 0 && pageSize <= maxPageSize ? pageSize : maxPageSize);
+        public IEnumerable<Order> LastFullOrders(uint pageSize) => ExchangeService.LastFullOrders(pageSize > 0 && pageSize <= maxPageSize ? pageSize : maxPageSize);
 
         // ---
 
@@ -76,15 +76,15 @@ namespace avalanchain.Web
         // ---
 
         [HttpGet("[action]")]
-        public IEnumerable<OrderCommand> SymbolLastOrderCommands(string symbol, UInt64 startIndex, uint pageSize) => 
+        public IEnumerable<OrderCommand> SymbolLastOrderCommands(string symbol, uint pageSize) => 
             ExchangeService.SymbolLastOrderCommands(ToSymbol(symbol), pageSize > 0 && pageSize <= maxPageSize ? pageSize : maxPageSize);
 
         [HttpGet("[action]")]
-        public IEnumerable<OrderEvent> SymbolLastOrderEvents(string symbol, UInt64 startIndex, uint pageSize) => 
+        public IEnumerable<OrderEvent> SymbolLastOrderEvents(string symbol, uint pageSize) => 
             ExchangeService.SymbolLastOrderEvents(ToSymbol(symbol), pageSize > 0 && pageSize <= maxPageSize ? pageSize : maxPageSize);
 
         [HttpGet("[action]")]
-        public IEnumerable<Order> SymbolLastFullOrders(string symbol, UInt64 startIndex, uint pageSize) => 
+        public IEnumerable<Order> SymbolLastFullOrders(string symbol, uint pageSize) => 
             ExchangeService.SymbolLastFullOrders(ToSymbol(symbol), pageSize > 0 && pageSize <= maxPageSize ? pageSize : maxPageSize);
 
         // ---

@@ -24,10 +24,10 @@ module MatchingEngine =
     type TradingAccount = TradingAccount of string
 
     type OrderType = 
-        // | Market 
-        | Limit of Price
-        // | Stop 
-        // | StopLimit
+    // | Market 
+    | Limit of Price
+    // | Stop 
+    // | StopLimit
 
     [<RequireQualifiedAccess>]
     type OrderCommand = 
