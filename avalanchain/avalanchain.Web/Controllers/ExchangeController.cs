@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using avalanchain.Web.Services;
 using static avalanchain.Common.MatchingEngine;
+using Microsoft.FSharp.Core;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -19,6 +20,47 @@ namespace avalanchain.Web
         private Symbol ToSymbol(string symbol) => string.IsNullOrWhiteSpace(symbol) ? throw new ArgumentException("Invalid Symbol string") : Symbol.NewSymbol(symbol);
 
         private Facade.MatchingService ExchangeService = Facade.MatchingService.Instance; //ExchangeService.Instance;
+
+        [HttpPost("[action]")]
+        //[ProducesResponseType(typeof(TodoItem), 201)]
+        //[ProducesResponseType(typeof(TodoItem), 400)]
+        public IActionResult SubmitOrder([FromBody] OrderCommand orderCommand)
+        {
+            if (orderCommand == null)
+            {
+                return BadRequest();
+            }
+            ExchangeService.SubmitOrder(orderCommand);
+            return Ok();
+        }
+
+        // ---
+
+        [HttpGet("[action]")]
+        public OrderStack OrderStack(string symbol)
+        {
+            return ExchangeService.OrderStack(ToSymbol(symbol));
+        }
+
+        [HttpGet("[action]")]
+        public string MainSymbol()
+        {
+            return ExchangeService.MainSymbol.Item;
+        }
+
+        [HttpGet("[action]")]
+        public string[] Symbols()
+        {
+            return ExchangeService.SymbolStrings;
+        }
+
+        [HttpGet("[action]")]
+        public FSharpOption<Order> GetOrder(Guid orderID)
+        {
+            return ExchangeService.OrderById(orderID);
+        }
+
+        // ---
 
         [HttpGet("[action]")]
         public IEnumerable<OrderCommand> OrderCommands(UInt64 startIndex, uint pageSize) => ExchangeService.OrderCommands(startIndex, pageSize > 0 && pageSize <= maxPageSize ? pageSize : maxPageSize);
@@ -87,32 +129,6 @@ namespace avalanchain.Web
         public IEnumerable<Order> SymbolLastFullOrders(string symbol, uint pageSize) => 
             ExchangeService.SymbolLastFullOrders(ToSymbol(symbol), pageSize > 0 && pageSize <= maxPageSize ? pageSize : maxPageSize);
 
-        // ---
-
-        [HttpGet("[action]")]
-        public OrderStack OrderStack(string symbol)
-        {
-            return ExchangeService.OrderStack(ToSymbol(symbol));
-        }
-
-        [HttpGet("[action]")]
-        public string[] Symbols()
-        {
-            return ExchangeService.SymbolStrings;
-        }
-
-        [HttpPost("[action]")]
-        //[ProducesResponseType(typeof(TodoItem), 201)]
-        //[ProducesResponseType(typeof(TodoItem), 400)]
-        public IActionResult SubmitOrder([FromBody] OrderCommand orderCommand)
-        {
-            if (orderCommand == null)
-            {
-                return BadRequest();
-            }
-            ExchangeService.SubmitOrder(orderCommand);
-            return Ok();
-        }
 
 
         //[HttpPost]

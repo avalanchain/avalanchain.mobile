@@ -3,7 +3,8 @@
 module MatchingEngine = 
 
     open System
-    //open System.Collections.Generic
+    open System.Collections.Generic
+    open System.Collections.Concurrent
     //open FSharpx.Collections
 
     type MatchType = | Partial | Full
@@ -111,37 +112,31 @@ module MatchingEngine =
 
     type PriceBucket = {
         Price: Price
-        Orders: Map<OrderID, Order>
-        OrderQueue: OrderID list
+        OrderQueue: Order list
     }
     with 
-        member __.Update order = { __ with Orders = __.Orders |> Map.add order.ID order }
-        member __.PopHead() = 
-            let head = __.OrderQueue.Head
-            { __ with   Orders = __.Orders.Remove head
-                        OrderQueue = __.OrderQueue.Tail  }
+        //member __.Update order = { __ with Orders = __.Orders |> Map.add order.ID order }
+        member __.PopHead() = { __ with OrderQueue = __.OrderQueue.Tail  }
         member __.MatchFIFO order = 
-            let rec matchFIFO o bucket events fullOrders =
+            let rec matchFIFO o bucket events orders =
                 if bucket.OrderQueue.IsEmpty || o.RemainingQuantity <= 0M<qty> then
-                    o, bucket, o.RemainingQuantity, events, fullOrders
+                    o, bucket, o.RemainingQuantity, events, orders
                 else 
-                    let head = bucket.Orders.[bucket.OrderQueue.Head]
+                    let head = bucket.OrderQueue.Head
                     let remaining = min o.RemainingQuantity head.RemainingQuantity
                     let (head, e1), (o, e2) = Order.Allocate head o remaining
-                    let bucket = bucket.Update head
                     let events = e1 :: e2 :: events
                     if o.FullyAllocated then 
                         if head.FullyAllocated then 
-                            o, (bucket.PopHead()), 0M<qty>, events, head :: fullOrders
-                        else o, bucket, 0M<qty>, events, fullOrders
+                            o, (bucket.PopHead()), 0M<qty>, events, head :: orders
+                        else o, bucket, 0M<qty>, events, head :: orders
                     else
-                        matchFIFO o (bucket.PopHead()) events (head :: fullOrders)
+                        matchFIFO o (bucket.PopHead()) events (head :: orders)
             matchFIFO order __ [] []
 
         static member Create (order: Order) = 
             {   PriceBucket.Price = order.Price 
-                Orders = [ order.ID, order ] |> Map.ofList
-                OrderQueue = [ order.ID ] }
+                OrderQueue = [ order ] }
 
     let rec private insertOrder (op: Price -> Price -> bool) order skipped remaining = 
         match remaining with
@@ -150,25 +145,24 @@ module MatchingEngine =
             let sk = skipped |> List.rev
             sk @ pb
         | pb :: xs ->
-            if pb.Price = order.Price then  [{ pb with  Orders = pb.Orders.Add(order.ID, order)
-                                                        OrderQueue = pb.OrderQueue @ [ order.ID ] }]
+            if pb.Price = order.Price then  [{ pb with OrderQueue = pb.OrderQueue @ [ order ] }]
             elif (op) pb.Price order.Price then insertOrder op order (pb :: skipped) xs
             else (skipped |> List.rev) @ ( (PriceBucket.Create order) :: remaining)
 
-    let rec private matchOrder (op: Price -> Price -> bool) (order: Order) (matched: PriceBucket list) events fullOrders (remaining: PriceBucket list) = 
+    let rec private matchOrder (op: Price -> Price -> bool) (order: Order) (matched: PriceBucket list) events orders (remaining: PriceBucket list) = 
         match remaining with
-        | [] -> order, matched, events, fullOrders, remaining
+        | [] -> order, matched, events, orders, remaining
         | pb :: xs ->
             if op pb.Price order.Price then 
                 let order, bucket, remainingQuantity, ets, fOrders = pb.MatchFIFO order
                 let events = ets @ events
-                let fullOrders = fOrders @ fullOrders
+                let orders = fOrders @ orders
                 let matched = bucket :: matched
                 let remaining = xs
-                if remainingQuantity > 0M<qty> then matchOrder op order matched events fullOrders remaining
-                else order, matched, events, fullOrders, remaining
+                if remainingQuantity > 0M<qty> then matchOrder op order matched events orders remaining
+                else order, matched, events, orders, remaining
             else 
-                order, matched, events, fullOrders, remaining
+                order, matched, events, orders, remaining
 
 
     type OrderStack = {
@@ -275,18 +269,22 @@ module MatchingEngine =
             //orderStack = OrderStack.Create priceStep
             let fullOrders = ResizeArray<Order>()
             let events = ResizeArray<OrderEvent>()
+            let orders = ConcurrentDictionary<OrderID, Order>()
             let processCommand command = 
                 match command with
                 | OrderCommand.Create order -> 
                     orderCommands.Add command
                     let symbolStack = findSymbolStack order.Symbol
-                    let newOrderStack, evts, orders = order |> Order.Create |> symbolStack.OrderStack.AddOrder 
+                    let newOrderStack, evts, updatedOrders = order |> Order.Create |> symbolStack.OrderStack.AddOrder 
                     let newSymbolStack = { symbolStack with OrderStack = newOrderStack }
+                    for o in updatedOrders do 
+                        orders.AddOrUpdate(o.ID, o,  Func<_,_,_>(fun _ _ -> o)) |> ignore
+                        if o.FullyAllocated then 
+                            newSymbolStack.FullOrders.Add o
+                            fullOrders.Add o
                     newSymbolStack.Commands.Add command
                     newSymbolStack.Events.AddRange evts
-                    newSymbolStack.FullOrders.AddRange orders
                     events.AddRange evts
-                    fullOrders.AddRange orders
                     symbolStackMap <- symbolStackMap.Add (newSymbolStack.Symbol, newSymbolStack)
                 | OrderCommand.Cancel oid -> failwith "Not supported yet"
             
@@ -304,7 +302,8 @@ module MatchingEngine =
             
             member __.SubmitOrder orderCommand = processCommand orderCommand
 
-            member __.Symbols with get() = symbolStackMap |> Map.toSeq |> Seq.map fst
+            member __.MainSymbol = Symbol "ICODAO"
+            member __.Symbols with get() = symbolStackMap |> Map.toSeq |> Seq.map fst |> Seq.filter(fun s -> s <> __.MainSymbol)
             member __.SymbolStrings = __.Symbols |> Seq.map(fun (Symbol s) -> s) |> Seq.toArray
             member __.OrderStack symbol = (findSymbolStack symbol).OrderStack
 
@@ -331,6 +330,13 @@ module MatchingEngine =
             member __.SymbolOrderCommandsCount symbol = (symbol |> findSymbolStack).Commands.LongCount() |> uint64 
             member __.SymbolOrderEventsCount symbol = (symbol |> findSymbolStack).Events.LongCount() |> uint64 
             member __.SymbolFullOrdersCount symbol = (symbol |> findSymbolStack).FullOrders.LongCount() |> uint64
+
+            member __.OrderById orderID = 
+                printfn "Orders:"
+                for v in orders.Values do printfn "Val: %A" v
+                match orders.TryGetValue orderID with
+                                            | true, o -> Some o
+                                            | _ -> None
 
             static member Instance = new MatchingService 1M<price>
 
