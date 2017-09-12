@@ -3,6 +3,7 @@
 module MatchingEngine = 
 
     open System
+    open System.Threading
     open System.Collections.Generic
     open System.Collections.Concurrent
     //open FSharpx.Collections
@@ -262,6 +263,7 @@ module MatchingEngine =
         type MatchingService(priceStep) =
             let orderCommands = ResizeArray<OrderCommand>()
             let mutable symbolStackMap = Map.empty<Symbol, SymbolStack>
+            let mutable orders = Map.empty<OrderID, Order>
             let findSymbolStack symbol = match symbolStackMap.TryFind symbol with
                                             | Some ss -> ss
                                             | None -> SymbolStack.Create symbol priceStep
@@ -269,7 +271,6 @@ module MatchingEngine =
             //orderStack = OrderStack.Create priceStep
             let fullOrders = ResizeArray<Order>()
             let events = ResizeArray<OrderEvent>()
-            let orders = ConcurrentDictionary<OrderID, Order>()
             let processCommand command = 
                 match command with
                 | OrderCommand.Create order -> 
@@ -278,7 +279,7 @@ module MatchingEngine =
                     let newOrderStack, evts, updatedOrders = order |> Order.Create |> symbolStack.OrderStack.AddOrder 
                     let newSymbolStack = { symbolStack with OrderStack = newOrderStack }
                     for o in updatedOrders do 
-                        orders.AddOrUpdate(o.ID, o,  Func<_,_,_>(fun _ _ -> o)) |> ignore
+                        orders <- orders.Add(o.ID, o)
                         if o.FullyAllocated then 
                             newSymbolStack.FullOrders.Add o
                             fullOrders.Add o
@@ -298,45 +299,48 @@ module MatchingEngine =
             let getLastPage (lst: ResizeArray<_>) (pageSize: uint32) = 
                 let pageSizeI = pageSize |> int
                 if pageSizeI > lst.Count then lst.ToArray()
-                else lst.Skip(lst.Count - pageSizeI - 1).Take(pageSizeI).ToArray()
+                else lst.Skip(lst.Count - pageSizeI).Take(pageSizeI).ToArray()
+            
+            let so = new obj()
             
             member __.SubmitOrder orderCommand = processCommand orderCommand
 
             member __.MainSymbol = Symbol "ICODAO"
-            member __.Symbols with get() = symbolStackMap |> Map.toSeq |> Seq.map fst |> Seq.filter(fun s -> s <> __.MainSymbol)
-            member __.SymbolStrings = __.Symbols |> Seq.map(fun (Symbol s) -> s) |> Seq.toArray
-            member __.OrderStack symbol = (findSymbolStack symbol).OrderStack
+            member __.Symbols with get() = lock so (fun () -> symbolStackMap |> Map.toSeq |> Seq.map fst |> Seq.filter(fun s -> s <> __.MainSymbol))
+            member __.SymbolStrings = lock so (fun () -> __.Symbols |> Seq.map(fun (Symbol s) -> s) |> Seq.toArray)
+            member __.OrderStack symbol = lock so (fun () -> (findSymbolStack symbol).OrderStack)
 
-            member __.OrderCommands startIndex pageSize = getPage orderCommands startIndex pageSize
-            member __.OrderEvents startIndex pageSize = getPage events startIndex pageSize
-            member __.FullOrders startIndex pageSize = getPage fullOrders startIndex pageSize
+            member __.OrderCommands startIndex pageSize = lock so (fun () -> getPage orderCommands startIndex pageSize)
+            member __.OrderEvents startIndex pageSize = lock so (fun () -> getPage events startIndex pageSize)
+            member __.FullOrders startIndex pageSize = lock so (fun () -> getPage fullOrders startIndex pageSize)
 
-            member __.LastOrderCommands pageSize = getLastPage orderCommands pageSize
-            member __.LastOrderEvents pageSize = getLastPage events pageSize
-            member __.LastFullOrders pageSize = getLastPage fullOrders pageSize
+            member __.LastOrderCommands pageSize = lock so (fun () -> getLastPage orderCommands pageSize)
+            member __.LastOrderEvents pageSize = lock so (fun () -> getLastPage events pageSize)
+            member __.LastFullOrders pageSize = lock so (fun () -> getLastPage fullOrders pageSize)
 
-            member __.OrderCommandsCount with get() = orderCommands.LongCount() |> uint64
-            member __.OrderEventsCount with get() = events.LongCount() |> uint64
-            member __.FullOrdersCount with get() = fullOrders.LongCount() |> uint64
+            member __.OrderCommandsCount with get() = lock so (fun () -> orderCommands.LongCount() |> uint64)
+            member __.OrderEventsCount with get() = lock so (fun () -> events.LongCount() |> uint64)
+            member __.FullOrdersCount with get() = lock so (fun () -> fullOrders.LongCount() |> uint64)
 
-            member __.SymbolOrderCommands symbol startIndex pageSize = getPage (symbol |> findSymbolStack).Commands startIndex pageSize
-            member __.SymbolOrderEvents symbol startIndex pageSize = getPage (symbol |> findSymbolStack).Events startIndex pageSize
-            member __.SymbolFullOrders symbol startIndex pageSize = getPage (symbol |> findSymbolStack).FullOrders startIndex pageSize
+            member __.SymbolOrderCommands symbol startIndex pageSize = lock so (fun () -> getPage (symbol |> findSymbolStack).Commands startIndex pageSize)
+            member __.SymbolOrderEvents symbol startIndex pageSize = lock so (fun () -> getPage (symbol |> findSymbolStack).Events startIndex pageSize)
+            member __.SymbolFullOrders symbol startIndex pageSize = lock so (fun () -> getPage (symbol |> findSymbolStack).FullOrders startIndex pageSize)
 
-            member __.SymbolLastOrderCommands symbol pageSize = getLastPage (symbol |> findSymbolStack).Commands pageSize
-            member __.SymbolLastOrderEvents symbol pageSize = getLastPage (symbol |> findSymbolStack).Events pageSize
-            member __.SymbolLastFullOrders symbol pageSize = getLastPage (symbol |> findSymbolStack).FullOrders pageSize
+            member __.SymbolLastOrderCommands symbol pageSize = lock so (fun () -> getLastPage (symbol |> findSymbolStack).Commands pageSize)
+            member __.SymbolLastOrderEvents symbol pageSize = lock so (fun () -> getLastPage (symbol |> findSymbolStack).Events pageSize)
+            member __.SymbolLastFullOrders symbol pageSize = lock so (fun () -> getLastPage (symbol |> findSymbolStack).FullOrders pageSize)
 
-            member __.SymbolOrderCommandsCount symbol = (symbol |> findSymbolStack).Commands.LongCount() |> uint64 
-            member __.SymbolOrderEventsCount symbol = (symbol |> findSymbolStack).Events.LongCount() |> uint64 
-            member __.SymbolFullOrdersCount symbol = (symbol |> findSymbolStack).FullOrders.LongCount() |> uint64
+            member __.SymbolOrderCommandsCount symbol = lock so (fun () -> (symbol |> findSymbolStack).Commands.LongCount() |> uint64)
+            member __.SymbolOrderEventsCount symbol = lock so (fun () -> (symbol |> findSymbolStack).Events.LongCount() |> uint64) 
+            member __.SymbolFullOrdersCount symbol = lock so (fun () -> (symbol |> findSymbolStack).FullOrders.LongCount() |> uint64)
 
-            member __.OrderById orderID = 
-                printfn "Orders:"
-                for v in orders.Values do printfn "Val: %A" v
-                match orders.TryGetValue orderID with
-                                            | true, o -> Some o
-                                            | _ -> None
+            member __.Orders() = lock so (fun () -> orders)
+            member __.OrderById orderID = lock so (fun () -> orders |> Map.tryFind orderID)
+                //match orders.TryGetValue orderID with
+                //                            | true, o -> Some o
+                //                            | _ -> None
 
-            static member Instance = new MatchingService 1M<price>
+            member __.OrderById2 (orderID: string) = lock so (fun () -> orders |> Map.toArray |> Array.map (fun kv -> (fst kv).ToString()) |> fun a -> orderID + " | " + String.Join(",", a))
+
+            static member Instance = MatchingService 1M<price>
 

@@ -12,6 +12,7 @@
     <Compile Include="FSharpLu.Json.Compact.fs" />
     <Compile Include="FSharpLu.Json.BackwardCompatible.fs" />
     <None Include="FSharpLu.Json.Script.fsx" />
+    <None Include="PG.fsx" />
 
     <Compile Include="Library.fs" />
     <Compile Include="MatchingEngine.fs" />
