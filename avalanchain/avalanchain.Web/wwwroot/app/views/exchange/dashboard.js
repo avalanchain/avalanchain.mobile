@@ -9,18 +9,18 @@
         var vm = this;
         vm.info = 'Exchange dashboard';
 
-        $scope.datayahoo = [];
-        $scope.users = [1, 2, 3, 4];
-        $scope.amount1 = [1000, 2100, 3330, 400];
-        $scope.amount2 = [1100, 2200, 133000, 1400];
+        //$scope.datayahoo = [];
+        //$scope.users = [1, 2, 3, 4];
+        //$scope.amount1 = [1000, 2100, 3330, 400];
+        //$scope.amount2 = [1100, 2200, 133000, 1400];
         vm.orders = [];
         $scope.ordersPage = 1;
         $scope.isEdit = false;
 
-        dataservice.getPrices().then(function (data) {
-            if (data.status === 200)
-                $scope.prices = data.data;
-        });
+        //dataservice.getPrices().then(function (data) {
+        //    if (data.status === 200)
+        //        $scope.prices = data.data;
+        //});
         setInterval(function updateRandom() {
             if (!$scope.isEdit)
                 getData();
@@ -31,6 +31,8 @@
                 symbol: symbol
             });
         }
+
+        
         //var masteruser = {};
         //$scope.edit = function (user) {
         //    masteruser = angular.copy(user);
@@ -98,7 +100,6 @@
             fullOrdersCount();
         }
     };
-
 
 
 

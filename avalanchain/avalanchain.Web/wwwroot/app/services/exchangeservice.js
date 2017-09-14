@@ -13,6 +13,9 @@
     function exchangeservice($http, $q, common, dataProvider, $filter, $timeout) {
         var getLogFn = common.logger.getLogFn;
         var log = getLogFn('exchangeservice');
+        var logger = common.logger.getLogFn('exchangeservice');
+        var logError = common.logger.getLogFn('exchangeservice', 'error');
+        var logWarning = common.logger.getLogFn('exchangeservice', 'warn');
         var data = {};
         var api = {
             submitOrder: 'SubmitOrder',
@@ -28,6 +31,7 @@
             symbolOrderCommandsCount: 'SymbolOrderCommandsCount?symbol=',
             symbolOrderEventsCount: 'SymbolOrderEventsCount?symbol=',
             symbolFullOrdersCount: 'SymbolFullOrdersCount?symbol=',
+            orderStackView: 'OrderStackView?symbol=',
         };
         var service = {
             submitOrder: submitOrder,
@@ -43,6 +47,7 @@
             symbolOrderCommandsCount: symbolOrderCommandsCount,
             symbolOrderEventsCount: symbolOrderEventsCount,
             symbolFullOrdersCount: symbolFullOrdersCount,
+            orderStackView: orderStackView,
         };
 
         return service;
@@ -98,6 +103,10 @@
             return getData(api.symbolFullOrdersCount, symbol);
         }
 
+        function orderStackView(symbol, depth) {
+            return getData(api.orderStackView, symbol, depth);
+        }
+
        
 
         function getData(link, value, value2, value3) {
@@ -116,8 +125,11 @@
 
         function postData(link, value) {
             value = value || '';
-            return dataProvider.post({}, 'api/Exchange/' + link + value, {},
+            return dataProvider.post({}, 'api/Exchange/' + link , value,
                 function success(data, status) {
+                    if (status === 200) {
+                        logger('Order succefully added!');
+                    }
                     var st = status;
                     return data;
                 },

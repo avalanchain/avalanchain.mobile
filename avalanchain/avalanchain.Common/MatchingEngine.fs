@@ -226,7 +226,7 @@ module MatchingEngine =
         MarketSide = Bid
         Quantity = 10M<qty>
         ClOrdID = ClOrdID "1"
-        Account = TradingAccount "TRA1"
+        Account = TradingAccount "TRA-1"
         CreatedTime = DateTimeOffset.UtcNow
     }
 
@@ -236,7 +236,7 @@ module MatchingEngine =
         MarketSide = Bid
         Quantity = 10M<qty>
         ClOrdID = ClOrdID "2"
-        Account = TradingAccount "TRA1"
+        Account = TradingAccount "TRA-2"
         CreatedTime = DateTimeOffset.UtcNow
     }
 
@@ -246,7 +246,7 @@ module MatchingEngine =
         MarketSide = Ask
         Quantity = 15M<qty>
         ClOrdID = ClOrdID "3"
-        Account = TradingAccount "TRA1"
+        Account = TradingAccount "TRA-3"
         CreatedTime = DateTimeOffset.UtcNow
     }
 
@@ -256,7 +256,7 @@ module MatchingEngine =
         MarketSide = Ask
         Quantity = 5M<qty>
         ClOrdID = ClOrdID "4"
-        Account = TradingAccount "TRA1"
+        Account = TradingAccount "TRA-4"
         CreatedTime = DateTimeOffset.UtcNow
     }
 
@@ -267,7 +267,7 @@ module MatchingEngine =
         Quantity = 27M<qty>
         ClOrdID = ClOrdID "5
         "
-        Account = TradingAccount "TRA1"
+        Account = TradingAccount "TRA-5"
         CreatedTime = DateTimeOffset.UtcNow
     }
 

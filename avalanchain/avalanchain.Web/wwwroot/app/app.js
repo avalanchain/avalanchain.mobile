@@ -12,7 +12,8 @@
         'monospaced.qrcode',
         'ncy-angular-breadcrumb',
         'irontec.simpleChat',
-        'luegg.directives'
+        'luegg.directives',
+        'nvd3'
         // 'localytics.directives'
         // 'AdalAngular'
     ]);
