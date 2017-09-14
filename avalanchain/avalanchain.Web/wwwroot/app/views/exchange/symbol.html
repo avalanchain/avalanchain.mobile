@@ -1,0 +1,324 @@
+﻿<div class="wrapper wrapper-content animated fadeInRight" ng-controller="symbol as vm">
+    <div class="row">
+        <div class="col-lg-12"></div>
+    <div class="col-lg-6">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>Commands</h5>
+            </div>
+            <div class="ibox-content">
+                <table class="table table-hover no-margins">
+                    <thead>
+                    <tr>
+                        <th>Symbol</th>
+                        <th>Account</th>
+                        <th>Market Side</th>
+                        <th>Date</th>
+                        <th>Quantity</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="orderCommand in vm.symbolOrderCommands">
+                        <td>
+                            <span class="label label-primary">{{orderCommand.create.symbol.symbol}}</span>
+                        </td>
+                        <td>
+                            {{orderCommand.create.account.tradingAccount}}
+                        </td>
+                        <td>
+                            {{orderCommand.create.marketSide}}
+                        </td>
+                        <td>
+                            {{orderCommand.create.createdTime | date: 'short'}} <i class="fa fa-clock-o"></i>
+                        </td>
+
+                        <td>{{orderCommand.create.quantity}}</td>
+                        <!--<td class="text-navy"><i class="fa fa-level-up"></i> 24%</td>-->
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="col-lg-6">
+            <div class="widget style1">
+                <div class="row">
+                    <div class="col-xs-4 text-center">
+                        <i class="fa fa-trophy fa-5x"></i>
+                    </div>
+                    <div class="col-xs-8 text-right">
+                        <span>Current Symbol </span>
+                        <h2 class="font-bold">{{vm.symbol}}</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6">
+            <div class="widget style1 navy-bg">
+                <div class="row">
+                    <div class="col-xs-4">
+                        <i class="fa fa-cloud fa-5x"></i>
+                    </div>
+                    <div class="col-xs-8 text-right">
+                        <span>Order Commands</span>
+
+                        <h2 class="font-bold">{{vm.symbolOrderCommandsCount}}</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6">
+            <div class="widget style1 lazur-bg">
+                <div class="row">
+                    <div class="col-xs-4">
+                        <i class="fa fa-envelope-o fa-5x"></i>
+                    </div>
+                    <div class="col-xs-8 text-right">
+                        <span>Order Events</span>
+
+                        <h2 class="font-bold">{{vm.orderEventsCount}}</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6">
+            <div class="widget style1 yellow-bg">
+                <div class="row">
+                    <div class="col-xs-4">
+                        <i class="fa fa-shield fa-5x"></i>
+                    </div>
+                    <div class="col-xs-8 text-right">
+                        <span>Full Orders</span>
+                        <h2 class="font-bold">{{vm.fullOrdersCount}}</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Events Created</h5>
+                </div>
+                <div class="ibox-content">
+                    <table class="table table-hover no-margins">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Symbol</th>
+                            <th>Account</th>
+                            <th>Market Side</th>
+                            <th>Created</th>
+                            <th>Last Update</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                            <th>Match Type</th>
+                            <th>Fully Allocated</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="orderEvent in vm.symbolOrderEvents track by $index">
+                            <td>
+                               {{$index+1}}
+                            </td>
+                            <!--<td>
+                                {{orderEvent.created.id}}
+                            </td>-->
+                            <td>
+                                <span class="label label-primary">{{orderEvent.created.symbol.symbol}}</span>
+                            </td>
+                            <td>
+                                {{orderEvent.created.account.tradingAccount}}
+                            </td>
+                            <td>
+                                {{orderEvent.created.marketSide}}
+                            </td>
+                            <td>
+                                {{orderEvent.created.createdTime | date: 'short'}} <i class="fa fa-clock-o"></i>
+                            </td>
+                            <td>
+                                {{orderEvent.created.lastUpdateTime | date: 'short'}} <i class="fa fa-clock-o"></i>
+                            </td>
+
+                            <td>{{orderEvent.created.quantity}}</td>
+
+                            <td>{{orderEvent.created.price}}</td>
+
+                            <td>
+                                <span class="label label-info">{{orderEvent.created.matchType}}</span>
+                            </td>
+                            <td>
+                                <i ng-show="orderEvent.created.fullyAllocated" class="fa fa-check text-navy"></i>
+                                <i ng-hide="orderEvent.created.fullyAllocated" class="fa fa-times text-danger"></i>
+                            </td>
+                            <!--<td class="text-navy"><i class="fa fa-level-up"></i> 24%</td>-->
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    <div class="col-lg-6">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>Ask</h5>
+            </div>
+            <div class="ibox-content">
+                <table class="table table-hover no-margins">
+                    <thead>
+                    <tr>
+                        <th>Queue</th>
+                        <!--<th>Status</th>-->
+                        <th>Date</th>
+                        <th>Price</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="askOrders in vm.askOrders">
+                        <td>{{askOrders.orderQueue}}</td>
+                        <td>
+                            <!--<small>{{askOrders.orderQueue}}</small>-->
+                        </td>
+                        <td><i class="fa fa-clock-o"></i> 11:20pm</td>
+                        <td>{{askOrders.price}}</td>
+
+                        <!--<td class="text-navy"><i class="fa fa-level-up"></i> 24%</td>-->
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>Bid</h5>
+            </div>
+            <div class="ibox-content">
+                <table class="table table-hover no-margins">
+                    <thead>
+                    <tr>
+                        <th>Status</th>
+                        <th>Date</th>
+                        <th>Price</th>
+                        <th>Value</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="bidOrder in vm.bidOrders">
+                        <td>
+                            <small>Pending...</small>
+                        </td>
+                        <td><i class="fa fa-clock-o"></i> 11:20pm</td>
+                        <td>{{bidOrder.price}}</td>
+                        <td class="text-navy"><i class="fa fa-level-up"></i> 24%</td>
+                    </tr>
+                    <!--<tr>
+                        <td><span class="label label-warning">Canceled</span></td>
+                        <td><i class="fa fa-clock-o"></i> 10:40am</td>
+                        <td>Monica</td>
+                        <td class="text-navy"><i class="fa fa-level-up"></i> 66%</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <small>Pending...</small>
+                        </td>
+                        <td><i class="fa fa-clock-o"></i> 01:30pm</td>
+                        <td>John</td>
+                        <td class="text-navy"><i class="fa fa-level-up"></i> 54%</td>
+                    </tr>
+                    <tr>
+                        <td><span class="label label-primary">Completed</span></td>
+                        <td><i class="fa fa-clock-o"></i> 04:10am</td>
+                        <td>Amelia</td>
+                        <td class="text-navy"><i class="fa fa-level-up"></i> 66%</td>
+                    </tr>-->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Orders </h5>
+                    <!--{{vm.orderStack}}-->
+                    <div ibox-tools></div>
+                </div>
+                <div class="ibox-content">
+                    <div class="row m-t-sm">
+                        <div class="col-lg-12">
+                            <div class="panel blank-panel ui-tab">
+                                <div class="project-list">
+                                    <!--<tab heading="Last activity" active="tab.active" class="dsads">-->
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>ID</th>
+                                                <th>Symbol</th>
+                                                <th>Limit</th>
+                                                <th>Market Side</th>
+                                                <th>Account</th>
+                                                <th>Quantity</th>
+                                                <th>Date</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="order in vm.orders | pagination:(ordersPage-1)*10 | limitTo:10">
+                                                <td class="project-title">
+                                                    {{$index+1}}
+                                                </td>
+                                                <td class="project-title">
+                                                    <strong>{{order.id}}</strong>
+                                                </td>
+                                                <td class="project-title">
+                                                    <span class="label label-primary">{{order.orderData.symbol.symbol}}</span>
+                                                    <!--{{order}}-->
+                                                </td>
+                                                <td class="project-title">
+                                                    <small>{{order.orderData.orderType.limit}}</small>
+                                                </td>
+
+                                                <td class="project-title">
+                                                    <i ng-show="order.orderData.marketSide =='bid'" class="fa fa-play fa-rotate-90 text-navy"></i>
+                                                    <i ng-hide="order.orderData.marketSide =='bid'" class="fa fa-play fa-rotate-270 text-danger"></i>
+                                                    {{order.orderData.marketSide}}
+                                                </td>
+
+                                                <td class="project-title">
+                                                    <span class="label label-info">{{order.orderData.account.tradingAccount}}</span>
+                                                </td>
+                                                <td class="project-title">
+                                                    <small>{{order.orderData.quantity}}</small>
+                                                </td>
+                                                <td class="project-title">
+                                                    <p class="small">
+                                                        {{order.orderData.createdTime | date : 'short'}}
+                                                    </p>
+                                                </td>
+
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                    <!--</tab>-->
+                                    <uib-pagination total-items="vm.orders.length" ng-model="ordersPage" max-size="maxSize" class="pagination-sm" boundary-links="true" num-pages="numPages"></uib-pagination>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+</div>

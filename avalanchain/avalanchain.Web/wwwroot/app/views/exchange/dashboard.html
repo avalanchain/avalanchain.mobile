@@ -1,113 +1,202 @@
-﻿<div class="wrapper wrapper-content animated fadeInRight" ng-controller="Trader as trader">
+﻿<div class="wrapper wrapper-content animated fadeInRight" ng-controller="Exchangedashboard as vm">
     <div class="row">
-        <div class="col-lg-4">
-            <div class="row">
-                <div class="col-lg-12" ng-repeat="user in users | limitTo: 4">
-                    <div class="ibox float-e-margins">
-                        <div class="ibox-title">
-                            <button type="button" class="btn btn-default btn-xs pull-right" ng-hide="user.isEdit" ng-click="edit(user)">edit</button>
-                            <button type="button" class="btn btn-default btn-xs pull-right" ng-show="user.isEdit" ng-click="save(user)">save</button>
-                            <button type="button" class="btn btn-default btn-xs pull-right" ng-show="user.isEdit" ng-click="cancel(user)">cancel</button>
-                            <h5>{{user.Name}}</h5>
-                        </div>
-                        <div class="ibox-content">
-                            <h3 class="no-margins">{{user.from}}: {{user.amount1 | number}} | {{user.to}}: {{user.amount2 | number}} </h3>
-                               
-                            <h4 class="{{user.status}}">
-                                <i class="{{user.navigation}}"></i>{{" "+ user.Ask+" |"}} <!--<i class="{{user.navigation}}"></i>-->{{" "+user.Bid}}
-                            </h4>
-                            <div class="row" ng-hide="user.isEdit">
-                                <div class="col-md-6">Sell when: <label >{{user.max | number:4}}</label>
-                                </div>
-                                <div class="col-md-6">Buy when: <label >{{user.min | number:4}}</label>
-                                </div>
-                            </div>
-                            <div class="row" ng-show="user.isEdit">
-                                <div class="col-md-6">
-                                    Sell when:<input type="text" ng-model="user.max" placeholder="max value" class="form-control">
-                                </div>
-                                <div class="col-md-6">
-                                    Buy when:<input type="text" ng-model="user.min" placeholder="min value" class="form-control">
-                                </div>
+        <div class="col-lg-12"></div>
 
-                            </div>
-                            <!--<div class="stat-percent font-bold text-navy">20% <i class="fa fa-level-down"></i></div>-->
-                            <small>trade bot</small>
+        <div class="col-lg-12">
+            <div class="col-lg-3">
+                <div class="widget style1">
+                    <div class="row">
+                        <div class="col-xs-4 text-center">
+                            <i class="fa fa-trophy fa-5x"></i>
+                        </div>
+                        <div class="col-xs-8 text-right">
+                            <span>Main Symbol </span>
+                            <h2 class="font-bold">{{vm.symbol}}</h2>
                         </div>
                     </div>
                 </div>
-                
+            </div>
+
+            <div class="col-lg-3">
+                <div class="widget style1 navy-bg">
+                    <div class="row">
+                        <div class="col-xs-4">
+                            <i class="fa fa-cloud fa-5x"></i>
+                        </div>
+                        <div class="col-xs-8 text-right">
+                            <span>Order Commands</span>
+
+                            <h2 class="font-bold">{{vm.orderCommandsCount}}</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3">
+                <div class="widget style1 lazur-bg">
+                    <div class="row">
+                        <div class="col-xs-4">
+                            <i class="fa fa-envelope-o fa-5x"></i>
+                        </div>
+                        <div class="col-xs-8 text-right">
+                            <span>Order Events</span>
+
+                            <h2 class="font-bold">{{vm.orderEventsCount}}</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3">
+                <div class="widget style1 yellow-bg">
+                    <div class="row">
+                        <div class="col-xs-4">
+                            <i class="fa fa-shield fa-5x"></i>
+                        </div>
+                        <div class="col-xs-8 text-right">
+                            <span>Full Orders</span>
+                            <h2 class="font-bold">{{vm.fullOrdersCount}}</h2>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="col-lg-8">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="ibox float-e-margins">
-                        <div class="ibox-title">
-                            <h5>Transactions </h5>
-
-                            <div ibox-tools></div>
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <span class="label label-warning pull-right">Top symbols</span>
+                    <h5>Symbols</h5>
+                </div>
+                <div class="ibox-content" >
+                    <div class="row">
+                        <div class="col-xs-4" ng-repeat="symbol in vm.symbols" ng-click="vm.showSymbol(symbol)"> 
+                            <small class="stats-label">Pages / Visit</small>
+                            <h4>{{symbol}}</h4>
                         </div>
-                        <div class="ibox-content">
-                            <div class="row m-t-sm">
-                                <div class="col-lg-12">
-                                    <div class="panel blank-panel ui-tab">
-                                        <div class="project-list">
-                                            <!--<tab heading="Last activity" active="tab.active" class="dsads">-->
-                                            <table class="table table-striped">
-                                                <thead>
-                                                <tr>
-                                                    <th>From</th>
-                                                    <th>Amount</th>
-                                                    <th>Pair</th>
-                                                    <th>To</th>
-                                                    <th>Amount</th>
-                                                    <th>Time</th>
-                                                </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr ng-repeat="transaction in transactions | pagination:(transactionPage-1)*10 | limitTo:10">
-                                                        <td class="project-title">
-                                                            <span class="label label-primary">{{transaction.from}}</span>
-                                                        </td>
-                                                        <td class="project-title">
-                                                            <small>{{transaction.amountFrom | number}}</small>
-                                                        </td>
 
-                                                        <td class="project-title">
-                                                            {{transaction.name}}
-                                                        </td>
+                        <!--<div class="col-xs-4">
+                            <small class="stats-label">% New Visits</small>
+                            <h4>46.11%</h4>
+                        </div>
+                        <div class="col-xs-4">
+                            <small class="stats-label">Last week</small>
+                            <h4>432.021</h4>
+                        </div>-->
+                    </div>
+                </div>
+                <!--<div class="ibox-content">
+                    <div class="row">
+                        <div class="col-xs-4">
+                            <small class="stats-label">Pages / Visit</small>
+                            <h4>643 321.10</h4>
+                        </div>
 
-                                                        <td class="project-title">
-                                                            <span class="label label-info">{{transaction.to}}</span>
-                                                        </td>
-                                                        <td class="project-title">
-                                                            <small>{{transaction.amountTo | number}}</small>
-                                                        </td>
-                                                        <td class="project-title">
-                                                            <p class="small">
-                                                                {{transaction.time }}
-                                                            </p>
-                                                        </td>
+                        <div class="col-xs-4">
+                            <small class="stats-label">% New Visits</small>
+                            <h4>92.43%</h4>
+                        </div>
+                        <div class="col-xs-4">
+                            <small class="stats-label">Last week</small>
+                            <h4>564.554</h4>
+                        </div>
+                    </div>
+                </div>-->
+                <!--<div class="ibox-content">
+                    <div class="row">
+                        <div class="col-xs-4">
+                            <small class="stats-label">Pages / Visit</small>
+                            <h4>436 547.20</h4>
+                        </div>
 
-                                                    </tr>
+                        <div class="col-xs-4">
+                            <small class="stats-label">% New Visits</small>
+                            <h4>150.23%</h4>
+                        </div>
+                        <div class="col-xs-4">
+                            <small class="stats-label">Last week</small>
+                            <h4>124.990</h4>
+                        </div>
+                    </div>
+                </div>-->
+            </div>
+        </div>
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Orders </h5>
 
-                                                </tbody>
-                                            </table>
-                                            <!--</tab>-->
-                                            <uib-pagination total-items="transactions.length" ng-model="transactionPage" max-size="maxSize" class="pagination-sm" boundary-links="true" num-pages="numPages"></uib-pagination>
-                                        </div>
+                    <div ibox-tools></div>
+                </div>
+                <div class="ibox-content">
+                    <div class="row m-t-sm">
+                        <div class="col-lg-12">
+                            <div class="panel blank-panel ui-tab">
+                                <div class="project-list">
+                                    <!--<tab heading="Last activity" active="tab.active" class="dsads">-->
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>ID</th>
+                                                <th>Symbol</th>
+                                                <th>Limit</th>
+                                                <th>Market Side</th>
+                                                <th>Account</th>
+                                                <th>Quantity</th>
+                                                <th>Date</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="order in vm.orders | pagination:(ordersPage-1)*10 | limitTo:10">
+                                                <td class="project-title">
+                                                    {{$index+1}}
+                                                </td>
+                                                <td class="project-title">
+                                                    <strong>{{order.id}}</strong>
+                                                </td>
+                                                <td class="project-title">
+                                                    <span class="label label-primary">{{order.orderData.symbol.symbol}}</span>
+                                                    <!--{{order}}-->
+                                                </td>
+                                                <td class="project-title">
+                                                    <small>{{order.orderData.orderType.limit}}</small>
+                                                </td>
 
-                                    </div>
+                                                <td class="project-title">
+                                                    <i ng-show="order.orderData.marketSide =='bid'" class="fa fa-play fa-rotate-90 text-navy"></i>
+                                                    <i ng-hide="order.orderData.marketSide =='bid'" class="fa fa-play fa-rotate-270 text-danger"></i>
+                                                    {{order.orderData.marketSide}}
+                                                </td>
+
+                                                <td class="project-title">
+                                                    <span class="label label-info">{{order.orderData.account.tradingAccount}}</span>
+                                                </td>
+                                                <td class="project-title">
+                                                    <small>{{order.orderData.quantity}}</small>
+                                                </td>
+                                                <td class="project-title">
+                                                    <p class="small">
+                                                        {{order.orderData.createdTime | date : 'short'}}
+                                                    </p>
+                                                </td>
+
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                    <!--</tab>-->
+                                    <uib-pagination total-items="vm.orders.length" ng-model="ordersPage" max-size="maxSize" class="pagination-sm" boundary-links="true" num-pages="numPages"></uib-pagination>
                                 </div>
+
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+
     </div>
-    </div>
-    
-    
-    
+
+
+
 </div>

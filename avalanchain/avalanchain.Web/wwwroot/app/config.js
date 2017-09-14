@@ -67,360 +67,328 @@
 
         $stateProvider
             .state('dashboards',
-                {
-                    abstract: true,
-                    url: "/dashboards",
-                    templateUrl: "/app/views/common/content.html",
-                })
+            {
+                abstract: true,
+                url: "/dashboards",
+                templateUrl: "/app/views/common/content.html",
+            })
             .state('assets',
-                {
-                    abstract: true,
-                    url: "/assets",
-                    templateUrl: "/app/views/common/content.html",
-                })
+            {
+                abstract: true,
+                url: "/assets",
+                templateUrl: "/app/views/common/content.html",
+            })
             .state('exchange',
-                {
-                    abstract: true,
-                    url: "/assets",
-                    templateUrl: "/app/views/common/content.html",
-                })
+            {
+                abstract: true,
+                url: "/exchange",
+                templateUrl: "/app/views/common/content.html",
+            })
             // .state('quoka', {
             //     abstract: true,
             //     url: "/quoka",
             //     templateUrl: "/app/views/common/content.html",
             // })
             .state('index',
-                {
-                    abstract: true,
-                    // url: "/",
-                    templateUrl: "/app/views/common/content.html",
-                    resolve: {
-                        loadPlugin: function($ocLazyLoad) {
-                            return $ocLazyLoad.load([
-                                {
-                                    insertBefore: '#loadBefore',
-                                    name: 'localytics.directives',
-                                    files: [
-                                        '/assets/css/plugins/chosen/bootstrap-chosen.css',
-                                        '/assets/js/plugins/chosen/chosen.jquery.js',
-                                        '/assets/js/plugins/chosen/chosen.js'
-                                    ]
-                                }, footable, footable_angular
-                            ]);
-                        }
+            {
+                abstract: true,
+                // url: "/",
+                templateUrl: "/app/views/common/content.html",
+                resolve: {
+                    loadPlugin: function ($ocLazyLoad) {
+                        return $ocLazyLoad.load([
+                            {
+                                insertBefore: '#loadBefore',
+                                name: 'localytics.directives',
+                                files: [
+                                    '/assets/css/plugins/chosen/bootstrap-chosen.css',
+                                    '/assets/js/plugins/chosen/chosen.jquery.js',
+                                    '/assets/js/plugins/chosen/chosen.js'
+                                ]
+                            }, footable, footable_angular
+                        ]);
                     }
-                })
+                }
+            })
             .state('dashboards.dashboard',
-                {
-                    url: "/dashboard",
-                    templateUrl: "/app/views/dashboard/dashboard.html",
-                    data: {
-                        pageTitle: 'dashboard'
-                    },
-                    resolve: {
-                        loadPlugin: function($ocLazyLoad) {
-                            return $ocLazyLoad.load([flot]);
-                        }
-                    },
-                    ncyBreadcrumb: {
-                        label: 'Dashboard',
-                        text: 'Accounts'
+            {
+                url: "/dashboard",
+                templateUrl: "/app/views/dashboard/dashboard.html",
+                data: {
+                    pageTitle: 'Dashboard'
+                },
+                resolve: {
+                    loadPlugin: function ($ocLazyLoad) {
+                        return $ocLazyLoad.load([flot]);
                     }
-                })
+                },
+                ncyBreadcrumb: {
+                    label: 'Dashboard',
+                    text: 'Accounts'
+                }
+            })
             .state('dashboards.dashboard_investor',
-                {
-                    url: "/dashboard_investor",
-                    templateUrl: "/app/views/dashboard/dashboard_investor.html",
-                    data: {
-                        pageTitle: 'dashboard'
-                    },
-                    resolve: {
-                        loadPlugin: function($ocLazyLoad) {
-                            return $ocLazyLoad.load([flot, touchspin]);
-                        }
-                    },
-                    ncyBreadcrumb: {
-                        label: 'Dashboard Investor',
-                        text: 'Accounts'
+            {
+                url: "/dashboard_investor",
+                templateUrl: "/app/views/dashboard/dashboard_investor.html",
+                data: {
+                    pageTitle: 'ICO INVESTOR'
+                },
+                resolve: {
+                    loadPlugin: function ($ocLazyLoad) {
+                        return $ocLazyLoad.load([flot, touchspin]);
                     }
-                })
+                },
+                ncyBreadcrumb: {
+                    label: 'Dashboard',
+                    text: 'Accounts'
+                }
+            })
             .state('index.chat',
-                {
-                    url: "/chat",
-                    templateUrl: "/app/views/chat/chat.html",
-                    data: {
-                        pageTitle: 'chat'
-                    },
-                    ncyBreadcrumb: {
-                        label: 'Chat'
-                    }
-                })
+            {
+                url: "/chat",
+                templateUrl: "/app/views/chat/chat.html",
+                data: {
+                    pageTitle: 'Chat'
+                },
+                ncyBreadcrumb: {
+                    label: 'Chat'
+                }
+            })
             .state('index.clusters',
-                {
-                    url: "/clusters",
-                    templateUrl: "/app/views/clusters/clusters.html",
-                    data: {
-                        pageTitle: 'clusters'
-                    },
-                    ncyBreadcrumb: {
-                        label: 'Clusters'
-                    }
-                })
+            {
+                url: "/clusters",
+                templateUrl: "/app/views/clusters/clusters.html",
+                data: {
+                    pageTitle: 'Clusters'
+                },
+                ncyBreadcrumb: {
+                    label: 'Clusters'
+                }
+            })
             .state('index.cluster',
-                {
-                    url: "/clusters/:clusterId",
-                    templateUrl: "/app/views/clusters/cluster.html",
-                    data: {
-                        pageTitle: 'cluster'
-                    },
-                    resolve: {
-                        loadPlugin: function($ocLazyLoad) {
-                            return $ocLazyLoad.load([flot]);
-                        }
-                    },
-                    ncyBreadcrumb: {
-                        parent: function() {
-                            return 'index.clusters';
-                        },
-                        label: 'Cluster'
+            {
+                url: "/clusters/:clusterId",
+                templateUrl: "/app/views/clusters/cluster.html",
+                data: {
+                    pageTitle: 'Cluster'
+                },
+                resolve: {
+                    loadPlugin: function ($ocLazyLoad) {
+                        return $ocLazyLoad.load([flot]);
                     }
-                })
+                },
+                ncyBreadcrumb: {
+                    parent: function () {
+                        return 'index.clusters';
+                    },
+                    label: 'Cluster'
+                }
+            })
             .state('index.accounts',
-                {
-                    url: "/accounts",
-                    templateUrl: "/app/views/accounts/accounts.html",
-                    data: {
-                        pageTitle: 'accounts'
-                    },
-                    ncyBreadcrumb: {
-                        label: 'Accounts',
-                        text: 'Accounts'
-                    }
-                })
+            {
+                url: "/accounts",
+                templateUrl: "/app/views/accounts/accounts.html",
+                data: {
+                    pageTitle: 'Accounts'
+                },
+                ncyBreadcrumb: {
+                    label: 'Accounts',
+                    text: 'Accounts'
+                }
+            })
             .state('index.account',
-                {
-                    url: "/accounts/:accountId",
-                    templateUrl: "/app/views/accounts/account.html",
-                    data: {
-                        pageTitle: 'Account'
+            {
+                url: "/accounts/:accountId",
+                templateUrl: "/app/views/accounts/account.html",
+                data: {
+                    pageTitle: 'Account'
+                },
+                ncyBreadcrumb: {
+                    parent: function () {
+                        return 'index.accounts';
                     },
-                    ncyBreadcrumb: {
-                        parent: function() {
-                            return 'index.accounts';
-                        },
-                        label: 'Account'
-                    }
-                })
+                    label: 'Account'
+                }
+            })
             .state('index.wallet',
-                {
-                    url: "/accounts/wallet/:accountId",
-                    templateUrl: "/app/views/accounts/wallet.html",
-                    data: {
-                        pageTitle: 'Wallet'
-                    },
-                    resolve: {
-                        loadPlugin: function($ocLazyLoad) {
-                            return $ocLazyLoad.load([c3chart, c3chartAngul]);
-                        }
-                    },
-                    ncyBreadcrumb: {
-                        parent: function() {
-                            return 'index.accounts';
-                        },
-                        label: 'Wallet'
+            {
+                url: "/accounts/wallet/:accountId",
+                templateUrl: "/app/views/accounts/wallet.html",
+                data: {
+                    pageTitle: 'Wallet'
+                },
+                resolve: {
+                    loadPlugin: function ($ocLazyLoad) {
+                        return $ocLazyLoad.load([c3chart, c3chartAngul]);
                     }
-                })
+                },
+                ncyBreadcrumb: {
+                    parent: function () {
+                        return 'index.accounts';
+                    },
+                    label: 'Wallet'
+                }
+            })
             .state('index.transactions',
-                {
-                    url: "/transactions",
-                    templateUrl: "/app/views/transactions/transactions.html",
-                    data: {
-                        pageTitle: 'Transactions'
-                    },
-                    ncyBreadcrumb: {
-                        label: 'Transactions'
-                    }
-                })
+            {
+                url: "/transactions",
+                templateUrl: "/app/views/transactions/transactions.html",
+                data: {
+                    pageTitle: 'Transactions'
+                },
+                ncyBreadcrumb: {
+                    label: 'Transactions'
+                }
+            })
             .state('index.nodes',
-                {
-                    url: "/nodes",
-                    templateUrl: "/app/views/nodes/nodes.html",
-                    data: {
-                        pageTitle: 'nodes'
-                    },
-                    ncyBreadcrumb: {
-                        label: 'Nodes'
-                    }
-                })
+            {
+                url: "/nodes",
+                templateUrl: "/app/views/nodes/nodes.html",
+                data: {
+                    pageTitle: 'Nodes'
+                },
+                ncyBreadcrumb: {
+                    label: 'Nodes'
+                }
+            })
             .state('index.node',
-                {
-                    url: "/nodes/:nodeId",
-                    templateUrl: "/app/views/nodes/node.html",
-                    data: {
-                        pageTitle: 'node'
-                    },
-                    resolve: {
-                        loadPlugin: function($ocLazyLoad) {
-                            return $ocLazyLoad.load([flot]);
-                        }
-                    },
-                    ncyBreadcrumb: {
-                        parent: function() {
-                            return 'index.nodes';
-                        },
-                        label: 'Node'
+            {
+                url: "/nodes/:nodeId",
+                templateUrl: "/app/views/nodes/node.html",
+                data: {
+                    pageTitle: 'Node'
+                },
+                resolve: {
+                    loadPlugin: function ($ocLazyLoad) {
+                        return $ocLazyLoad.load([flot]);
                     }
-                })
+                },
+                ncyBreadcrumb: {
+                    parent: function () {
+                        return 'index.nodes';
+                    },
+                    label: 'Node'
+                }
+            })
             .state('index.chains',
-                {
-                    url: "/chains",
-                    templateUrl: "/app/views/streams/streams.html",
-                    data: {
-                        pageTitle: 'Chains'
-                    },
-                    // resolve: {
-                    //     loadPlugin: function($ocLazyLoad) {
-                    //         return $ocLazyLoad.load([footable, footable_angular]);
-                    //     }
-                    // },
-                    ncyBreadcrumb: {
-                        label: 'Chains'
-                    }
-                })
+            {
+                url: "/chains",
+                templateUrl: "/app/views/streams/streams.html",
+                data: {
+                    pageTitle: 'Chains'
+                },
+                // resolve: {
+                //     loadPlugin: function($ocLazyLoad) {
+                //         return $ocLazyLoad.load([footable, footable_angular]);
+                //     }
+                // },
+                ncyBreadcrumb: {
+                    label: 'Chains'
+                }
+            })
             .state('assets.createassets',
-                {
-                    url: "/createassets",
-                    templateUrl: "/app/views/assets/createassets.html",
-                    data: {
-                        pageTitle: 'Create Assets'
-                    },
-                    ncyBreadcrumb: {
-                        label: 'Create Assets',
-                    },
-                    resolve: {
-                        loadPlugin: function($ocLazyLoad) {
-                            return $ocLazyLoad.load([touchspin]);
-                        }
-                    },
-                })
+            {
+                url: "/createassets",
+                templateUrl: "/app/views/assets/createassets.html",
+                data: {
+                    pageTitle: 'Create Assets'
+                },
+                ncyBreadcrumb: {
+                    label: 'Create',
+                },
+                resolve: {
+                    loadPlugin: function ($ocLazyLoad) {
+                        return $ocLazyLoad.load([touchspin]);
+                    }
+                },
+            })
             .state('assets.assets',
-                {
-                    url: "/assets",
-                    templateUrl: "/app/views/assets/assets.html",
-                    data: {
-                        pageTitle: 'Assets'
-                    },
-                    ncyBreadcrumb: {
-                        label: 'Assets',
-                    },
-                    resolve: {
-                        loadPlugin: function($ocLazyLoad) {
-                            return $ocLazyLoad.load([touchspin]);
-                        }
-                    },
-                })
+            {
+                url: "/assets",
+                templateUrl: "/app/views/assets/assets.html",
+                data: {
+                    pageTitle: 'Assets'
+                },
+                ncyBreadcrumb: {
+                    label: 'All Assets',
+                },
+                resolve: {
+                    loadPlugin: function ($ocLazyLoad) {
+                        return $ocLazyLoad.load([touchspin]);
+                    }
+                },
+            })
             .state('index.admin',
-                {
-                    url: "/admin",
-                    templateUrl: "/app/views/admin/admin.html",
-                    data: {
-                        pageTitle: 'admin'
-                    },
-                    ncyBreadcrumb: {
-                        label: 'Settings'
-                    }
-                })
+            {
+                url: "/admin",
+                templateUrl: "/app/views/admin/admin.html",
+                data: {
+                    pageTitle: 'Admin'
+                },
+                ncyBreadcrumb: {
+                    label: 'Settings'
+                }
+            })
             .state('user',
-                {
-                    abstract: true,
-                    url: "/user",
-                    templateUrl: "/app/views/user/layout.html",
-                })
+            {
+                abstract: true,
+                url: "/user",
+                templateUrl: "/app/views/user/layout.html",
+            })
             .state('user.main',
-                {
-                    url: "/dashboard",
-                    templateUrl: "/app/views/user/dashboard.html",
-                    data: {
-                        pageTitle: 'user dashboard'
-                    }
-                }).state('login',
-                {
-                    url: "/login",
-                    templateUrl: "/app/views/common/login.html",
-                    data: {
-                        pageTitle: 'user dashboard'
-                    }
-                })
+            {
+                url: "/dashboard",
+                templateUrl: "/app/views/user/dashboard.html",
+                data: {
+                    pageTitle: 'user dashboard'
+                }
+            }).state('login',
+            {
+                url: "/login",
+                templateUrl: "/app/views/common/login.html",
+                data: {
+                    pageTitle: 'user dashboard'
+                }
+            })
             .state('exchange.trader',
-                {
-                    url: "/trader",
-                    templateUrl: "/app/views/exchange/trader.html",
-                    data: {
-                        pageTitle: 'trader'
-                    },
-                    ncyBreadcrumb: {
-                        label: 'Trader'
-                    }
-                })
+            {
+                url: "/trader",
+                templateUrl: "/app/views/exchange/trader.html",
+                data: {
+                    pageTitle: 'Exchange'
+                },
+                ncyBreadcrumb: {
+                    label: 'Trader'
+                }
+            })
             .state('exchange.dashboard',
-                {
-                    url: "/dashboard",
-                    templateUrl: "/app/views/exchange/dashboard.html",
-                    data: {
-                        pageTitle: 'dashboard'
+            {
+                url: "/dashboard",
+                templateUrl: "/app/views/exchange/dashboard.html",
+                data: {
+                    pageTitle: 'Exchange'
+                },
+                ncyBreadcrumb: {
+                    label: 'Dashboard'
+                }
+            }).state('exchange.symbol',
+            {
+                url: "/:symbol",
+                templateUrl: "/app/views/exchange/symbol.html",
+                data: {
+                    pageTitle: 'Symbol'
+                },
+                controller: function ($scope, $stateParams) {
+                    $scope.foo = $stateParams.symbol || '';
+                },
+                ncyBreadcrumb: {
+                    parent: function () {
+                        return 'exchange.dashboard';
                     },
-                    ncyBreadcrumb: {
-                        label: 'Dashboard'
-                    }
-                })
-            .state('index.doctor',
-                {
-                    url: "/doctor",
-                    templateUrl: "/app/views/doctor/doctor.html",
-                    data: { pageTitle: 'doctor' }
-                })
-            .state('quoka.dashboard',
-                {
-                    url: "/dashboard",
-                    templateUrl: "/app/views/quoka/dashboard.html",
-                    data: {
-                        pageTitle: 'Dashboard'
-                    },
-                    resolve: {
-                        loadPlugin: function($ocLazyLoad) {
-                            return $ocLazyLoad.load([
-                                flot,
-                                c3chart,
-                                c3chartAngul, {
-                                    serie: true,
-                                    files: [
-                                        '/assets/js/plugins/jvectormap/jquery-jvectormap-2.0.2.min.js',
-                                        '/assets/js/plugins/jvectormap/jquery-jvectormap-2.0.2.css'
-                                    ]
-                                }, {
-                                    serie: true,
-                                    files: ['/assets/js/plugins/jvectormap/jquery-jvectormap-world-mill-en.js']
-                                }, {
-                                    name: 'ui.checkbox',
-                                    files: ['/assets/js/bootstrap/angular-bootstrap-checkbox.js']
-                                }
-                            ]);
-                        }
-                    },
-                    ncyBreadcrumb: {
-                        label: 'Quoka Dashboard'
-                    }
-                });
-        // .state('quoka.trader', {
-        //     url: "/trader",
-        //     templateUrl: "/app/views/quoka/trader.html",
-        //     data: {
-        //         pageTitle: 'quoka trader'
-        //     },
-        //     ncyBreadcrumb: {
-        //         label: 'Quoka Trader'
-        //     }
-        // })
+                    label: '{{foo}}'
+                }
+            });
     }
 
 })();

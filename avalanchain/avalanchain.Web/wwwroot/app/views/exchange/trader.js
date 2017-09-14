@@ -1,15 +1,14 @@
 (function () {
     'use strict';
     var controllerId = 'Trader';
-    angular.module('icodao').controller(controllerId, ['common', '$scope', 'dataservice', trader]);
+    angular.module('icodao').controller(controllerId, ['common', '$scope', 'dataservice','exchangeservice', trader]);
 
-    function trader(common, $scope, dataservice) {
+    function trader(common, $scope, dataservice, exchangeservice) {
         var getLogFn = common.logger.getLogFn;
         var log = getLogFn(controllerId);
+        var vm = this;
+        vm.info = 'trader';
 
-        this.info = 'trader';
-        this.helloText = 'Welcome in icodao';
-        this.descriptionText = 'CASCADING REACTIVE BLOCKCHAINS';
         $scope.datayahoo = [];
         $scope.users = [1, 2, 3, 4];
         $scope.amount1 = [1000, 2100, 3330, 400];

@@ -26,10 +26,10 @@
         };
         return {
             request: request,
-            get: function ($scope, url, successCallback, data, errorCallback) {
+            get: function ($scope, url, data, successCallback, errorCallback) {
                 return request($scope, url, "GET", successCallback, data, errorCallback);
             },
-            post: function ($scope, url, successCallback, data, errorCallback) {
+            post: function ($scope, url, data, successCallback, errorCallback) {
                 return request($scope, url, "POST", successCallback, data, errorCallback);
             }
         };
