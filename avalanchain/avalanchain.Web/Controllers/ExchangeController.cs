@@ -44,6 +44,12 @@ namespace avalanchain.Web
         }
 
         [HttpGet("[action]")]
+        public OrderStackView OrderStackView(string symbol, int maxDepth)
+        {
+            return ExchangeService.OrderStackView(ToSymbol(symbol), maxDepth > 0 ? maxDepth : 10);
+        }
+
+        [HttpGet("[action]")]
         public string MainSymbol()
         {
             return ExchangeService.MainSymbol.Item;

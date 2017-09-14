@@ -21,6 +21,7 @@ module MatchingEngine =
     and [<Measure>] price
     type Quantity = decimal<qty>
     and [<Measure>] qty
+    type Total = decimal<price*qty>
 
     type Symbol = Symbol of string
     type TradingAccount = TradingAccount of string
@@ -192,6 +193,32 @@ module MatchingEngine =
 
     let compactUnionJsonConverter =  new FSharpLu.Json.CompactUnionJsonConverter()
 
+    type OrderStackView = {
+        BidOrders: PriceBucketView list
+        AskOrders: PriceBucketView list
+        PriceStep: Price
+    }
+    and PriceBucketView = {
+        Price: Price
+        Quantity: Quantity
+        Sum: Total
+        Total: Total
+    }
+    
+    let toOrderStackView maxDepth (orderStack: OrderStack) = 
+        let foldOrders orders = orders 
+                                |> List.truncate maxDepth
+                                |> List.mapFold (fun total pb -> 
+                                                    let qty = pb.OrderQueue |> List.sumBy (fun o -> o.RemainingQuantity)
+                                                    let sum = pb.Price * qty
+                                                    {   Price = pb.Price
+                                                        Quantity = qty
+                                                        Sum = sum
+                                                        Total = total + sum }, total + sum) 0M<price*qty> |> fst
+        {   BidOrders = orderStack.BidOrders |> foldOrders 
+            AskOrders = orderStack.AskOrders |> foldOrders
+            PriceStep = orderStack.PriceStep
+        }
 
     let orderData = {
         OrderType = Limit 5M<price>
@@ -238,7 +265,8 @@ module MatchingEngine =
         Symbol = Symbol "AVC"
         MarketSide = Ask
         Quantity = 27M<qty>
-        ClOrdID = ClOrdID "4"
+        ClOrdID = ClOrdID "5
+        "
         Account = TradingAccount "TRA1"
         CreatedTime = DateTimeOffset.UtcNow
     }
@@ -290,9 +318,18 @@ module MatchingEngine =
                 | OrderCommand.Cancel oid -> failwith "Not supported yet"
             
             // TODO: Remove fakes:
-            do for o in [orderData; orderData2; aorderData; aorderData2; aorderData3] do 
-                for sym in ["AVC"; "USD"; "EUR"; "GBP"; "ICODAO"; "V1"; "V2" ] do 
-                    { o with Symbol = Symbol sym } |> OrderCommand.Create |> processCommand 
+            //do for o in [orderData; orderData2; aorderData; aorderData2; aorderData3] do 
+            //    for sym in ["AVC"; "USD"; "EUR"; "GBP"; "ICODAO"; "V1"; "V2" ] do 
+            //        { o with Symbol = Symbol sym } |> OrderCommand.Create |> processCommand 
+
+            let rnd = Random()
+            do for o in [orderData; orderData2; aorderData; aorderData2] do 
+                for i in 0 .. rnd.Next(200, 2000) do
+                    for sym in ["AVC"; "USD"; "EUR"; "GBP"; "ICODAO"; "V1"; "V2"; "ICO1"; "ICO2"; "ICO3"; "ICO4"; "ICO5"; "ICO6"; "ICO7"; "ICO8"; "ICO9"; "ICO10"; "ICO11"; "ICO12" ] do 
+                        { o with    Symbol = Symbol sym 
+                                    OrderType = Limit (decimal(rnd.Next(100, 400)) * 1M<price>)
+                                    Quantity = decimal(rnd.Next(2, 4000)) * 1M<qty>
+                            } |> OrderCommand.Create |> processCommand 
             ///
 
             let getPage (lst: ResizeArray<_>) (startIndex: uint64) (pageSize: uint32) = lst.Skip(startIndex |> int).Take(pageSize |> int).ToArray()
@@ -309,6 +346,7 @@ module MatchingEngine =
             member __.Symbols with get() = lock so (fun () -> symbolStackMap |> Map.toSeq |> Seq.map fst |> Seq.filter(fun s -> s <> __.MainSymbol))
             member __.SymbolStrings = lock so (fun () -> __.Symbols |> Seq.map(fun (Symbol s) -> s) |> Seq.toArray)
             member __.OrderStack symbol = lock so (fun () -> (findSymbolStack symbol).OrderStack)
+            member __.OrderStackView symbol maxDepth = lock so (fun () -> (findSymbolStack symbol).OrderStack |> toOrderStackView maxDepth)
 
             member __.OrderCommands startIndex pageSize = lock so (fun () -> getPage orderCommands startIndex pageSize)
             member __.OrderEvents startIndex pageSize = lock so (fun () -> getPage events startIndex pageSize)
