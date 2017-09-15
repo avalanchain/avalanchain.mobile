@@ -14,7 +14,8 @@
                 
             <div class=" float-e-margins col-lg-6">
                 <div class="ibox-title">
-                    <h2>BUY</h2>
+                    <h4 style="display: inline-block;">BUY</h4>
+                    <h4 class="font-bold text-navy pull-right"><small>Lowest ask: </small> {{vm.lowestAsk}}</h4>
                 </div>
                 <div class="ibox-content">
                     <!--<h3 class="font-bold">Send money</h3>-->
@@ -25,24 +26,25 @@
                         <div class="form-group">
                             <label class="col-lg-2 control-label">Price</label>
 
-                            <div class="col-lg-10">
+                            <div class="col-lg-10 input-group">
                                 <input type="number" ng-model="vm.bidOrder.price" placeholder="0" class="form-control">
+                                <span class="input-group-addon">{{vm.symbol}} / {{vm.exchangeSymbol}}</span>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-lg-2 control-label">Quantity</label>
 
-                            <div class="col-lg-10">
+                            <div class="col-lg-10 input-group">
                                 <input type="number" ng-model="vm.bidOrder.quantity" placeholder="0" class="form-control">
                             </div>
                         </div>
-                        <div class="form-group">
+                        <!--<div class="form-group">
                             <label class="col-lg-2 control-label">Total</label>
 
                             <div class="col-lg-10">
                                 <input type="number" ng-model="vm.bidOrder.total" placeholder="0" class="form-control">
                             </div>
-                        </div>
+                        </div>-->
                         <div class="form-group">
                             <div class="col-lg-offset-2 col-lg-10">
                                 <button class="btn btn-primary pull-right" type="button" ng-click="vm.submitOrder(vm.bidOrder,'bid')">
@@ -56,7 +58,9 @@
             </div>
             <div class=" float-e-margins col-lg-6">
                 <div class="ibox-title">
-                    <h2>SELL</h2>
+                    <h4 style="display: inline-block;">SELL</h4>
+                    <!--<div class="text-success pull-right"> <strong>{{vm.symbol}}</strong> </div>-->
+                    <h4 class="font-bold text-navy pull-right"><small>Highest bid: </small> {{vm.highestBid}}</h4>
                 </div>
                 <div class="ibox-content">
                     <!--<h3 class="font-bold">Send money</h3>-->
@@ -67,25 +71,25 @@
                         <div class="form-group">
                             <label class="col-lg-2 control-label">Price</label>
 
-                            <div class="col-lg-10">
+                            <div class="col-lg-10 input-group">
                                 <input type="number" ng-model="vm.askOrder.price" placeholder="0" class="form-control">
+                                <span class="input-group-addon">{{vm.symbol}} / {{vm.exchangeSymbol}}</span>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-lg-2 control-label">Quantity</label>
 
-                            <div class="col-lg-10">
+                            <div class="col-lg-10  input-group">
                                 <input type="number" ng-model="vm.askOrder.quantity" placeholder="0" class="form-control">
                             </div>
                         </div>
-                        <div class="form-group">
+                        <!--<div class="form-group">
                             <label class="col-lg-2 control-label">Total</label>
 
                             <div class="col-lg-10">
                                 <input type="number" ng-model="vm.askOrder.total" placeholder="0" class="form-control">
                             </div>
-                        </div>
-                        
+                        </div>-->
 
                         <div class="form-group">
                             <div class="col-lg-offset-2 col-lg-10">
@@ -210,6 +214,7 @@
                     <table class="table table-hover no-margins">
                         <thead>
                             <tr>
+                                <th>#</th>
                                 <th>Symbol</th>
                                 <th>Account</th>
                                 <th>Market Side</th>
@@ -218,25 +223,28 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="orderCommand in vm.symbolOrderCommands | pagination:(orderCommandPage-1)*10 | limitTo:10">
-                                <td>
-                                    <span class="label label-primary">{{orderCommand.create.symbol.symbol}}</span>
-                                </td>
-                                <td>
-                                    {{orderCommand.create.account.tradingAccount}}
-                                </td>
-                                <td>
-                                    <i ng-show="orderCommand.create.marketSide =='bid'" class="fa fa-play fa-rotate-270 text-navy"></i>
-                                    <i ng-hide="orderCommand.create.marketSide =='bid'" class="fa fa-play fa-rotate-90 text-danger"></i>
-                                    {{orderCommand.create.marketSide}}
-                                </td>
-                                <td>
-                                    {{orderCommand.create.createdTime | date: 'short'}} <i class="fa fa-clock-o"></i>
-                                </td>
+                        <tr ng-repeat="orderCommand in vm.symbolOrderCommands | pagination:(orderCommandPage-1)*10 | limitTo:10">
+                            <td>
+                                {{$index+1+((orderCommandPage-1)*10)}}
+                            </td>
+                            <td>
+                                <span class="label label-primary">{{orderCommand.create.symbol.symbol}}</span>
+                            </td>
+                            <td>
+                                {{orderCommand.create.account.tradingAccount}}
+                            </td>
+                            <td>
+                                <i ng-show="orderCommand.create.marketSide =='bid'" class="fa fa-play fa-rotate-270 text-navy"></i>
+                                <i ng-hide="orderCommand.create.marketSide =='bid'" class="fa fa-play fa-rotate-90 text-danger"></i>
+                                {{orderCommand.create.marketSide}}
+                            </td>
+                            <td>
+                                {{orderCommand.create.createdTime | date: 'short'}}
+                            </td>
 
-                                <td>{{orderCommand.create.quantity}}</td>
-                                <!--<td class="text-navy"><i class="fa fa-level-up"></i> 24%</td>-->
-                            </tr>
+                            <td>{{orderCommand.create.quantity}}</td>
+                            <!--<td class="text-navy"><i class="fa fa-level-up"></i> 24%</td>-->
+                        </tr>
                         </tbody>
                     </table>
                     <uib-pagination total-items="vm.symbolOrderCommands.length" ng-model="orderCommandPage" boundary-link-numbers="true" max-size="5" class="pagination-sm" boundary-links="true" num-pages="numPages"></uib-pagination>
@@ -269,7 +277,7 @@
                         <tbody>
                             <tr ng-repeat="orderEvent in vm.symbolOrderEvents  | pagination:(orderEventPage-1)*10 | limitTo:10">
                                 <td>
-                                    {{$index+1}}
+                                    {{$index+1+((orderEventPage-1)*10)}}
                                 </td>
                                 <!--<td>
                                     {{orderEvent.created.id}}

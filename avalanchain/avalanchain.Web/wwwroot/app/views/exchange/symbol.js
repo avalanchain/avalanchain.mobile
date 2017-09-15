@@ -23,7 +23,8 @@
         $scope.amount1 = [1000, 2100, 3330, 400];
         $scope.amount2 = [1100, 2200, 133000, 1400];
         vm.orders = [];
-        $scope.ordersPage = 1;
+        $scope.orderEventPage = 1;
+        $scope.orderCommandPage = 1;
         $scope.isEdit = false;
         vm.askOrder = {};
         vm.bidOrder = {};
@@ -129,6 +130,8 @@
                 vm.orderStackView = data.data;
                 vm.bidOrders = vm.orderStackView.bidOrders;
                 vm.askOrders = vm.orderStackView.askOrders;
+                vm.lowestAsk = vm.askOrders.length > 0 ? Math.min.apply(Math, vm.askOrders.map(function (o) { return o.price; })): 0;
+                vm.highestBid = vm.bidOrders.length > 0 ? Math.max.apply(Math, vm.bidOrders.map(function (o) { return o.price; })) : 0;
             });
         }
         function submitOrder(order) {
@@ -139,7 +142,7 @@
         function getSymbol() {
             return exchangeservice.mainSymbol().then(function (data) {
 
-                vm.symbol = data.data;
+                vm.exchangeSymbol = data.data;
             });
         }
         function getSymbols() {
@@ -177,7 +180,7 @@
             symbolOrderCommands(vm.symbol);
             symbolOrderEvents(vm.symbol);
             //getOrders();
-            //getSymbol();
+            getSymbol();
             //getSymbols();
             symbolOrderCommandsCount(vm.symbol);
             symbolOrderEventsCount(vm.symbol);
