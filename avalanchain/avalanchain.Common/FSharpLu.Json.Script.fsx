@@ -2,12 +2,12 @@
 #r @"System.Core.dll"
 #r @"..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll"
 
-#load "Helpers.fs"
-#load "WithFunctor.fs"
-#load "NewtonSoft.fs"
-#load "Compact.fs"
-#load "BackwardCompatible.fs"
-open Microsoft.FSharpLu.Json
+#load "Microsoft.FSharpLu.Json.Helpers.fs"
+#load "Microsoft.FSharpLu.Json.WithFunctor.fs"
+#load "Microsoft.FSharpLu.Json.Default.fs"
+#load "Microsoft.FSharpLu.Json.Compact.fs"
+#load "Microsoft.FSharpLu.Json.BackwardCompatible.fs"
+open FSharpLu.Json
 
 type WithFields = SomeField of int * int
 type ComplexDu = ComplexDu of WithFields | SimpleDU | AString of string
