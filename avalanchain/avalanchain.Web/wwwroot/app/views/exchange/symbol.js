@@ -79,11 +79,13 @@
         };
         sampleData($scope);
         vm.fillOrders = function (ord, marketSide) {
-           if (marketSide === 'bid') {
-               vm.bidOrder = ord;
-           } else {
-               vm.askOrder = ord;
-           }
+           //if (marketSide === 'bid') {
+           //    vm.bidOrder = ord;
+           //} else {
+           //    vm.askOrder = ord;
+           //}
+            vm.bidOrder = angular.copy(ord);
+            vm.askOrder = angular.copy(ord);
         }
         vm.submitOrder = function (ord, marketSide) {
             if (ord) {

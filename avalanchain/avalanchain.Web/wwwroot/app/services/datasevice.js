@@ -21,11 +21,11 @@
         .module('icodao')
         .factory('dataservice', dataservice);
 
-    dataservice.$inject = ['$http', '$q', 'common', 'dataProvider', '$filter', '$timeout'];
+    dataservice.$inject = ['$http', '$q', 'common', 'dataProvider', '$filter', '$timeout', 'exchangeservice'];
     /* @ngInject */
 
 
-    function dataservice($http, $q, common, dataProvider, $filter, $timeout) {
+    function dataservice($http, $q, common, dataProvider, $filter, $timeout, exchangeservice) {
         var getLogFn = common.logger.getLogFn;
         var log = getLogFn('dataservice');
         var data = {};
@@ -305,32 +305,46 @@
         function getAssets() {
             
             var assets = [];
-            assets.push({
-                id: getId(),
-                name:'AVCOIN',
-                description:'CASCADING REACTIVE BLOCKCHAINS',
-                icon:'/assets/img/logo.png',
-                amount: 25000000,
-                decimals:8,
-                reissuable:true,
-                status:"ICO coming",
-                cluster: data.clusters[0].id,
-                completion: 48
-            })
-            for (var i = 1; i <= 3; i++) {
-                assets.push({
-                    id: getId(),
-                    name:'COIN-'+i,
-                    description:(i % 2) == 0 ?'Blockchain for Banks': 'Blockchain Wallet',
-                    icon:'',
-                    amount: i*1000000,
-                    decimals:8,
-                    reissuable:(i % 2) == 0,
-                    status:"ICO coming",
-                    cluster: data.clusters[0].id,
-                    completion: 5+i
-                })
-            }
+            exchangeservice.symbols().then(function (data) {
+                var symbols = data.data;
+                
+                for (var i = 0; i < symbols.length; i++) {
+
+                    if (symbols[i] === 'AVC') {
+                        assets.push({
+                            id: getId(),
+                            name: symbols[i],
+                            description: 'CASCADING REACTIVE BLOCKCHAINS',
+                            icon: '/assets/img/logo.png',
+                            amount: 25000000,
+                            decimals: 8,
+                            reissuable: true,
+                            status: "ICO coming",
+                            //cluster: data.clusters[0].id,
+                            completion: 48
+                        });
+                    } else {
+                        if (symbols[i] === 'EUR' || symbols[i] === 'USD' || symbols[i] === 'GBP') {
+
+                        } else {
+                            assets.push({
+                                id: getId(),
+                                name: symbols[i],
+                                description: (i % 2) == 0 ? 'Blockchain for Banks' : 'Blockchain Wallet',
+                                icon: '',
+                                amount: i * 1000000,
+                                decimals: 8,
+                                reissuable: (i % 2) == 0,
+                                status: "ICO coming",
+                                //cluster: data.clusters[0].id,
+                                completion: 5 + i
+                            });
+                        }
+                    }
+                    
+                }
+            });
+            
             return assets;
         }
 

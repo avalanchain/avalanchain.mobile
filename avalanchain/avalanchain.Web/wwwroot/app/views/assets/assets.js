@@ -18,7 +18,7 @@
         function activate() {
             common.activateController([], controllerId)
                 .then(function () {
-                    log('Activated Assets')
+                    log('Activated Assets');
                 }); //log('Activated Admin View');
         }
     };
