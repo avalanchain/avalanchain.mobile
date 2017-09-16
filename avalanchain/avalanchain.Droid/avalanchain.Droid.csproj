@@ -243,6 +243,7 @@
     <Content Include="README_FIRST.txt">
       <Paket>True</Paket>
     </Content>
+    <AndroidResource Include="Resources\drawable\icodao.png" />
     <Resource Include="Toolkit.Content\ApplicationBar.Add.png">
       <Paket>True</Paket>
     </Resource>

@@ -8,7 +8,7 @@
 	<local:WalkthroughStepItemTemplate 
 		BackgroundColor="{ DynamicResource BasePageColor}"
 		Header="Welcome"
-		Text="To a new world of posibilities, &#10; welcome to Avalanchain."
+		Text="To a new world of posibilities!"
 		IconText="{ x:Static local:GrialShapesFont.Public }" 
 	    Icon="{ x:Static local:GrialShapesFont.Public }" 
 		IconColor="#5F7DD4"

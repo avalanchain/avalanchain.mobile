@@ -63,7 +63,7 @@
                     AbsoluteLayout.LayoutFlags="All"
                     FontSize="36"
                     LineBreakMode="WordWrap"
-                    Text="Take your payments to the next level &#x0a; with Avalanchain."
+                    Text="Take your payments to the next level &#x0a; "
                     TextColor="{DynamicResource OverImageTextColor}"
                     VerticalTextAlignment="Center">
                     <Label.FontSize>
