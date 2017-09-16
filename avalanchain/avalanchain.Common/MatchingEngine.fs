@@ -131,7 +131,9 @@ module MatchingEngine =
                     if o.FullyAllocated then 
                         if head.FullyAllocated then 
                             o, (bucket.PopHead()), 0M<qty>, events, head :: orders
-                        else o, bucket, 0M<qty>, events, head :: orders
+                        else
+                            let newBucket = { bucket with OrderQueue = head :: __.OrderQueue.Tail }
+                            o, newBucket, 0M<qty>, events, head :: orders
                     else
                         matchFIFO o (bucket.PopHead()) events (head :: orders)
             matchFIFO order __ [] []
@@ -142,18 +144,15 @@ module MatchingEngine =
 
     let rec private insertOrder (op: Price -> Price -> bool) order skipped remaining = 
         match remaining with
-        | [] -> 
-            let pb = [PriceBucket.Create order]
-            let sk = skipped |> List.rev
-            sk @ pb
+        | [] -> (PriceBucket.Create order :: skipped) |> List.rev
         | pb :: xs ->
-            if pb.Price = order.Price then  [{ pb with OrderQueue = pb.OrderQueue @ [ order ] }]
+            if pb.Price = order.Price then (skipped |> List.rev) @ ({ pb with OrderQueue = pb.OrderQueue @ [ order ] } :: xs)
             elif (op) pb.Price order.Price then insertOrder op order (pb :: skipped) xs
             else (skipped |> List.rev) @ ( (PriceBucket.Create order) :: remaining)
 
     let rec private matchOrder (op: Price -> Price -> bool) (order: Order) (matched: PriceBucket list) events orders (remaining: PriceBucket list) = 
         match remaining with
-        | [] -> order, matched, events, orders, remaining
+        | [] -> order, matched, events, order::orders, remaining
         | pb :: xs ->
             if op pb.Price order.Price then 
                 let order, bucket, remainingQuantity, ets, fOrders = pb.MatchFIFO order
@@ -288,7 +287,7 @@ module MatchingEngine =
                                                         Events = ResizeArray<_>() 
                                                         FullOrders = ResizeArray<_>() }
 
-        type MatchingService(priceStep) =
+        type MatchingService(priceStep, initialize) =
             let orderCommands = ResizeArray<OrderCommand>()
             let mutable symbolStackMap = Map.empty<Symbol, SymbolStack>
             let mutable orders = Map.empty<OrderID, Order>
@@ -322,14 +321,15 @@ module MatchingEngine =
             //    for sym in ["AVC"; "USD"; "EUR"; "GBP"; "ICODAO"; "V1"; "V2" ] do 
             //        { o with Symbol = Symbol sym } |> OrderCommand.Create |> processCommand 
 
-            let rnd = Random()
-            do for o in [orderData; orderData2; aorderData; aorderData2] do 
-                for i in 0 .. rnd.Next(200, 2000) do
-                    for sym in ["AVC"; "USD"; "EUR"; "GBP"; "ICODAO"; "V1"; "V2"; "ICO1"; "ICO2"; "ICO3"; "ICO4"; "ICO5"; "ICO6"; "ICO7"; "ICO8"; "ICO9"; "ICO10"; "ICO11"; "ICO12" ] do 
-                        { o with    Symbol = Symbol sym 
-                                    OrderType = Limit (decimal(rnd.Next(100, 400)) * 1M<price>)
-                                    Quantity = decimal(rnd.Next(2, 4000)) * 1M<qty>
-                            } |> OrderCommand.Create |> processCommand 
+            do if initialize then
+                let rnd = Random()
+                for o in [orderData; orderData2; aorderData; aorderData2] do 
+                    for i in 0 .. rnd.Next(200, 2000) do
+                        for sym in ["AVC"; "USD"; "EUR"; "GBP"; "ICODAO"; "V1"; "V2"; "ICO1"; "ICO2"; "ICO3"; "ICO4"; "ICO5"; "ICO6"; "ICO7"; "ICO8"; "ICO9"; "ICO10"; "ICO11"; "ICO12" ] do 
+                            { o with    Symbol = Symbol sym 
+                                        OrderType = Limit (decimal(rnd.Next(100, 400)) * 1M<price>)
+                                        Quantity = decimal(rnd.Next(2, 4000)) * 1M<qty>
+                                } |> OrderCommand.Create |> processCommand 
             ///
 
             let getPage (lst: ResizeArray<_>) (startIndex: uint64) (pageSize: uint32) = lst.Skip(startIndex |> int).Take(pageSize |> int).ToArray()
@@ -380,5 +380,5 @@ module MatchingEngine =
 
             member __.OrderById2 (orderID: string) = lock so (fun () -> orders |> Map.toArray |> Array.map (fun kv -> (fst kv).ToString()) |> fun a -> orderID + " | " + String.Join(",", a))
 
-            static member Instance = MatchingService 1M<price>
+            static member Instance = MatchingService (1M<price>, true)
 
