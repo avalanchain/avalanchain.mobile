@@ -131,7 +131,9 @@ module MatchingEngine =
                     if o.FullyAllocated then 
                         if head.FullyAllocated then 
                             o, (bucket.PopHead()), 0M<qty>, events, head :: orders
-                        else o, bucket, 0M<qty>, events, head :: orders
+                        else
+                            let newBucket = { bucket with OrderQueue = head :: __.OrderQueue.Tail }
+                            o, newBucket, 0M<qty>, events, head :: orders
                     else
                         matchFIFO o (bucket.PopHead()) events (head :: orders)
             matchFIFO order __ [] []

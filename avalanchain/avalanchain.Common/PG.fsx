@@ -127,6 +127,24 @@ let testBidIssue = test [   toBid 570M<price> 27M<qty>
                                                             570M<price>, 84M<qty>
                                                             ], [])
 
+
+let testInnerIssue = test [ toBid 270M<price> 60000M<qty> 
+                            toBid 260M<price> 240000M<qty>
+                            toBid 258M<price> 9195M<qty> 
+                            toAsk 330M<price> 361721M<qty> 
+                            toAsk 350M<price> 106159M<qty> 
+                            toAsk 370M<price> 56445M<qty> 
+                            toBid 350M<price> 30000M<qty>
+                                                         ] ([   270M<price>, 60000M<qty> 
+                                                                260M<price>, 240000M<qty>
+                                                                258M<price>, 9195M<qty> 
+                                                                ], [
+                                                                    330M<price>, 331721M<qty> 
+                                                                    350M<price>, 106159M<qty> 
+                                                                    370M<price>, 56445M<qty>
+                                                                ])
+
+
 let ms = Facade.MatchingService(5M<price>, false)
 let rnd = Random()
 //for i in 0 .. rnd.Next(200, 2000) do
