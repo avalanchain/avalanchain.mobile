@@ -57,10 +57,10 @@
 
 
             <FileImageSource x:Key="BrandImage">logo.png</FileImageSource>
-            <FileImageSource x:Key="LogoImage">icon.png</FileImageSource>
-            <FileImageSource x:Key="ACImage">avalanchain.png</FileImageSource>
-            <!--<FileImageSource x:Key="LogoImage">icodao.png</FileImageSource>
-            <FileImageSource x:Key="ACImage">icodao.png</FileImageSource>-->
+            <!--<FileImageSource x:Key="LogoImage">icon.png</FileImageSource>
+            <FileImageSource x:Key="ACImage">avalanchain.png</FileImageSource>-->
+            <FileImageSource x:Key="LogoImage">smartmoney.png</FileImageSource>
+            <FileImageSource x:Key="ACImage">smartmoney.png</FileImageSource>
 
             <FileImageSource x:Key="GenericBackgroundImage">generic_bg_image.jpg</FileImageSource>
 
