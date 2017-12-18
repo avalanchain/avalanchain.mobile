@@ -422,10 +422,10 @@ module MatchingEngine =
                                                 CreatedTime = timestamp
                                 } |> OrderCommand.Create |> ms.SubmitOrder 
                 async {
-                    lock so (fun () -> (tradeStep 100M<price> 400M<price> (DateTime.Today.AddHours 7.) (TimeSpan.FromSeconds 1.) symbols 100))
+                    lock so (fun () -> (tradeStep 100M<price> 400M<price> (DateTime.Today.AddHours 7.) (TimeSpan.FromSeconds 1.) symbols 20))
                     for i in 1 .. 1000000 do
-                        do! Async.Sleep 500
-                        lock so (fun () -> (tradeStep 100M<price> 400M<price> (DateTime.Today.AddHours 7.) (TimeSpan.FromSeconds 1.) symbols 10))
+                        do! Async.Sleep 2000
+                        lock so (fun () -> (tradeStep 100M<price> 400M<price> (DateTime.Today.AddHours 7.) (TimeSpan.FromSeconds 1.) symbols 2))
                 }
 
             do if runBot then tradingBot(__, ["AVC"; "USD"; "EUR"; "GBP"; "ICODAO"; "V1"; "V2"; "ICO1"; "ICO2"; "ICO3"; "ICO4"; "ICO5"; "ICO6"; "ICO7"; "ICO8"; "ICO9"; "ICO10"; "ICO11"; "ICO12" ]) |> Async.Start
