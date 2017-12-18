@@ -27,8 +27,8 @@ namespace avalanchain.Droid
     //https://developer.android.com/guide/topics/manifest/activity-element.html
     [Activity(
         Label = "Avalanchain",
-        Icon = "@drawable/icodao",
-        //Icon = "@drawable/icon",
+        //Icon = "@drawable/icodao",
+        Icon = "@drawable/icon",
         Theme = "@style/Theme.Splash",
          MainLauncher = true,
         LaunchMode = LaunchMode.SingleTask,
@@ -50,8 +50,8 @@ namespace avalanchain.Droid
 
             base.OnCreate(bundle);
 #if (!DEBUG)
-            //TestFairy.Begin(this, "885a88cfad8a6e2d4f3c8a09d8b4a9f1d8a48522");//avalanchain
-            TestFairy.Begin(this, "e690e273dda521d700231a83cfd0d4eedbd08556");//icodao
+            TestFairy.Begin(this, "885a88cfad8a6e2d4f3c8a09d8b4a9f1d8a48522");//avalanchain
+            //TestFairy.Begin(this, "e690e273dda521d700231a83cfd0d4eedbd08556");//icodao
 #endif
 
             //Initializing FFImageLoading
