@@ -210,7 +210,7 @@
         }
 
 
-        function getYData() {
+        function getYData1() {
             var url = "https://query.yahooapis.com/v1/public/yql";
             //var symbol = '"EURUSD","USDEUR", "USDJPY", "USDGBP", "USDAUD", "USDCHF", "USDSEK", "USDNOK", "USDRUB", "USDTRY", "USDBRL", "USDCAD", "USDCNY", "USDHKD", "USDINR", "USDKRW", "USDMXN", "USDNZD", "USDSGD", "USDZAR"';
             var symbol = '"EURUSD","USDEUR", "USDJPY", "USDGBP"';
@@ -230,9 +230,56 @@
             });
 
         }
+        function getYData() {
+            var defer = $q.defer();
+            var rates = {
+                "EUR": 1/(1.1795),
+                "GBP": 0.88208,
+                "JPY": 132.66,
+                "USD": 1.1795
+            };
+           var dt = [];
+           for (var i = 1; i <= 20; i++) {
+               var erate =  rates['USD'] * 0.01 * Math.random();
+                dt.push({
+                    Ask: (rates['USD'] + erate).toFixed(4) ,
+                    Bid: (rates['USD'] - erate).toFixed(4),
+                    Rate: (rates['USD'] + erate).toFixed(4),
+                    Name: 'EUR' + '/' + 'USD'
+               });
+                var grate = rates['GBP'] * 0.01 * Math.random();
+               dt.push({
+                   Ask: (rates['GBP'] + grate).toFixed(4),
+                   Bid: (rates['GBP'] - grate).toFixed(4),
+                   Rate: (rates['GBP'] + grate).toFixed(4),
+                   Name: 'EUR' + '/' + 'GBP'
+               });
+               var jrate = rates['JPY'] * 0.01 * Math.random();
+               dt.push({
+                   Ask: (rates['JPY'] + jrate).toFixed(4),
+                   Bid: (rates['JPY'] - jrate).toFixed(4),
+                   Rate: (rates['JPY'] + jrate).toFixed(4),
+                   Name: 'EUR' + '/' + 'JPY'
+               });
+               var urate = rates['EUR'] * 0.01 * Math.random();
+               dt.push({
+                   Ask: (rates['EUR'] + urate).toFixed(4),
+                   Bid: (rates['EUR'] - urate).toFixed(4),
+                   Rate: (rates['EUR'] + urate).toFixed(4),
+                   Name: 'USD' + '/' + 'EUR'
+               });
+            };
+
+            $timeout(function() {
+                    defer.resolve(dt);
+                },
+                200);
+
+            return defer.promise;
+        }
         function getPrices(currency) {
-            if(!currency)
-                currency='USD'
+            if (!currency)
+                currency = 'USD';
 
             var url = "https://min-api.cryptocompare.com/data/price?fsym=" + currency + "&tsyms=BTC,ETH,EUR,LTC";
             
@@ -423,6 +470,7 @@
 
         function getData() {
             var defer = $q.defer();
+
             data.clusters = data.clusters ? data.clusters : getClusters();
             data.nodes = data.nodes ? data.nodes : getNodes();
             data.accounts = data.accounts ? data.accounts : getAccounts();

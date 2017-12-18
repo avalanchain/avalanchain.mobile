@@ -123,9 +123,9 @@
 
         function getData() {
             return dataservice.getYData().then(function (data) {
-                if (data.data.query.count > 0) {
-                    var dt = dataservice.mapping(data.data.query.results.rate, $scope);
-                    $scope.users = addAmount(dt);
+                if (data.length > 0) {
+                    //var dt = dataservice.mapping(data.rate, $scope);
+                    $scope.users = addAmount(data);
                 }
             });
         }
