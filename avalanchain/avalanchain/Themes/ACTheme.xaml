@@ -20,13 +20,16 @@
         #FF169CEE
     -->
 
-    <Color x:Key="AccentColor">#C7413E</Color>
+
+    <!--<Color x:Key="AccentColor">#C7413E</Color>-->
+    <Color x:Key="AccentColor">#1cab12</Color>
     <Color x:Key="BaseTextColor">#2f2f33</Color>
 
 
     <!--  GENERAL COLORS  -->
     <Color x:Key="InverseTextColor">White</Color>
-    <Color x:Key="BrandColor">#C7413E</Color>
+    <!--<Color x:Key="BrandColor">#C7413E</Color>-->
+    <Color x:Key="BrandColor">#1cab12</Color>
     <Color x:Key="BrandNameColor">#FFFFFF</Color>
     <Color x:Key="BaseLightTextColor">#7b7b7b</Color>
     <Color x:Key="OverImageTextColor">#FFFFFF</Color>
