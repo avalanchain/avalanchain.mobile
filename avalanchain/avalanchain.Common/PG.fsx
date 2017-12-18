@@ -10,6 +10,8 @@
 
 #load "MatchingEngine.fs"
 
+#time
+
 open System
 open FSharpLu.Json
 
@@ -26,7 +28,7 @@ let orders (bm, bc) (am, ac) =
 
 let test ords (expBid, expAsk) =
     let sym = Symbol "AVC"
-    let ms = Facade.MatchingService(5M<price>, false)
+    let ms = Facade.MatchingService(5M<price>, 100UL, false)
     ords
     |> List.map OrderCommand.Create
     |> List.iter ms.SubmitOrder
@@ -145,53 +147,111 @@ let testInnerIssue = test [ toBid 270M<price> 60000M<qty>
                                                                 ])
 
 
-let ms = Facade.MatchingService(5M<price>, false)
+let ms = Facade.MatchingService(5M<price>, 10UL, false)
 let rnd = Random()
-//for i in 0 .. rnd.Next(200, 2000) do
-let step() =
-    for i in 0 .. 10000 do
-        for sym in [ "AVC" ] do 
+let tradeStep lowCap highCap (dt: DateTime) (dtStep: TimeSpan) symbols count =
+    for i in 1 .. count do
+        let timestamp = dt.Add(TimeSpan(dtStep.Ticks * int64(i))) |> DateTimeOffset
+        for sym in symbols do 
             let sym = Symbol sym
-            let side = if rnd.Next(10) < 5 then MarketSide.Bid else MarketSide.Ask
-            let quantity = decimal(rnd.Next(2, 100)) * 1M<qty>
+            let quantity = decimal(rnd.Next(52, 100)) * 1M<qty>
             let st = ms.OrderStack(sym)
-            let p = match side, st.BidOrders, st.AskOrders with
-                        | _, [], [] -> (decimal(rnd.Next(75, 200)) * st.PriceStep)
-                        | MarketSide.Bid, b, [] -> (b.Head.Price + decimal(rnd.Next(6) - 3) * st.PriceStep)
-                        | MarketSide.Bid, _, a -> 
-                            let r = rnd.Next(6) 
-                            if r < 2 then a.Head.Price else a.Head.Price + decimal(r) * st.PriceStep
-                        | MarketSide.Ask, [], a -> (a.Head.Price + decimal(rnd.Next(6) - 3) * st.PriceStep)
-                        | MarketSide.Ask, b, _ -> 
-                            let r = rnd.Next(6) 
-                            if r < 2 then b.Head.Price else b.Head.Price - decimal(r) * st.PriceStep
+            let p, side = match st.BidOrders, st.AskOrders with
+                            | [], [] -> decimal(((highCap - lowCap) / st.PriceStep) / 2M |> Math.Round) * st.PriceStep, MarketSide.Ask
+                            | bb, aa -> 
+                                let bbl = bb |> List.length 
+                                let aal = aa |> List.length
+                                if bbl >= 7 && aal >= 7 then 
+                                    if rnd.NextDouble() < 0.5 then aa.Tail.Head.Price, MarketSide.Bid
+                                    else bb.Tail.Head.Price, MarketSide.Ask
+                                elif aal = 0 then (bb.Head.Price + st.PriceStep), MarketSide.Ask
+                                elif bbl = 0 then (aa.Head.Price - st.PriceStep), MarketSide.Bid
+                                elif bbl < aal then 
+                                    let newPrice = ((bb |> List.last).Price - st.PriceStep)
+                                    if newPrice < lowCap then lowCap + st.PriceStep, MarketSide.Bid
+                                    else newPrice, MarketSide.Bid
+                                else
+                                    let newPrice = ((aa |> List.last).Price + st.PriceStep)
+                                    if newPrice > highCap then highCap - st.PriceStep, MarketSide.Ask
+                                    else newPrice, MarketSide.Ask
 
-            printfn "s p q: %A %A %A" side p quantity
+            let cappedPrice =   if p < lowCap then lowCap + st.PriceStep
+                                elif p > highCap then highCap - st.PriceStep
+                                else p
+            // printfn "s p q: %A %A %A" side p quantity
             { orderData with    Symbol = sym 
                                 MarketSide = side
-                                OrderType = Limit (p)
+                                OrderType = Limit cappedPrice
                                 Quantity = quantity
+                                CreatedTime = timestamp
+                                Account = TradingAccount("TRA-" + (rnd.Next(5) + 1).ToString())
                 } |> OrderCommand.Create |> ms.SubmitOrder 
 
-step()
+tradeStep 100M<price> 400M<price> (DateTime.Today.AddHours 7.) (TimeSpan.FromSeconds 1.) [ "AVC" ] 100
 let st = ms.OrderStackView(Symbol "AVC") 100
 st.BidOrders.Length
 st.AskOrders.Length
 
-let stt = ms.OrderStack(Symbol "AVC") 
 
 
 
-let ms = Facade.MatchingService(5M<price>, false)
-let rnd = Random()
-for o in [orderData; orderData2; aorderData; aorderData2] do 
-    //for i in 0 .. rnd.Next(200, 2000) do
-    for i in 0 .. 100 do
-        for sym in ["AVC" ] do 
-            { o with    Symbol = Symbol sym 
-                        OrderType = Limit (decimal(rnd.Next(100, 400)) * 1M<price>)
-                        Quantity = decimal(rnd.Next(2, 100)) * 1M<qty>
-                } |> OrderCommand.Create |> ms.SubmitOrder 
 
-let st = ms.OrderStackView(Symbol "AVC") 100
-st.BidOrders.Length
+
+// let ms = Facade.MatchingService(5M<price>, 10UL, false)
+// let rnd = Random()
+// //for i in 0 .. rnd.Next(200, 2000) do
+// let tradeStep lowCap highCap (dt: DateTime) (dtStep: TimeSpan) symbols count =
+//     for i in 0 .. count do
+//         let timestamp = dt.Add(TimeSpan(dtStep.Ticks * int64(i))) |> DateTimeOffset
+//         for sym in symbols do 
+//             let sym = Symbol sym
+//             let side = if rnd.NextDouble() < 0.5 then MarketSide.Bid else MarketSide.Ask
+//             let quantity = decimal(rnd.Next(52, 100)) * 1M<qty>
+//             let st = ms.OrderStack(sym)
+//             let p = match side, st.BidOrders, st.AskOrders with
+//                     | _, [], [] -> decimal(((highCap - lowCap) / st.PriceStep) / 2M |> Math.Round) * st.PriceStep
+//                     | MarketSide.Bid, b, [] -> (b.Head.Price + decimal(rnd.Next(6) - 3) * st.PriceStep)
+//                     | MarketSide.Bid, _, a -> 
+//                         let r = rnd.NextDouble() 
+//                         if r < 0.5 then a.Head.Price else a.Head.Price + decimal(r) * st.PriceStep
+//                     | MarketSide.Ask, [], a -> (a.Head.Price + decimal(rnd.Next(6) - 3) * st.PriceStep)
+//                     | MarketSide.Ask, b, _ -> 
+//                         let r = rnd.NextDouble() 
+//                         if r < 0.5 then b.Head.Price else b.Head.Price - decimal(r) * st.PriceStep
+//             let capedSide = 
+//                 if p < lowCap then MarketSide.Ask
+//                 elif (p > highCap) then MarketSide.Bid 
+//                 else side
+                            
+//             // printfn "s p q: %A %A %A" side p quantity
+//             { orderData with    Symbol = sym 
+//                                 MarketSide = capedSide
+//                                 OrderType = Limit p
+//                                 Quantity = quantity
+//                                 CreatedTime = timestamp
+//                 } |> OrderCommand.Create |> ms.SubmitOrder 
+
+// tradeStep 100M<price> 300M<price> (DateTime.Today.AddHours 7.) (TimeSpan.FromSeconds 1.) [ "AVC" ] 10000
+// let st = ms.OrderStackView(Symbol "AVC") 100
+// st.BidOrders.Length
+// st.AskOrders.Length
+
+// let stt = ms.OrderStack(Symbol "AVC") 
+
+
+
+
+
+// let ms = Facade.MatchingService(5M<price>, 100UL, false)
+// let rnd = Random()
+// for o in [orderData; orderData2; aorderData; aorderData2] do 
+//     //for i in 0 .. rnd.Next(200, 2000) do
+//     for i in 0 .. 100 do
+//         for sym in ["AVC" ] do 
+//             { o with    Symbol = Symbol sym 
+//                         OrderType = Limit (decimal(rnd.Next(100, 400)) * 1M<price>)
+//                         Quantity = decimal(rnd.Next(2, 100)) * 1M<qty>
+//                 } |> OrderCommand.Create |> ms.SubmitOrder 
+
+// let st = ms.OrderStackView(Symbol "AVC") 100
+// st.BidOrders.Length

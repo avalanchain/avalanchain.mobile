@@ -14,6 +14,7 @@ module MatchingEngine =
   
 
     type OrderID = Guid //uint64
+    type Pos = uint64
     let newOrderID = Guid.NewGuid
 
     type ClOrdID = ClOrdID of string
@@ -41,8 +42,9 @@ module MatchingEngine =
     | Created of Order
     | CreationFailed of OrderData * Reason: string
     | Matched of Allocation * MatchType
-    | Cancelled of OrderID
-    | CancellationFailed of OrderID * Reason: string
+    | Expired of OrderID: OrderID * CreatedAt: Pos * ExpiredAt: Pos
+    | Cancelled of OrderID: OrderID
+    | CancellationFailed of OrderID: OrderID * Reason: string
 
     and OrderData = {
         OrderType: OrderType
@@ -63,6 +65,8 @@ module MatchingEngine =
     }
     and Order = {
         ID: OrderID
+        Pos: Pos
+        ExpiresAt: Pos
         OrderData: OrderData
         RemainingQuantity: Quantity
         AcceptenceTime: DateTimeOffset
@@ -79,11 +83,14 @@ module MatchingEngine =
         member __.FilledQuantity = __.OriginalQuantity - __.RemainingQuantity
         member __.MatchType = if __.RemainingQuantity <= 0M<qty> then Full else Partial
         member __.FullyAllocated = __.MatchType = Full
-        static member Create orderData = {  ID = newOrderID()
-                                            OrderData = orderData
-                                            RemainingQuantity = orderData.Quantity
-                                            AcceptenceTime = DateTimeOffset.UtcNow
-                                            Allocations = [] }
+        static member Create pos expiresAt orderData = 
+            {   ID = newOrderID()
+                Pos = pos
+                ExpiresAt = expiresAt
+                OrderData = orderData
+                RemainingQuantity = orderData.Quantity
+                AcceptenceTime = DateTimeOffset.UtcNow
+                Allocations = [] }
         static member Allocate order1 order2 quantity = 
             let time = DateTimeOffset.UtcNow
             let allocate o1 o2 price =
@@ -137,6 +144,10 @@ module MatchingEngine =
                     else
                         matchFIFO o (bucket.PopHead()) events (head :: orders)
             matchFIFO order __ [] []
+        member __.RemoveExpired pos = __.OrderQueue 
+                                        |> List.partition (fun o -> o.ExpiresAt < pos)
+                                        |> fun (active, expired) -> if expired.IsEmpty then __, []
+                                                                    else { __ with OrderQueue = active }, expired
 
         static member Create (order: Order) = 
             {   PriceBucket.Price = order.Price 
@@ -165,7 +176,6 @@ module MatchingEngine =
             else 
                 order, matched, events, orders, remaining
 
-
     type OrderStack = {
         BidOrders: PriceBucket list
         AskOrders: PriceBucket list
@@ -179,18 +189,32 @@ module MatchingEngine =
                     let askOrders = matched (*???*) @ remaining |> List.filter (fun pb -> pb.OrderQueue |> List.isEmpty |> not)
                     if order.FullyAllocated then { __ with AskOrders = askOrders }, events, fullOrders
                     else 
-                        let bidOrders = insertOrder (>) order [] __.BidOrders
+                        let bidOrders = insertOrder (>) order [] __.BidOrders |> List.truncate 20 // TODO: Remove truncate
                         { __ with AskOrders = askOrders; BidOrders = bidOrders }, Created order :: events, fullOrders 
                 | Ask -> 
                     let order, matched, events, fullOrders, remaining = matchOrder (>=) order [] [] [] __.BidOrders
                     let bidOrders = matched (*???*) @ remaining |> List.filter (fun pb -> pb.OrderQueue |> List.isEmpty |> not)
                     if order.FullyAllocated then { __ with BidOrders = bidOrders }, events, fullOrders
                     else 
-                        let askOrders = insertOrder (<) order [] __.AskOrders
+                        let askOrders = insertOrder (<) order [] __.AskOrders |> List.truncate 20 // TODO: Remove truncate
                         { __ with AskOrders = askOrders; BidOrders = bidOrders }, Created order :: events, fullOrders 
+        member __.RemoveExpired currentPos = 
+            let removeExpired (buckets: PriceBucket list): PriceBucket list * Order list = 
+                (   buckets 
+                    |> List.map (fun b -> b.RemoveExpired currentPos) 
+                    |> List.foldBack (fun (pb: PriceBucket, exp: Order list) (pbs: PriceBucket list, exps: Order list) -> 
+                                        (pb :: pbs), (exp @ exps))) ([], [])  
+            let bidActive, bidExpired = removeExpired __.BidOrders
+            let askActive, askExpired = removeExpired __.AskOrders
+            let expired = bidExpired @ askExpired 
+            if expired.IsEmpty then __, []
+            else { __ with  BidOrders = bidActive //|> List.filter (fun pb -> pb.OrderQueue |> List.isEmpty |> not)
+                            AskOrders = askActive //|> List.filter (fun pb -> pb.OrderQueue |> List.isEmpty |> not) 
+                            }, expired
+
         static member Create priceStep = { PriceStep = priceStep; BidOrders = []; AskOrders = [] }
 
-    let compactUnionJsonConverter =  new FSharpLu.Json.CompactUnionJsonConverter()
+    let compactUnionJsonConverter =  FSharpLu.Json.CompactUnionJsonConverter()
 
     type OrderStackView = {
         BidOrders: PriceBucketView list
@@ -276,61 +300,135 @@ module MatchingEngine =
 
         type SymbolStack = {
             Symbol: Symbol
+            ExpirationPosLimit: Pos 
+            Pos: Pos
             OrderStack: OrderStack
             Commands: ResizeArray<OrderCommand>
             Events: ResizeArray<OrderEvent>
             FullOrders: ResizeArray<Order>
         }
-        with static member Create symbol priceStep = {  Symbol = symbol
-                                                        OrderStack = OrderStack.Create priceStep
-                                                        Commands = ResizeArray<_>() 
-                                                        Events = ResizeArray<_>() 
-                                                        FullOrders = ResizeArray<_>() }
+        with static member Create symbol priceStep posLimit = { Symbol = symbol
+                                                                ExpirationPosLimit = posLimit
+                                                                Pos = 0UL
+                                                                OrderStack = OrderStack.Create priceStep
+                                                                Commands = ResizeArray<_>() 
+                                                                Events = ResizeArray<_>() 
+                                                                FullOrders = ResizeArray<_>() }
 
-        type MatchingService(priceStep, initialize) =
+        type MatchingService(priceStep, posLimit, runBot) as __ =
             let orderCommands = ResizeArray<OrderCommand>()
             let mutable symbolStackMap = Map.empty<Symbol, SymbolStack>
             let mutable orders = Map.empty<OrderID, Order>
             let findSymbolStack symbol = match symbolStackMap.TryFind symbol with
                                             | Some ss -> ss
-                                            | None -> SymbolStack.Create symbol priceStep
+                                            | None -> SymbolStack.Create symbol priceStep posLimit
 
             //orderStack = OrderStack.Create priceStep
             let fullOrders = ResizeArray<Order>()
             let events = ResizeArray<OrderEvent>()
-            let processCommand command = 
+            let processCommand command expireLimit = 
                 match command with
                 | OrderCommand.Create order -> 
                     orderCommands.Add command
                     let symbolStack = findSymbolStack order.Symbol
-                    let newOrderStack, evts, updatedOrders = order |> Order.Create |> symbolStack.OrderStack.AddOrder 
-                    let newSymbolStack = { symbolStack with OrderStack = newOrderStack }
+                    let newPos = symbolStack.Pos + 1UL
+                    let newOrderStack, evts, updatedOrders = order 
+                                                                |> Order.Create newPos expireLimit
+                                                                |> symbolStack.OrderStack.AddOrder 
+                    // let newOrderStack, expireOrders = newOrderStack.RemoveExpired newPos
+                    // let expireEvts = [for o in expireOrders -> Expired(o.ID, o.Pos, newPos)]
+                    // let evts = evts @ expireEvts
+                    let newSymbolStack = { symbolStack with OrderStack = newOrderStack; Pos = newPos }
                     for o in updatedOrders do 
                         orders <- orders.Add(o.ID, o)
                         if o.FullyAllocated then 
                             newSymbolStack.FullOrders.Add o
                             fullOrders.Add o
                     newSymbolStack.Commands.Add command
-                    newSymbolStack.Events.AddRange evts
-                    events.AddRange evts
+                    
+                    let revEvents = evts |> List.rev
+                    newSymbolStack.Events.AddRange revEvents
+                    events.AddRange revEvents
                     symbolStackMap <- symbolStackMap.Add (newSymbolStack.Symbol, newSymbolStack)
                 | OrderCommand.Cancel oid -> failwith "Not supported yet"
             
+            let so = new obj()
+
             // TODO: Remove fakes:
             //do for o in [orderData; orderData2; aorderData; aorderData2; aorderData3] do 
             //    for sym in ["AVC"; "USD"; "EUR"; "GBP"; "ICODAO"; "V1"; "V2" ] do 
             //        { o with Symbol = Symbol sym } |> OrderCommand.Create |> processCommand 
 
-            do if initialize then
-                let rnd = Random()
-                for o in [orderData; orderData2; aorderData; aorderData2] do 
-                    for i in 0 .. rnd.Next(200, 2000) do
-                        for sym in ["AVC"; "USD"; "EUR"; "GBP"; "ICODAO"; "V1"; "V2"; "ICO1"; "ICO2"; "ICO3"; "ICO4"; "ICO5"; "ICO6"; "ICO7"; "ICO8"; "ICO9"; "ICO10"; "ICO11"; "ICO12" ] do 
-                            { o with    Symbol = Symbol sym 
-                                        OrderType = Limit (decimal(rnd.Next(100, 400)) * 1M<price>)
-                                        Quantity = decimal(rnd.Next(2, 4000)) * 1M<qty>
-                                } |> OrderCommand.Create |> processCommand 
+            // do if initialize then
+            //     let rnd = Random()
+            //     for o in [orderData; orderData2; aorderData; aorderData2] do 
+            //         for i in 0 .. rnd.Next(200, 2000) do
+            //             for sym in ["AVC"; "USD"; "EUR"; "GBP"; "ICODAO"; "V1"; "V2"; "ICO1"; "ICO2"; "ICO3"; "ICO4"; "ICO5"; "ICO6"; "ICO7"; "ICO8"; "ICO9"; "ICO10"; "ICO11"; "ICO12" ] do 
+            //                 { o with    Symbol = Symbol sym 
+            //                             OrderType = Limit (decimal(rnd.Next(100, 400)) * 1M<price>)
+            //                             Quantity = decimal(rnd.Next(2, 4000)) * 1M<qty>
+            //                     } |> OrderCommand.Create |> fun c -> processCommand c posLimit
             ///
+            let tradingBot(ms: MatchingService, symbols) = 
+            // let ms = Facade.MatchingService(5M<price>, 10UL, false)
+                let rnd = Random()
+                let tradeStep lowCap highCap (dt: DateTime) (dtStep: TimeSpan) symbols count =
+                    for i in 1 .. count do
+                        let timestamp = dt.Add(TimeSpan(dtStep.Ticks * int64(i))) |> DateTimeOffset
+                        for sym in symbols do 
+                            let sym = Symbol sym
+                            let quantity = decimal(rnd.Next(52, 100)) * 1M<qty>
+                            let st = ms.OrderStack(sym)
+                            let medianPrice = decimal(((highCap - lowCap) / st.PriceStep) / 2M |> Math.Round) * st.PriceStep
+                            let p, side = match st.BidOrders, st.AskOrders with
+                                            | [], [] -> medianPrice, MarketSide.Ask
+                                            | bb, aa -> 
+                                                let bbl = bb |> List.length 
+                                                let aal = aa |> List.length
+                                                if bbl >= 7 && aal >= 7 then 
+                                                    if aa.Head.Price - bb.Head.Price > 2M * st.PriceStep then 
+                                                        if aa.Tail.Head.Price > medianPrice then aa.Head.Price - st.PriceStep, MarketSide.Ask
+                                                        else bb.Head.Price + st.PriceStep, MarketSide.Bid
+                                                    else
+                                                        let aboveMedian = aa.Tail.Head.Price > medianPrice
+                                                        if (rnd.NextDouble() > 0.30) then 
+                                                            if aa.Tail.Head.Price > medianPrice then aa.Head.Price - st.PriceStep, MarketSide.Ask
+                                                            else bb.Head.Price + st.PriceStep, MarketSide.Bid
+                                                        elif bb.Tail.Head.Price < medianPrice then bb.Head.Price + st.PriceStep, MarketSide.Bid
+                                                        else aa.Head.Price - st.PriceStep, MarketSide.Ask
+                                                elif aal = 0 then (bb.Head.Price + st.PriceStep), MarketSide.Ask
+                                                elif bbl = 0 then (aa.Head.Price - st.PriceStep), MarketSide.Bid
+                                                elif bbl < aal then 
+                                                    let newPrice =
+                                                        if aa.Head.Price - bb.Head.Price > 2M * st.PriceStep then aa.Head.Price - st.PriceStep
+                                                        else ((bb |> List.last).Price - st.PriceStep)
+                                                    if newPrice < lowCap then lowCap + st.PriceStep, MarketSide.Bid
+                                                    else newPrice, MarketSide.Bid
+                                                else
+                                                    let newPrice = 
+                                                        if aa.Head.Price - bb.Head.Price > 2M * st.PriceStep then bb.Head.Price + st.PriceStep
+                                                        else ((aa |> List.last).Price + st.PriceStep)
+                                                    if newPrice > highCap then highCap - st.PriceStep, MarketSide.Ask
+                                                    else newPrice, MarketSide.Ask
+
+                            let cappedPrice =   if p < lowCap then lowCap + st.PriceStep
+                                                elif p > highCap then highCap - st.PriceStep
+                                                else p
+                            // printfn "s p q: %A %A %A" side p quantity
+                            { orderData with    Symbol = sym 
+                                                MarketSide = side
+                                                OrderType = Limit cappedPrice
+                                                Quantity = quantity
+                                                CreatedTime = timestamp
+                                } |> OrderCommand.Create |> ms.SubmitOrder 
+                async {
+                    lock so (fun () -> (tradeStep 100M<price> 400M<price> (DateTime.Today.AddHours 7.) (TimeSpan.FromSeconds 1.) symbols 20))
+                    for i in 1 .. 1000000 do
+                        do! Async.Sleep 2000
+                        lock so (fun () -> (tradeStep 100M<price> 400M<price> (DateTime.Today.AddHours 7.) (TimeSpan.FromSeconds 1.) symbols 2))
+                }
+
+            do if runBot then tradingBot(__, ["AVC"; "USD"; "EUR"; "GBP"; "ICODAO"; "V1"; "V2"; "ICO1"; "ICO2"; "ICO3"; "ICO4"; "ICO5"; "ICO6"; "ICO7"; "ICO8"; "ICO9"; "ICO10"; "ICO11"; "ICO12" ]) |> Async.Start
 
             let getPage (lst: ResizeArray<_>) (startIndex: uint64) (pageSize: uint32) = lst.Skip(startIndex |> int).Take(pageSize |> int).ToArray()
             let getLastPage (lst: ResizeArray<_>) (pageSize: uint32) = 
@@ -338,14 +436,13 @@ module MatchingEngine =
                 if pageSizeI > lst.Count then lst.ToArray()
                 else lst.Skip(lst.Count - pageSizeI).Take(pageSizeI).ToArray()
             
-            let so = new obj()
             
-            member __.SubmitOrder orderCommand = processCommand orderCommand
+            member __.SubmitOrder orderCommand = processCommand orderCommand posLimit
 
             member __.MainSymbol = Symbol "ICODAO"
             member __.Symbols with get() = lock so (fun () -> symbolStackMap |> Map.toSeq |> Seq.map fst |> Seq.filter(fun s -> s <> __.MainSymbol))
             member __.SymbolStrings = lock so (fun () -> __.Symbols |> Seq.map(fun (Symbol s) -> s) |> Seq.toArray)
-            member __.OrderStack symbol = lock so (fun () -> (findSymbolStack symbol).OrderStack)
+            member __.OrderStack symbol: OrderStack = lock so (fun () -> (findSymbolStack symbol).OrderStack)
             member __.OrderStackView symbol maxDepth = lock so (fun () -> (findSymbolStack symbol).OrderStack |> toOrderStackView maxDepth)
 
             member __.OrderCommands startIndex pageSize = lock so (fun () -> getPage orderCommands startIndex pageSize)
@@ -374,11 +471,8 @@ module MatchingEngine =
 
             member __.Orders() = lock so (fun () -> orders)
             member __.OrderById orderID = lock so (fun () -> orders |> Map.tryFind orderID)
-                //match orders.TryGetValue orderID with
-                //                            | true, o -> Some o
-                //                            | _ -> None
 
             member __.OrderById2 (orderID: string) = lock so (fun () -> orders |> Map.toArray |> Array.map (fun kv -> (fst kv).ToString()) |> fun a -> orderID + " | " + String.Join(",", a))
 
-            static member Instance = MatchingService (1M<price>, true)
 
+            static member Instance = MatchingService (1M<price>, 100UL, true)

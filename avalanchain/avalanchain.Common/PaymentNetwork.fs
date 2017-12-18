@@ -108,6 +108,7 @@ module PaymentNetwork =
             | v when v < total -> { Result = Error(NotEnoughFunds ({ Expected = total; Available = v })); Balances = balances; TimeStamp = DateTimeOffset.UtcNow }
             | v -> 
                 let rec applyTos (blns: PaymentBalancesData) tos : StoredTransaction = 
+
                     match tos with
                     | [] -> { Result = Ok(transaction); Balances = { Balances = blns }; TimeStamp = DateTimeOffset.UtcNow }
                     | t :: _ when snd t < 0m -> { Result = Error(UnexpectedNegativeAmount (snd t)); Balances = balances; TimeStamp = DateTimeOffset.UtcNow }
