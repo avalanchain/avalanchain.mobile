@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    var app = angular.module('icodao');
+    var app = angular.module('smartmoney');
     //
     var events = {
         controllerActivateSuccess: 'controller.activateSuccess',
@@ -10,7 +10,7 @@
 
     var config = {
         appErrorPrefix: '[HT Error] ', //Configure the exceptionHandler decorator
-        docTitle: 'icodao: ',
+        docTitle: 'smartmoney: ',
         events: events,
         version: '0.8.1'
     };

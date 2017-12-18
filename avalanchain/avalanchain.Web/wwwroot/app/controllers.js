@@ -1,5 +1,5 @@
 /**
- * icodao - Responsive Admin Theme
+ * smartmoney - Responsive Admin Theme
  * Copyright 2015 Webapplayers.com
  *
  */
@@ -10,7 +10,7 @@
 function MainCtrl() {
 
     this.userName = 'User';
-    this.helloText = 'Welcome in icodao';
+    this.helloText = 'Welcome in smartmoney';
     this.descriptionText = 'CASCADING REACTIVE BLOCKCHAINS';
 
 };
@@ -34,6 +34,6 @@ function modalCtrl($scope, $uibModalInstance, dataservice, $rootScope) {
 
 
 angular
-    .module('icodao')
+    .module('smartmoney')
     .controller('MainCtrl', MainCtrl)
     .controller('modalCtrl', MainCtrl);

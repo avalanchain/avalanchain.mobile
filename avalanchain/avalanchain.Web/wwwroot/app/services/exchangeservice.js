@@ -3,7 +3,7 @@
     'use strict';
 
     angular
-        .module('icodao')
+        .module('smartmoney')
         .factory('exchangeservice', exchangeservice);
 
     exchangeservice.$inject = ['$http', '$q', 'common', 'dataProvider', '$filter', '$timeout'];
@@ -56,7 +56,7 @@
             return postData(api.submitOrder, value);
         }
 
-        function orderStack(symbol) {//ICODAO
+        function orderStack(symbol) {//smartmoney
             return getData(api.orderStack, symbol);
         }
 

@@ -1,14 +1,14 @@
 ﻿(function () {
     'use strict';
     var controllerId = 'Dashboard';
-    angular.module('icodao').controller(controllerId, ['common', 'dataservice', dashboard]);
+    angular.module('smartmoney').controller(controllerId, ['common', 'dataservice', dashboard]);
 
     function dashboard(common, dataservice) {
         var getLogFn = common.logger.getLogFn;
         var log = getLogFn(controllerId);
         var vm = this;
         vm.info = 'Dashboard';
-        vm.helloText = 'Welcome in icodao';
+        vm.helloText = 'Welcome in smartmoney';
         vm.descriptionText = 'CASCADING REACTIVE BLOCKCHAINS';
 
         //vm.clusters = dataservice.getData().clusters.length;

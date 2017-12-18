@@ -1,7 +1,7 @@
 (function () {
     'use strict';
     var controllerId = 'createassets';
-    angular.module('icodao').controller(controllerId, ['common', 'dataservice', '$scope', '$uibModal', '$rootScope', '$state', createassets]);
+    angular.module('smartmoney').controller(controllerId, ['common', 'dataservice', '$scope', '$uibModal', '$rootScope', '$state', createassets]);
 
     function createassets(common, dataservice, $scope, $uibModal, $rootScope, $state) {
         var getLogFn = common.logger.getLogFn;

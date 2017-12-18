@@ -244,6 +244,7 @@
       <Paket>True</Paket>
     </Content>
     <AndroidResource Include="Resources\drawable\icodao.png" />
+    <AndroidResource Include="Resources\drawable\smartmoney.png" />
     <Resource Include="Toolkit.Content\ApplicationBar.Add.png">
       <Paket>True</Paket>
     </Resource>

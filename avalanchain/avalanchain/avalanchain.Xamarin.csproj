@@ -19,6 +19,8 @@
     </Resource>
     <None Remove="Helpers\AnimationService.cs" />
     <None Remove="Helpers\CommonService.cs" />
+    <None Remove="Themes\SMTheme.xaml" />
+    <None Remove="Themes\SMTheme.xaml.cs" />
     <None Remove="ViewModels\WalletViewModel.cs" />
     <None Remove="Views\Accounts\AccountDetail.xaml" />
     <None Remove="Views\Accounts\Accounts.xaml" />
@@ -58,6 +60,7 @@
     <Compile Include="Models\Common.cs" />
     <Compile Include="Models\CreditCard_PCL.cs" />
     <Compile Include="Models\CryptocurrencyWallet.cs" />
+    <Compile Include="Themes\SMTheme.xaml.cs" />
     <Compile Include="ViewModels\CardsViewModel.cs" />
     <Compile Include="ViewModels\ConfirmationViewModel.cs" />
     <Compile Include="ViewModels\DashBoardDetailViewModel.cs" />
@@ -75,6 +78,9 @@
     </Compile>
     <Compile Include="Views\Accounts\Test.cs" />
     <Compile Include="Views\Wallets\QRScanner.cs" />
+    <EmbeddedResource Include="Themes\SMTheme.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Accounts\TestXaml.xaml" />
     <Compile Include="Views\Accounts\TestXaml.xaml.cs" />
 	<Compile Include="Views\Wallets\WalletDetail.xaml.cs">

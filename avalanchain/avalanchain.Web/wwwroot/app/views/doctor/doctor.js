@@ -1,14 +1,14 @@
 ﻿(function () {
     'use strict';
     var controllerId = 'Doctor';
-    angular.module('icodao').controller(controllerId, ['common', 'dataservice', doctor]);
+    angular.module('smartmoney').controller(controllerId, ['common', 'dataservice', doctor]);
 
     function doctor(common, dataservice) {
         var getLogFn = common.logger.getLogFn;
         var log = getLogFn(controllerId);
 
         this.info = 'Doctor Page';
-        this.helloText = 'Welcome in icodao';
+        this.helloText = 'Welcome in smartmoney';
         this.descriptionText = 'PATIENT DESCRIPTION';
         this.patientsCount = 15000;
         this.photoCount = 101000;

@@ -26,6 +26,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\assets\img\smartmoney.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="wwwroot\app\app.js" />
     <None Include="wwwroot\app\avalanchain.js" />
     <None Include="wwwroot\app\config.js" />
@@ -59,6 +63,7 @@
     <None Include="wwwroot\app\views\transactions\transactions.js" />
     <None Include="wwwroot\assets\css\plugins\footable\fonts\footable.svg" />
     <None Include="wwwroot\assets\fonts\glyphicons-halflings-regular.svg" />
+    <None Include="wwwroot\assets\img\smartmoney.png" />
     <None Include="wwwroot\assets\js\angular\angular-animate.js" />
     <None Include="wwwroot\assets\js\angular\angular-animate.min.js" />
     <None Include="wwwroot\assets\js\angular\angular-animate.min.js.map" />

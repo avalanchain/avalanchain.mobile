@@ -2,7 +2,7 @@
 (function() {
     'use strict';
 
-    angular.module('icodao').filter('pagination', function() {
+    angular.module('smartmoney').filter('pagination', function() {
         return function(input, start) {
             if (input) {
                 start = +start; //parse to int
@@ -11,14 +11,14 @@
             return [];
         }
     });
-    angular.module('icodao').filter('reverse', function() {
+    angular.module('smartmoney').filter('reverse', function() {
         return function(items) {
             return items.slice().reverse();
         };
     });
 
     angular
-        .module('icodao')
+        .module('smartmoney')
         .factory('dataservice', dataservice);
 
     dataservice.$inject = ['$http', '$q', 'common', 'dataProvider', '$filter', '$timeout', 'exchangeservice'];

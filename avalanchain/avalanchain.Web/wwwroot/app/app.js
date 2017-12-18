@@ -1,10 +1,10 @@
 /**
- * icodao - Responsive Admin Theme
+ * smartmoney - Responsive Admin Theme
  * Copyright 2015 Webapplayers.com
  *
  */
 (function () {
-    var app = angular.module('icodao', [
+    var app = angular.module('smartmoney', [
         'ui.router',                    // Routing
         'oc.lazyLoad',                  // ocLazyLoad
         'ui.bootstrap',                 // Ui Bootstrap

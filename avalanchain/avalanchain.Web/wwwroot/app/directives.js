@@ -1,5 +1,5 @@
 /**
- * icodao - Responsive Admin Theme
+ * smartmoney - Responsive Admin Theme
  * Copyright 2015 Webapplayers.com
  *
  */
@@ -13,9 +13,9 @@ function pageTitle($rootScope, $timeout) {
         link: function(scope, element) {
             var listener = function(event, toState, toParams, fromState, fromParams) {
                 // Default title - load on Dashboard 1
-                var title = 'icodao';
+                var title = 'smartmoney';
                 // Create your own title pattern
-                if (toState.data && toState.data.pageTitle) title = 'icodao | ' + toState.data.pageTitle;
+                if (toState.data && toState.data.pageTitle) title = 'smartmoney | ' + toState.data.pageTitle;
                 $timeout(function() {
                     element.text(title);
                 });
@@ -247,7 +247,7 @@ function slimScroll($timeout) {
 }
 
 angular
-    .module('icodao').directive('ccSpinner', ['$window', function($window) {
+    .module('smartmoney').directive('ccSpinner', ['$window', function($window) {
         var directive = {
             link: link,
             restrict: 'A'
@@ -327,7 +327,7 @@ function icheck($timeout) {
  * Pass all functions into module
  */
 angular
-    .module('icodao')
+    .module('smartmoney')
     .directive('pageTitle', pageTitle)
     .directive('sideNavigation', sideNavigation)
     .directive('iboxTools', iboxTools)

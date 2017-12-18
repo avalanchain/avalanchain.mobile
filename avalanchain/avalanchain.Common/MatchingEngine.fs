@@ -356,14 +356,14 @@ module MatchingEngine =
 
             // TODO: Remove fakes:
             //do for o in [orderData; orderData2; aorderData; aorderData2; aorderData3] do 
-            //    for sym in ["AVC"; "USD"; "EUR"; "GBP"; "ICODAO"; "V1"; "V2" ] do 
+            //    for sym in ["AVC"; "USD"; "EUR"; "GBP"; "QUOKA"; "V1"; "V2" ] do 
             //        { o with Symbol = Symbol sym } |> OrderCommand.Create |> processCommand 
 
             // do if initialize then
             //     let rnd = Random()
             //     for o in [orderData; orderData2; aorderData; aorderData2] do 
             //         for i in 0 .. rnd.Next(200, 2000) do
-            //             for sym in ["AVC"; "USD"; "EUR"; "GBP"; "ICODAO"; "V1"; "V2"; "ICO1"; "ICO2"; "ICO3"; "ICO4"; "ICO5"; "ICO6"; "ICO7"; "ICO8"; "ICO9"; "ICO10"; "ICO11"; "ICO12" ] do 
+            //             for sym in ["AVC"; "USD"; "EUR"; "GBP"; "QUOKA"; "V1"; "V2"; "ICO1"; "ICO2"; "ICO3"; "ICO4"; "ICO5"; "ICO6"; "ICO7"; "ICO8"; "ICO9"; "ICO10"; "ICO11"; "ICO12" ] do 
             //                 { o with    Symbol = Symbol sym 
             //                             OrderType = Limit (decimal(rnd.Next(100, 400)) * 1M<price>)
             //                             Quantity = decimal(rnd.Next(2, 4000)) * 1M<qty>
@@ -428,7 +428,7 @@ module MatchingEngine =
                         lock so (fun () -> (tradeStep 100M<price> 400M<price> (DateTime.Today.AddHours 7.) (TimeSpan.FromSeconds 1.) symbols 2))
                 }
 
-            do if runBot then tradingBot(__, ["AVC"; "USD"; "EUR"; "GBP"; "ICODAO"; "V1"; "V2"; "ICO1"; "ICO2"; "ICO3"; "ICO4"; "ICO5"; "ICO6"; "ICO7"; "ICO8"; "ICO9"; "ICO10"; "ICO11"; "ICO12" ]) |> Async.Start
+            do if runBot then tradingBot(__, ["AVC"; "USD"; "EUR"; "GBP"; "QUOKA"; "V1"; "V2"; "ICO1"; "ICO2"; "ICO3"; "ICO4"; "ICO5"; "ICO6"; "ICO7"; "ICO8"; "ICO9"; "ICO10"; "ICO11"; "ICO12" ]) |> Async.Start
 
             let getPage (lst: ResizeArray<_>) (startIndex: uint64) (pageSize: uint32) = lst.Skip(startIndex |> int).Take(pageSize |> int).ToArray()
             let getLastPage (lst: ResizeArray<_>) (pageSize: uint32) = 
@@ -439,7 +439,7 @@ module MatchingEngine =
             
             member __.SubmitOrder orderCommand = processCommand orderCommand posLimit
 
-            member __.MainSymbol = Symbol "ICODAO"
+            member __.MainSymbol = Symbol "QUOKA"
             member __.Symbols with get() = lock so (fun () -> symbolStackMap |> Map.toSeq |> Seq.map fst |> Seq.filter(fun s -> s <> __.MainSymbol))
             member __.SymbolStrings = lock so (fun () -> __.Symbols |> Seq.map(fun (Symbol s) -> s) |> Seq.toArray)
             member __.OrderStack symbol: OrderStack = lock so (fun () -> (findSymbolStack symbol).OrderStack)

@@ -1,14 +1,14 @@
 (function () {
     'use strict';
     var controllerId = 'QuokaTrader';
-    angular.module('icodao').controller(controllerId, ['common', '$scope', 'dataservice', QuokaTrader]);
+    angular.module('smartmoney').controller(controllerId, ['common', '$scope', 'dataservice', QuokaTrader]);
 
     function QuokaTrader(common, $scope, dataservice) {
         var getLogFn = common.logger.getLogFn;
         var log = getLogFn(controllerId);
 
         this.info = 'quoka trader';
-        this.helloText = 'Welcome in icodao';
+        this.helloText = 'Welcome in smartmoney';
         this.descriptionText = 'CASCADING REACTIVE BLOCKCHAINS';
         $scope.datayahoo = [];
         $scope.quoka = 0;

@@ -1,7 +1,7 @@
 ﻿(function () {
     'use strict';
     var controllerId = 'admin';
-    angular.module('icodao').controller(controllerId, ['common', 'dataservice', '$scope', '$uibModal', '$rootScope', admin]);
+    angular.module('smartmoney').controller(controllerId, ['common', 'dataservice', '$scope', '$uibModal', '$rootScope', admin]);
 
     function admin(common, dataservice, $scope, $uibModal, $rootScope) {
         var getLogFn = common.logger.getLogFn;

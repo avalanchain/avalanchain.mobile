@@ -2,7 +2,7 @@
 (function() {
     'use strict';
     var controllerId = 'wallet';
-    angular.module('icodao').controller(controllerId, ['common', 'dataservice', '$scope', '$filter', '$uibModal', '$rootScope', '$stateParams', '$interval', '$state', wallet]);
+    angular.module('smartmoney').controller(controllerId, ['common', 'dataservice', '$scope', '$filter', '$uibModal', '$rootScope', '$stateParams', '$interval', '$state', wallet]);
 
     function wallet(common, dataservice, $scope, $filter, $uibModal, $rootScope, $stateParams, $interval, $state) {
         var getLogFn = common.logger.getLogFn;

@@ -2,7 +2,7 @@
     'use strict';
 
     var serviceId = 'dataProvider';
-    angular.module('icodao').factory(serviceId, ['common', '$http', '$templateCache', dataProvider]);
+    angular.module('smartmoney').factory(serviceId, ['common', '$http', '$templateCache', dataProvider]);
 
     function dataProvider(common, $http, $templateCache) {
         var request = function ($scope, url, method, successCallback, dataValue, errorCallback) {
