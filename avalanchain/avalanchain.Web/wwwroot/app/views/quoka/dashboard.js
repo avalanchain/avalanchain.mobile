@@ -100,7 +100,7 @@
              }
          };
         var dataF = [
-            [new Date(), 37.475], [new Date(), 37.48], [new Date(), 37.495], [new Date(), 37.47], [new Date(), 37.485], [new Date(), 37.47], [new Date(), 37.495], [new Date(), 37.47], [new Date(), 37.485], [new Date(), 37.475],  [new Date(), 37.49], [new Date(), 37.495], [13, 37.49]
+            [new Date(), 31.475], [new Date(), 32.48], [new Date(), 32.495], [new Date(), 32.47], [new Date(), 32.485], [new Date(), 32.47], [new Date(), 32.495], [new Date(), 32.47], [new Date(), 32.485], [new Date(), 32.475],  [new Date(), 32.49], [new Date(), 32.495], [13, 32.49]
         ];
          var lineAreaData = [
              {
@@ -397,24 +397,34 @@
         function getData(data) {
 
             if (dataF.length) {
-                dataF = dataF.slice(1);
+                dataF.shift(); //.slice(1);
             }
-
-            dataF.push([dataF.length, $scope.quoka]);
-            var res = [];
             var date = new Date();
+            var dt = date.setSeconds(date.getSeconds() + 1);
+            dataF.push([dt, $scope.quoka]);
+            //dataF.push([dataF.length, $scope.quoka]);
+            
+            var res = [];
+            date = new Date();
             for (var i = 0; i < dataF.length; ++i) {
-              var dt = date.setSeconds(date.getSeconds() + 1);
+              dt = date.setSeconds(date.getSeconds() + 1);
                 res.push([dt, dataF[i][1]]);
             }
             //dataF = res;
             return res;
         }
         function getMessageCount() {
+            //return dataservice.getYData().then(function (data) {
+            //    $scope.datayahoo = addStatus(data.data.query.results.rate);
+            //    $scope.quoka = dataservice.getQuoka($scope.datayahoo);
+            //    $scope.flotLineAreaData[0].data = getData($scope.flotLineAreaData[0].data);
+            //});
             return dataservice.getYData().then(function (data) {
-                $scope.datayahoo = addStatus(data.data.query.results.rate);
-                $scope.quoka = dataservice.getQuoka($scope.datayahoo);
-                $scope.flotLineAreaData[0].data = getData($scope.flotLineAreaData[0].data);
+                if (data.length > 0) {
+                    $scope.datayahoo = addStatus(data);
+                    $scope.quoka = dataservice.getQuoka(data);
+                    $scope.flotLineAreaData[0].data = getData($scope.flotLineAreaData[0].data);
+                }
             });
         }
     };

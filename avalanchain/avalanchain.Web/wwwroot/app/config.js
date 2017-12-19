@@ -84,11 +84,11 @@
                 url: "/exchange",
                 templateUrl: "/app/views/common/content.html",
             })
-            // .state('quoka', {
-            //     abstract: true,
-            //     url: "/quoka",
-            //     templateUrl: "/app/views/common/content.html",
-            // })
+             .state('quoka', {
+                 abstract: true,
+                 url: "/quoka",
+                 templateUrl: "/app/views/common/content.html",
+             })
             .state('index',
             {
                 abstract: true,
@@ -388,7 +388,32 @@
                     },
                     label: '{{foo}}'
                 }
-            });
+            }).state('quoka.trader',
+                {
+                    url: "/trader",
+                    templateUrl: "/app/views/quoka/trader.html",
+                    data: {
+                        pageTitle: 'Exchange'
+                    },
+                    ncyBreadcrumb: {
+                        label: 'Trader'
+                    }
+                })
+            .state('quoka.dashboard',
+                {
+                    url: "/dashboard",
+                    templateUrl: "/app/views/quoka/dashboard.html",
+                    data: {
+                        pageTitle: 'Exchange'
+                    }, resolve: {
+                        loadPlugin: function ($ocLazyLoad) {
+                            return $ocLazyLoad.load([c3chart, c3chartAngul, flot]);
+                        }
+                    },
+                    ncyBreadcrumb: {
+                        label: 'Dashboard'
+                    }
+                });
     }
 
 })();
