@@ -49,7 +49,7 @@
         //  setInterval(function updateRandom() {
         //      getMessageCount();
         //  }, 3000);
-         $scope.min = 34.40;
+         $scope.min = 30.40;
          var lineAreaOptions = {
              series: {
                  lines: {
@@ -403,7 +403,7 @@
             var dt = date.setSeconds(date.getSeconds() + 1);
             dataF.push([dt, $scope.quoka]);
             //dataF.push([dataF.length, $scope.quoka]);
-            
+
             var res = [];
             date = new Date();
             for (var i = 0; i < dataF.length; ++i) {
