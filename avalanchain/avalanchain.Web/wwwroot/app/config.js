@@ -132,7 +132,7 @@
                 url: "/dashboard_investor",
                 templateUrl: "/app/views/dashboard/dashboard_investor.html",
                 data: {
-                    pageTitle: 'ICO INVESTOR'
+                    pageTitle: 'INVESTOR'
                 },
                 resolve: {
                     loadPlugin: function ($ocLazyLoad) {

@@ -60,7 +60,7 @@
                 },
 
                 yAxis: {
-                    axisLabel: 'Stock Price',
+                    axisLabel: 'Price',
                     tickFormat: function (d) {
                         return '$' + d3.format(',.1f')(d);
                     },
