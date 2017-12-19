@@ -405,12 +405,15 @@
             //dataF.push([dataF.length, $scope.quoka]);
 
             var res = [];
+            var arr = [];
             date = new Date();
             for (var i = 0; i < dataF.length; ++i) {
               dt = date.setSeconds(date.getSeconds() + 1);
-                res.push([dt, dataF[i][1]]);
+              res.push([dt, dataF[i][1]]);
+              arr.push(dataF[i][1]);
             }
             //dataF = res;
+            $scope.flotLineAreaOptions.yaxis.min = Math.min.apply(null, arr);
             return res;
         }
         function getMessageCount() {
