@@ -83,7 +83,8 @@
     <Color x:Key="MainMenuIconColor">#2f2f33</Color>-->
     <!--  MAIN MENU COLORS  -->
     <Color x:Key="MainMenuHeaderBackgroundColor">#ffffff</Color>
-    <Color x:Key="MainMenuBackgroundColor">#c7413e</Color>
+    <!--<Color x:Key="MainMenuBackgroundColor">#c7413e</Color>-->
+    <Color x:Key="MainMenuBackgroundColor">#1cab12</Color>
     <Color x:Key="MainMenuSeparatorColor">Transparent</Color>
     <Color x:Key="MainMenuTextColor">#ffffff</Color>
     <Color x:Key="MainMenuHeaderTextColor">#eec6c5</Color>
@@ -107,6 +108,7 @@
     <Color x:Key="ChatLeftTextColor">#FFFFFF</Color>
 
     <!--  CARDS AND ACCOUNTS  -->
-    <Color x:Key="CardColorEntry">#c7413e</Color>
+    <Color x:Key="CardColorEntry">#1cab12</Color>
+    <!--<Color x:Key="CardColorEntry">#c7413e</Color>-->
 
 </ResourceDictionary>

@@ -413,7 +413,7 @@
               arr.push(dataF[i][1]);
             }
             //dataF = res;
-            $scope.flotLineAreaOptions.yaxis.min = Math.min.apply(null, arr);
+            $scope.flotLineAreaOptions.yaxis.min = Math.min.apply(null, arr)-0.5;
             return res;
         }
         function getMessageCount() {
