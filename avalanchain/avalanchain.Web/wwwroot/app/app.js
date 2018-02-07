@@ -1,10 +1,10 @@
 /**
- * smartmoney - Responsive Admin Theme
+ * avalanchain - Responsive Admin Theme
  * Copyright 2015 Webapplayers.com
  *
  */
 (function () {
-    var app = angular.module('smartmoney', [
+    var app = angular.module('avalanchain', [
         'ui.router',                    // Routing
         'oc.lazyLoad',                  // ocLazyLoad
         'ui.bootstrap',                 // Ui Bootstrap

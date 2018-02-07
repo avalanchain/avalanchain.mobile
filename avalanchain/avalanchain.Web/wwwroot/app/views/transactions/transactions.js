@@ -1,7 +1,7 @@
 (function () {
     'use strict';
     var controllerId = 'transactions';
-    angular.module('smartmoney').controller(controllerId, ['common', '$scope', 'dataservice', transactions]);
+    angular.module('avalanchain').controller(controllerId, ['common', '$scope', 'dataservice', transactions]);
 
     function transactions(common, $scope, dataservice) {
         var getLogFn = common.logger.getLogFn;

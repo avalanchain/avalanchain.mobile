@@ -21,15 +21,15 @@
     -->
 
 
-    <!--<Color x:Key="AccentColor">#C7413E</Color>-->
-    <Color x:Key="AccentColor">#1cab12</Color>
+    <Color x:Key="AccentColor">#C7413E</Color>
+    <!--<Color x:Key="AccentColor">#1cab12</Color>-->
     <Color x:Key="BaseTextColor">#2f2f33</Color>
 
 
     <!--  GENERAL COLORS  -->
     <Color x:Key="InverseTextColor">White</Color>
-    <!--<Color x:Key="BrandColor">#C7413E</Color>-->
-    <Color x:Key="BrandColor">#1cab12</Color>
+    <Color x:Key="BrandColor">#C7413E</Color>
+    <!--<Color x:Key="BrandColor">#1cab12</Color>-->
     <Color x:Key="BrandNameColor">#FFFFFF</Color>
     <Color x:Key="BaseLightTextColor">#7b7b7b</Color>
     <Color x:Key="OverImageTextColor">#FFFFFF</Color>
@@ -83,8 +83,8 @@
     <Color x:Key="MainMenuIconColor">#2f2f33</Color>-->
     <!--  MAIN MENU COLORS  -->
     <Color x:Key="MainMenuHeaderBackgroundColor">#ffffff</Color>
-    <!--<Color x:Key="MainMenuBackgroundColor">#c7413e</Color>-->
-    <Color x:Key="MainMenuBackgroundColor">#1cab12</Color>
+    <Color x:Key="MainMenuBackgroundColor">#c7413e</Color>
+    <!--<Color x:Key="MainMenuBackgroundColor">#1cab12</Color>-->
     <Color x:Key="MainMenuSeparatorColor">Transparent</Color>
     <Color x:Key="MainMenuTextColor">#ffffff</Color>
     <Color x:Key="MainMenuHeaderTextColor">#eec6c5</Color>

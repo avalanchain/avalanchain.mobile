@@ -3,7 +3,7 @@
     'use strict';
 
     angular
-        .module('smartmoney')
+        .module('avalanchain')
         .factory('exchangeservice', exchangeservice);
 
     exchangeservice.$inject = ['$http', '$q', 'common', 'dataProvider', '$filter', '$timeout'];
@@ -56,7 +56,7 @@
             return postData(api.submitOrder, value);
         }
 
-        function orderStack(symbol) {//smartmoney
+        function orderStack(symbol) {//avalanchain
             return getData(api.orderStack, symbol);
         }
 

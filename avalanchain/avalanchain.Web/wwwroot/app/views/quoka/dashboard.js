@@ -1,14 +1,14 @@
 ﻿(function () {
     'use strict';
     var controllerId = 'QuokaDashboard';
-    angular.module('smartmoney').controller(controllerId, ['common', 'dataservice', '$scope', '$uibModal', '$rootScope', '$interval', QuokaDashboard]);
+    angular.module('avalanchain').controller(controllerId, ['common', 'dataservice', '$scope', '$uibModal', '$rootScope', '$interval', QuokaDashboard]);
 
     function QuokaDashboard(common, dataservice, $scope, $uibModal, $rootScope, $interval) {
         var getLogFn = common.logger.getLogFn;
         var log = getLogFn(controllerId);
         var vm = this;
         vm.info = 'Quoka Dashboard';
-        vm.helloText = 'Welcome in smartmoney';
+        vm.helloText = 'Welcome in avalanchain';
         vm.descriptionText = 'CASCADING REACTIVE BLOCKCHAINS';
         var currencies = dataservice.commondata().currencies();
         var percentage = dataservice.commondata().percentage();

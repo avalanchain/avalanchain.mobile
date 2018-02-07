@@ -2,7 +2,7 @@
 (function() {
     'use strict';
     var controllerId = 'streams';
-    angular.module('smartmoney').controller(controllerId, ['common', '$uibModal', 'dataservice', 'jwtservice', streams]);
+    angular.module('avalanchain').controller(controllerId, ['common', '$uibModal', 'dataservice', 'jwtservice', streams]);
 
     function streams(common, $uibModal, dataservice, jwtservice) {
         var getLogFn = common.logger.getLogFn;

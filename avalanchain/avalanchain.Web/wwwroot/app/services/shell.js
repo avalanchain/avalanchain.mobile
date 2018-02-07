@@ -2,7 +2,7 @@
     'use strict';
 
     var controllerId = 'shell';
-    angular.module('smartmoney').controller(controllerId,
+    angular.module('avalanchain').controller(controllerId,
         ['$rootScope', '$window', 'common', 'config', shell]);
 
     function shell($rootScope, $window, common, config) {

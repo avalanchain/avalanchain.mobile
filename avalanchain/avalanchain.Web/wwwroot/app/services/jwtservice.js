@@ -1,7 +1,7 @@
 (function() {
     'use strict';
     var serviceId = 'jwtservice';
-    angular.module('smartmoney').factory(serviceId, ['$http', '$q', 'common', 'dataProvider', '$filter', '$timeout', jwtservice]);
+    angular.module('avalanchain').factory(serviceId, ['$http', '$q', 'common', 'dataProvider', '$filter', '$timeout', jwtservice]);
 
     function jwtservice($http, $q, common, dataProvider, $filter, $timeout) {
         var getLogFn = common.logger.getLogFn;

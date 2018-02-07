@@ -439,7 +439,7 @@ module MatchingEngine =
             
             member __.SubmitOrder orderCommand = processCommand orderCommand posLimit
 
-            member __.MainSymbol = Symbol "QUOKA"
+            member __.MainSymbol = Symbol "AVC"
             member __.Symbols with get() = lock so (fun () -> symbolStackMap |> Map.toSeq |> Seq.map fst |> Seq.filter(fun s -> s <> __.MainSymbol))
             member __.SymbolStrings = lock so (fun () -> __.Symbols |> Seq.map(fun (Symbol s) -> s) |> Seq.toArray)
             member __.OrderStack symbol: OrderStack = lock so (fun () -> (findSymbolStack symbol).OrderStack)

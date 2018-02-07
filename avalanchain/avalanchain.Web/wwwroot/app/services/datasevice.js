@@ -2,7 +2,7 @@
 (function() {
     'use strict';
 
-    angular.module('smartmoney').filter('pagination', function() {
+    angular.module('avalanchain').filter('pagination', function() {
         return function(input, start) {
             if (input) {
                 start = +start; //parse to int
@@ -11,14 +11,14 @@
             return [];
         }
     });
-    angular.module('smartmoney').filter('reverse', function() {
+    angular.module('avalanchain').filter('reverse', function() {
         return function(items) {
             return items.slice().reverse();
         };
     });
 
     angular
-        .module('smartmoney')
+        .module('avalanchain')
         .factory('dataservice', dataservice);
 
     dataservice.$inject = ['$http', '$q', 'common', 'dataProvider', '$filter', '$timeout', 'exchangeservice'];

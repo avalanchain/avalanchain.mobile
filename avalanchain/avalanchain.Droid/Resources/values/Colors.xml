@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<color name="AccentColor">#FF1CAB12</color>
+	<color name="AccentColor">#FFC7413E</color>
   <!--<color name="AccentColor">#FFDA125F</color>-->
 	<color name="ComplementColor">#FF525ABB</color>
 	<color name="BaseTextColor">#FF2F2F33</color>

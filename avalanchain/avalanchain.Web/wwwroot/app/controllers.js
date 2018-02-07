@@ -1,5 +1,5 @@
 /**
- * smartmoney - Responsive Admin Theme
+ * avalanchain - Responsive Admin Theme
  * Copyright 2015 Webapplayers.com
  *
  */
@@ -10,7 +10,7 @@
 function MainCtrl() {
 
     this.userName = 'User';
-    this.helloText = 'Welcome in smartmoney';
+    this.helloText = 'Welcome in avalanchain';
     this.descriptionText = 'CASCADING REACTIVE BLOCKCHAINS';
 
 };
@@ -34,6 +34,6 @@ function modalCtrl($scope, $uibModalInstance, dataservice, $rootScope) {
 
 
 angular
-    .module('smartmoney')
+    .module('avalanchain')
     .controller('MainCtrl', MainCtrl)
     .controller('modalCtrl', MainCtrl);

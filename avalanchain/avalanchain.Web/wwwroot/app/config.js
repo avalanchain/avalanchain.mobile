@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    var app = angular.module('smartmoney');
+    var app = angular.module('avalanchain');
     //
     var events = {
         controllerActivateSuccess: 'controller.activateSuccess',
@@ -10,7 +10,7 @@
 
     var config = {
         appErrorPrefix: '[HT Error] ', //Configure the exceptionHandler decorator
-        docTitle: 'smartmoney: ',
+        docTitle: 'avalanchain: ',
         events: events,
         version: '0.8.1'
     };

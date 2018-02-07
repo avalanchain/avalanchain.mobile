@@ -2,7 +2,7 @@
 (function() {
     'use strict';
     var controllerId = 'node';
-    angular.module('smartmoney').controller(controllerId, ['common', 'dataservice', '$scope', '$filter', '$uibModal', '$rootScope', '$stateParams', '$interval', node]);
+    angular.module('avalanchain').controller(controllerId, ['common', 'dataservice', '$scope', '$filter', '$uibModal', '$rootScope', '$stateParams', '$interval', node]);
 
     function node(common, dataservice, $scope, $filter, $uibModal, $rootScope, $stateParams, $interval) {
         var getLogFn = common.logger.getLogFn;

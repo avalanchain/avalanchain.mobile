@@ -1,7 +1,7 @@
 ﻿(function () {
     'use strict';
     var controllerId = 'clusters';
-    angular.module('smartmoney').controller(controllerId, ['common', 'dataservice', '$state',  clusters]);
+    angular.module('avalanchain').controller(controllerId, ['common', 'dataservice', '$state',  clusters]);
 
     function clusters(common, dataservice, $state) {
         var getLogFn = common.logger.getLogFn;

@@ -1,7 +1,7 @@
 ﻿(function () {
     'use strict';
     var controllerId = 'dashboard_investor';
-    angular.module('smartmoney').controller(controllerId, ['common', 'dataservice', '$scope', '$uibModal', '$rootScope', dashboard_investor]);
+    angular.module('avalanchain').controller(controllerId, ['common', 'dataservice', '$scope', '$uibModal', '$rootScope', dashboard_investor]);
 
     function dashboard_investor(common, dataservice, $scope, $uibModal, $rootScope) {
         var getLogFn = common.logger.getLogFn;
