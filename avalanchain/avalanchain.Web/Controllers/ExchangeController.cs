@@ -8,8 +8,6 @@ using static avalanchain.Common.MatchingEngine;
 using Microsoft.FSharp.Core;
 using Microsoft.FSharp.Collections;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace avalanchain.Web
 {
     [Produces("application/json")]
