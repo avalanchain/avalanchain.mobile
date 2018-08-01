@@ -37,6 +37,6 @@ namespace avalanchain
 
     public enum CurrencyType
     {
-        BTC, USD, GBP, EUR
+        BTC, ETH, XLM, EOS, USD, GBP, EUR
     }
 }

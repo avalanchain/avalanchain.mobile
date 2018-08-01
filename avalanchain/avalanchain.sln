@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.15
+VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "avalanchain.Xamarin", "avalanchain\avalanchain.Xamarin.csproj", "{0EF232B9-3912-4C87-AFCE-1EED29BF26E0}"
 EndProject
@@ -16,6 +16,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleApp1", "ConsoleApp1\ConsoleApp1.csproj", "{62383D24-8AC8-4229-835C-C5F70BB4A560}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "avalanchain.Web", "avalanchain.Web\avalanchain.Web.csproj", "{BA252B59-5106-495F-8CEE-4FA97A1D3B84}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ACTradeServer", "ACTradeServer\ACTradeServer.csproj", "{387033AD-472A-4821-8243-D1E72472929D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -162,6 +164,24 @@ Global
 		{BA252B59-5106-495F-8CEE-4FA97A1D3B84}.Release|iPhone.Build.0 = Release|Any CPU
 		{BA252B59-5106-495F-8CEE-4FA97A1D3B84}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{BA252B59-5106-495F-8CEE-4FA97A1D3B84}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{387033AD-472A-4821-8243-D1E72472929D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{387033AD-472A-4821-8243-D1E72472929D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{387033AD-472A-4821-8243-D1E72472929D}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{387033AD-472A-4821-8243-D1E72472929D}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{387033AD-472A-4821-8243-D1E72472929D}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{387033AD-472A-4821-8243-D1E72472929D}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{387033AD-472A-4821-8243-D1E72472929D}.PlayerDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{387033AD-472A-4821-8243-D1E72472929D}.PlayerDebug|Any CPU.Build.0 = Debug|Any CPU
+		{387033AD-472A-4821-8243-D1E72472929D}.PlayerDebug|iPhone.ActiveCfg = Debug|Any CPU
+		{387033AD-472A-4821-8243-D1E72472929D}.PlayerDebug|iPhone.Build.0 = Debug|Any CPU
+		{387033AD-472A-4821-8243-D1E72472929D}.PlayerDebug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{387033AD-472A-4821-8243-D1E72472929D}.PlayerDebug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{387033AD-472A-4821-8243-D1E72472929D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{387033AD-472A-4821-8243-D1E72472929D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{387033AD-472A-4821-8243-D1E72472929D}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{387033AD-472A-4821-8243-D1E72472929D}.Release|iPhone.Build.0 = Release|Any CPU
+		{387033AD-472A-4821-8243-D1E72472929D}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{387033AD-472A-4821-8243-D1E72472929D}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -768,13 +768,15 @@
     <PackageReference Include="OxyPlot.Core" Version="1.0.0" />
     <PackageReference Include="OxyPlot.Xamarin.Forms" Version="1.0.0" />
     <PackageReference Include="Plugin.Share" Version="5.0.0" />
+    <PackageReference Include="PureWebSockets" Version="2.0.2.1" />
     <PackageReference Include="RestClient.NET" Version="0.5.0" />
+    <PackageReference Include="SocketIoClientDotNet" Version="1.0.5" />
     <PackageReference Include="UXDivers.Artina.Shared" Version="2.0.60" />
     <PackageReference Include="UXDivers.Artina.Shared.Base" Version="2.0.60" />
-    <PackageReference Include="UXDivers.Effects" Version="0.6.0" />
+    <PackageReference Include="UXDivers.Effects" Version="0.6.3" />
     <PackageReference Include="UXDivers.GorillaPlayer.SDK" Version="1.0.0.15" />
-    <PackageReference Include="Xamarin.FFImageLoading" Version="2.2.10-pre-446" />
-    <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.2.10-pre-446" />
+    <PackageReference Include="Xamarin.FFImageLoading" Version="2.2.14" />
+    <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.2.10" />
     <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.2.10-pre-446" />
     <PackageReference Include="Xamarin.Forms" Version="2.3.4.267" />
     <PackageReference Include="ZXing.Net.Mobile" Version="2.2.9" />

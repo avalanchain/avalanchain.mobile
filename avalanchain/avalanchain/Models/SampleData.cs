@@ -324,9 +324,11 @@ namespace avalanchain
                 {
                     _staticCryptocurencyPrices = new CurrencyPricing()
                     {
-                        EUR = "3527.22",
-                        GBP = "3256.59",
-                        USD = "4155.81",
+                        ETH = "677.22",
+                        EOS = "16.02",
+                        XLM = "0.42",
+                        GBP = "6756.59",
+                        USD = "9355.81",
                         BTC = "1"
                     };
                 }
@@ -954,16 +956,34 @@ namespace avalanchain
                     Currency         =  CurrencyType.BTC,
                     CurrencyIcon     = FontAwesome.FABtc,
                     TypeIcon         = FontAwesome.FABtc,
-                    Amount           = 39.90m,
+                    Amount           = 9.90m,
                 },
                 new CryptocurrencyWallet() {
                     Id               = Guid.NewGuid(),
                     AccountNumber    = Guid.NewGuid().ToString(),
-                    Name             = "BTC Wallet 2",
-                    Currency         =  CurrencyType.BTC,
-                    CurrencyIcon     = FontAwesome.FABtc,
-                    TypeIcon         = FontAwesome.FABtc,
-                    Amount           = 20.05m,
+                    Name             = "ETH Wallet",
+                    Currency         =  CurrencyType.ETH,
+                    CurrencyIcon     = FontAwesome.FAMoney,
+                    TypeIcon         = FontAwesome.FAMoney,
+                    Amount           = 25.05m,
+                },
+                new CryptocurrencyWallet() {
+                    Id               = Guid.NewGuid(),
+                    AccountNumber    = Guid.NewGuid().ToString(),
+                    Name             = "EOS Wallet",
+                    Currency         =  CurrencyType.EOS,
+                    CurrencyIcon     = FontAwesome.FAMoney,
+                    TypeIcon         = FontAwesome.FAMoney,
+                    Amount           = 3335.05m,
+                },
+                new CryptocurrencyWallet() {
+                    Id               = Guid.NewGuid(),
+                    AccountNumber    = Guid.NewGuid().ToString(),
+                    Name             = "XLM Wallet",
+                    Currency         =  CurrencyType.XLM,
+                    CurrencyIcon     = FontAwesome.FAMoney,
+                    TypeIcon         = FontAwesome.FAMoney,
+                    Amount           = 2500.05m,
                 },
             };
         }
@@ -1083,7 +1103,7 @@ namespace avalanchain
             //var link = $"fsym={nativeCurrency}&tsyms=BTC,ETH,EUR,GBP";
             try
             {
-                var cryptoPrices = await RestService.DownloadData("https://min-api.cryptocompare.com/data/price?fsym=BTC&tsyms=BTC,ETH,EUR,GBP,USD");
+                var cryptoPrices = await RestService.DownloadData("https://min-api.cryptocompare.com/data/price?fsym=BTC&tsyms=BTC,ETH,EOS,XLM,EUR,GBP,USD");
 
                 cryptocurrencyPrices = JsonConvert.DeserializeObject<CurrencyPricing>(cryptoPrices);
             }

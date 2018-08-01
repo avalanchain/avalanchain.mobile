@@ -14,6 +14,8 @@ namespace avalanchain
     {
         public string BTC { get; set; }
         public string ETH { get; set; }
+        public string EOS { get; set; }
+        public string XLM { get; set; }
         public string EUR { get; set; }
         public string GBP { get; set; }
         public string USD { get; set; }

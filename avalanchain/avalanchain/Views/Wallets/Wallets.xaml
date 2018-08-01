@@ -38,7 +38,7 @@
                         FontAttributes="Bold"
                         TextColor="{DynamicResource InverseTextColor}"
                         HorizontalTextAlignment="Center"
-                        Text="BTC Price"
+                        Text="TOP Prices"
                         VerticalTextAlignment="Center" />
                 </StackLayout>
                 <BoxView
@@ -71,6 +71,12 @@
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
                     <Grid Grid.Column="0" HorizontalOptions="Center">
+                        <!--<Label
+                            VerticalOptions="Center"
+                            HorizontalTextAlignment="Center"
+                            Text="BTC"
+                            Style="{StaticResource WalletsLabel}"
+                            VerticalTextAlignment="Center" />-->
                         <Label
                             VerticalOptions="Center"
                             HorizontalTextAlignment="Center"
@@ -82,11 +88,17 @@
                         Grid.Column="0"
                         Style="{StaticResource WalletsDividerVertWhiteMarg}" />
                     <Grid Grid.Column="1" HorizontalOptions="Center">
+                        <!--<Label
+                            VerticalOptions="Center"
+                            HorizontalTextAlignment="Center"
+                            Text="ETH"
+                            Style="{StaticResource WalletsLabel}"
+                            VerticalTextAlignment="Center" />-->
                         <Label
                             VerticalOptions="Center"
                             Style="{StaticResource WalletsLabel}"
                             HorizontalTextAlignment="Center"
-                            Text="{Binding BtcToEur, StringFormat='{0} €'}"
+                            Text="{Binding EthToUsd, StringFormat='{0} $'}"
                             VerticalTextAlignment="Center" />
                         <!--<Label
                             FontSize="15"
@@ -98,11 +110,17 @@
                         Grid.Column="1"
                         Style="{StaticResource WalletsDividerVertWhiteMarg}" />
                     <Grid Grid.Column="2" HorizontalOptions="Center">
+                        <!--<Label
+                            VerticalOptions="Center"
+                            HorizontalTextAlignment="Center"
+                            Text="EOS"
+                            Style="{StaticResource WalletsLabel}"
+                            VerticalTextAlignment="Center" />-->
                         <Label
                             VerticalOptions="Center"
                             Style="{StaticResource WalletsLabel}"
                             HorizontalTextAlignment="Center"
-                            Text="{Binding BtcToGbp, StringFormat='{0} £'}"
+                            Text="{Binding EosToUsd, StringFormat='{0} $'}"
                             VerticalTextAlignment="Center" />
                     </Grid>
 

@@ -70,29 +70,29 @@ namespace avalanchain
             }
             get => _cryptocurrencyPrices.BTC;
         }
-        public string BtcToEur
+        public string EthToUsd
         {
             set
             {
-                if (_cryptocurrencyPrices.EUR != value)
+                if (_cryptocurrencyPrices.ETH != value)
                 {
-                    _cryptocurrencyPrices.EUR = value;
-                    OnPropertyChanged("BtcToEur");
+                    _cryptocurrencyPrices.ETH = value;
+                    OnPropertyChanged("EthToUsd");
                 }
             }
-            get => _cryptocurrencyPrices.EUR;
+            get => _cryptocurrencyPrices.ETH;
         }
-        public string BtcToGbp
+        public string EosToUsd
         {
             set
             {
-                if (_cryptocurrencyPrices.GBP != value)
+                if (_cryptocurrencyPrices.EOS != value)
                 {
-                    _cryptocurrencyPrices.GBP = value;
-                    OnPropertyChanged("BtcToGbp");
+                    _cryptocurrencyPrices.EOS = value;
+                    OnPropertyChanged("EosToUsd");
                 }
             }
-            get => _cryptocurrencyPrices.GBP;
+            get => _cryptocurrencyPrices.EOS;
         }
 
         //private async Task<CurrencyPricing> LoadData()
@@ -102,14 +102,21 @@ namespace avalanchain
 
         private async void LoadData()
         {
-            BtcToEur = SampleData.StaticCryptocurrencyPrices.EUR;
-            BtcToGbp = SampleData.StaticCryptocurrencyPrices.GBP;
-            BtcToUsd = SampleData.StaticCryptocurrencyPrices.USD;
-
+            EthToUsd = "ETH \n " + SampleData.StaticCryptocurrencyPrices.ETH;
+            EosToUsd = "EOS \n " + SampleData.StaticCryptocurrencyPrices.EOS;
+            BtcToUsd = "BTC \n " + SampleData.StaticCryptocurrencyPrices.USD;
             var cp = await SampleData.CryptocurrencyPrices;
-            BtcToEur = cp.EUR;
-            BtcToGbp = cp.GBP;
-            BtcToUsd = cp.USD;
+            //var ee = decimal.Parse(cp.USD.Replace(".", ","));
+            var eth= (decimal.Parse(cp.USD) / decimal.Parse(cp.ETH));
+            var eos = (decimal.Parse(cp.USD) / decimal.Parse(cp.EOS));
+            eth = Math.Round(eth, 2);
+            eos = Math.Round(eos, 2);
+            EthToUsd = "ETH \n " + eth.ToString();
+            EosToUsd = "EOS \n " + eos.ToString();
+            BtcToUsd = "BTC \n " + cp.USD;
+            //EthToUsd = eth.ToString();
+            //EosToUsd = eos.ToString();
+            //BtcToUsd = cp.USD;
         }
     }
 }
